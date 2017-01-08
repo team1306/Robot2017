@@ -8,6 +8,9 @@ import org.usfirst.frc.team1306.robot.commands.ExampleCommand;
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
+
+//This is a test comment to test git -BW
+
 public class OI {
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
