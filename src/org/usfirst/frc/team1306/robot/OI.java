@@ -144,20 +144,20 @@ public class OI {
 					case l:
 						switch (axis) {
 							case x:
-								returnVal = Math.pow(deadband(primaryController.getX(Hand.kLeft)), Constants.JOYSTICK_MULTIPLIER);
+								returnVal = Math.pow(deadband(primaryController.getXNew(Hand.kLeft)), Constants.JOYSTICK_MULTIPLIER);
 							break;
 							case y:
-								returnVal = Math.pow(deadband(primaryController.getY(Hand.kLeft)), Constants.JOYSTICK_MULTIPLIER);
+								returnVal = Math.pow(deadband(primaryController.getYNew(Hand.kLeft)), Constants.JOYSTICK_MULTIPLIER);
 							break;
 						}
 					break;
 					case r:
 						switch (axis) {
 						case x:
-							returnVal = Math.pow(deadband(primaryController.getX(Hand.kRight)), Constants.JOYSTICK_MULTIPLIER);
+							returnVal = Math.pow(deadband(primaryController.getXNew(Hand.kRight)), Constants.JOYSTICK_MULTIPLIER);
 						break;
 						case y:
-							returnVal = Math.pow(deadband(primaryController.getY(Hand.kRight)), Constants.JOYSTICK_MULTIPLIER);
+							returnVal = Math.pow(deadband(primaryController.getYNew(Hand.kRight)), Constants.JOYSTICK_MULTIPLIER);
 						break;
 					}
 					break;

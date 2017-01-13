@@ -30,13 +30,13 @@ public class XboxController extends Joystick {
 	 * @return raw X displacement of joystick, on a scale from -1.0 to 1.0.
 	 */
 	
-	/*public double getX(Hand hand) {
+	public double getXNew(Hand hand) {
 		if (hand.equals(Hand.kLeft)) {
 			return getRawAxis(0);
 		} else {
 			return getRawAxis(4);
 		}
-	}*/
+	}
 
 	/**
 	 * Get the y displacement of either joystick on an xbox controller.
@@ -46,13 +46,13 @@ public class XboxController extends Joystick {
 	 * @return raw y displacement of joystick, on a scale from -1.0 to 1.0.
 	 */
 	
-	/*public double getY(Hand hand) {
+	public double getYNew(Hand hand) {
 		if (hand.equals(Hand.kLeft)) {
 			return -getRawAxis(1);
 		} else {
 			return -getRawAxis(5);
 		}
-	}*/
+	}
 
 	/**
 	 * Get whether either trigger is pressed down.
