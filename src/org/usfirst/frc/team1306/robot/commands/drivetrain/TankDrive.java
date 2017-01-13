@@ -3,6 +3,8 @@ package org.usfirst.frc.team1306.robot.commands.drivetrain;
 import org.usfirst.frc.team1306.robot.OI.*;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class TankDrive extends CommandBase {
 	
 	public TankDrive() {
@@ -26,6 +28,8 @@ public class TankDrive extends CommandBase {
 			}
 		} else {
 			drivetrain.tankDrive(oi.getJoyVal(controller.p, joystick.r, axis.y), oi.getJoyVal(controller.p, joystick.l, axis.y));
+			SmartDashboard.putNumber("rightJoystick",oi.getJoyVal(controller.p, joystick.r, axis.y));
+			SmartDashboard.putNumber("leftJoystick",oi.getJoyVal(controller.p, joystick.l, axis.y));
 		}
 		
 		
