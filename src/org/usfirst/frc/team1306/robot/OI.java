@@ -1,9 +1,10 @@
 package org.usfirst.frc.team1306.robot;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team1306.robot.commands.QuickTurn;
 //import org.usfirst.frc.team1306.robot.commands.SmartQuickTurn;
 
@@ -33,6 +34,8 @@ public class OI {
 	private final Button sbuttonLB;
 	private final Button sbuttonBack;
 	private final Button sbuttonStart;
+	
+	public static Encoder enc;
 	
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
@@ -81,6 +84,8 @@ public class OI {
 		sbuttonLB = new JoystickButton(secondaryController, XboxController.LB);
 		sbuttonBack = new JoystickButton(secondaryController, XboxController.BACK);
 		sbuttonStart = new JoystickButton(secondaryController, XboxController.START);
+		
+		enc = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
 		
 		boolean leftTurn = true;
 		boolean rightTurn = false;
