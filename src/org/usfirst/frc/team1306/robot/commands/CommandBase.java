@@ -30,9 +30,9 @@ public abstract class CommandBase extends Command {
 		drivetrain = new Drivetrain();
 		/*shooter = new Shooter();
 		turret = new Turret();
-		indexer = new Indexer();
+		indexer = new Indexer();*/
 		intake = new Intake();
-		intakeArm = new IntakeArm();*/
+		//intakeArm = new IntakeArm();
 		hood = new Hood();
 		oi = new OI();
 	}

@@ -4,8 +4,11 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team1306.robot.commands.QuickTurn;
+import org.usfirst.frc.team1306.robot.commands.spinIntake;
+import org.usfirst.frc.team1306.robot.subsystems.Intake;
 //import org.usfirst.frc.team1306.robot.commands.SmartQuickTurn;
 
 /**
@@ -85,7 +88,7 @@ public class OI {
 		sbuttonBack = new JoystickButton(secondaryController, XboxController.BACK);
 		sbuttonStart = new JoystickButton(secondaryController, XboxController.START);
 		
-		enc = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+		enc = new Encoder(2, 3, false, Encoder.EncodingType.k4X);
 		
 		boolean leftTurn = true;
 		boolean rightTurn = false;
@@ -93,7 +96,7 @@ public class OI {
 		//pbuttonLB.whenPressed(new SmartQuickTurn(90));
 		pbuttonRB.whileHeld(new QuickTurn(leftTurn));
 		pbuttonLB.whileHeld(new QuickTurn(rightTurn));
-		
+		sbuttonX.whenPressed(new spinIntake());
 		//pbuttonA.whenPressed(new commandName());
 
 	}

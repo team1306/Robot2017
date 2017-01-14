@@ -41,8 +41,8 @@ public class Drivetrain extends Subsystem {
 	public void tankDrive(double leftVal, double rightVal) {
 		leftmotor1.changeControlMode(TalonControlMode.PercentVbus);
 		rightmotor1.changeControlMode(TalonControlMode.PercentVbus);
-		leftmotor1.set(-leftVal);
-		rightmotor1.set(rightVal);
+		leftmotor1.set(-leftVal*Constants.SPEED_MODIFIER);
+		rightmotor1.set(rightVal*Constants.SPEED_MODIFIER);
 	}
 	
 	public void DrivePID() {

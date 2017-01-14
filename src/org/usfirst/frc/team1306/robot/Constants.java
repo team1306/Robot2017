@@ -21,6 +21,9 @@ public class Constants {
 	public final static double BACKWARD_FAST_TIME = 0.5;
 	
 	//Drive PID Constants
+	
+	public final static double SPEED_MODIFIER = 0.7;
+	
 	public final static double LEFT_P = 0;
 	public final static double LEFT_I = 0;
 	public final static double LEFT_D = 0;

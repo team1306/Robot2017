@@ -31,7 +31,7 @@ public class TankDrive extends CommandBase {
 			drivetrain.tankDrive(oi.getJoyVal(controller.p, joystick.r, axis.y), oi.getJoyVal(controller.p, joystick.l, axis.y));
 		}
 		
-		double distance = OI.enc.getDistance();
+		double distance = OI.enc.getRaw();
 		SmartDashboard.putNumber("Encoder recorded distance",distance);
 		
 		//SmartDashboard.putDouble("leftTrigger",oi.getTriggerVal(controller.p, trigger.l));
