@@ -26,7 +26,7 @@ public class Intake extends Subsystem{
 	}
 	
 	public void SpinIntake() {
-		intakeMotor.set(.5);
+		intakeMotor.set(-.60);
 	}
 	
 	public void stopMotor(int motor) {
@@ -39,7 +39,7 @@ public class Intake extends Subsystem{
 
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new spinIntake());
+		//setDefaultCommand(new spinIntake());
 	}
 
 }

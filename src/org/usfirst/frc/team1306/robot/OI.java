@@ -5,10 +5,12 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team1306.robot.commands.QuickTurn;
 import org.usfirst.frc.team1306.robot.commands.spinIntake;
 import org.usfirst.frc.team1306.robot.subsystems.Intake;
+
 //import org.usfirst.frc.team1306.robot.commands.SmartQuickTurn;
 
 /**
@@ -96,7 +98,7 @@ public class OI {
 		//pbuttonLB.whenPressed(new SmartQuickTurn(90));
 		pbuttonRB.whileHeld(new QuickTurn(leftTurn));
 		pbuttonLB.whileHeld(new QuickTurn(rightTurn));
-		sbuttonX.whenPressed(new spinIntake());
+		sbuttonX.whileHeld(new spinIntake());
 		//pbuttonA.whenPressed(new commandName());
 
 	}
@@ -232,6 +234,14 @@ public class OI {
 				}
 			break;
 		}
+		return returnVal;
+	}
+	
+	public boolean getButtonVal(controller controller, int button) {
+		boolean returnVal = false;
+		
+		//controller.getRawButton(button);
+		
 		return returnVal;
 	}
 	
