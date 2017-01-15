@@ -3,8 +3,6 @@ package org.usfirst.frc.team1306.robot.commands;
 import org.usfirst.frc.team1306.robot.OI;
 import org.usfirst.frc.team1306.robot.OI.controller;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 /**
  * Spins intake when x is pressed
  * @author Jackson Goth

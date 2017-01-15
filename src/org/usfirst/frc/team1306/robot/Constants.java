@@ -4,7 +4,14 @@ public class Constants {
 
 	//OI Constants
 	public final static double DEADBAND = 0.15;				//Joystick deadband
-	public final static double JOYSTICK_MULTIPLIER = 1.0;   //Change if too sensitive or not sensitive enough
+	public final static double JOYSTICK_MULTIPLIER = 1.0;   //Change if too sensitive or not sensitive enough (Use SPEED_MODIFIER for speed changes)
+	
+	//Intake Constants
+	public final static double INTAKE_DEFAULT_SPEED = .66; //Default speed of intake
+	public final static double INTAKE_SPEED_CHANGE = 0.0; //Amount the speed goes down when changed with Intake.lowerSpeed()
+	
+	//Shooter Constants
+	public final static double SHOOTER_SPEED = 0.8;
 	
 	//Turn Constants
 	public final static double TURN_SPEED = 0.628;

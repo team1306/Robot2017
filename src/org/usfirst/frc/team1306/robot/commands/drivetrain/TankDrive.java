@@ -21,6 +21,9 @@ public class TankDrive extends CommandBase {
 	@Override
 	protected void execute() {
 		
+		/*
+		 * Applies deadband to trigger values to allow both joystick and trigger driving
+		 */
 		if(oi.getTriggerVal(controller.p, trigger.l) >= 0.1 || oi.getTriggerVal(controller.p, trigger.r) >= 0.1) {
 			if(oi.getTriggerVal(controller.p, trigger.r) >= 0.1) {
 				drivetrain.tankDrive(oi.getTriggerVal(controller.p, trigger.r), oi.getTriggerVal(controller.p, trigger.r));

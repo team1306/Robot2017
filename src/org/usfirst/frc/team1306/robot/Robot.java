@@ -45,6 +45,7 @@ public class Robot extends IterativeRobot {
         
         smartDashboard = new SmartDashboardUpdate();
         smartDashboard.start();
+        
     }
 	
 	/**
