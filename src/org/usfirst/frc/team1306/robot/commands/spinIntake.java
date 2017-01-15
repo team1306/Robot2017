@@ -1,9 +1,13 @@
 package org.usfirst.frc.team1306.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc.team1306.robot.OI.*;
+import org.usfirst.frc.team1306.robot.OI;
+import org.usfirst.frc.team1306.robot.OI.controller;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
+ * Spins intake when x is pressed
+ * @author Jackson Goth
  *
  */
 public class spinIntake extends CommandBase {
@@ -12,22 +16,34 @@ public class spinIntake extends CommandBase {
         requires(intake);
     }
 
-    // Called just before this Command runs the first time
+    private static boolean isFinished;
+    
     protected void initialize() {
+    	isFinished = false;
     }
-
-    // Called repeatedly when this Command is scheduled to run
+    
+    /*
+     * Continually spins intake
+     */
     protected void execute() {
     	intake.SpinIntake();
     }
 
-    // Make this return true when this Command no longer needs to run execute()
+    /**
+     * Stops spinning intake when x is no longer pressed
+     */
     protected boolean isFinished() {
-    	//if(secondaryController.getRawButton())
-        return false;
+    	
+    	if(OI.getButtonVal(controller.s,3)) {
+    		isFinished = false;
+    	} else {
+    		intake.stopMotor();
+    		isFinished = true;
+    	}
+    	
+    	return isFinished;
     }
 
-    // Called once after isFinished returns true
     protected void end() {
     	intake.stopAll();
     }
@@ -35,5 +51,6 @@ public class spinIntake extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	
     }
 }

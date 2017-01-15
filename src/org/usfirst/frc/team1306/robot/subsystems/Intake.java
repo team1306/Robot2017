@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 
-public class Intake extends Subsystem{
+public class Intake extends Subsystem {
 
 	private final Talon intakeMotor;
 
@@ -26,10 +26,10 @@ public class Intake extends Subsystem{
 	}
 	
 	public void SpinIntake() {
-		intakeMotor.set(-.60);
+		intakeMotor.set(-.65);
 	}
 	
-	public void stopMotor(int motor) {
+	public void stopMotor() {
 		intakeMotor.set(0.0);
 	}
 	
@@ -39,7 +39,7 @@ public class Intake extends Subsystem{
 
 	@Override
 	protected void initDefaultCommand() {
-		//setDefaultCommand(new spinIntake());
+		
 	}
 
 }

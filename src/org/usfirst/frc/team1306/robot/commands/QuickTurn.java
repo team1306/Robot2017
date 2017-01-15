@@ -5,15 +5,11 @@ import edu.wpi.first.wpilibj.Timer;
 
 /**
  * 
- * Quickly turns right or left.
+ * Turns the robot left and right with one button
  * 
  * @author Jackson Goth
  *
  */
-
-
-
-
 
 public class QuickTurn extends CommandBase {
 	final double speed;

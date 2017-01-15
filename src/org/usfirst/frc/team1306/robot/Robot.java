@@ -21,11 +21,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
-	//public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
 	
 	Command smartDashboard;
-
     Command autonomousCommand;
     SendableChooser chooser;
 
@@ -38,7 +36,7 @@ public class Robot extends IterativeRobot {
     	CommandBase.init();
 		
         chooser = new SendableChooser();
-        //chooser.addDefault("Default Auto", new ExampleCommand());
+        
         chooser.addObject("Forward Slow", new AutonomousCommand(Direction.FORWARD_SLOW));
         chooser.addObject("Forward Fast", new AutonomousCommand(Direction.FORWARD_FAST));
         chooser.addObject("Backward Slow", new AutonomousCommand(Direction.BACKWARD_SLOW));

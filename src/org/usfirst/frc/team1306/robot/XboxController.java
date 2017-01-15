@@ -26,7 +26,8 @@ public class XboxController extends Joystick {
 	 * Get the x displacement of either joystick on an xbox controller.
 	 * 
 	 * @param hand
-	 *            which joystick, LS or RS.
+	 * 			  which joystick, LS or RS.
+	 *            
 	 * @return raw X displacement of joystick, on a scale from -1.0 to 1.0.
 	 */
 	
@@ -42,7 +43,8 @@ public class XboxController extends Joystick {
 	 * Get the y displacement of either joystick on an xbox controller.
 	 * 
 	 * @param hand
-	 *            which joystick, LS or RS.
+	 * 	          which joystick, LS or RS.
+	 *            
 	 * @return raw y displacement of joystick, on a scale from -1.0 to 1.0.
 	 */
 	

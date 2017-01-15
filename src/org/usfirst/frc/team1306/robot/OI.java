@@ -4,14 +4,9 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.command.Command;
-
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team1306.robot.commands.QuickTurn;
 import org.usfirst.frc.team1306.robot.commands.spinIntake;
-import org.usfirst.frc.team1306.robot.subsystems.Intake;
-
-//import org.usfirst.frc.team1306.robot.commands.SmartQuickTurn;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -19,8 +14,8 @@ import org.usfirst.frc.team1306.robot.subsystems.Intake;
  */
 public class OI {
 	
-	private final XboxController primaryController;
-	private final XboxController secondaryController;
+	private static XboxController primaryController = null;
+	private static XboxController secondaryController = null;
 	
 	private final Button pbuttonA;
 	private final Button pbuttonB;
@@ -68,6 +63,7 @@ public class OI {
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
+	
 	public OI() {
 		primaryController = new XboxController(RobotMap.PRIMARY_PORT);
 		secondaryController = new XboxController(RobotMap.SECONDARY_PORT);
@@ -92,47 +88,16 @@ public class OI {
 		
 		enc = new Encoder(2, 3, false, Encoder.EncodingType.k4X);
 		
-		boolean leftTurn = true;
-		boolean rightTurn = false;
-		//pbuttonRB.whenPressed(new SmartQuickTurn(90));
-		//pbuttonLB.whenPressed(new SmartQuickTurn(90));
-		pbuttonRB.whileHeld(new QuickTurn(leftTurn));
-		pbuttonLB.whileHeld(new QuickTurn(rightTurn));
-		sbuttonX.whileHeld(new spinIntake());
-		//pbuttonA.whenPressed(new commandName());
-
+		pbuttonRB.whileHeld(new QuickTurn(true));
+		pbuttonLB.whileHeld(new QuickTurn(false));
+		sbuttonX.toggleWhenPressed(new spinIntake());
 	}
 	
 	
-	public enum axis {x, y};
-	public enum controller {p, s};
-	public enum trigger {l, r};
-	public enum joystick {l, r};
-	/**
-	 * Returns y axis value of right joystick
-	 * @param axis
-	 * 		X or Y axis to return
-	 * @return
-	 * 		Returns the value from the selected axis
-	 * @deprecated 
-	 * 		Use getJoyVal instead
-	 */
-	public double getRightJoyVal(controller controller, axis axis) {
-		return Math.pow(deadband(primaryController.getY(Hand.kRight)), Constants.JOYSTICK_MULTIPLIER);
-	}
-	
-	/**
-	 * Returns y axis value of left joystick
-	 * @param axis
-	 * 		X or Y axis to return
-	 * @return
-	 * 		Returns the value from the selected axis
-	 * @deprecated 
-	 * 		Use getJoyVal instead
-	 */
-	public double getLeftJoyVal(controller controller, axis axis) {
-		return Math.pow(deadband(primaryController.getY(Hand.kLeft)), Constants.JOYSTICK_MULTIPLIER);
-	}
+	public enum axis {x, y}; //X or Y Axis on Joystick
+	public enum controller {p, s}; //Primary or Secondary Controller
+	public enum trigger {l, r}; //Left or Right Trigger
+	public enum joystick {l, r}; //Left or Right Joystick
 	
 	/**
 	 * Returns the joystick value (from -1.0 to 1.0) for the specified controller's joystick's axis
@@ -145,7 +110,6 @@ public class OI {
 	 * @return
 	 * 		Returns the value of the specified controller's joystick's axis (from -1.0 to 1.0)
 	 */
-	
 	public double getJoyVal(controller controller, joystick joystick, axis axis) {
 		double returnVal = 0.0;
 		switch (controller) {
@@ -237,11 +201,24 @@ public class OI {
 		return returnVal;
 	}
 	
-	public boolean getButtonVal(controller controller, int button) {
+	/**
+	 * Returns the value of a specified button on a controller
+	 * @param controller
+	 * 		The controller that you would like to read from (p or s)
+	 * 
+	 */
+	public static boolean getButtonVal(controller controller, int button) {
 		boolean returnVal = false;
 		
-		//controller.getRawButton(button);
-		
+		switch(controller) {
+			case p:
+				returnVal = primaryController.getRawButton(button);
+			break;
+			case s:
+				returnVal = secondaryController.getRawButton(button);
+			break;
+		}
+
 		return returnVal;
 	}
 	

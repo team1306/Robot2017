@@ -20,9 +20,10 @@ public class Constants {
 	public final static double BACKWARD_FAST_SPEED = -1.0;
 	public final static double BACKWARD_FAST_TIME = 0.5;
 	
-	//Drive PID Constants
+	//Drivestation Constants
+	public final static double SPEED_MODIFIER = 0.7; //Changes Speed of Drivetrain
 	
-	public final static double SPEED_MODIFIER = 0.7;
+	//PID Constants
 	
 	public final static double LEFT_P = 0;
 	public final static double LEFT_I = 0;
