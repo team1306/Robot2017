@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * Controls the motors with the joysticks from oi
  * @author Sam Roquitte
- *
  */
 
 public class Drivetrain extends Subsystem {
