@@ -1,6 +1,8 @@
-package org.usfirst.frc.team1306.robot.commands;
+package org.usfirst.frc.team1306.robot.commands.drivetrain;
 
 import org.usfirst.frc.team1306.robot.Constants;
+import org.usfirst.frc.team1306.robot.commands.CommandBase;
+
 import edu.wpi.first.wpilibj.Timer;
 
 /**

@@ -1,14 +1,13 @@
 package org.usfirst.frc.team1306.robot.subsystems;
 
 import org.usfirst.frc.team1306.robot.Constants;
-
 import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-/**this subsystem controls hood rollers
- * 
+/**
+ * This controls the intake of the robot; the rate at which the rollers spin.
  * @author Jackson Goth
  *
  */
@@ -18,7 +17,6 @@ public class Intake extends Subsystem {
 	private final Talon intakeMotor;
 
 	public static double intakeSpeed = Constants.INTAKE_DEFAULT_SPEED;
-	public static double shooterSpeed = Constants.SHOOTER_SPEED;
 	
 	public Intake() {
 		intakeMotor = new Talon(0);
@@ -26,16 +24,14 @@ public class Intake extends Subsystem {
 	
 	/*
 	 * Method that continually spins intake
-	 * 
 	 */
-	public void SpinIntake() {
+	public void spinIntake() {
 		//double input = 1.0;
 		//input = SmartDashboard.getNumber("Motor Power: ",input);
 		
-		/*
-		 * For time being shooter speed in positive and intake speed is negative
-		 */
-		intakeMotor.set(shooterSpeed); //Change positive or negative when switching between shooter and intake
+		if(Constants.INTAKE_ENABLED) {
+			intakeMotor.set(-intakeSpeed);
+		}
 	}
 	
 	/*
@@ -58,7 +54,6 @@ public class Intake extends Subsystem {
 	
 	/*
 	 * Stops the intake when command is done
-	 * 
 	 */
 	public void stopMotor() {
 		intakeMotor.set(0.0);

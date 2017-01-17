@@ -5,8 +5,10 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team1306.robot.commands.QuickTurn;
-import org.usfirst.frc.team1306.robot.commands.spinIntake;
+
+import org.usfirst.frc.team1306.robot.commands.drivetrain.QuickTurn;
+import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
+import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -34,8 +36,6 @@ public class OI {
 	private final Button sbuttonLB;
 	private final Button sbuttonBack;
 	private final Button sbuttonStart;
-	
-	public static Encoder enc;
 	
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
@@ -86,11 +86,10 @@ public class OI {
 		sbuttonBack = new JoystickButton(secondaryController, XboxController.BACK);
 		sbuttonStart = new JoystickButton(secondaryController, XboxController.START);
 		
-		enc = new Encoder(2, 3, false, Encoder.EncodingType.k4X);
-		
 		pbuttonRB.whileHeld(new QuickTurn(true));
 		pbuttonLB.whileHeld(new QuickTurn(false));
-		sbuttonX.toggleWhenPressed(new spinIntake());
+		sbuttonX.whenPressed(new SpinIntake());
+		sbuttonA.whenPressed(new SpinShooter());
 	}
 	
 	
