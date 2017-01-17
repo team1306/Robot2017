@@ -19,7 +19,7 @@ public class SpinIntake extends CommandBase {
     	
     }
     
-    /*
+    /**
      * Continually spins intake
      */
     protected void execute() {
@@ -30,22 +30,18 @@ public class SpinIntake extends CommandBase {
      * Stops spinning intake when X is no longer pressed
      */
     protected boolean isFinished() {
-    	
     	if(OI.getButtonVal(controller.s,3)) {
     		return false;
     	} else {
     		intake.stopAll();
     		return true;
     	}
-
     }
 
     protected void end() {
     	intake.stopAll();
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
     protected void interrupted() {
     	
     }

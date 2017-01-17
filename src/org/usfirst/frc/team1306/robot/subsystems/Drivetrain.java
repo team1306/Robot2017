@@ -10,9 +10,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
+<<<<<<< HEAD
  * Controls drivetrain motors with the joysticks from OI.java, and can limit intake speed
  * @author Jackson Goth and Sam Roquitte
  *
+=======
+ * Controls the motors with the joysticks from oi
+ * @author Sam Roquitte
+>>>>>>> origin/master
  */
 
 public class Drivetrain extends Subsystem {
