@@ -10,19 +10,16 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * Controls the motors with the joysticks from oi
- * @author Sam Roquitte
+ * Controls drivetrain motors with the joysticks from OI.java, and can limit intake speed
+ * @author Jackson Goth and Sam Roquitte
  *
  */
 
 public class Drivetrain extends Subsystem {
+	
 	private final CANTalon[] motors;	
 	private final CANTalon leftmotor1;
 	private final CANTalon rightmotor1;
-	
-	private static double initialLeft;
-	private static double initialRight;
-	private static double rightCompensation;
 	
 	public Drivetrain() {
 		leftmotor1 = new CANTalon(RobotMap.LEFT_TALON_1_PORT);
@@ -31,17 +28,6 @@ public class Drivetrain extends Subsystem {
 		rightmotor1.setPosition(0);
 		
 		motors = new CANTalon[] {leftmotor1, rightmotor1};
-		
-		/*initialLeft = leftmotor1.getEncPosition();
-		initialRight = rightmotor1.getEncPosition();
-		if(initialLeft > initialRight){
-			rightCompensation = initialRight - initialLeft;
-		} else if(initialRight > initialLeft) {
-			rightCompensation = initialLeft - initialRight;
-		} else {
-			rightCompensation = 0;
-		}*/
-		
 	}
 	
 	/**
@@ -58,10 +44,8 @@ public class Drivetrain extends Subsystem {
 		leftmotor1.changeControlMode(TalonControlMode.PercentVbus);
 		rightmotor1.changeControlMode(TalonControlMode.PercentVbus);
 		
-		//double leftError = Math.abs(leftmotor1.getEncPosition() - (rightmotor1.getEncPosition() + rightCompensation));
-		//double rightError = Math.abs(rightmotor1.getEncPosition() + rightCompensation - leftmotor1.getEncPosition());
-		leftmotor1.set(-leftVal*Constants.SPEED_MODIFIER/**(.5*leftError)*/);
-		rightmotor1.set(rightVal*Constants.SPEED_MODIFIER/**(.5*rightError)*/);
+		leftmotor1.set(-leftVal*Constants.SPEED_MODIFIER/**(Constants.P*Math.abs(leftmotor1.getEncVelocity() - rightmotor1.getEncVelocity()))*/);
+		rightmotor1.set(rightVal*Constants.SPEED_MODIFIER/**(Constants.P*Math.abs(leftmotor1.getEncVelocity() - rightmotor1.getEncVelocity()))*/);
 		
 		SmartDashboard.putNumber("Drivetrain Speed",rightVal*Constants.SPEED_MODIFIER);
 		SmartDashboard.putNumber("Intake Speed",Intake.intakeSpeed);
@@ -79,13 +63,50 @@ public class Drivetrain extends Subsystem {
 		//SmartDashboard.putNumber("Right Encoder",rightmotor1.getEncPosition()/* + rightCompensation*/);
 		//SmartDashboard.putNumber("Left Vel: ",leftmotor1.getEncVelocity());
 		//SmartDashboard.putNumber("Right Vel: ",rightmotor1.getEncVelocity());
+		//SmartDashboard.putNumber("Vel Difference", leftmotor1.getEncVelocity() - rightmotor1.getEncVelocity());
 	}
 	
-	public void DrivePID() {
-		leftmotor1.changeControlMode(TalonControlMode.Speed);
-		rightmotor1.changeControlMode(TalonControlMode.Speed);
-		leftmotor1.setPID(Constants.LEFT_P, Constants.LEFT_I, Constants.LEFT_D);
-		rightmotor1.setPID(Constants.RIGHT_P, Constants.RIGHT_I, Constants.RIGHT_D);
+	public void drivePID(double leftVal, double rightVal, double desiredSpeed) {
+		
+		leftmotor1.changeControlMode(TalonControlMode.PercentVbus);
+		rightmotor1.changeControlMode(TalonControlMode.PercentVbus);
+		
+		double leftMod = 1.0;
+		double rightMod = 1.0;
+		double leftError = desiredSpeed - leftmotor1.getEncVelocity();
+		
+		
+		/**
+		 *  Left Motor PID Adjustments
+		 */
+		if(leftmotor1.getEncVelocity() < desiredSpeed - Constants.PID_DEADBAND) {
+			
+		} else if(leftmotor1.getEncVelocity() > desiredSpeed + Constants.PID_DEADBAND) {
+			
+		} else {
+			
+		}
+		
+		/**
+		 *  Right Motor PID Adjustments
+		 */
+		if(rightmotor1.getEncVelocity() < desiredSpeed - Constants.PID_DEADBAND) {
+			
+		} else if(rightmotor1.getEncVelocity() > desiredSpeed + Constants.PID_DEADBAND) {
+			
+		} else {
+			
+		}
+		
+		leftmotor1.set(-leftVal*Constants.SPEED_MODIFIER*leftMod);
+		rightmotor1.set(rightVal*Constants.SPEED_MODIFIER*rightMod);
+		
+		SmartDashboard.putNumber("Left Vel: ",leftmotor1.getEncVelocity());
+		SmartDashboard.putNumber("Right Vel: ",rightmotor1.getEncVelocity());
+		SmartDashboard.putNumber("Vel Difference", leftmotor1.getEncVelocity() - rightmotor1.getEncVelocity());
+		
+		SmartDashboard.putNumber("Left Error: ",leftError);
+		SmartDashboard.putNumber("Right Error: ",leftError);
 	}
 	
 	/**

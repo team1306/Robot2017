@@ -16,10 +16,17 @@ public class Constants {
 	public final static boolean SHOOTER_ENABLED = true;
 	
 	//Quick-Turn Constants
-	public final static double TURN_SPEED = 0.628;
-	public final static double TURN_TIME = 0.5;
+	public final static double TURN_SPEED = 0.3;
 	
 	//Autonomous Constants
+	
+	public final static double PID_TIME = 10;
+	public final static double SPEED_TWO = 2.0;
+	public final static double SPEED_FOUR = 4.0;
+	public final static double SPEED_SIX = 6.0;
+	public final static double SPEED_DEFAULT = .5;
+	public final static double PID_DEADBAND = 0.05;
+	
 	public final static double FORWARD_SLOW_SPEED = 0.5;
 	public final static double FORWARD_SLOW_TIME = 1.0;
 	public final static double FORWARD_FAST_SPEED = 1.0;
@@ -33,11 +40,8 @@ public class Constants {
 	public final static double SPEED_MODIFIER = 0.7; //Changes Speed of Drivetrain
 	
 	//PID Constants
-	public final static double LEFT_P = 0;
-	public final static double LEFT_I = 0;
-	public final static double LEFT_D = 0;
+	public final static double P = 1.1;
+	public final static double I = 0;
+	public final static double D = 0;
 	
-	public final static double RIGHT_P = 0;
-	public final static double RIGHT_I = 0;
-	public final static double RIGHT_D = 0;
 }

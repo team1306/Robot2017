@@ -10,9 +10,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class AutonomousCommand extends CommandGroup{
 
-	public AutonomousCommand(Direction direction) {
+	public AutonomousCommand(Speed speed) {
 		
-		addSequential(direction.getDriveCommand());
+		addSequential(speed.getDriveCommand());
 		
 	}
 }

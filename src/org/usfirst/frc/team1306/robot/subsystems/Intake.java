@@ -19,7 +19,7 @@ public class Intake extends Subsystem {
 	public static double intakeSpeed = Constants.INTAKE_DEFAULT_SPEED;
 	
 	public Intake() {
-		intakeMotor = new Talon(0);
+		intakeMotor = new Talon(1);
 	}
 	
 	/*

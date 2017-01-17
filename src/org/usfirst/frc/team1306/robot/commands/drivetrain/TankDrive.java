@@ -14,8 +14,7 @@ public class TankDrive extends CommandBase {
 
 	@Override
 	protected void initialize() {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override

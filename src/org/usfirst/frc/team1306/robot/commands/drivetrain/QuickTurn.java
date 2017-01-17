@@ -1,9 +1,9 @@
 package org.usfirst.frc.team1306.robot.commands.drivetrain;
 
 import org.usfirst.frc.team1306.robot.Constants;
+import org.usfirst.frc.team1306.robot.OI;
+import org.usfirst.frc.team1306.robot.OI.controller;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
-
-import edu.wpi.first.wpilibj.Timer;
 
 /**
  * 
@@ -14,32 +14,26 @@ import edu.wpi.first.wpilibj.Timer;
  */
 
 public class QuickTurn extends CommandBase {
-	final double speed;
-	final double time;
-	private final Timer timer;
-	boolean left;
 	
+	private final double speed;
+
 	/**
-	 * Makes the robot turn about 90 degrees
+	 * Makes the robot turn while LB or RB is pressed
 	 * @param left
 	 * 		if it should turn left or right. (T or F)
 	 */
 	
 	public QuickTurn(boolean left) {
 		requires(drivetrain);
-		timer = new Timer();
 		if(left == true) {
 			speed = -Constants.TURN_SPEED;
 		} else {
 			speed = Constants.TURN_SPEED;
 		}
-		time = Constants.TURN_TIME;
 	}
 	
 	@Override
 	protected void initialize() {
-		timer.reset();
-		timer.start();
 		
 	}
 
@@ -48,9 +42,18 @@ public class QuickTurn extends CommandBase {
 		drivetrain.tankDrive(speed, -speed);
 	}
 
+	/**
+	 * Stops turning when RB or LB is released
+	 */
 	@Override
 	protected boolean isFinished() {
-		return timer.hasPeriodPassed(time);
+		
+		if(OI.getButtonVal(controller.p,5) || OI.getButtonVal(controller.p,6)) {
+			return false;
+		} else {
+			drivetrain.stopAll();
+			return true;
+		}
 	}
 
 	@Override

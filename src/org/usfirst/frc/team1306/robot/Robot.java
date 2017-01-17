@@ -8,6 +8,7 @@ import org.usfirst.frc.team1306.robot.commands.CommandBase;
 import org.usfirst.frc.team1306.robot.commands.SmartDashboardUpdate;
 import org.usfirst.frc.team1306.robot.commands.autonomous.AutonomousCommand;
 import org.usfirst.frc.team1306.robot.commands.autonomous.Direction;
+import org.usfirst.frc.team1306.robot.commands.autonomous.Speed;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -37,10 +38,9 @@ public class Robot extends IterativeRobot {
 		
         chooser = new SendableChooser();
         
-        chooser.addObject("Forward Slow", new AutonomousCommand(Direction.FORWARD_SLOW));
-        chooser.addObject("Forward Fast", new AutonomousCommand(Direction.FORWARD_FAST));
-        chooser.addObject("Backward Slow", new AutonomousCommand(Direction.BACKWARD_SLOW));
-        chooser.addObject("Backward Fast", new AutonomousCommand(Direction.BACKWARD_FAST));
+        chooser.addObject("2 Velocity Units", new AutonomousCommand(Speed.VELOCITY_TWO));
+        chooser.addObject("4 Velocity Units", new AutonomousCommand(Speed.VELOCITY_FOUR));
+        chooser.addObject("6 Velocity Units", new AutonomousCommand(Speed.VELOCITY_SIX));
         SmartDashboard.putData("Auto mode", chooser);
         
         smartDashboard = new SmartDashboardUpdate();
