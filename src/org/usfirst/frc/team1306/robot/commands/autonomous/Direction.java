@@ -2,6 +2,10 @@ package org.usfirst.frc.team1306.robot.commands.autonomous;
 
 import org.usfirst.frc.team1306.robot.Constants;
 
+/**
+ * Enum that contains differen't basic autonomous modes
+ * @author Jackson Goth
+ */
 public enum Direction {
 
 	FORWARD_SLOW(Constants.FORWARD_SLOW_SPEED, Constants.FORWARD_SLOW_TIME),

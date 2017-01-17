@@ -2,14 +2,13 @@ package org.usfirst.frc.team1306.robot.commands.autonomous;
 
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
-
 import edu.wpi.first.wpilibj.Timer;
 
 /**
  * A command that drives the robot straight forward for a certain amount of
  * time.
  * 
- * @author Finn Voichick
+ * @author Jackson Goth
  */
 public class TimedDrive extends CommandBase {
 
