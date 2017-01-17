@@ -20,12 +20,11 @@ public class Constants {
 	
 	//Autonomous Constants
 	
-	public final static double PID_TIME = 10;
-	public final static double SPEED_TWO = 2.0;
-	public final static double SPEED_FOUR = 4.0;
-	public final static double SPEED_SIX = 6.0;
-	public final static double SPEED_DEFAULT = .5;
-	public final static double PID_DEADBAND = 0.05;
+	public final static double PID_TIME = 10; //Time of PID Catch-up in Autonomous
+	public final static double SPEED_TWO = 2.0; //Desired speed of 2
+	public final static double SPEED_FOUR = 4.0; //Desired speed of 4
+	public final static double SPEED_SIX = 6.0; //Desired speed of 6
+	public final static double SPEED_DEFAULT = .5; //Default speed of drivetrain
 	
 	public final static double FORWARD_SLOW_SPEED = 0.5;
 	public final static double FORWARD_SLOW_TIME = 1.0;
@@ -40,7 +39,7 @@ public class Constants {
 	public final static double SPEED_MODIFIER = 0.7; //Changes Speed of Drivetrain
 	
 	//PID Constants
-	public final static double P = 1.1;
+	public final static double P = 1.0;
 	public final static double I = 0;
 	public final static double D = 0;
 	

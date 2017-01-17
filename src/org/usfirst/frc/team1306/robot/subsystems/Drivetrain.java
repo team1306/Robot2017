@@ -10,14 +10,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
-<<<<<<< HEAD
  * Controls drivetrain motors with the joysticks from OI.java, and can limit intake speed
  * @author Jackson Goth and Sam Roquitte
  *
-=======
- * Controls the motors with the joysticks from oi
- * @author Sam Roquitte
->>>>>>> origin/master
  */
 
 public class Drivetrain extends Subsystem {
@@ -78,29 +73,23 @@ public class Drivetrain extends Subsystem {
 		
 		double leftMod = 1.0;
 		double rightMod = 1.0;
-		double leftError = desiredSpeed - leftmotor1.getEncVelocity();
-		
+		double leftVel = leftmotor1.getEncVelocity();
+		double rightVel = rightmotor1.getEncVelocity();
+		double leftError = desiredSpeed - leftVel;
+		double rightError = desiredSpeed - rightVel;
 		
 		/**
 		 *  Left Motor PID Adjustments
 		 */
-		if(leftmotor1.getEncVelocity() < desiredSpeed - Constants.PID_DEADBAND) {
-			
-		} else if(leftmotor1.getEncVelocity() > desiredSpeed + Constants.PID_DEADBAND) {
-			
-		} else {
-			
+		if(leftVel != desiredSpeed) {
+			leftMod = leftError * Constants.P;
 		}
 		
 		/**
 		 *  Right Motor PID Adjustments
 		 */
-		if(rightmotor1.getEncVelocity() < desiredSpeed - Constants.PID_DEADBAND) {
-			
-		} else if(rightmotor1.getEncVelocity() > desiredSpeed + Constants.PID_DEADBAND) {
-			
-		} else {
-			
+		if(rightVel != desiredSpeed) {
+			rightMod = rightError * Constants.P;
 		}
 		
 		leftmotor1.set(-leftVal*Constants.SPEED_MODIFIER*leftMod);
@@ -111,7 +100,7 @@ public class Drivetrain extends Subsystem {
 		SmartDashboard.putNumber("Vel Difference", leftmotor1.getEncVelocity() - rightmotor1.getEncVelocity());
 		
 		SmartDashboard.putNumber("Left Error: ",leftError);
-		SmartDashboard.putNumber("Right Error: ",leftError);
+		SmartDashboard.putNumber("Right Error: ",rightError);
 	}
 	
 	/**
