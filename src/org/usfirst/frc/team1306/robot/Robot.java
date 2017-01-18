@@ -24,7 +24,7 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	
-	Command smartDashboard;
+	//Command smartDashboard;
     Command autonomousCommand;
     SendableChooser chooser;
 
@@ -38,13 +38,13 @@ public class Robot extends IterativeRobot {
 		
         chooser = new SendableChooser();
         
-        chooser.addObject("2 Velocity Units", new AutonomousCommand(Speed.VELOCITY_TWO));
+        chooser.addDefault("2 Velocity Units", new AutonomousCommand(Speed.VELOCITY_TWO));
         chooser.addObject("4 Velocity Units", new AutonomousCommand(Speed.VELOCITY_FOUR));
         chooser.addObject("6 Velocity Units", new AutonomousCommand(Speed.VELOCITY_SIX));
         SmartDashboard.putData("Auto mode", chooser);
         
-        smartDashboard = new SmartDashboardUpdate();
-        smartDashboard.start();
+        //smartDashboard = new SmartDashboardUpdate();
+        //smartDashboard.start();
         
     }
 	
