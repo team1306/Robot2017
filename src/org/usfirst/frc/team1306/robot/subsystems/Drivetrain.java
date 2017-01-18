@@ -20,12 +20,17 @@ public class Drivetrain extends Subsystem {
 	private final CANTalon[] motors;	
 	private final CANTalon leftmotor1;
 	private final CANTalon rightmotor1;
+	private final CANTalon leftmotor2;
+	private final CANTalon rightmotor2;
 	
 	public Drivetrain() {
 		leftmotor1 = new CANTalon(RobotMap.LEFT_TALON_1_PORT);
 		leftmotor1.setPosition(0);
 		rightmotor1 = new CANTalon(RobotMap.RIGHT_TALON_1_PORT);
 		rightmotor1.setPosition(0);
+		
+		leftmotor2 = new CANTalon(RobotMap.LEFT_TALON_2_PORT); //TODO Figure out correct ports for these
+		rightmotor2 = new CANTalon(RobotMap.RIGHT_TALON_2_PORT);
 		
 		motors = new CANTalon[] {leftmotor1, rightmotor1};
 	}
@@ -43,12 +48,18 @@ public class Drivetrain extends Subsystem {
 		
 		leftmotor1.changeControlMode(TalonControlMode.PercentVbus);
 		rightmotor1.changeControlMode(TalonControlMode.PercentVbus);
+		leftmotor2.changeControlMode(TalonControlMode.Follower);
+		rightmotor2.changeControlMode(TalonControlMode.Follower);
 		
-		leftmotor1.set(-leftVal*Constants.SPEED_MODIFIER/**(Constants.P*Math.abs(leftmotor1.getEncVelocity() - rightmotor1.getEncVelocity()))*/);
-		rightmotor1.set(rightVal*Constants.SPEED_MODIFIER/**(Constants.P*Math.abs(leftmotor1.getEncVelocity() - rightmotor1.getEncVelocity()))*/);
-		
-		SmartDashboard.putNumber("Drivetrain Speed",rightVal*Constants.SPEED_MODIFIER);
-		SmartDashboard.putNumber("Intake Speed",Intake.intakeSpeed);
+		if(Constants.DRIVETRAIN_ENABLED) { 
+			leftmotor1.set(-leftVal*Constants.SPEED_MODIFIER/**(Constants.P*Math.abs(leftmotor1.getEncVelocity() - rightmotor1.getEncVelocity()))*/);
+			rightmotor1.set(rightVal*Constants.SPEED_MODIFIER/**(Constants.P*Math.abs(leftmotor1.getEncVelocity() - rightmotor1.getEncVelocity()))*/);
+			//leftmotor2.set(leftmotor1.getDeviceID()); //TODO Enable these?
+			//rightmotor2.set(rightmotor1.getDeviceID());
+		}
+			
+		//SmartDashboard.putNumber("Drivetrain Speed",rightVal*Constants.SPEED_MODIFIER);
+		//SmartDashboard.putNumber("Intake Speed",Intake.intakeSpeed);
 		
 		/*
 		 * Currently lowers speed of intake motor when drivetrain speed is above 0.5

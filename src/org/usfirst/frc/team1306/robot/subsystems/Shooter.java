@@ -1,7 +1,10 @@
 package org.usfirst.frc.team1306.robot.subsystems;
 
 import org.usfirst.frc.team1306.robot.Constants;
-import edu.wpi.first.wpilibj.Talon;
+import org.usfirst.frc.team1306.robot.RobotMap;
+import com.ctre.CANTalon;
+import com.ctre.CANTalon.TalonControlMode;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -11,12 +14,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Shooter extends Subsystem {
 
-	private final Talon shooterMotor;
+	//private final Talon shooterMotor; Remove if SRX doesn't work
+	private final CANTalon shooterMotor;
 	
 	public final static double shooterSpeed = Constants.SHOOTER_SPEED;
 	
 	public Shooter() {
-		shooterMotor = new Talon(0);
+		//shooterMotor = new Talon(0);
+		shooterMotor = new CANTalon(RobotMap.FLYWHEEL_TALON_PORT);
 	}
 	
 	/*
@@ -25,6 +30,8 @@ public class Shooter extends Subsystem {
 	public void spinShooter() {
 		
 		if(Constants.SHOOTER_ENABLED) {
+			
+			shooterMotor.changeControlMode(TalonControlMode.Speed);
 			shooterMotor.set(shooterSpeed);
 		}
 	}

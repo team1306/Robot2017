@@ -6,43 +6,23 @@ package org.usfirst.frc.team1306.robot;
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
  * 
- * @author James Tautges
+ * @author Jackson Goth
  */
 public class RobotMap {
 
-	// oi ports
+	//OI Ports
 	public static final int PRIMARY_PORT = 0;
 	public static final int SECONDARY_PORT = 1;
 
-	// drivetrain controllers ports
+	//Drivetrain Ports
 	public static final int LEFT_TALON_1_PORT = 1;
 	public static final int LEFT_TALON_2_PORT = 4;
-	public static final int RIGHT_TALON_1_PORT = 2;
-	public static final int RIGHT_TALON_2_PORT = 5;
+	public static final int RIGHT_TALON_1_PORT = 2; //TODO Figure out what this actually is
+	public static final int RIGHT_TALON_2_PORT = 5; //TODO Figure out what this actually is
 
-	public static final int LEFT_SHIFTER_PORT_A = 0;
-	public static final int LEFT_SHIFTER_PORT_B = 1;
-	public static final int RIGHT_SHIFTER_PORT_A = 2;
-	public static final int RIGHT_SHIFTER_PORT_B = 3;
+	//Shooter Ports
+	public static final int FLYWHEEL_TALON_PORT = 9; //TODO Figure out what this actually is
 
-	// shooter and turret controller ports
-	public static final int FLYWHEEL_TALON_PORT = 9;
-	public static final int HOOD_TALON_PORT = 11;
-	public static final int TURRET_TALON_PORT = 10;
-
-	// intake control ports
-	public static final int INTAKE_ARM_LEFT_TALON_PORT = 8;
-	public static final int INTAKE_ARM_RIGHT_TALON_PORT = 7;
-
-	public static final int INTAKE_ROLLER_1_PORT = 0;
-	public static final int INTAKE_ROLLER_2_PORT = 1;
-
-	// indexer ports
-	public static final int INDEXER_PORT = 2;
-
-	// intake sensor ports
-	public static final int INDEXER_LIMIT_1_PORT = 0;
-	public static final int INDEXER_LIMIT_2_PORT = 1;
-	public static final int PRESSURE_PAD_PORT = 0;
-
+	//Intake Ports
+	public static final int INTAKE_TALON_PORT = 0; //TODO May change when switching out flywheel motorcontroller
 }

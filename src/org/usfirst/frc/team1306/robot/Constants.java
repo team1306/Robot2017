@@ -1,5 +1,9 @@
 package org.usfirst.frc.team1306.robot;
 
+/**
+ * To store finalized variables all in one place
+ * @author Jackson Goth
+ */
 public class Constants {
 
 	//OI Constants
@@ -9,11 +13,11 @@ public class Constants {
 	//Intake Constants
 	public final static double INTAKE_DEFAULT_SPEED = .66; //Default speed of intake
 	public final static double INTAKE_SPEED_CHANGE = 0.0; //Amount the speed goes down when changed with Intake.lowerSpeed()
-	public final static boolean INTAKE_ENABLED = false;
+	public final static boolean INTAKE_ENABLED = true;
 	
 	//Shooter Constants
-	public final static double SHOOTER_SPEED = 0.8;
-	public final static boolean SHOOTER_ENABLED = true;
+	public final static double SHOOTER_SPEED = 500; //Talon SR Speed = 0.9
+	public final static boolean SHOOTER_ENABLED = false;
 	
 	//Quick-Turn Constants
 	public final static double TURN_SPEED = 0.3;
@@ -37,6 +41,7 @@ public class Constants {
 	
 	//Drivetrain Constants
 	public final static double SPEED_MODIFIER = 0.7; //Changes Speed of Drivetrain
+	public final static boolean DRIVETRAIN_ENABLED = false;
 	
 	//PID Constants
 	public final static double P = 1.0;

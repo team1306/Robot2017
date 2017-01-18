@@ -1,10 +1,9 @@
 package org.usfirst.frc.team1306.robot.subsystems;
 
 import org.usfirst.frc.team1306.robot.Constants;
-import edu.wpi.first.wpilibj.Sendable;
+import org.usfirst.frc.team1306.robot.RobotMap;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This controls the intake of the robot; the rate at which the rollers spin.
@@ -19,15 +18,13 @@ public class Intake extends Subsystem {
 	public static double intakeSpeed = Constants.INTAKE_DEFAULT_SPEED;
 	
 	public Intake() {
-		intakeMotor = new Talon(1);
+		intakeMotor = new Talon(RobotMap.INTAKE_TALON_PORT);
 	}
 	
 	/*
 	 * Method that continually spins intake
 	 */
 	public void spinIntake() {
-		//double input = 1.0;
-		//input = SmartDashboard.getNumber("Motor Power: ",input);
 		
 		if(Constants.INTAKE_ENABLED) {
 			intakeMotor.set(-intakeSpeed);
