@@ -11,7 +11,7 @@ public class Constants {
 	public final static double JOYSTICK_MULTIPLIER = 1.0;   //Change if too sensitive or not sensitive enough (Use SPEED_MODIFIER for speed changes)
 	
 	//Intake Constants
-	public final static double INTAKE_DEFAULT_SPEED = .66; //Default speed of intake
+	public final static double INTAKE_DEFAULT_SPEED = .55; //Default speed of intake
 	public final static double INTAKE_SPEED_CHANGE = 0.0; //Amount the speed goes down when changed with Intake.lowerSpeed()
 	public final static boolean INTAKE_ENABLED = true;
 	
@@ -41,11 +41,11 @@ public class Constants {
 	
 	//Drivetrain Constants
 	public final static double SPEED_MODIFIER = 0.7; //Changes Speed of Drivetrain
-	public final static boolean DRIVETRAIN_ENABLED = false;
+	public final static boolean DRIVETRAIN_ENABLED = true;
 	
 	//PID Constants
 	public final static double P = 1.0;
-	public final static double I = 0;
-	public final static double D = 0;
-	
+	public final static double I = 1;
+	public final static double D = 1;
+	public final static double PIDTolerance = 0.01;
 }

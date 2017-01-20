@@ -22,11 +22,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
-	public static OI oi;
-	
-	//Command smartDashboard;
+	Command smartDashboard;
     Command autonomousCommand;
-    SendableChooser chooser;
+    SendableChooser<AutonomousCommand> chooser;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -35,16 +33,17 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	
     	CommandBase.init();
-		
-        chooser = new SendableChooser();
+    	smartDashboard = new SmartDashboardUpdate();
+        smartDashboard.start();
+    	
+        chooser = new SendableChooser<AutonomousCommand>();
         
         chooser.addDefault("2 Velocity Units", new AutonomousCommand(Speed.VELOCITY_TWO));
         chooser.addObject("4 Velocity Units", new AutonomousCommand(Speed.VELOCITY_FOUR));
         chooser.addObject("6 Velocity Units", new AutonomousCommand(Speed.VELOCITY_SIX));
         SmartDashboard.putData("Auto mode", chooser);
         
-        //smartDashboard = new SmartDashboardUpdate();
-        //smartDashboard.start();
+        
         
     }
 	
@@ -85,7 +84,9 @@ public class Robot extends IterativeRobot {
 		} */
     	
     	// schedule the autonomous command (example)
-        if (autonomousCommand != null) autonomousCommand.start();
+        if (autonomousCommand != null) {
+        	autonomousCommand.start();
+        }
     }
 
     /**

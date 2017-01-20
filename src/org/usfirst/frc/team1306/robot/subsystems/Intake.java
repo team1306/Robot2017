@@ -18,7 +18,7 @@ public class Intake extends Subsystem {
 	public static double intakeSpeed = Constants.INTAKE_DEFAULT_SPEED;
 	
 	public Intake() {
-		intakeMotor = new Talon(RobotMap.INTAKE_TALON_PORT);
+		intakeMotor = new Talon(0);
 	}
 	
 	/*

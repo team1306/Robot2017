@@ -4,9 +4,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class SmartDashboardUpdate extends CommandBase {
 
+	public SmartDashboardUpdate() {
+		setRunWhenDisabled(true);
+	}
+	
 	@Override
 	protected void initialize() {
-		SmartDashboard.putString("SmartDashboard Initialized!!!!!!!", "it works?");
+		//SmartDashboard.putString("SmartDashboard Initialized!!!!!!!", "it works?");
 	}
 
 	@Override

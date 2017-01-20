@@ -103,8 +103,8 @@ public class Drivetrain extends Subsystem {
 			rightMod = rightError * Constants.P;
 		}
 		
-		leftmotor1.set(-leftVal*Constants.SPEED_MODIFIER*leftMod);
-		rightmotor1.set(rightVal*Constants.SPEED_MODIFIER*rightMod);
+		leftmotor1.set(-leftVal*Math.abs(leftMod)); //TODO Get Speed Modifier Working with these two
+		rightmotor1.set(rightVal*Math.abs(rightMod));
 		
 		SmartDashboard.putNumber("Left Vel: ",leftmotor1.getEncVelocity());
 		SmartDashboard.putNumber("Right Vel: ",rightmotor1.getEncVelocity());
