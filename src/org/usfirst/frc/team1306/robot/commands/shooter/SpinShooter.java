@@ -13,8 +13,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class SpinShooter extends CommandBase{
 
-	private static boolean on = false;
-	
 	public SpinShooter() {
 		requires(shooter);
 	}
@@ -27,15 +25,22 @@ public class SpinShooter extends CommandBase{
      * Spins up shooter
      */
     protected void execute() {
+<<<<<<< HEAD
     	if(OI.getButtonVal(controller.p,1)) {
+=======
+    	
+>>>>>>> origin/master
     		shooter.spinShooter();
-    	}
     }
 
     /**
      * Stops spinning shooter when A is no longer pressed
      */
     protected boolean isFinished() {
+<<<<<<< HEAD
+=======
+    	
+>>>>>>> origin/master
     	if(OI.getButtonVal(controller.p,1)) {
     		return false;
     	} else {

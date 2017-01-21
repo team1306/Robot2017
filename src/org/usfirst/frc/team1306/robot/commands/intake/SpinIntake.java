@@ -30,7 +30,7 @@ public class SpinIntake extends CommandBase {
      * Stops spinning intake when X is no longer pressed
      */
     protected boolean isFinished() {
-    	if(OI.getButtonVal(controller.s,3)) {
+    	if(OI.getButtonVal(controller.p,3)) {
     		return false;
     	} else {
     		intake.stopAll();

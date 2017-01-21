@@ -15,9 +15,15 @@ public class RobotMap {
 	public static final int SECONDARY_PORT = 1;
 
 	//Drivetrain Ports
+<<<<<<< HEAD
 	public static final int LEFT_TALON_1_PORT = 6;	//Switch back to port 1
 	public static final int LEFT_TALON_2_PORT = 4;
 	public static final int RIGHT_TALON_1_PORT = 2; //TODO Figure out what this actually is
+=======
+	public static final int LEFT_TALON_1_PORT = 1;
+	public static final int LEFT_TALON_2_PORT = 4; //TODO Figure out what this actually is
+	public static final int RIGHT_TALON_1_PORT = 2; 
+>>>>>>> origin/master
 	public static final int RIGHT_TALON_2_PORT = 5; //TODO Figure out what this actually is
 
 	//Shooter Ports

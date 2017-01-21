@@ -8,6 +8,7 @@ import org.usfirst.frc.team1306.robot.OI.trigger;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.DriveStraight;
 import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class PIDDrivetrain extends PIDSubsystem {
 
@@ -26,15 +27,16 @@ public class PIDDrivetrain extends PIDSubsystem {
 
 	@Override
 	protected double returnPIDInput() {
-		// TODO Auto-generated method stub
+		
 		return rightmotor1.getEncVelocity() - leftmotor1.getEncVelocity();
 	}
 
 	@Override
 	protected void usePIDOutput(double output) {
-		// TODO Auto-generated method stub
-		double input = .5/*OI.getTriggerVal(controller.p, trigger.r)*/;
+		
+		double input = OI.getTriggerVal(controller.p, trigger.r);
 		double leftput = 0;
+		SmartDashboard.putString("Made it to PID", "Yes");
 		
 		if(Constants.PID_DRIVETRAIN_ENABLED) {
 			if(output + input > 1) {
@@ -44,7 +46,8 @@ public class PIDDrivetrain extends PIDSubsystem {
 			} else {
 				leftput = output + input;
 			}
-			leftmotor1.set(leftput);
+			SmartDashboard.putNumber("lefput", -leftput);
+			leftmotor1.set(-leftput);
 			rightmotor1.set(input);
 		}
 	}
