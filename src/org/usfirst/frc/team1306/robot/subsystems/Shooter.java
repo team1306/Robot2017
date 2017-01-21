@@ -1,6 +1,9 @@
 package org.usfirst.frc.team1306.robot.subsystems;
 
 import org.usfirst.frc.team1306.robot.Constants;
+import org.usfirst.frc.team1306.robot.commands.drivetrain.DriveStraight;
+import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
+
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -46,7 +49,7 @@ public class Shooter extends Subsystem {
 	
 	@Override
 	protected void initDefaultCommand() {
-		
+		setDefaultCommand(new SpinShooter());
 	}
 
 }

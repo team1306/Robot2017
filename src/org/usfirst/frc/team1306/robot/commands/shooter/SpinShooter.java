@@ -11,6 +11,8 @@ import org.usfirst.frc.team1306.robot.commands.CommandBase;
  */
 public class SpinShooter extends CommandBase{
 
+	private static boolean on = false;
+	
 	public SpinShooter() {
 		requires(shooter);
 	}
@@ -23,7 +25,18 @@ public class SpinShooter extends CommandBase{
      * Spins up shooter
      */
     protected void execute() {
-    	shooter.spinShooter(); //TODO Make it toggle on/off
+    	
+    	if(OI.getButtonVal(controller.p,1)) {
+    		if(on) {
+    			on = false;
+    		} else {
+    			on = true;
+    		}
+    	}
+    	
+    	if(on) {
+    		shooter.spinShooter();
+    	}
     }
 
     /**
@@ -31,13 +44,13 @@ public class SpinShooter extends CommandBase{
      */
     protected boolean isFinished() {
     	
-    	if(OI.getButtonVal(controller.s,1)) {
+    	/*if(OI.getButtonVal(controller.s,1)) {
     		return false;
     	} else {
     		shooter.stopAll();
     		return true;
-    	}
-
+    	}*/
+    	return false;
     }
 
     protected void end() {

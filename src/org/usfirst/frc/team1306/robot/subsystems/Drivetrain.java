@@ -17,22 +17,22 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Drivetrain extends Subsystem {
 	
-	//private final CANTalon[] motors;	
-	//private final CANTalon leftmotor1;
-	//private final CANTalon rightmotor1;
+	private final CANTalon[] motors;	
+	private final CANTalon leftmotor1;
+	private final CANTalon rightmotor1;
 	private final CANTalon leftmotor2;
 	private final CANTalon rightmotor2;
 	
 	public Drivetrain() {
-		//leftmotor1 = new CANTalon(RobotMap.LEFT_TALON_1_PORT);
-		//leftmotor1.setPosition(0);
-		//rightmotor1 = new CANTalon(RobotMap.RIGHT_TALON_1_PORT);
-		//rightmotor1.setPosition(0);
+		leftmotor1 = new CANTalon(RobotMap.LEFT_TALON_1_PORT);
+		leftmotor1.setPosition(0);
+		rightmotor1 = new CANTalon(RobotMap.RIGHT_TALON_1_PORT);
+		rightmotor1.setPosition(0);
 		
 		leftmotor2 = new CANTalon(RobotMap.LEFT_TALON_2_PORT); //TODO Figure out correct ports for these
 		rightmotor2 = new CANTalon(RobotMap.RIGHT_TALON_2_PORT);
 		
-		//motors = new CANTalon[] {leftmotor1, rightmotor1};
+		motors = new CANTalon[] {leftmotor1, rightmotor1};
 	}
 	
 	/**
@@ -46,14 +46,14 @@ public class Drivetrain extends Subsystem {
 	
 	public void tankDrive(double leftVal, double rightVal) {
 		
-		//leftmotor1.changeControlMode(TalonControlMode.PercentVbus);
-		//rightmotor1.changeControlMode(TalonControlMode.PercentVbus);
+		leftmotor1.changeControlMode(TalonControlMode.PercentVbus);
+		rightmotor1.changeControlMode(TalonControlMode.PercentVbus);
 		leftmotor2.changeControlMode(TalonControlMode.Follower);
 		rightmotor2.changeControlMode(TalonControlMode.Follower);
 		
 		if(Constants.DRIVETRAIN_ENABLED) { 
-			//leftmotor1.set(-leftVal*Constants.SPEED_MODIFIER/**(Constants.P*Math.abs(leftmotor1.getEncVelocity() - rightmotor1.getEncVelocity()))*/);
-			//rightmotor1.set(rightVal*Constants.SPEED_MODIFIER/**(Constants.P*Math.abs(leftmotor1.getEncVelocity() - rightmotor1.getEncVelocity()))*/);
+			leftmotor1.set(-leftVal*Constants.SPEED_MODIFIER/**(Constants.P*Math.abs(leftmotor1.getEncVelocity() - rightmotor1.getEncVelocity()))*/);
+			rightmotor1.set(rightVal*Constants.SPEED_MODIFIER/**(Constants.P*Math.abs(leftmotor1.getEncVelocity() - rightmotor1.getEncVelocity()))*/);
 			//leftmotor2.set(leftmotor1.getDeviceID()); //TODO Enable these?
 			//rightmotor2.set(rightmotor1.getDeviceID());
 		}
@@ -77,7 +77,42 @@ public class Drivetrain extends Subsystem {
 		//SmartDashboard.putNumber("Vel Difference", leftmotor1.getEncVelocity() - rightmotor1.getEncVelocity());
 	}
 	
-	
+	public void drivePID(double leftVal, double rightVal, double desiredSpeed) {
+		
+		leftmotor1.changeControlMode(TalonControlMode.PercentVbus);
+		rightmotor1.changeControlMode(TalonControlMode.PercentVbus);
+		
+		double leftMod = 1.0;
+		double rightMod = 1.0;
+		double leftVel = leftmotor1.getEncVelocity();
+		double rightVel = rightmotor1.getEncVelocity();
+		double leftError = desiredSpeed - leftVel;
+		double rightError = desiredSpeed - rightVel;
+		
+		/**
+		 *  Left Motor PID Adjustments
+		 */
+		if(leftVel != desiredSpeed) {
+			leftMod = leftError * Constants.P;
+		}
+		
+		/**
+		 *  Right Motor PID Adjustments
+		 */
+		if(rightVel != desiredSpeed) {
+			rightMod = rightError * Constants.P;
+		}
+		
+		leftmotor1.set(-leftVal*Math.abs(leftMod)); //TODO Get Speed Modifier Working with these two
+		rightmotor1.set(rightVal*Math.abs(rightMod));
+		
+		SmartDashboard.putNumber("Left Vel: ",leftmotor1.getEncVelocity());
+		SmartDashboard.putNumber("Right Vel: ",rightmotor1.getEncVelocity());
+		SmartDashboard.putNumber("Vel Difference", leftmotor1.getEncVelocity() - rightmotor1.getEncVelocity());
+		
+		SmartDashboard.putNumber("Left Error: ",leftError);
+		SmartDashboard.putNumber("Right Error: ",rightError);
+	}
 	
 	/**
 	 * Sets the motor speed to 0
@@ -87,14 +122,14 @@ public class Drivetrain extends Subsystem {
 	 */
 	
 	public void stopMotor(int motor) {
-		//motors[motor].set(0.0);
+		motors[motor].set(0.0);
 	}
 	
-	/*public void stopAll() {
+	public void stopAll() {
 		for (int i = 0; i < motors.length; i++) {
 			motors[i].set(0.0);
 		}
-	}*/
+	}
 
 	@Override
 	protected void initDefaultCommand() {
