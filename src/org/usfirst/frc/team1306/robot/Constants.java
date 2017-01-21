@@ -18,6 +18,8 @@ public class Constants {
 	//Shooter Constants
 	public final static double SHOOTER_SPEED = 0.70; //Talon SR Speed = 0.9
 	public final static boolean SHOOTER_ENABLED = true;
+	public final static int SHOOTER_BANG_SPEED = 6000;
+	public final static int SHOOTER_BANG_DEADBAND = 0;
 	
 	//Quick-Turn Constants
 	public final static double TURN_SPEED = 0.3;
