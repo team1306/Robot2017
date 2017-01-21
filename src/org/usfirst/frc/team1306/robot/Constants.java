@@ -42,10 +42,11 @@ public class Constants {
 	//Drivetrain Constants
 	public final static double SPEED_MODIFIER = 0.7; //Changes Speed of Drivetrain
 	public final static boolean DRIVETRAIN_ENABLED = true;
+	public final static boolean PID_DRIVETRAIN_ENABLED = true;
 	
 	//PID Constants
-	public final static double P = 1.0;
-	public final static double I = 1;
-	public final static double D = 1;
+	public final static double P = 0.01;
+	public final static double I = 0.0;
+	public final static double D = 0.0;
 	public final static double PIDTolerance = 0.01;
 }

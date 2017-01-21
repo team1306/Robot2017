@@ -85,6 +85,7 @@ public class OI {
 		
 		pbuttonRB.whileHeld(new QuickTurn(true));
 		pbuttonLB.whileHeld(new QuickTurn(false));
+		
 		sbuttonX.whenPressed(new SpinIntake());
 		sbuttonA.whenPressed(new SpinShooter());
 	}
@@ -170,7 +171,7 @@ public class OI {
 	 * @return
 	 * 		Returns the specified value
 	 */
-	public double getTriggerVal(controller controller, trigger trigger) {
+	public static double getTriggerVal(controller controller, trigger trigger) {
 		double returnVal = 0.0;
 		switch (controller){
 			case p:
