@@ -86,8 +86,8 @@ public class OI {
 		pbuttonRB.whileHeld(new QuickTurn(true));
 		pbuttonLB.whileHeld(new QuickTurn(false));
 		
-		sbuttonX.whenPressed(new SpinIntake());
-		sbuttonA.whenPressed(new SpinShooter());
+		pbuttonX.whenPressed(new SpinIntake());
+		pbuttonA.whenPressed(new SpinShooter());
 	}
 	
 	

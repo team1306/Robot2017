@@ -13,11 +13,11 @@ public class Constants {
 	//Intake Constants
 	public final static double INTAKE_DEFAULT_SPEED = .55; //Default speed of intake
 	public final static double INTAKE_SPEED_CHANGE = 0.0; //Amount the speed goes down when changed with Intake.lowerSpeed()
-	public final static boolean INTAKE_ENABLED = false;
+	public final static boolean INTAKE_ENABLED = true;
 	
 	//Shooter Constants
 	public final static double SHOOTER_SPEED = 0.70; //Talon SR Speed = 0.9
-	public final static boolean SHOOTER_ENABLED = true;
+	public final static boolean SHOOTER_ENABLED = false;
 	
 	//Quick-Turn Constants
 	public final static double TURN_SPEED = 0.3;
@@ -41,12 +41,12 @@ public class Constants {
 	
 	//Drivetrain Constants
 	public final static double SPEED_MODIFIER = 0.7; //Changes Speed of Drivetrain
-	public final static boolean DRIVETRAIN_ENABLED = false;
-	public final static boolean PID_DRIVETRAIN_ENABLED = true;
+	public final static boolean DRIVETRAIN_ENABLED = true;
+	public final static boolean PID_DRIVETRAIN_ENABLED = false;
 	
 	//PID Constants
-	public final static double P = 0.01;
-	public final static double I = 0.0;
+	public final static double P = 0.04;
+	public final static double I = 0.01;
 	public final static double D = 0.0;
 	public final static double PIDTolerance = 0.01;
 }
