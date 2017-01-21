@@ -17,7 +17,7 @@ public class Shooter extends Subsystem {
 	public final static double shooterSpeed = Constants.SHOOTER_SPEED;
 	
 	public Shooter() {
-		shooterMotor = new Talon(1);
+		shooterMotor = new Talon(0);
 		//shooterMotor = new CANTalon(RobotMap.FLYWHEEL_TALON_PORT);
 	}
 	

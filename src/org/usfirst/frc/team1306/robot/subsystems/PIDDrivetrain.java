@@ -33,9 +33,19 @@ public class PIDDrivetrain extends PIDSubsystem {
 	@Override
 	protected void usePIDOutput(double output) {
 		// TODO Auto-generated method stub
+		double input = .5/*OI.getTriggerVal(controller.p, trigger.r)*/;
+		double leftput = 0;
+		
 		if(Constants.PID_DRIVETRAIN_ENABLED) {
-			leftmotor1.set(output + OI.getTriggerVal(controller.p, trigger.r));
-			rightmotor1.set(OI.getTriggerVal(controller.p, trigger.r));
+			if(output + input > 1) {
+				leftput = 1;
+			} else if(output + input < -1) {
+				leftput = -1;
+			} else {
+				leftput = output + input;
+			}
+			leftmotor1.set(leftput);
+			rightmotor1.set(input);
 		}
 	}
 	

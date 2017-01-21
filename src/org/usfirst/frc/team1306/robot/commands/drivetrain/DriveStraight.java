@@ -19,7 +19,7 @@ public class DriveStraight extends CommandBase {
 	@Override
 	protected void execute() {
 		if(OI.getTriggerVal(controller.p, trigger.r) >= 0.1) {
-			piddrivetrain.setSetpoint(OI.getTriggerVal(controller.p, trigger.r));
+			piddrivetrain.setSetpoint(0.5);
 		}
 	}
 	
