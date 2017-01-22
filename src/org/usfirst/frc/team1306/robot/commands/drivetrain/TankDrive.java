@@ -24,7 +24,7 @@ public class TankDrive extends CommandBase {
 		 *  TODO Disabled for PID Testing
 		 */
 		
-		/*if(oi.getTriggerVal(controller.p, trigger.l) >= 0.1 || oi.getTriggerVal(controller.p, trigger.r) >= 0.1) {
+		if(oi.getTriggerVal(controller.p, trigger.l) >= 0.1 || oi.getTriggerVal(controller.p, trigger.r) >= 0.1) {
 			if(oi.getTriggerVal(controller.p, trigger.r) >= 0.1) {
 				drivetrain.tankDrive(oi.getTriggerVal(controller.p, trigger.r), oi.getTriggerVal(controller.p, trigger.r));
 			} else if(oi.getTriggerVal(controller.p, trigger.l) >= 0.1) {
@@ -32,9 +32,9 @@ public class TankDrive extends CommandBase {
 			}
 		} else {
 			drivetrain.tankDrive(oi.getJoyVal(controller.p, joystick.r, axis.y), oi.getJoyVal(controller.p, joystick.l, axis.y));
-		}*/
+		}
 		
-		drivetrain.tankDrive(oi.getJoyVal(controller.p, joystick.r, axis.y), oi.getJoyVal(controller.p, joystick.l, axis.y));
+		//drivetrain.tankDrive(oi.getJoyVal(controller.p, joystick.r, axis.y), oi.getJoyVal(controller.p, joystick.l, axis.y));
 	}
 
 	@Override

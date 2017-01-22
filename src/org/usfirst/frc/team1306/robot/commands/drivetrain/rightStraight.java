@@ -7,14 +7,10 @@ import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class DriveStraight extends CommandBase {
+public class rightStraight extends CommandBase {
 	
-	private static String side;
-	
-	public DriveStraight(String input) {
+	public rightStraight() {
 		requires(rightdrive);
-		requires(leftdrive);
-		side = input;
 	}
 	
 	@Override
@@ -25,18 +21,12 @@ public class DriveStraight extends CommandBase {
 	@Override
 	protected void execute() {
 		
-		if(OI.getTriggerVal(controller.p, trigger.r) >= 0.1) {
-			SmartDashboard.putString("Made it to Execute", "Yes");
-			if(side.equals("left")) {
-				leftdrive.setSetpoint(0.5);
-				leftdrive.enable();
-			} else {
-				rightdrive.setSetpoint(0.5);
-				rightdrive.enable();
-			}
-			
+		SmartDashboard.putBoolean("bbutton",OI.getButtonVal(controller.p,2));
+		if(OI.getButtonVal(controller.p,2)) {
+			rightdrive.setSetpoint(6000);
+			rightdrive.enable();
 		} else {
-			SmartDashboard.putString("Isn't getting trigger Val", "yes");
+			rightdrive.disable();
 		}
 	}
 	
@@ -47,12 +37,7 @@ public class DriveStraight extends CommandBase {
 	
 	@Override
 	protected void end() {
-		if(side.equals("left")) {
-			leftdrive.stopAll();
-		} else {
-			rightdrive.stopAll();
-		}
-
+		rightdrive.stopAll();
 	}
 
 	@Override
