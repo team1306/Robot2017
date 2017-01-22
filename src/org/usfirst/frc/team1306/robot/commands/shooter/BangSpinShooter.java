@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1306.robot.commands.shooter;
 
+import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.OI;
 import org.usfirst.frc.team1306.robot.OI.controller;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
@@ -24,7 +25,7 @@ public class BangSpinShooter extends CommandBase{
      * Spins up shooter
      */
     protected void execute() {
-    	if(OI.getButtonVal(controller.p,4)) {
+    	if(OI.getButtonVal(controller.p,Constants.BANG_SHOOTER_BUTTON)) {
     		shooter.bangBangSpinShooter();
     	}
     }
@@ -33,7 +34,7 @@ public class BangSpinShooter extends CommandBase{
      * Stops spinning shooter when A is no longer pressed
      */
     protected boolean isFinished() {
-    	if(OI.getButtonVal(controller.p,4)) {
+    	if(OI.getButtonVal(controller.p,Constants.BANG_SHOOTER_BUTTON)) {
     		return false;
     	} else {
     		shooter.stopAll();

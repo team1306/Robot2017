@@ -10,13 +10,17 @@ public class Constants {
 	public final static double DEADBAND = 0.15;				//Joystick deadband
 	public final static double JOYSTICK_MULTIPLIER = 1.0;   //Change if too sensitive or not sensitive enough (Use SPEED_MODIFIER for speed changes)
 	
+	//Button Constants
+	public final static int INTAKE_BUTTON = 3;
+	public final static int SHOOTER_BUTTON = 1;
+	public final static int BANG_SHOOTER_BUTTON = 4;
+	
 	//Intake Constants
 	public final static double INTAKE_DEFAULT_SPEED = .55; //Default speed of intake
 	public final static double INTAKE_SPEED_CHANGE = 0.0; //Amount the speed goes down when changed with Intake.lowerSpeed()
 	public final static boolean INTAKE_ENABLED = true;
 	
 	//Shooter Constants
-
 	public final static double SHOOTER_SPEED = 1.0; //Talon SR Speed = 0.9
 	public final static boolean SHOOTER_ENABLED = true;
 	public final static int SHOOTER_BANG_SPEED = 6800;	//6000 for close, 9000 for 100% speed

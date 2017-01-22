@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1306.robot.commands.intake;
 
+import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.OI;
 import org.usfirst.frc.team1306.robot.OI.controller;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
@@ -30,7 +31,7 @@ public class SpinIntake extends CommandBase {
      * Stops spinning intake when X is no longer pressed
      */
     protected boolean isFinished() {
-    	if(OI.getButtonVal(controller.p,3)) {
+    	if(OI.getButtonVal(controller.p,Constants.INTAKE_BUTTON)) {
     		return false;
     	} else {
     		intake.stopAll();

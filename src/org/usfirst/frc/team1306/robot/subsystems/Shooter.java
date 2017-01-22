@@ -52,10 +52,10 @@ public class Shooter extends Subsystem {
 		SmartDashboard.putNumber("ENC Vel BANG", shooterMotor.getEncVelocity());
 		if (shooterMotor.getEncVelocity() < Constants.SHOOTER_BANG_SPEED) {
 			shooterMotor.set(1.0);
-			SmartDashboard.putString("BANG", "YES");
+			SmartDashboard.putString("BANG", "SPEED UP");
 		} else {
 			shooterMotor.set(Constants.SHOOTER_SPEED);
-			SmartDashboard.putString("BANG", "NO");
+			SmartDashboard.putString("BANG", "AT SPEED");
 		}
 	}
 	

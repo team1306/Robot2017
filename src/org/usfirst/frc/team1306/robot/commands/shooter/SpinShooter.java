@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1306.robot.commands.shooter;
 
+import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.OI;
 import org.usfirst.frc.team1306.robot.OI.controller;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
@@ -24,7 +25,7 @@ public class SpinShooter extends CommandBase{
      */
     protected void execute() {
 
-    	if(OI.getButtonVal(controller.p,1)) {
+    	if(OI.getButtonVal(controller.p,Constants.SHOOTER_BUTTON)) {
     		shooter.spinShooter();
     	}
     }
@@ -34,7 +35,7 @@ public class SpinShooter extends CommandBase{
      */
     protected boolean isFinished() {
 
-    	if(OI.getButtonVal(controller.p,1)) {
+    	if(OI.getButtonVal(controller.p,Constants.SHOOTER_BUTTON)) {
     		return false;
     	} else {
     		shooter.stopAll();

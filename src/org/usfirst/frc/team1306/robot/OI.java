@@ -223,7 +223,7 @@ public class OI {
 		return returnVal;
 	}
 	
-	/*
+	/**
 	 * Applies deadband to joystick values to prevent false readings when joystick is idle.  It prevents very small changes to 
 	 * an idle joystick to trigger anything.
 	 */
