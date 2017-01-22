@@ -21,26 +21,25 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Shooter extends Subsystem {
 
-	private final CANTalon shooterMotor;
-	//private final Talon shooterMotor;
+	//private final CANTalon shooterMotor;
+	private final Talon shooterMotor;
 
 	public final static double shooterSpeed = Constants.SHOOTER_SPEED;
 	
 	public Shooter() {
-		//shooterMotor = new Talon(0);
-		shooterMotor = new CANTalon(RobotMap.FLYWHEEL_TALON_PORT);
-		shooterMotor.enable();
-		shooterMotor.changeControlMode(TalonControlMode.PercentVbus);
-
+		shooterMotor = new Talon(1);
+		//shooterMotor = new CANTalon(RobotMap.FLYWHEEL_TALON_PORT);
+		//shooterMotor.enable();
+		//shooterMotor.changeControlMode(TalonControlMode.PercentVbus);
 	}
 	
 	/**
 	 * Method that spins up shooter
 	 */
 	public void spinShooter() {
-		SmartDashboard.putNumber("ENC Vel NOBANG", shooterMotor.getEncVelocity());
+		//SmartDashboard.putNumber("ENC Vel NOBANG", shooterMotor.getEncVelocity());
 		if(Constants.SHOOTER_ENABLED) {
-			shooterMotor.changeControlMode(TalonControlMode.PercentVbus);
+			//shooterMotor.changeControlMode(TalonControlMode.PercentVbus);
 			shooterMotor.set(shooterSpeed);
 		}
 	}
@@ -49,14 +48,15 @@ public class Shooter extends Subsystem {
 	 * Spins the shooter with a bang bang loop
 	 */
 	public void bangBangSpinShooter() {
-		SmartDashboard.putNumber("ENC Vel BANG", shooterMotor.getEncVelocity());
-		if (shooterMotor.getEncVelocity() < Constants.SHOOTER_BANG_SPEED) {
+		//SmartDashboard.putNumber("ENC Vel BANG", shooterMotor.getEncVelocity());
+		/*if (shooterMotor.getEncVelocity() < Constants.SHOOTER_BANG_SPEED) {
 			shooterMotor.set(1.0);
-			SmartDashboard.putString("BANG", "SPEED UP");
+			SmartDashboard.putNumber("BANG", 1);
 		} else {
 			shooterMotor.set(Constants.SHOOTER_SPEED);
-			SmartDashboard.putString("BANG", "AT SPEED");
-		}
+			SmartDashboard.putNumber("BANG", 0);
+		}*/
+		shooterMotor.set(shooterSpeed);
 	}
 	
 	/**
