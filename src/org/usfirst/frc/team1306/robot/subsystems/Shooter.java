@@ -21,26 +21,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Shooter extends Subsystem {
 
-<<<<<<< HEAD
 	private final CANTalon shooterMotor;
-	//private final CANTalon shooterMotor; For Later
-=======
 	//private final Talon shooterMotor;
-	private final CANTalon shooterMotor;
->>>>>>> origin/master
-	
+
 	public final static double shooterSpeed = Constants.SHOOTER_SPEED;
 	
 	public Shooter() {
-<<<<<<< HEAD
 		//shooterMotor = new Talon(0);
 		shooterMotor = new CANTalon(RobotMap.FLYWHEEL_TALON_PORT);
 		shooterMotor.enable();
 		shooterMotor.changeControlMode(TalonControlMode.PercentVbus);
-=======
-		//shooterMotor = new Talon(1);
-		shooterMotor = new CANTalon(1);
->>>>>>> origin/master
+
 	}
 	
 	/**
@@ -49,13 +40,7 @@ public class Shooter extends Subsystem {
 	public void spinShooter() {
 		SmartDashboard.putNumber("ENC Vel NOBANG", shooterMotor.getEncVelocity());
 		if(Constants.SHOOTER_ENABLED) {
-<<<<<<< HEAD
-			//shooterMotor.changeControlMode(TalonControlMode.Speed);
-			SmartDashboard.putNumber("shooterSPeed", shooterSpeed);
-=======
-			
 			shooterMotor.changeControlMode(TalonControlMode.PercentVbus);
->>>>>>> origin/master
 			shooterMotor.set(shooterSpeed);
 		}
 	}
@@ -68,8 +53,7 @@ public class Shooter extends Subsystem {
 		if (shooterMotor.getEncVelocity() < Constants.SHOOTER_BANG_SPEED) {
 			shooterMotor.set(1.0);
 			SmartDashboard.putString("BANG", "YES");
-		}
-		else {
+		} else {
 			shooterMotor.set(Constants.SHOOTER_SPEED);
 			SmartDashboard.putString("BANG", "NO");
 		}

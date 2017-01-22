@@ -1,7 +1,5 @@
 package org.usfirst.frc.team1306.robot.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 public class SmartDashboardUpdate extends CommandBase {
 
 	public SmartDashboardUpdate() {

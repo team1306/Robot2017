@@ -88,11 +88,9 @@ public class OI {
 		pbuttonLB.whileHeld(new QuickTurn(false));
 		
 		pbuttonX.whenPressed(new SpinIntake());
+		
 		pbuttonA.whenPressed(new SpinShooter());
-<<<<<<< HEAD
 		pbuttonY.whenPressed(new BangSpinShooter());
-=======
->>>>>>> origin/master
 	}
 	
 	
