@@ -84,11 +84,11 @@ public class OI {
 		sbuttonBack = new JoystickButton(secondaryController, XboxController.BACK);
 		sbuttonStart = new JoystickButton(secondaryController, XboxController.START);
 		
+		
+		
 		pbuttonRB.whileHeld(new QuickTurn(true));
 		pbuttonLB.whileHeld(new QuickTurn(false));
-		
 		pbuttonX.whenPressed(new SpinIntake());
-		
 		pbuttonA.whenPressed(new SpinShooter());
 		pbuttonY.whenPressed(new BangSpinShooter());
 	}
@@ -237,4 +237,3 @@ public class OI {
 		return 0;
 	}
 }
-

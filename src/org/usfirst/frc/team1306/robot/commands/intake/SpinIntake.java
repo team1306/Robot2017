@@ -28,7 +28,7 @@ public class SpinIntake extends CommandBase {
     }
 
     /**
-     * Stops spinning intake when X is no longer pressed
+     * Stops spinning intake when the intake button (constant) is no longer pressed
      */
     protected boolean isFinished() {
     	if(OI.getButtonVal(controller.p,Constants.INTAKE_BUTTON)) {

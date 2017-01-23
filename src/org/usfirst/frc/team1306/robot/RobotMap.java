@@ -21,7 +21,7 @@ public class RobotMap {
 	public static final int RIGHT_TALON_2_PORT = 4; //TODO Figure out what this actually is
 
 	//Shooter Ports
-	public static final int FLYWHEEL_TALON_PORT = 1; //TODO Switch back to 1 later
+	public static final int FLYWHEEL_TALON_PORT = 1;
 
 	//Intake Ports
 	public static final int INTAKE_TALON_PORT = 0; //TODO May change when switching out flywheel motorcontroller

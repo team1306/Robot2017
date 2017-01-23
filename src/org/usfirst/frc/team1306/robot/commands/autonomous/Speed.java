@@ -3,7 +3,7 @@ package org.usfirst.frc.team1306.robot.commands.autonomous;
 import org.usfirst.frc.team1306.robot.Constants;
 
 /**
- * Enum that has differen't autonomous speeds
+ * Enum that has different autonomous speeds
  * @author Jackson Goth
  */
 public enum Speed {

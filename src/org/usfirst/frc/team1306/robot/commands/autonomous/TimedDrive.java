@@ -33,48 +33,28 @@ public class TimedDrive extends CommandBase {
 		requires(drivetrain);
 	}
 
-	/**
-	 * Called just before this Command runs the first time. Here, the timer is
-	 * started.
-	 */
 	@Override
 	protected void initialize() {
 		timer.reset();
 		timer.start();
 	}
 
-	/**
-	 * Called repeatedly when this Command is scheduled to run. It runs both
-	 * motors at the designated throttle.
-	 */
 	@Override
 	protected void execute() {
 		
 		drivetrain.drivePID(speed, speed, desiredSpeed);
 	}
 
-	/**
-	 * Returns true when this Command no longer needs to run execute(). This
-	 * command ends after a designated amount of time.
-	 */
 	@Override
 	protected boolean isFinished() {
 		return timer.hasPeriodPassed(time);
 	}
 
-	/**
-	 * Called once after isFinished returns true. Stops the drivetrain.
-	 */
 	@Override
 	protected void end() {
 		drivetrain.stopAll();
 	}
 
-	/**
-	 * Called when another command which requires one or more of the same
-	 * subsystems is scheduled to run. Stops the drivetrain so that whatever is
-	 * interrupting can use it.
-	 */
 	@Override
 	protected void interrupted() {
 		end();
