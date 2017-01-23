@@ -47,6 +47,8 @@ public class PIDDrivetrain extends PIDSubsystem {
 				leftput = output + input;
 			}
 			SmartDashboard.putNumber("lefput", -leftput);
+			leftmotor1.enable();
+			rightmotor1.enable();
 			leftmotor1.set(-leftput);
 			rightmotor1.set(input);
 		}
@@ -57,7 +59,7 @@ public class PIDDrivetrain extends PIDSubsystem {
 	 */
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new DriveStraight());
+		setDefaultCommand(new DriveStraight("both"));
 		
 	}
 

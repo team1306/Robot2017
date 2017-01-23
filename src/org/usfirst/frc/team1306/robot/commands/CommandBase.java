@@ -4,7 +4,10 @@ import org.usfirst.frc.team1306.robot.OI;
 import org.usfirst.frc.team1306.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1306.robot.subsystems.Intake;
 import org.usfirst.frc.team1306.robot.subsystems.PIDDrivetrain;
+import org.usfirst.frc.team1306.robot.subsystems.PIDLeftDrive;
+import org.usfirst.frc.team1306.robot.subsystems.PIDRightDrive;
 import org.usfirst.frc.team1306.robot.subsystems.Shooter;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -19,13 +22,17 @@ public abstract class CommandBase extends Command {
 
 	protected static OI oi;
 	protected static Drivetrain drivetrain;
-	protected static PIDDrivetrain piddrivetrain;
+	//protected static PIDDrivetrain piddrivetrain;
+	protected static PIDLeftDrive leftdrive;
+	protected static PIDRightDrive rightdrive;
 	protected static Shooter shooter;
 	protected static Intake intake;
 
 	public static void init() {
 		drivetrain = new Drivetrain();
-		piddrivetrain = new PIDDrivetrain();
+		//piddrivetrain = new PIDDrivetrain();
+		leftdrive = new PIDLeftDrive();
+		rightdrive = new PIDRightDrive();
 		shooter = new Shooter();
 		intake = new Intake();
 		oi = new OI();

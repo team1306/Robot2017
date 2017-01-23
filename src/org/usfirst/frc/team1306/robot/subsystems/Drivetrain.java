@@ -25,14 +25,15 @@ public class Drivetrain extends Subsystem {
 	
 	public Drivetrain() {
 		leftmotor1 = new CANTalon(RobotMap.LEFT_TALON_1_PORT);
-		leftmotor1.setPosition(0);
 		rightmotor1 = new CANTalon(RobotMap.RIGHT_TALON_1_PORT);
-		rightmotor1.setPosition(0);
-		
+		leftmotor2 = new CANTalon(RobotMap.LEFT_TALON_2_PORT);
+		rightmotor2 = new CANTalon(RobotMap.RIGHT_TALON_2_PORT);
 		//leftmotor2 = new CANTalon(RobotMap.LEFT_TALON_2_PORT); //TODO Figure out correct ports for these
 		//rightmotor2 = new CANTalon(RobotMap.RIGHT_TALON_2_PORT);
 		
-		motors = new CANTalon[] {leftmotor1, rightmotor1};
+		motors = new CANTalon[] {leftmotor1, rightmotor1, leftmotor2, rightmotor2};
+		setupMotors(leftmotor1,leftmotor2);
+		setupMotors(rightmotor1,rightmotor2);
 	}
 	
 	/**
@@ -44,13 +45,23 @@ public class Drivetrain extends Subsystem {
 	 * 		Speed for the right side (from -1 to 1)
 	 */
 	
+	private void setupMotors(CANTalon master, CANTalon slave) {
+		
+		master.changeControlMode(TalonControlMode.PercentVbus);
+		master.set(0.0);
+
+		slave.changeControlMode(TalonControlMode.Follower);
+		slave.set(master.getDeviceID());
+		slave.enable();
+
+	}
+	
 	public void tankDrive(double leftVal, double rightVal) {
 		
 		leftmotor1.changeControlMode(TalonControlMode.PercentVbus);
 		rightmotor1.changeControlMode(TalonControlMode.PercentVbus);
 		//leftmotor2.changeControlMode(TalonControlMode.Follower);
 		//rightmotor2.changeControlMode(TalonControlMode.Follower);
-		
 		if(Constants.DRIVETRAIN_ENABLED) { 
 			leftmotor1.set(-leftVal*Constants.SPEED_MODIFIER/**(Constants.P*Math.abs(leftmotor1.getEncVelocity() - rightmotor1.getEncVelocity()))*/);
 			rightmotor1.set(rightVal*Constants.SPEED_MODIFIER/**(Constants.P*Math.abs(leftmotor1.getEncVelocity() - rightmotor1.getEncVelocity()))*/);

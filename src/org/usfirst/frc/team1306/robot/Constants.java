@@ -16,7 +16,7 @@ public class Constants {
 	public final static int BANG_SHOOTER_BUTTON = 4;
 	
 	//Intake Constants
-	public final static double INTAKE_DEFAULT_SPEED = .55; //Default speed of intake
+	public final static double INTAKE_DEFAULT_SPEED = .85; //Default speed of intake
 	public final static double INTAKE_SPEED_CHANGE = 0.0; //Amount the speed goes down when changed with Intake.lowerSpeed()
 	public final static boolean INTAKE_ENABLED = true;
 	
@@ -52,8 +52,8 @@ public class Constants {
 	public final static boolean PID_DRIVETRAIN_ENABLED = true;
 	
 	//PID Constants
-	public final static double P = 0.04;
-	public final static double I = 0.01;
+	public final static double P = 0.1113;
+	public final static double I = 0.0;
 	public final static double D = 0.0;
-	public final static double PIDTolerance = 0.01;
+	public final static double PIDTolerance = 0.001;
 }

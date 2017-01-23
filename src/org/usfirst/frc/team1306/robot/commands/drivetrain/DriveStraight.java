@@ -7,8 +7,12 @@ import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
 public class DriveStraight extends CommandBase {
 	
-	public DriveStraight() {
-		requires(piddrivetrain);
+	private static String side;
+	
+	public DriveStraight(String input) {
+		requires(rightdrive);
+		requires(leftdrive);
+		side = input;
 	}
 	
 	@Override
@@ -19,6 +23,17 @@ public class DriveStraight extends CommandBase {
 	@Override
 	protected void execute() {
 		if(OI.getTriggerVal(controller.p, trigger.r) >= 0.1) {
+			SmartDashboard.putString("Made it to Execute", "Yes");
+			if(side.equals("left")) {
+				leftdrive.setSetpoint(0.5);
+				leftdrive.enable();
+			} else {
+				rightdrive.setSetpoint(0.5);
+				rightdrive.enable();
+			}
+			
+		} else {
+			SmartDashboard.putString("Isn't getting trigger Val", "yes");
 			piddrivetrain.setSetpoint(OI.getTriggerVal(controller.p, trigger.r));
 		}
 	}
@@ -30,7 +45,12 @@ public class DriveStraight extends CommandBase {
 	
 	@Override
 	protected void end() {
-		piddrivetrain.stopAll();
+		if(side.equals("left")) {
+			leftdrive.stopAll();
+		} else {
+			rightdrive.stopAll();
+		}
+
 	}
 
 	@Override
