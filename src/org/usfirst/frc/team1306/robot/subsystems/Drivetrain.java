@@ -20,8 +20,8 @@ public class Drivetrain extends Subsystem {
 	private final CANTalon[] motors;	
 	private final CANTalon leftmotor1;
 	private final CANTalon rightmotor1;
-	//private final CANTalon leftmotor2;
-	//private final CANTalon rightmotor2;
+	private final CANTalon leftmotor2;
+	private final CANTalon rightmotor2;
 	
 	public Drivetrain() {
 		leftmotor1 = new CANTalon(RobotMap.LEFT_TALON_1_PORT);
