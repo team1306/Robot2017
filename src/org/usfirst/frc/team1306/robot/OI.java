@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.QuickTurn;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
+import org.usfirst.frc.team1306.robot.commands.shooter.BangSpinShooter;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
 
 /**
@@ -87,7 +88,9 @@ public class OI {
 		pbuttonLB.whileHeld(new QuickTurn(false));
 		
 		pbuttonX.whenPressed(new SpinIntake());
+		
 		pbuttonA.whenPressed(new SpinShooter());
+		pbuttonY.whenPressed(new BangSpinShooter());
 	}
 	
 	
@@ -202,7 +205,8 @@ public class OI {
 	 * Returns the value of a specified button on a controller
 	 * @param controller
 	 * 		The controller that you would like to read from (p or s)
-	 * 
+	 * @param button
+	 * 		The button to read from (A=1 B=2 X=3 Y=4 LB=5 RB=6 Back=7 Start=8 LS=9 RS=10)
 	 */
 	public static boolean getButtonVal(controller controller, int button) {
 		boolean returnVal = false;
@@ -219,7 +223,7 @@ public class OI {
 		return returnVal;
 	}
 	
-	/*
+	/**
 	 * Applies deadband to joystick values to prevent false readings when joystick is idle.  It prevents very small changes to 
 	 * an idle joystick to trigger anything.
 	 */

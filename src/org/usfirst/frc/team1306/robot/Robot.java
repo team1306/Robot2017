@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 import org.usfirst.frc.team1306.robot.commands.SmartDashboardUpdate;
 import org.usfirst.frc.team1306.robot.commands.autonomous.AutonomousCommand;
-import org.usfirst.frc.team1306.robot.commands.autonomous.Direction;
 import org.usfirst.frc.team1306.robot.commands.autonomous.Speed;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;

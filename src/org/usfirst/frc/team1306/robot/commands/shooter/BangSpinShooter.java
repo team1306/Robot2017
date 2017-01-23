@@ -6,13 +6,14 @@ import org.usfirst.frc.team1306.robot.OI.controller;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
 /**
- * Command that calls to spin shooter, stops when a button is no longer pressed
- * @author Jackson Goth
+ * Command that spins the shooter with a bang bang loop
+ * @author Sam Roquitte
  *
  */
-public class SpinShooter extends CommandBase{
+public class BangSpinShooter extends CommandBase{
 
-	public SpinShooter() {
+	
+	public BangSpinShooter() {
 		requires(shooter);
 	}
 	
@@ -20,13 +21,12 @@ public class SpinShooter extends CommandBase{
     	
     }
     
-    /**
+    /*
      * Spins up shooter
      */
     protected void execute() {
-
-    	if(OI.getButtonVal(controller.p,Constants.SHOOTER_BUTTON)) {
-    		shooter.spinShooter();
+    	if(OI.getButtonVal(controller.p,Constants.BANG_SHOOTER_BUTTON)) {
+    		shooter.bangBangSpinShooter();
     	}
     }
 
@@ -34,20 +34,20 @@ public class SpinShooter extends CommandBase{
      * Stops spinning shooter when A is no longer pressed
      */
     protected boolean isFinished() {
-
-    	if(OI.getButtonVal(controller.p,Constants.SHOOTER_BUTTON)) {
+    	if(OI.getButtonVal(controller.p,Constants.BANG_SHOOTER_BUTTON)) {
     		return false;
     	} else {
     		shooter.stopAll();
     		return true;
     	}
     }
-    
+
     protected void end() {
     	shooter.stopAll();
     }
-    
+
     protected void interrupted() {
     	
     }
+
 }

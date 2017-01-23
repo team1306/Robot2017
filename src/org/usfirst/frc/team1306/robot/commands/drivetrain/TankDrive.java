@@ -3,7 +3,6 @@ package org.usfirst.frc.team1306.robot.commands.drivetrain;
 import org.usfirst.frc.team1306.robot.OI;
 import org.usfirst.frc.team1306.robot.OI.*;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class TankDrive extends CommandBase {
 	
