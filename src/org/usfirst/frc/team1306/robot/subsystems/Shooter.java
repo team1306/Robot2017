@@ -40,7 +40,7 @@ public class Shooter extends Subsystem {
 		//SmartDashboard.putNumber("ENC Vel NOBANG", shooterMotor.getEncVelocity());
 		if(Constants.SHOOTER_ENABLED) {
 			//shooterMotor.changeControlMode(TalonControlMode.PercentVbus);
-			shooterMotor.set(shooterSpeed);
+			shooterMotor.set(SmartDashboard.getNumber("Shooter Speed"));
 		}
 	}
 	
