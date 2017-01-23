@@ -36,7 +36,7 @@ public class DriveStraight extends CommandBase {
 			
 		} else {
 			SmartDashboard.putString("Isn't getting trigger Val", "yes");
-			piddrivetrain.setSetpoint(OI.getTriggerVal(controller.p, trigger.r));
+			//piddrivetrain.setSetpoint(OI.getTriggerVal(controller.p, trigger.r));
 		}
 	}
 	
