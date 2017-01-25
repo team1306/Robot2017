@@ -21,13 +21,13 @@ public class Constants {
 	public final static boolean INTAKE_ENABLED = true;
 	
 	//Shooter Constants
-	public final static double SHOOTER_SPEED = 1; 			//Talon SR Speed = 0.9
+	public final static double SHOOTER_SPEED = 1.0; 			//Talon SR Speed = 0.9
 	public final static boolean SHOOTER_ENABLED = true;
 	public final static int SHOOTER_BANG_SPEED = 6800;		//6000 for close, 9000 for 100% speed
 	public final static int SHOOTER_BANG_DEADBAND = 0;
 
 	//Quick-Turn Constants
-	public final static double TURN_SPEED = 0.3;
+	public final static double TURN_SPEED = 0.45;
 	
 	//Autonomous Constants
 	public final static double PID_TIME = 10; 				//Time of PID Catch-up in Autonomous
@@ -46,7 +46,7 @@ public class Constants {
 	public final static double BACKWARD_FAST_TIME = 0.5;
 	
 	//Drivetrain Constants
-	public final static double SPEED_MODIFIER = 0.7; 		//Changes Speed of Drivetrain
+	public final static double SPEED_MODIFIER = 0.8; 		//Changes Speed of Drivetrain
 	public final static boolean DRIVETRAIN_ENABLED = true;
 	public final static boolean PID_DRIVETRAIN_ENABLED = true;
 	

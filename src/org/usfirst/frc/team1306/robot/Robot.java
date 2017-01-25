@@ -29,18 +29,17 @@ public class Robot extends IterativeRobot {
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
-    @SuppressWarnings("deprecation")
-	public void robotInit() {
+    public void robotInit() {
     	
     	CommandBase.init();
     	smartDashboard = new SmartDashboardUpdate();
         smartDashboard.start();
     	
-        /*chooser = new SendableChooser<AutonomousCommand>();
+        chooser = new SendableChooser<AutonomousCommand>();
         chooser.addDefault("2 Velocity Units", new AutonomousCommand(Speed.VELOCITY_TWO));
         chooser.addObject("4 Velocity Units", new AutonomousCommand(Speed.VELOCITY_FOUR));
         chooser.addObject("6 Velocity Units", new AutonomousCommand(Speed.VELOCITY_SIX));
-        SmartDashboard.putData("Auto mode", chooser);*/
+        SmartDashboard.putData("Auto mode", chooser);
         SmartDashboard.putNumber("Shooter Speed", Constants.SHOOTER_SPEED);
     }
 	

@@ -41,7 +41,7 @@ public class Drivetrain extends Subsystem {
 	 * 
 	 * @param leftVal
 	 * 		Speed for the left side (from -1 to 1)
-	 * @param rightVal
+	 * @param rightVaL
 	 * 		Speed for the right side (from -1 to 1)
 	 */
 	
