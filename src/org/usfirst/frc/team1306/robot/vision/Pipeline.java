@@ -188,17 +188,17 @@ public class Pipeline implements VisionPipeline {
 
 
 
-public static void main(String args[]) {
-	Mat image=Imgcodecs.imread("/Users/Amit_Rajesh/Downloads/2017VisionExample/Vision Images/LED Boiler/1ftH11ftD2Angle0Brightness.jpg");
-	Pipeline pipeline=new Pipeline();
-	ArrayList<MatOfPoint> final_contours;
-	pipeline.process(image);
-	final_contours=pipeline.filterContoursOutput();
-	for (int x=0; x<final_contours.size(); x++) {
-	    System.out.println(Imgproc.boundingRect(final_contours.get(x)));
-	}
-	
-}
+//public static void main(String args[]) {
+//	Mat image=Imgcodecs.imread("/Users/Amit_Rajesh/Downloads/2017VisionExample/Vision Images/LED Boiler/1ftH11ftD2Angle0Brightness.jpg");
+//	Pipeline pipeline=new Pipeline();
+//	ArrayList<MatOfPoint> final_contours;
+//	pipeline.process(image);
+//	final_contours=pipeline.filterContoursOutput();
+//	for (int x=0; x<final_contours.size(); x++) {
+//	    System.out.println(Imgproc.boundingRect(final_contours.get(x)));
+//	}
+//	
+//}
 
 
 }
