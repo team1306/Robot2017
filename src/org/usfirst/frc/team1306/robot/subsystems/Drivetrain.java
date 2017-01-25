@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * Controls drivetrain motors with the joysticks from OI.java, and can limit intake speed
  * @author Jackson Goth and Sam Roquitte
- *
  */
 
 public class Drivetrain extends Subsystem {
@@ -31,7 +30,7 @@ public class Drivetrain extends Subsystem {
 		//leftmotor2 = new CANTalon(RobotMap.LEFT_TALON_2_PORT); //TODO Figure out correct ports for these
 		//rightmotor2 = new CANTalon(RobotMap.RIGHT_TALON_2_PORT);
 		
-		motors = new CANTalon[] {leftmotor1, rightmotor1, leftmotor2, rightmotor2};
+		motors = new CANTalon[] {leftmotor1, rightmotor1};
 		setupMotors(leftmotor1,leftmotor2);
 		setupMotors(rightmotor1,rightmotor2);
 	}
@@ -49,11 +48,11 @@ public class Drivetrain extends Subsystem {
 		
 		master.changeControlMode(TalonControlMode.PercentVbus);
 		master.set(0.0);
-
+		master.enable();
+		
 		slave.changeControlMode(TalonControlMode.Follower);
 		slave.set(master.getDeviceID());
 		slave.enable();
-
 	}
 	
 	public void tankDrive(double leftVal, double rightVal) {
@@ -62,9 +61,9 @@ public class Drivetrain extends Subsystem {
 		rightmotor1.changeControlMode(TalonControlMode.PercentVbus);
 		//leftmotor2.changeControlMode(TalonControlMode.Follower);
 		//rightmotor2.changeControlMode(TalonControlMode.Follower);
-		if(Constants.DRIVETRAIN_ENABLED) { 
-			leftmotor1.set(-leftVal*Constants.SPEED_MODIFIER/**(Constants.P*Math.abs(leftmotor1.getEncVelocity() - rightmotor1.getEncVelocity()))*/);
-			rightmotor1.set(rightVal*Constants.SPEED_MODIFIER/**(Constants.P*Math.abs(leftmotor1.getEncVelocity() - rightmotor1.getEncVelocity()))*/);
+		if(Constants.DRIVETRAIN_ENABLED) {
+			leftmotor1.set(leftVal*Constants.SPEED_MODIFIER/**(Constants.P*Math.abs(leftmotor1.getEncVelocity() - rightmotor1.getEncVelocity()))*/);
+			rightmotor1.set(-rightVal*Constants.SPEED_MODIFIER/**(Constants.P*Math.abs(leftmotor1.getEncVelocity() - rightmotor1.getEncVelocity()))*/);
 			//leftmotor2.set(leftmotor1.getDeviceID()); //TODO Enable these?
 			//rightmotor2.set(rightmotor1.getDeviceID());
 		}

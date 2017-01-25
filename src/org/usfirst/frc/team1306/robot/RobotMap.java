@@ -17,7 +17,7 @@ public class RobotMap {
 	//Drivetrain Ports
 	public static final int LEFT_TALON_1_PORT = 1;
 	public static final int LEFT_TALON_2_PORT = 3; //TODO Figure out what this actually is
-	public static final int RIGHT_TALON_1_PORT = 2; 
+	public static final int RIGHT_TALON_1_PORT = 2;
 	public static final int RIGHT_TALON_2_PORT = 4; //TODO Figure out what this actually is
 
 	//Shooter Ports

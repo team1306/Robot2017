@@ -9,6 +9,7 @@ public class Constants {
 	//OI Constants
 	public final static double DEADBAND = 0.15;				//Joystick deadband
 	public final static double JOYSTICK_MULTIPLIER = 1.0;   //Change if too sensitive or not sensitive enough (Use SPEED_MODIFIER for speed changes)
+	public final static double TRIGGER_DEADBAND = 0.1;
 	
 	//Button Constants
 	public final static int INTAKE_BUTTON = 3;
