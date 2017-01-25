@@ -22,7 +22,7 @@ public class Constants {
 	public final static boolean INTAKE_ENABLED = true;
 	
 	//Shooter Constants
-	public final static double SHOOTER_SPEED = 1.0; 			//Talon SR Speed = 0.9
+	public final static double SHOOTER_SPEED = 0.85; 			//Talon SR Speed = 0.9
 	public final static boolean SHOOTER_ENABLED = true;
 	public final static int SHOOTER_BANG_SPEED = 6800;		//6000 for close, 9000 for 100% speed
 	public final static int SHOOTER_BANG_DEADBAND = 0;
