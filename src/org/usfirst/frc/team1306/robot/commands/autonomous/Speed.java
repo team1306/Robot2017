@@ -4,8 +4,10 @@ import org.usfirst.frc.team1306.robot.Constants;
 
 /**
  * Enum that has different autonomous speeds
+ * 	TODO Doesn't currently work with PID
  * @author Jackson Goth
  */
+
 public enum Speed {
 
 	VELOCITY_TWO(Constants.SPEED_TWO,Constants.PID_TIME),

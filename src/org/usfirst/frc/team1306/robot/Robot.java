@@ -8,7 +8,6 @@ import org.usfirst.frc.team1306.robot.commands.CommandBase;
 import org.usfirst.frc.team1306.robot.commands.SmartDashboardUpdate;
 import org.usfirst.frc.team1306.robot.commands.autonomous.AutonomousCommand;
 import org.usfirst.frc.team1306.robot.commands.autonomous.Speed;
-
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -40,7 +39,6 @@ public class Robot extends IterativeRobot {
         chooser.addObject("4 Velocity Units", new AutonomousCommand(Speed.VELOCITY_FOUR));
         chooser.addObject("6 Velocity Units", new AutonomousCommand(Speed.VELOCITY_SIX));
         SmartDashboard.putData("Auto mode", chooser);
-        SmartDashboard.putNumber("Shooter Speed", Constants.SHOOTER_SPEED);
     }
 	
 	/**
@@ -57,29 +55,11 @@ public class Robot extends IterativeRobot {
 	}
 
 	/**
-	 * This autonomous (along with the chooser code above) shows how to select between different autonomous modes
-	 * using the dashboard. The sendable chooser code works with the Java SmartDashboard. If you prefer the LabVIEW
-	 * Dashboard, remove all of the chooser code and uncomment the getString code to get the auto name from the text box
-	 * below the Gyro
-	 *
-	 * You can add additional auto modes by adding additional commands to the chooser code above (like the commented example)
-	 * or additional comparisons to the switch structure below with additional strings & commands.
+	 * Gets chosen autonomous mode from SmartDashboard and starts it
 	 */
     public void autonomousInit() {
         autonomousCommand = (Command) chooser.getSelected();
         
-		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-		switch(autoSelected) {
-		case "My Auto":
-			autonomousCommand = new MyAutoCommand();
-			break;
-		case "Default Auto":
-		default:
-			autonomousCommand = new ExampleCommand();
-			break;
-		} */
-    	
-    	// schedule the autonomous command (example)
         if (autonomousCommand != null) {
         	autonomousCommand.start();
         }

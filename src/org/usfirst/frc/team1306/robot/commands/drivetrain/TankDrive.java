@@ -19,20 +19,24 @@ public class TankDrive extends CommandBase {
 	@Override
 	protected void execute() {
 		
-		 /**
-		 * Applies deadband to trigger values to allow both joystick and trigger driving
-		 *  TODO Disabled for PID Testing
-		 */
-		if(oi.getTriggerVal(controller.p, trigger.l) >= Constants.TRIGGER_DEADBAND || oi.getTriggerVal(controller.p, trigger.r) >= Constants.TRIGGER_DEADBAND) {
-			if(oi.getTriggerVal(controller.p, trigger.r) >= Constants.TRIGGER_DEADBAND) {
-				drivetrain.tankDrive(oi.getTriggerVal(controller.p, trigger.r), oi.getTriggerVal(controller.p, trigger.r));
-			} else if(oi.getTriggerVal(controller.p, trigger.l) >= Constants.TRIGGER_DEADBAND) {
-				drivetrain.tankDrive(-oi.getTriggerVal(controller.p, trigger.l), -oi.getTriggerVal(controller.p, trigger.l));
+		/**
+		* Basic drive commands called from here,
+		* 
+		* 	If trigger pressed it will figure out which one and either go forward or backward based on that
+		* 	Otherwise it assumes it is being controlled by joysticks and will drive robot based on their respective inputs
+		* 
+		*/
+		if(OI.getTriggerVal(controller.p, trigger.l) >= Constants.TRIGGER_DEADBAND || OI.getTriggerVal(controller.p, trigger.r) >= Constants.TRIGGER_DEADBAND) {
+			if(OI.getTriggerVal(controller.p, trigger.r) >= Constants.TRIGGER_DEADBAND) {
+				drivetrain.tankDrive(OI.getTriggerVal(controller.p, trigger.r), OI.getTriggerVal(controller.p, trigger.r));
+			} else if(OI.getTriggerVal(controller.p, trigger.l) >= Constants.TRIGGER_DEADBAND) {
+				drivetrain.tankDrive(-OI.getTriggerVal(controller.p, trigger.l), -OI.getTriggerVal(controller.p, trigger.l));
 			}
 		} else {
 			drivetrain.tankDrive(oi.getJoyVal(controller.p, joystick.l, axis.y), oi.getJoyVal(controller.p, joystick.r, axis.y));
 		}
 		
+		//TODO This is used for PID testing when triggers are disabled
 		//drivetrain.tankDrive(oi.getJoyVal(controller.p, joystick.r, axis.y), oi.getJoyVal(controller.p, joystick.l, axis.y));
 	}
 

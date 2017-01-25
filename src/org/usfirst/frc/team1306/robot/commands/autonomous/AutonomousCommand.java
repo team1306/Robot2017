@@ -11,7 +11,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutonomousCommand extends CommandGroup{
 
 	/**
-	 * Not Final
+	 * Method that accomplishes a given autonomous command
+	 * 
+	 * @param speed
+	 * 	speed at which drivetrain will try to run
 	 */
 	public AutonomousCommand(Speed speed) {
 		

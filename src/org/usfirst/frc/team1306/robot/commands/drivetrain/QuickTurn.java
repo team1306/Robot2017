@@ -6,11 +6,9 @@ import org.usfirst.frc.team1306.robot.OI.controller;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
 /**
- * 
  * Turns the robot left and right with one button
- * 
  * @author Jackson Goth
- *
+ * 
  */
 
 public class QuickTurn extends CommandBase {

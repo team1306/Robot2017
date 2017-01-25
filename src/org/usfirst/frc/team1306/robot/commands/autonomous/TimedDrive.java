@@ -5,7 +5,7 @@ import org.usfirst.frc.team1306.robot.commands.CommandBase;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- * A command that drives the robot straight forward for a certain amount of
+ * A command that drives the robot in a direction for a certain amount of
  * time.
  * 
  * @author Jackson Goth
@@ -42,7 +42,7 @@ public class TimedDrive extends CommandBase {
 	@Override
 	protected void execute() {
 		
-		drivetrain.drivePID(speed, speed, desiredSpeed);
+		//TODO Fix to work with tankDrive
 	}
 
 	@Override

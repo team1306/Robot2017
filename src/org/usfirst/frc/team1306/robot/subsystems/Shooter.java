@@ -30,21 +30,22 @@ public class Shooter extends Subsystem {
 		shooterMotor = new Talon(1);
 		//shooterMotor = new CANTalon(RobotMap.FLYWHEEL_TALON_PORT);
 		//shooterMotor.enable();
-		//shooterMotor.changeControlMode(TalonControlMode.PercentVbus);
 	}
 	
 	/**
 	 * Method that spins up shooter
 	 */
 	public void spinShooter() {
-		//SmartDashboard.putNumber("ENC Vel NOBANG", shooterMotor.getEncVelocity());
+		
 		if(Constants.SHOOTER_ENABLED) {
-			//shooterMotor.changeControlMode(TalonControlMode.PercentVbus);
-			//shooterMotor.set(SmartDashboard.getNumber("Shooter Speed"));
 			shooterMotor.set(shooterSpeed);
 		}
 	}
 	
+	/**
+	 * Method that will control shooter with PID
+	 * TODO Finish this when using Talon and Encoder again
+	 */
 	public void pidShooter() {
 		//shooterMotor.changeControlMode(TalonControlMode.Speed);
 		//shooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
@@ -53,6 +54,7 @@ public class Shooter extends Subsystem {
 	
 	/**
 	 * Spins the shooter with a bang bang loop
+	 * TODO Test this again when using Talond and Encoder again
 	 */
 	public void bangBangSpinShooter() {
 		//SmartDashboard.putNumber("ENC Vel BANG", shooterMotor.getEncVelocity());

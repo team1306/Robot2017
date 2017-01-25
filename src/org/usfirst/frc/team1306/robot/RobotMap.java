@@ -6,7 +6,7 @@ package org.usfirst.frc.team1306.robot;
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
  * 
- * @author Jackson Goth
+ * @author Jackson Goth and Sam Roquitte
  */
 public class RobotMap {
 
@@ -16,13 +16,13 @@ public class RobotMap {
 
 	//Drivetrain Ports
 	public static final int LEFT_TALON_1_PORT = 1;
-	public static final int LEFT_TALON_2_PORT = 3; //TODO Figure out what this actually is
+	public static final int LEFT_TALON_2_PORT = 3;
 	public static final int RIGHT_TALON_1_PORT = 2;
-	public static final int RIGHT_TALON_2_PORT = 4; //TODO Figure out what this actually is
+	public static final int RIGHT_TALON_2_PORT = 4; 
 
 	//Shooter Ports
-	public static final int FLYWHEEL_TALON_PORT = 1;
+	public static final int FLYWHEEL_TALON_PORT = 1; //TODO Will change with wiring and robot development
 
 	//Intake Ports
-	public static final int INTAKE_TALON_PORT = 0; //TODO May change when switching out flywheel motorcontroller
+	public static final int INTAKE_TALON_PORT = 0; //TODO Will change with wiring and robot development
 }
