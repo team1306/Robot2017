@@ -4,10 +4,10 @@ import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.OI;
 import org.usfirst.frc.team1306.robot.RobotMap;
 import org.usfirst.frc.team1306.robot.OI.controller;
-import org.usfirst.frc.team1306.robot.commands.drivetrain.DriveStraight;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
 
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.Talon;
@@ -23,7 +23,7 @@ public class Shooter extends Subsystem {
 
 	//private final CANTalon shooterMotor;
 	private final Talon shooterMotor;
-
+	
 	public final static double shooterSpeed = Constants.SHOOTER_SPEED;
 	
 	public Shooter() {
@@ -43,6 +43,12 @@ public class Shooter extends Subsystem {
 			//shooterMotor.set(SmartDashboard.getNumber("Shooter Speed"));
 			shooterMotor.set(shooterSpeed);
 		}
+	}
+	
+	public void pidShooter() {
+		//shooterMotor.changeControlMode(TalonControlMode.Speed);
+		//shooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		
 	}
 	
 	/**
