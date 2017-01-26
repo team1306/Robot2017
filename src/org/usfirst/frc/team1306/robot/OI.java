@@ -1,12 +1,15 @@
 package org.usfirst.frc.team1306.robot;
 
-import edu.wpi.first.wpilibj.GenericHID.Hand;
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import org.usfirst.frc.team1306.robot.commands.drivetrain.LeftStraightDrive;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.QuickTurn;
+import org.usfirst.frc.team1306.robot.commands.drivetrain.RightStraightDrive;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
 import org.usfirst.frc.team1306.robot.commands.shooter.BangSpinShooter;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
+
+import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -62,9 +65,13 @@ public class OI {
 		 */
 		pbuttonRB.whileHeld(new QuickTurn(true));
 		pbuttonLB.whileHeld(new QuickTurn(false));
+		
 		pbuttonX.whenPressed(new SpinIntake());
 		pbuttonA.whenPressed(new SpinShooter());
 		pbuttonY.whenPressed(new BangSpinShooter());
+		
+		//pbuttonB.whenPressed(new RightStraightDrive());
+		//pbuttonB.whenPressed(new LeftStraightDrive());
 	}
 	
 	
