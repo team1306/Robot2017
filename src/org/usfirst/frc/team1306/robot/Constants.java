@@ -31,25 +31,40 @@ public class Constants {
 	//Quick-Turn Constants
 	public final static double TURN_SPEED = 0.45;			//Speed at which QuickTurn turns robot
 	
-	//Autonomous Constants
+	
+	//Autonomous Constants 
+	
+	public final static double AUTO_SPEED = 0.5;
 	
 	/*
-	 * These are old and will be replaced for use with game
+	 * Amount of time for initial drive before turning. TODO Experimentally find the correct value for all of these
 	 */
-	public final static double PID_TIME = 10; 				//Time of PID Catch-up in Autonomous
-	public final static double SPEED_TWO = 2.0; 			//Desired speed of 2
-	public final static double SPEED_FOUR = 4.0; 			//Desired speed of 4
-	public final static double SPEED_SIX = 6.0; 			//Desired speed of 6
-	public final static double SPEED_DEFAULT = .5; 			//Default speed of drivetrain
+	public final static double RED_ONE_TIME_INITIAL = 1;
+	public final static double RED_TWO_TIME_INITIAL = 1;
+	public final static double RED_THREE_TIME_INITIAL = 1;
+	public final static double BLUE_ONE_TIME_INITIAL = 1;
+	public final static double BLUE_TWO_TIME_INITIAL = 1;
+	public final static double BLUE_THREE_TIME_INITIAL = 1;
 	
-	public final static double FORWARD_SLOW_SPEED = 0.5;
-	public final static double FORWARD_SLOW_TIME = 1.0;
-	public final static double FORWARD_FAST_SPEED = 1.0;
-	public final static double FORWARD_FAST_TIME = 0.5;
-	public final static double BACKWARD_SLOW_SPEED = -0.5;
-	public final static double BACKWARD_SLOW_TIME = 1.0;
-	public final static double BACKWARD_FAST_SPEED = -1.0;
-	public final static double BACKWARD_FAST_TIME = 0.5;
+	/*
+	 * Angle at which the robot turns to get in line with gear peg. TODO Experimentally find the correct value for all of these
+	 */
+	public final static double RED_ONE_ANGLE = 90.0;
+	public final static double RED_TWO_ANGLE = 0.0;
+	public final static double RED_THREE_ANGLE = -90.0;
+	public final static double BLUE_ONE_ANGLE = -90.0;
+	public final static double BLUE_TWO_ANGLE = 0.0;
+	public final static double BLUE_THREE_ANGLE = 90.0;
+	
+	/*
+	 * Amount of time the robot is supposed to drive to get the gear on peg. TODO Experimentally find the correct value for all of these
+	 */
+	public final static double RED_ONE_TIME_FINAL = 1;
+	public final static double RED_TWO_TIME_FINAL = 1;
+	public final static double RED_THREE_TIME_FINAL = 1;
+	public final static double BLUE_ONE_TIME_FINAL = 1;
+	public final static double BLUE_TWO_TIME_FINAL = 1;
+	public final static double BLUE_THREE_TIME_FINAL = 1;
 	
 	//Drivetrain Constants
 	public final static double SPEED_MODIFIER = 0.8; 		//Multiplier of speeds inputed into tankDrive

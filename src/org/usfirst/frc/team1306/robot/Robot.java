@@ -1,13 +1,13 @@
 package org.usfirst.frc.team1306.robot;
 
+import org.usfirst.frc.team1306.robot.commands.CommandBase;
+import org.usfirst.frc.team1306.robot.commands.SmartDashboardUpdate;
+import org.usfirst.frc.team1306.robot.commands.autonomous.AutonomousCommand;
+import org.usfirst.frc.team1306.robot.commands.autonomous.Station;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import org.usfirst.frc.team1306.robot.commands.CommandBase;
-import org.usfirst.frc.team1306.robot.commands.SmartDashboardUpdate;
-import org.usfirst.frc.team1306.robot.commands.autonomous.AutonomousCommand;
-import org.usfirst.frc.team1306.robot.commands.autonomous.Speed;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -35,9 +35,12 @@ public class Robot extends IterativeRobot {
         smartDashboard.start();
     	
         chooser = new SendableChooser<AutonomousCommand>();
-        chooser.addDefault("2 Velocity Units", new AutonomousCommand(Speed.VELOCITY_TWO));
-        chooser.addObject("4 Velocity Units", new AutonomousCommand(Speed.VELOCITY_FOUR));
-        chooser.addObject("6 Velocity Units", new AutonomousCommand(Speed.VELOCITY_SIX));
+        chooser.addObject("Red 1", new AutonomousCommand(Station.RED_ONE));
+        chooser.addObject("Red 2", new AutonomousCommand(Station.RED_TWO));
+        chooser.addObject("Red 3", new AutonomousCommand(Station.RED_THREE));
+        chooser.addObject("Blue 1", new AutonomousCommand(Station.BLUE_ONE));
+        chooser.addObject("Blue 2", new AutonomousCommand(Station.BLUE_TWO));
+        chooser.addObject("Blue 3", new AutonomousCommand(Station.BLUE_THREE));
         SmartDashboard.putData("Auto mode", chooser);
     }
 	
