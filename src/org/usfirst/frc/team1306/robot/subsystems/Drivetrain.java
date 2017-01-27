@@ -59,8 +59,6 @@ public class Drivetrain extends Subsystem {
 		
 		leftmotor1.changeControlMode(TalonControlMode.PercentVbus);
 		rightmotor1.changeControlMode(TalonControlMode.PercentVbus);
-		//leftmotor2.changeControlMode(TalonControlMode.Follower);
-		//rightmotor2.changeControlMode(TalonControlMode.Follower);
 		if(Constants.DRIVETRAIN_ENABLED) {
 			leftmotor1.set(leftVal*Constants.SPEED_MODIFIER/**(Constants.P*Math.abs(leftmotor1.getEncVelocity() - rightmotor1.getEncVelocity()))*/);
 			rightmotor1.set(-rightVal*Constants.SPEED_MODIFIER/**(Constants.P*Math.abs(leftmotor1.getEncVelocity() - rightmotor1.getEncVelocity()))*/);

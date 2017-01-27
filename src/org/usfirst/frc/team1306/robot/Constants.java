@@ -2,7 +2,7 @@ package org.usfirst.frc.team1306.robot;
 
 /**
  * To store finalized variables all in one place
- * @author Jackson Goth
+ * @author Jackson Goth and Sam Roquitte
  */
 public class Constants {
 
@@ -17,18 +17,18 @@ public class Constants {
 	public final static int BANG_SHOOTER_BUTTON = 4;
 	
 	//Intake Constants
-	public final static double INTAKE_DEFAULT_SPEED = .85; 	//Default speed of intake
+	public final static double INTAKE_DEFAULT_SPEED = .65; 	//Default speed of intake
 	public final static double INTAKE_SPEED_CHANGE = 0.0; 	//Amount the speed goes down when changed with Intake.lowerSpeed()
 	public final static boolean INTAKE_ENABLED = true;
 	
 	//Shooter Constants
-	public final static double SHOOTER_SPEED = 0.85; 			//Talon SR Speed = 0.9
+	public final static double SHOOTER_SPEED = 0.70; 			//Talon SR Speed = 0.9
 	public final static boolean SHOOTER_ENABLED = true;
 	public final static int SHOOTER_BANG_SPEED = 6800;		//6000 for close, 9000 for 100% speed
 	public final static int SHOOTER_BANG_DEADBAND = 0;
 
 	//Quick-Turn Constants
-	public final static double TURN_SPEED = 0.45;
+	public final static double TURN_SPEED = 0.7;
 	
 	//Autonomous Constants
 	public final static double PID_TIME = 10; 				//Time of PID Catch-up in Autonomous

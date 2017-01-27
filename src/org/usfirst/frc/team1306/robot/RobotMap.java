@@ -6,7 +6,7 @@ package org.usfirst.frc.team1306.robot;
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
  * 
- * @author Jackson Goth
+ * @author Jackson Goth and Sam Roquitte
  */
 public class RobotMap {
 

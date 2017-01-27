@@ -17,7 +17,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * This controls the shooter and rate at which balls are shot
  * @author Jackson Goth
- *
  */
 public class Shooter extends Subsystem {
 
@@ -27,7 +26,7 @@ public class Shooter extends Subsystem {
 	public final static double shooterSpeed = Constants.SHOOTER_SPEED;
 	
 	public Shooter() {
-		shooterMotor = new Talon(1);
+		shooterMotor = new Talon(RobotMap.FLYWHEEL_TALON_PORT);
 		//shooterMotor = new CANTalon(RobotMap.FLYWHEEL_TALON_PORT);
 		//shooterMotor.enable();
 		//shooterMotor.changeControlMode(TalonControlMode.PercentVbus);
@@ -79,5 +78,4 @@ public class Shooter extends Subsystem {
 	protected void initDefaultCommand() {
 		setDefaultCommand(new SpinShooter());
 	}
-
 }
