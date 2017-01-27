@@ -34,7 +34,6 @@ public class SpinShooter extends CommandBase{
      * Stops spinning shooter when A is no longer pressed
      */
     protected boolean isFinished() {
-
     	if(OI.getButtonVal(controller.p,Constants.SHOOTER_BUTTON)) {
     		return false;
     	} else {

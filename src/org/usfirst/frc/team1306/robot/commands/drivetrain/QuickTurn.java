@@ -24,9 +24,9 @@ public class QuickTurn extends CommandBase {
 	public QuickTurn(boolean left) {
 		requires(drivetrain);
 		if(left == true) {
-			speed = -Constants.TURN_SPEED;
-		} else {
 			speed = Constants.TURN_SPEED;
+		} else {
+			speed = -Constants.TURN_SPEED;
 		}
 	}
 	
