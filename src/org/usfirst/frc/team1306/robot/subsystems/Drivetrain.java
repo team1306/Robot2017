@@ -65,6 +65,8 @@ public class Drivetrain extends Subsystem {
 		rightmotor1.changeControlMode(TalonControlMode.PercentVbus);
 	
 		if(Constants.DRIVETRAIN_ENABLED) {
+			SmartDashboard.putNumber("leftvelocity",leftmotor1.getEncVelocity());
+			SmartDashboard.putNumber("rightvelocity",rightmotor1.getEncVelocity());
 			leftmotor1.set(leftVal*Constants.SPEED_MODIFIER);
 			rightmotor1.set(-rightVal*Constants.SPEED_MODIFIER);
 		}

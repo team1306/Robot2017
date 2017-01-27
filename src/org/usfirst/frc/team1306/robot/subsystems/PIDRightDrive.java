@@ -2,8 +2,11 @@ package org.usfirst.frc.team1306.robot.subsystems;
 
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.RobotMap;
+import org.usfirst.frc.team1306.robot.commands.drivetrain.RightStraightDrive;
+
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
+
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -46,8 +49,10 @@ public class PIDRightDrive extends PIDSubsystem {
 	@Override
 	protected void usePIDOutput(double output) {
 		SmartDashboard.putNumber("rightput",output);
-		rightmotor1.changeControlMode(TalonControlMode.Speed);
-		rightmotor1.set(output);
+		if(Constants.PID_DRIVETRAIN_ENABLED) {
+			rightmotor1.changeControlMode(TalonControlMode.Speed);
+			rightmotor1.set(output);
+		}
 	}
 
 	@Override

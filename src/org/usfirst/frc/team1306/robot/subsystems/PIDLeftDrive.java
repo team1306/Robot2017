@@ -2,6 +2,8 @@ package org.usfirst.frc.team1306.robot.subsystems;
 
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.RobotMap;
+import org.usfirst.frc.team1306.robot.commands.drivetrain.LeftStraightDrive;
+
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
@@ -47,8 +49,10 @@ public class PIDLeftDrive extends PIDSubsystem {
 	protected void usePIDOutput(double output) {
 		
 		SmartDashboard.putNumber("leftput",output);
-		leftmotor1.changeControlMode(TalonControlMode.Speed);
-		leftmotor1.set(output);
+		if(Constants.PID_DRIVETRAIN_ENABLED) {
+			leftmotor1.changeControlMode(TalonControlMode.Speed);
+			leftmotor1.set(output);
+		}
 	}
 
 	@Override

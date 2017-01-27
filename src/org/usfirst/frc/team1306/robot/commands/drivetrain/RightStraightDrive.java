@@ -17,18 +17,19 @@ public class RightStraightDrive extends CommandBase {
 
 	@Override
 	protected void execute() {
-		
-		if(OI.getButtonVal(controller.p,2)) {
-			rightdrive.setSetpoint(6000);
-			rightdrive.enable();
-		} else {
-			rightdrive.disable();
-		}
+		rightdrive.setSetpoint(600);
+		rightdrive.enable();
 	}
 	
 	@Override
 	protected boolean isFinished() {
-		return false;
+		if(OI.getButtonVal(controller.p,2)) {
+			return false;
+		} else {
+			rightdrive.stopAll();
+			rightdrive.disable();
+			return true;
+		}
 	}
 	
 	@Override

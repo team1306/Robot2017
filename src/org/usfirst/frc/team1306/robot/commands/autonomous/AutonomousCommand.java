@@ -22,7 +22,7 @@ public class AutonomousCommand extends CommandGroup{
 		 * Does initial drive forward, turn to a given angle, and then does final drive to gear peg
 		 */
 		addSequential(station.getDriveCommand("initial"));
-		addSequential(station.getTurnCommand());
+		//addSequential(station.getTurnCommand()); TODO Get this working with gyro
 		addSequential(station.getDriveCommand("final"));
 		
 		//TODO Shoot command?
