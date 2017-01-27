@@ -1,19 +1,16 @@
 package org.usfirst.frc.team1306.robot.commands.autonomous;
 
-import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- * A command that drives the robot straight forward for a certain amount of
+ * A command that drives the robot in a direction for a certain amount of
  * time.
  * 
  * @author Jackson Goth
  */
 public class TimedDrive extends CommandBase {
 
-	/** The speed we wish the drivetrain to go */
-	private final double desiredSpeed;
 	/** The power for the motors, on a scale from -1.0 to 1.0. */
 	private final double speed;
 	/** The amount of time to drive before stopping, in seconds. */
@@ -25,12 +22,11 @@ public class TimedDrive extends CommandBase {
 	 * Constructs a new TimedDrive command. Initializes the timer and requires
 	 * the drivetrain.
 	 */
-	public TimedDrive(double desiredSpeed, double time) {
-		this.desiredSpeed = desiredSpeed;
-		this.time = time;
-		this.speed = Constants.SPEED_DEFAULT;
-		timer = new Timer();
+	public TimedDrive(double speed, double time) {
 		requires(drivetrain);
+		this.time = time;
+		this.speed = speed;
+		timer = new Timer();
 	}
 
 	@Override
@@ -42,7 +38,7 @@ public class TimedDrive extends CommandBase {
 	@Override
 	protected void execute() {
 		
-		drivetrain.drivePID(speed, speed, desiredSpeed);
+		drivetrain.tankDrive(speed,speed);
 	}
 
 	@Override

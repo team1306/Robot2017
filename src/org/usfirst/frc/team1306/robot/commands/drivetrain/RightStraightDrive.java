@@ -2,14 +2,11 @@ package org.usfirst.frc.team1306.robot.commands.drivetrain;
 
 import org.usfirst.frc.team1306.robot.OI;
 import org.usfirst.frc.team1306.robot.OI.controller;
-import org.usfirst.frc.team1306.robot.OI.trigger;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-public class rightStraight extends CommandBase {
+public class RightStraightDrive extends CommandBase {
 	
-	public rightStraight() {
+	public RightStraightDrive() {
 		requires(rightdrive);
 	}
 	
@@ -21,7 +18,6 @@ public class rightStraight extends CommandBase {
 	@Override
 	protected void execute() {
 		
-		SmartDashboard.putBoolean("bbutton",OI.getButtonVal(controller.p,2));
 		if(OI.getButtonVal(controller.p,2)) {
 			rightdrive.setSetpoint(6000);
 			rightdrive.enable();

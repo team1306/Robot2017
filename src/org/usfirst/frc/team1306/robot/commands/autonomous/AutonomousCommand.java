@@ -11,11 +11,20 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutonomousCommand extends CommandGroup{
 
 	/**
-	 * Not Final
+	 * Method that accomplishes a given autonomous command
+	 * 
+	 * @param Station
+	 * 		Which field position is robot located
 	 */
-	public AutonomousCommand(Speed speed) {
+	public AutonomousCommand(Station station) {
 		
-		addSequential(speed.getDriveCommand());
+		/**
+		 * Does initial drive forward, turn to a given angle, and then does final drive to gear peg
+		 */
+		addSequential(station.getDriveCommand("initial"));
+		addSequential(station.getTurnCommand());
+		addSequential(station.getDriveCommand("final"));
 		
+		//TODO Shoot command?
 	}
 }

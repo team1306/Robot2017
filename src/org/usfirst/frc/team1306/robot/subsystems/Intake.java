@@ -6,9 +6,8 @@ import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- * This controls the intake of the robot; the rate at which the rollers spin.
+ * This controls the intake of the robot; the rate at which the wheels spin.
  * @author Jackson Goth
- *
  */
 
 public class Intake extends Subsystem {
@@ -18,7 +17,7 @@ public class Intake extends Subsystem {
 	public static double intakeSpeed = Constants.INTAKE_DEFAULT_SPEED;
 	
 	public Intake() {
-		intakeMotor = new Talon(0);
+		intakeMotor = new Talon(RobotMap.INTAKE_TALON_PORT);
 	}
 	
 	/*
