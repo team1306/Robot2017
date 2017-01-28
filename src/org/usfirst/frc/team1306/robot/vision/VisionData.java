@@ -22,6 +22,7 @@ public class VisionData extends Pipeline {
 	Pipeline pipeline; //This goes to the GRIP pipeline that does all the work
 	Mat image_process; //Input image
 	ArrayList<MatOfPoint> final_contours; //Contours that GRIP gives at the end
+	ArrayList<MatOfPoint2f> contours_modified= new ArrayList<MatOfPoint2f>(); //For minarearect
 	public VisionData(Mat image) { //Init 
 		image_process= image;
 		pipeline=new Pipeline();
@@ -31,15 +32,34 @@ public class VisionData extends Pipeline {
 		final_contours=pipeline.filterContoursOutput(); //Get GRIP output
 		
 	}
-	public ArrayList<Rect> GetBoundingBox() {
-		ArrayList<Rect> bbox = new ArrayList<Rect>();
+	public ArrayList<RotatedRect> GetBoundingBox() {
+		for(MatOfPoint point : final_contours) {
+		     MatOfPoint2f newPoint = new MatOfPoint2f(point.toArray());
+		     contours_modified.add(newPoint); //convert MatOfPoint to MatOfPoint2f
+		 }
+		ArrayList<RotatedRect> bbox = new ArrayList<RotatedRect>();
 		for (int x=0; x<final_contours.size(); x++) {
-		bbox.add(Imgproc.boundingRect(final_contours.get(x)));
-	}
-	return bbox;
+		bbox.add(Imgproc.minAreaRect(contours_modified.get(x)));
+		//Returns center of rotated rect, dimensions, and angle of rotation
 
 	}
+		return bbox;
+	}
+
+
+
+	public static void main(String args[]) {
+		Mat image=Imgcodecs.imread("/Users/Amit_Rajesh/Downloads/2017VisionExample/Vision Images/LED Boiler/1ftH11ftD2Angle0Brightness.jpg");
+		VisionData image_data=new VisionData(image);
+		ArrayList<RotatedRect> rotated_bbox;
+     	image_data.ProcessImage();
+     	rotated_bbox=image_data.GetBoundingBox();
+		for (int x=0; x<rotated_bbox.size(); x++) {
+		    System.out.println(rotated_bbox.get(x));
+		}
+	}
 }
+
 	
 	
 
