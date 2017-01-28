@@ -60,22 +60,18 @@ public class Drivetrain extends Subsystem {
 		leftmotor1.changeControlMode(TalonControlMode.PercentVbus);
 		rightmotor1.changeControlMode(TalonControlMode.PercentVbus);
 		if(Constants.DRIVETRAIN_ENABLED) {
-<<<<<<< HEAD
+
 			SmartDashboard.putNumber("leftvelocity",leftmotor1.getEncVelocity());
 			SmartDashboard.putNumber("rightvelocity",rightmotor1.getEncVelocity());
 			leftmotor1.set(leftVal*Constants.SPEED_MODIFIER);
 			rightmotor1.set(-rightVal*Constants.SPEED_MODIFIER);
-=======
-			leftmotor1.set(leftVal*Constants.SPEED_MODIFIER/**(Constants.P*Math.abs(leftmotor1.getEncVelocity() - rightmotor1.getEncVelocity()))*/);
-			rightmotor1.set(-rightVal*Constants.SPEED_MODIFIER/**(Constants.P*Math.abs(leftmotor1.getEncVelocity() - rightmotor1.getEncVelocity()))*/);
-			//leftmotor2.set(leftmotor1.getDeviceID()); //TODO Enable these?
-			//rightmotor2.set(rightmotor1.getDeviceID());
->>>>>>> origin/master
+
+			leftmotor1.set(leftVal*Constants.SPEED_MODIFIER);
+			rightmotor1.set(-rightVal*Constants.SPEED_MODIFIER);
+
+
 		}
 			
-		//SmartDashboard.putNumber("Drivetrain Speed",rightVal*Constants.SPEED_MODIFIER);
-		//SmartDashboard.putNumber("Intake Speed",Intake.intakeSpeed);
-		
 		/*
 		 * Currently lowers speed of intake motor when drivetrain speed is above 0.5
 		 */
@@ -84,49 +80,7 @@ public class Drivetrain extends Subsystem {
 		} else {
 			Intake.raiseSpeed();
 		}
-		
-		//SmartDashboard.putNumber("Left Encoder",leftmotor1.getEncPosition());
-		//SmartDashboard.putNumber("Right Encoder",rightmotor1.getEncPosition()/* + rightCompensation*/);
-		//SmartDashboard.putNumber("Left Vel: ",leftmotor1.getEncVelocity());
-		//SmartDashboard.putNumber("Right Vel: ",rightmotor1.getEncVelocity());
-		//SmartDashboard.putNumber("Vel Difference", leftmotor1.getEncVelocity() - rightmotor1.getEncVelocity());
-	}
-	
-	public void drivePID(double leftVal, double rightVal, double desiredSpeed) {
-		
-		leftmotor1.changeControlMode(TalonControlMode.PercentVbus);
-		rightmotor1.changeControlMode(TalonControlMode.PercentVbus);
-		
-		double leftMod = 1.0;
-		double rightMod = 1.0;
-		double leftVel = leftmotor1.getEncVelocity();
-		double rightVel = rightmotor1.getEncVelocity();
-		double leftError = desiredSpeed - leftVel;
-		double rightError = desiredSpeed - rightVel;
-		
-		/**
-		 *  Left Motor PID Adjustments
-		 */
-		if(leftVel != desiredSpeed) {
-			leftMod = leftError * Constants.P;
-		}
-		
-		/**
-		 *  Right Motor PID Adjustments
-		 */
-		if(rightVel != desiredSpeed) {
-			rightMod = rightError * Constants.P;
-		}
-		
-		leftmotor1.set(-leftVal*Math.abs(leftMod)); //TODO Get Speed Modifier Working with these two
-		rightmotor1.set(rightVal*Math.abs(rightMod));
-		
-		SmartDashboard.putNumber("Left Vel: ",leftmotor1.getEncVelocity());
-		SmartDashboard.putNumber("Right Vel: ",rightmotor1.getEncVelocity());
-		SmartDashboard.putNumber("Vel Difference", leftmotor1.getEncVelocity() - rightmotor1.getEncVelocity());
-		
-		SmartDashboard.putNumber("Left Error: ",leftError);
-		SmartDashboard.putNumber("Right Error: ",rightError);
+
 	}
 	
 	/**
