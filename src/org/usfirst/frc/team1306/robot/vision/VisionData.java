@@ -19,27 +19,39 @@ import org.opencv.imgproc.*;
 import org.opencv.objdetect.*;
 
 public class VisionData extends Pipeline {
-	Pipeline pipeline; //This goes to the GRIP pipeline that does all the work
-	Mat image_process; //Input image
-	ArrayList<MatOfPoint> final_contours; //Contours that GRIP gives at the end
-	public VisionData(Mat image) { //Init 
-		image_process= image;
-		pipeline=new Pipeline();
+	Pipeline pipeline; // This goes to the GRIP pipeline that does all the work
+	Mat image_process; // Input image
+	ArrayList<MatOfPoint> final_contours; // Contours that GRIP gives at the end
+
+	public VisionData(Mat image) { // Init
+		image_process = image;
+		pipeline = new Pipeline();
 	}
-	public void ProcessImage() {
+
+	public void processImage() {
 		pipeline.process(image_process);
-		final_contours=pipeline.filterContoursOutput(); //Get GRIP output
-		
+		final_contours = pipeline.filterContoursOutput(); // Get GRIP output
+
 	}
-	public ArrayList<Rect> GetBoundingBox() {
+
+	public ArrayList<Rect> getBoundingBox() {
 		ArrayList<Rect> bbox = new ArrayList<Rect>();
-		for (int x=0; x<final_contours.size(); x++) {
-		bbox.add(Imgproc.boundingRect(final_contours.get(x)));
+		for (int i = 0; i < final_contours.size(); i++) {
+			bbox.add(Imgproc.boundingRect(final_contours.get(i)));
+		}
+		return bbox;
 	}
-	return bbox;
-
+	
+	public double getPitch() {
+		return 0.0;
 	}
+	
+	public double getYaw() {
+		return 0.0;
+	}
+	
+	public double getDist() {
+		return 0.0;
+	}
+	
 }
-	
-	
-
