@@ -26,7 +26,7 @@ public class PIDRightDrive extends PIDSubsystem {
 		super("PIDRight",Constants.P,Constants.I,Constants.D);
 		
 		setAbsoluteTolerance(Constants.PIDTolerance);
-		setOutputRange(0,1);
+		setOutputRange(0,900);
 		
 		rightmotor1 = new CANTalon(RobotMap.RIGHT_TALON_1_PORT);
 		rightmotor2 = new CANTalon(RobotMap.RIGHT_TALON_2_PORT);
@@ -57,7 +57,7 @@ public class PIDRightDrive extends PIDSubsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-		//setDefaultCommand(new RightStraightDrive());
+		setDefaultCommand(new RightStraightDrive());
 	}
 
 	public void stopAll() {

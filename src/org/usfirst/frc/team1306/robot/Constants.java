@@ -25,7 +25,7 @@ public class Constants {
 	//Shooter Constants
 	public final static double SHOOTER_SPEED = 0.85;
 	public final static boolean SHOOTER_ENABLED = true;		//Shooter will only run when true
-	public final static int SHOOTER_BANG_SPEED = 6800;		//6000 for close, 9000 for 100% speed
+	public final static double SHOOTER_BANG_SPEED = 6800;		//6000 for close, 9000 for 100% speed
 	public final static int SHOOTER_BANG_DEADBAND = 0;
 
 	//Quick-Turn Constants

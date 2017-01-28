@@ -70,7 +70,7 @@ public class OI {
 		pbuttonA.whenPressed(new SpinShooter());
 		pbuttonY.whenPressed(new BangSpinShooter());
 		
-		pbuttonB.whenPressed(new RightStraightDrive());
+		//pbuttonB.whenPressed(new RightStraightDrive());
 		//pbuttonB.whenPressed(new LeftStraightDrive());
 	}
 	

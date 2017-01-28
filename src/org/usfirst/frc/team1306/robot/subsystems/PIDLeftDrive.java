@@ -25,7 +25,7 @@ public class PIDLeftDrive extends PIDSubsystem {
 		super("PIDLeft",Constants.P,Constants.I,Constants.D);
 		
 		setAbsoluteTolerance(Constants.PIDTolerance);
-		setOutputRange(0,1);
+		setOutputRange(0,900);
 		
 		leftmotor1 = new CANTalon(RobotMap.LEFT_TALON_1_PORT);
 		leftmotor2 = new CANTalon(RobotMap.LEFT_TALON_2_PORT);
@@ -57,7 +57,7 @@ public class PIDLeftDrive extends PIDSubsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-		//setDefaultCommand(new LeftStraightDrive());
+		setDefaultCommand(new LeftStraightDrive());
 	}
 
 	public void stopAll() {
