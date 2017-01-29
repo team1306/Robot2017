@@ -48,7 +48,7 @@ public class PIDLeftDrive extends PIDSubsystem {
 	@Override
 	protected void usePIDOutput(double output) {
 		
-		SmartDashboard.putNumber("leftput",output);
+		//SmartDashboard.putNumber("leftput",output);
 		if(Constants.PID_DRIVETRAIN_ENABLED) {
 			leftmotor1.changeControlMode(TalonControlMode.Speed);
 			leftmotor1.set(output);

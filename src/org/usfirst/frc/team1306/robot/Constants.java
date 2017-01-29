@@ -6,6 +6,12 @@ package org.usfirst.frc.team1306.robot;
  */
 public class Constants {
 
+	//Subsystem Constants
+	public final static boolean INTAKE_ENABLED = true;		//Intake will only run when true
+	public final static boolean SHOOTER_ENABLED = true;		//Shooter will only run when true
+	public final static boolean DRIVETRAIN_ENABLED = true;	//Drivetrain will only run when true
+	public final static boolean PID_DRIVETRAIN_ENABLED = false;	//PID-Drive will only run when true
+	
 	//OI Constants
 	public final static double DEADBAND = 0.15;				//Joystick deadband
 	public final static double TRIGGER_DEADBAND = 0.1;		//Trigger deadband
@@ -20,7 +26,6 @@ public class Constants {
 	//Intake Constants
 	public final static double INTAKE_DEFAULT_SPEED = .85; 	//Default speed of intake
 	public final static double INTAKE_SPEED_CHANGE = 0.0; 	//Amount the speed goes down when changed with Intake.lowerSpeed()
-	public final static boolean INTAKE_ENABLED = true;		//Intake will only run when true
 	
 	//Hoper Constants
 	public final static double HOPPER_SPEED = 0.5;
@@ -28,7 +33,6 @@ public class Constants {
 	
 	//Shooter Constants
 	public final static double SHOOTER_SPEED = 1.0;
-	public final static boolean SHOOTER_ENABLED = true;		//Shooter will only run when true
 	public final static double SHOOTER_BANG_SPEED = 6000;	//6000 for close, 9000 for 100% speed
 	public final static int SHOOTER_BANG_DEADBAND = 0;
 
@@ -71,8 +75,7 @@ public class Constants {
 	
 	//Drivetrain Constants
 	public final static double SPEED_MODIFIER = 0.8; 		//Multiplier of speeds inputed into tankDrive
-	public final static boolean DRIVETRAIN_ENABLED = true;	//Drivetrain will only run when true
-	public final static boolean PID_DRIVETRAIN_ENABLED = true;	//PID-Drive will only run when true
+	public final static double DRIVETRAIN_PID_SPEED = 400.0;
 	
 	//PID Constants
 	public final static double P = 0.1113;
