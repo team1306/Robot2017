@@ -16,37 +16,29 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This controls the shooter and rate at which balls are shot
- * @author Jackson Goth
+ * @author Jackson Goth and Sam Roquitte
  */
 public class Shooter extends Subsystem {
 
 	private final CANTalon shooterMotor;
-	//private final Talon shooterMotorsr;
-	//private final Talon shooterMotor;
 	
 	public final static double shooterSpeed = Constants.SHOOTER_SPEED;
 	
 	public Shooter() {
-		//shooterMotorsr = new Talon(1);
+
 		shooterMotor = new CANTalon(RobotMap.FLYWHEEL_TALON_PORT);
 		shooterMotor.enable();
-		/*shooterMotor.changeControlMode(TalonControlMode.PercentVbus);*/
-		//shooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		/*shooterMotor.reverseSensor(true);
+		shooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		shooterMotor.reverseSensor(true);
 		shooterMotor.configEncoderCodesPerRev(256);
 		shooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
 		shooterMotor.configPeakOutputVoltage(+12.0f, -12.0f);
 
 		shooterMotor.setProfile(0);
 		shooterMotor.setF(0.1116076294277929);	//Calculated constant
-		shooterMotor.setP(0.1);
+		shooterMotor.setP(Double.MAX_VALUE);
 		shooterMotor.setI(0);
-		shooterMotor.setD(0);*/
-	}
-	
-	public void spin50() {
-		shooterMotor.changeControlMode(TalonControlMode.PercentVbus);
-		shooterMotor.set(0.8);
+		shooterMotor.setD(0);
 	}
 	
 	/**
@@ -55,42 +47,34 @@ public class Shooter extends Subsystem {
 	public void spinShooter() {
 		
 		if(Constants.SHOOTER_ENABLED) {
-			SmartDashboard.putNumber("Enc VEL No Bang",shooterMotor.getEncVelocity());
 			shooterMotor.set(shooterSpeed);
 		}
 	}
 	
 	/**
-	 * Method that will control shooter with PID
-	 * TODO Finish this when using Talon and Encoder again
-	 */
-	public void pidShooter() {
-		//shooterMotor.changeControlMode(TalonControlMode.Speed);
-		//shooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		
-	}
-	
-	/**
 	 * Spins the shooter with a bang bang loop
 	 */
-	static double shooterMotorPVB = 0.8;
-	int i = 1;
+	
+	private static double shooterMotorPVB = 0.80;
+	
 	public void bangBangSpinShooter() {
-		SmartDashboard.putNumber("IS HERE", i);
-		i++;
-		//shooterMotor.changeControlMode(TalonControlMode.PercentVbus);
-		SmartDashboard.putNumber("ENC Vel BANG", shooterMotor.getEncVelocity());
-		shooterMotor.changeControlMode(TalonControlMode.PercentVbus);
+
+		SmartDashboard.putNumber("Enc Velocity", shooterMotor.getEncVelocity());
+		
+		
+		//Working Bang Bang Loop as of 1/28 11PM
+		/*shooterMotor.changeControlMode(TalonControlMode.PercentVbus);
 		if (shooterMotor.getEncVelocity() > 7000) {
 			shooterMotor.set(0.80);
 		}
 		else {
 			shooterMotor.set(1.0);
-		}
+		}*/
 		
-		/*shooterMotor.set(shooterMotorPVB);
 		
-		double stepValue = 0.01;
+		
+		//TODO Stepper code that hasn't been properly tested
+		/*final double stepValue = 0.01;
 		
 		if (((shooterMotor.getEncVelocity()*600)/1024) < 4000) {
 			//shooterMotorPVB+=stepValue;
@@ -104,14 +88,9 @@ public class Shooter extends Subsystem {
 		
 		//shooterMotor.set(shooterMotorPVB);
 		
-		/*if (shooterMotor.getEncVelocity() < 4000) {
-			shooterMotor.set(1023);
-			SmartDashboard.putNumber("BANG", 1);
-		} else {
-			shooterMotor.set(0);
-			SmartDashboard.putNumber("BANG", 0);
-		}*/
-		//shooterMotor.set(shooterSpeed);
+		//TODO PIDF code that hasn't been properly tested
+		shooterMotor.changeControlMode(TalonControlMode.Speed);
+		shooterMotor.set(1500);
 	}
 	
 	/**
