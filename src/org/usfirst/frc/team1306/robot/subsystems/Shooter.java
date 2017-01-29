@@ -63,8 +63,10 @@ public class Shooter extends Subsystem {
 		
 		//Working Bang Bang Loop as of 1/28 11PM
 		shooterMotor.changeControlMode(TalonControlMode.PercentVbus);
-		if (shooterMotor.getEncVelocity() > 7000) {
-			shooterMotor.set(0.80);
+		/*if(shooterMotor.getEncVelocity() > 6000) {
+			shooterMotor.set(0.60);
+		} else */if (shooterMotor.getEncVelocity() > 4807) {
+			shooterMotor.set(0.55);
 		}
 		else {
 			shooterMotor.set(1.0);
@@ -88,7 +90,7 @@ public class Shooter extends Subsystem {
 		
 		//TODO PIDF code that hasn't been properly tested
 		/*shooterMotor.changeControlMode(TalonControlMode.Speed);
-		shooterMotor.set(1500);*/
+		shooterMotor.set(1000);*/
 	}
 	
 	/**

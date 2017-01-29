@@ -48,17 +48,17 @@ public class Drivetrain extends Subsystem {
 		rightmotor1.reverseSensor(true);
 		rightmotor1.configEncoderCodesPerRev(256);
 		rightmotor1.configNominalOutputVoltage(+0.0f, -0.0f);
-		rightmotor1.configPeakOutputVoltage(+12.0f, -12.0f);
+		rightmotor1.configPeakOutputVoltage(+12.0f, -12.0f);*/
 
 		//TODO Calculate these values
-		leftmotor1.setProfile(0);
-		leftmotor1.setF(0.0);	//Calculated constant
+		/*leftmotor1.setProfile(0);
+		leftmotor1.setF(0.111);	//Calculated constant
 		leftmotor1.setP(0.0);
 		leftmotor1.setI(0.0);
 		leftmotor1.setD(0.0);
 		
 		rightmotor1.setProfile(0);
-		rightmotor1.setF(0.0);	//Calculated constant
+		rightmotor1.setF(0.111);	//Calculated constant
 		rightmotor1.setP(0.0);
 		rightmotor1.setI(0.0);
 		rightmotor1.setD(0.0);*/
@@ -79,6 +79,15 @@ public class Drivetrain extends Subsystem {
 		slave.changeControlMode(TalonControlMode.Follower);
 		slave.set(master.getDeviceID());
 		slave.enable();
+	}
+	
+	public void resetEncoders() {
+		leftmotor1.setPosition(0);
+		rightmotor1.setPosition(0);
+	}
+	
+	public double getPosition() {
+		return leftmotor1.getEncPosition();
 	}
 	
 	/**
@@ -136,9 +145,10 @@ public class Drivetrain extends Subsystem {
 	}
 	
 	public void drivePID(double initVel) {
-		leftmotor1.changeControlMode(TalonControlMode.Speed);
-		rightmotor1.changeControlMode(TalonControlMode.Speed);
+		leftmotor1.changeControlMode(TalonControlMode.PercentVbus);
+		rightmotor1.changeControlMode(TalonControlMode.PercentVbus);
 		
+		SmartDashboard.putNumber("initVel",initVel);
 		if(Constants.DRIVETRAIN_ENABLED) {
 			leftmotor1.set(initVel);
 			rightmotor1.set(-initVel);
