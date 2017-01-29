@@ -11,16 +11,20 @@ public class Constants {
 	public final static double TRIGGER_DEADBAND = 0.1;		//Trigger deadband
 	public final static double JOYSTICK_MULTIPLIER = 1.0;   //(Use SPEED_MODIFIER for speed changes)
 	
-	
 	//Button Constants
 	public final static int INTAKE_BUTTON = 3;
 	public final static int SHOOTER_BUTTON = 1;
 	public final static int BANG_SHOOTER_BUTTON = 4;
+	public final static int HOPPER_BUTTON = 8;
 	
 	//Intake Constants
 	public final static double INTAKE_DEFAULT_SPEED = .85; 	//Default speed of intake
 	public final static double INTAKE_SPEED_CHANGE = 0.0; 	//Amount the speed goes down when changed with Intake.lowerSpeed()
 	public final static boolean INTAKE_ENABLED = true;		//Intake will only run when true
+	
+	//Hoper Constants
+	public final static double HOPPER_SPEED = 0.5;
+	public final static boolean HOPPER_ENABLED = true;
 	
 	//Shooter Constants
 	public final static double SHOOTER_SPEED = 1.0;
@@ -33,7 +37,6 @@ public class Constants {
 	
 	
 	//Autonomous Constants 
-	
 	public final static double AUTO_SPEED = 0.5;
 	
 	/*

@@ -25,4 +25,7 @@ public class RobotMap {
 
 	//Intake Ports
 	public static final int INTAKE_TALON_PORT = 0; //TODO Will change with wiring and robot development
+	
+	//Hopper Ports
+	public static final int HOPPER_TALON_PORT = 6;
 }

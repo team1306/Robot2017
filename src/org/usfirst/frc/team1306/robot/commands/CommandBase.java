@@ -2,6 +2,7 @@ package org.usfirst.frc.team1306.robot.commands;
 
 import org.usfirst.frc.team1306.robot.OI;
 import org.usfirst.frc.team1306.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team1306.robot.subsystems.Hopper;
 import org.usfirst.frc.team1306.robot.subsystems.Intake;
 import org.usfirst.frc.team1306.robot.subsystems.PIDLeftDrive;
 import org.usfirst.frc.team1306.robot.subsystems.PIDRightDrive;
@@ -24,6 +25,7 @@ public abstract class CommandBase extends Command {
 	protected static PIDRightDrive rightdrive;
 	protected static Shooter shooter;
 	protected static Intake intake;
+	protected static Hopper hopper;
 
 	public static void init() {
 		drivetrain = new Drivetrain();
@@ -31,6 +33,7 @@ public abstract class CommandBase extends Command {
 		rightdrive = new PIDRightDrive();
 		shooter = new Shooter();
 		intake = new Intake();
+		hopper = new Hopper();
 		oi = new OI();
 	}
 

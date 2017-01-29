@@ -11,27 +11,27 @@ import org.usfirst.frc.team1306.robot.commands.CommandBase;
  */
 public class SpinIntake extends CommandBase {
 	
-	boolean press = false;
+	//boolean press = false;
 	
     public SpinIntake() {
         requires(intake);
     }
     
     protected void initialize() {
-    	press=true;
+    	//press=true;
     }
     
     /**
      * Continually spins intake
      */
     protected void execute() {
-    	if (press) {
+    	/*if (press) {
     		intake.spinIntake();	//TODO Test if this works
     	}
     	if (!OI.getButtonVal(controller.p, Constants.INTAKE_BUTTON)) {
     		press = false;
-    	}
-    	//intake.spinIntake(); //TODO Make it toggle on/off
+    	}*/
+    	intake.spinIntake(); //TODO Make it toggle on/off
     }
 
     /**
