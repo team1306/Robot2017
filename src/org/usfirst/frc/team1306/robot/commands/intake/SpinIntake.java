@@ -18,7 +18,7 @@ public class SpinIntake extends CommandBase {
     }
     
     protected void initialize() {
-    	press=true;
+    	press = true;
     }
     
     /**

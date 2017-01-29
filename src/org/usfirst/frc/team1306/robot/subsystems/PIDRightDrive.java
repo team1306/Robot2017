@@ -48,7 +48,8 @@ public class PIDRightDrive extends PIDSubsystem {
 
 	@Override
 	protected void usePIDOutput(double output) {
-		SmartDashboard.putNumber("rightput",output);
+		
+		//SmartDashboard.putNumber("rightput",output);
 		if(Constants.PID_DRIVETRAIN_ENABLED) {
 			rightmotor1.changeControlMode(TalonControlMode.Speed);
 			rightmotor1.set(output);
