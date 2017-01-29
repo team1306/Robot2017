@@ -8,7 +8,6 @@ import org.usfirst.frc.team1306.robot.commands.CommandBase;
 /**
  * Turns the robot left and right with one button
  * @author Jackson Goth
- * 
  */
 
 public class QuickTurn extends CommandBase {
@@ -48,7 +47,8 @@ public class QuickTurn extends CommandBase {
 		
 		if(OI.getButtonVal(controller.p,5) || OI.getButtonVal(controller.p,6)) {
 			return false;
-		} else {
+		} 
+		else {
 			drivetrain.stopAll();
 			return true;
 		}
@@ -63,5 +63,4 @@ public class QuickTurn extends CommandBase {
 	protected void interrupted() {
 		end();
 	}
-
 }

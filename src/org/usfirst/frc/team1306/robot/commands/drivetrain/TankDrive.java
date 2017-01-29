@@ -5,6 +5,10 @@ import org.usfirst.frc.team1306.robot.OI;
 import org.usfirst.frc.team1306.robot.OI.*;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
+/**
+ * Allows the robot drivetrain to be controlled with tank drive
+ * @author Sam Roquitte
+ */
 public class TankDrive extends CommandBase {
 	
 	public TankDrive() {

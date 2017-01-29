@@ -55,25 +55,23 @@ public class Shooter extends Subsystem {
 	 * Spins the shooter with a bang bang loop
 	 */
 	
-	private static double shooterMotorPVB = 0.80;
+	//private static double shooterMotorPVB = 0.80;
 	
 	public void bangBangSpinShooter() {
 
 		SmartDashboard.putNumber("Enc Velocity", shooterMotor.getEncVelocity());
 		
-		
 		//Working Bang Bang Loop as of 1/28 11PM
-		/*shooterMotor.changeControlMode(TalonControlMode.PercentVbus);
+		shooterMotor.changeControlMode(TalonControlMode.PercentVbus);
 		if (shooterMotor.getEncVelocity() > 7000) {
 			shooterMotor.set(0.80);
 		}
 		else {
 			shooterMotor.set(1.0);
-		}*/
+		}
 		
 		
-		
-		//TODO Stepper code that hasn't been properly tested
+		//TODO Stepper code that hasn't been properly tested or finished
 		/*final double stepValue = 0.01;
 		
 		if (((shooterMotor.getEncVelocity()*600)/1024) < 4000) {
@@ -89,8 +87,8 @@ public class Shooter extends Subsystem {
 		//shooterMotor.set(shooterMotorPVB);
 		
 		//TODO PIDF code that hasn't been properly tested
-		shooterMotor.changeControlMode(TalonControlMode.Speed);
-		shooterMotor.set(1500);
+		/*shooterMotor.changeControlMode(TalonControlMode.Speed);
+		shooterMotor.set(1500);*/
 	}
 	
 	/**

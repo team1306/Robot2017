@@ -8,7 +8,6 @@ import org.usfirst.frc.team1306.robot.commands.CommandBase;
 /**
  * Command that calls to spin shooter, stops when a button is no longer pressed
  * @author Jackson Goth
- *
  */
 public class SpinShooter extends CommandBase{
 

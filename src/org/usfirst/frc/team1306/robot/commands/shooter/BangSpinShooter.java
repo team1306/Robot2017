@@ -8,7 +8,6 @@ import org.usfirst.frc.team1306.robot.commands.CommandBase;
 /**
  * Command that spins the shooter with a bang bang loop
  * @author Sam Roquitte
- *
  */
 public class BangSpinShooter extends CommandBase{
 
@@ -21,8 +20,8 @@ public class BangSpinShooter extends CommandBase{
     	
     }
     
-    /*
-     * Spins up shooter
+    /**
+     * Spins up shooter while the bang shooter button is pressed
      */
     protected void execute() {
     	if(OI.getButtonVal(controller.p,Constants.BANG_SHOOTER_BUTTON)) {
@@ -31,12 +30,13 @@ public class BangSpinShooter extends CommandBase{
     }
 
     /**
-     * Stops spinning shooter when A is no longer pressed
+     * Stops spinning shooter when bang spin shooter is pressed
      */
     protected boolean isFinished() {
     	if(OI.getButtonVal(controller.p,Constants.BANG_SHOOTER_BUTTON)) {
     		return false;
-    	} else {
+    	} 
+    	else {
     		shooter.stopAll();
     		return true;
     	}
@@ -49,5 +49,4 @@ public class BangSpinShooter extends CommandBase{
     protected void interrupted() {
     	
     }
-
 }

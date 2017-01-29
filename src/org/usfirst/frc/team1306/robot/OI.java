@@ -17,9 +17,11 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI {
 	
+	//Declare xboxcontrollers for primary and secondary
 	private static XboxController primaryController = null;
 	private static XboxController secondaryController = null;
 	
+	//Declare primary controller buttons
 	private final Button pbuttonA;
 	private final Button pbuttonB;
 	private final Button pbuttonX;
@@ -29,6 +31,7 @@ public class OI {
 	private final Button pbuttonBack;
 	private final Button pbuttonStart;	
 	
+	//Declare secondary controller buttons
 	private final Button sbuttonA;
 	private final Button sbuttonB;
 	private final Button sbuttonX;
@@ -39,9 +42,11 @@ public class OI {
 	private final Button sbuttonStart;
 	
 	public OI() {
+		//Set xbox controller ports
 		primaryController = new XboxController(RobotMap.PRIMARY_PORT);
 		secondaryController = new XboxController(RobotMap.SECONDARY_PORT);
 		
+		//Map buttons to xbox controller buttons for primary controller
 		pbuttonA = new JoystickButton(primaryController, XboxController.A);
 		pbuttonB = new JoystickButton(primaryController, XboxController.B);
 		pbuttonX = new JoystickButton(primaryController, XboxController.X);
@@ -51,6 +56,7 @@ public class OI {
 		pbuttonBack = new JoystickButton(primaryController, XboxController.BACK);
 		pbuttonStart = new JoystickButton(primaryController, XboxController.START);
 		
+		//Map buttons to xbox controller buttons for secondary controller
 		sbuttonA = new JoystickButton(secondaryController, XboxController.A);
 		sbuttonB = new JoystickButton(secondaryController, XboxController.B);
 		sbuttonX = new JoystickButton(secondaryController, XboxController.X);
@@ -60,9 +66,8 @@ public class OI {
 		sbuttonBack = new JoystickButton(secondaryController, XboxController.BACK);
 		sbuttonStart = new JoystickButton(secondaryController, XboxController.START);
 		
-		/*
-		 * This is where commands are bound to buttons
-		 */
+		
+		//Bind commands to buttons
 		pbuttonRB.whileHeld(new QuickTurn(true));
 		pbuttonLB.whileHeld(new QuickTurn(false));
 		
@@ -74,11 +79,10 @@ public class OI {
 		//pbuttonB.whenPressed(new LeftStraightDrive());
 	}
 	
-	
-	public enum axis {x, y}; //X or Y Axis on Joystick
-	public enum controller {p, s}; //Primary or Secondary Controller
-	public enum trigger {l, r}; //Left or Right Trigger
-	public enum joystick {l, r}; //Left or Right Joystick
+	public enum axis {x, y}; 		//X or Y Axis on Joystick
+	public enum controller {p, s}; 	//Primary or Secondary Controller
+	public enum trigger {l, r}; 	//Left or Right Trigger
+	public enum joystick {l, r}; 	//Left or Right Joystick
 	
 	/**
 	 * Returns the joystick value (from -1.0 to 1.0) for the specified controller's joystick's axis

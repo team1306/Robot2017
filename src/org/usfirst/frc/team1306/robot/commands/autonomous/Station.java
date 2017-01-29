@@ -3,7 +3,7 @@ package org.usfirst.frc.team1306.robot.commands.autonomous;
 import org.usfirst.frc.team1306.robot.Constants;
 
 /**
- * Enum that contains commands for differen't alliance stations
+ * Enum that contains commands for different alliance stations
  * @author Jackson Goth
  */
 public enum Station {
