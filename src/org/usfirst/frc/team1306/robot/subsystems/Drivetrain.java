@@ -87,7 +87,7 @@ public class Drivetrain extends Subsystem {
 	}
 	
 	public double getPosition() {
-		return leftmotor1.getEncPosition();
+		return (leftmotor1.getEncPosition() + rightmotor1.getEncPosition()) / 2;
 	}
 	
 	/**
@@ -125,8 +125,8 @@ public class Drivetrain extends Subsystem {
 		leftmotor1.changeControlMode(TalonControlMode.PercentVbus);
 		rightmotor1.changeControlMode(TalonControlMode.PercentVbus);
 		if(Constants.DRIVETRAIN_ENABLED) {
-			SmartDashboard.putNumber("leftvelocity",leftmotor1.getEncVelocity());
-			SmartDashboard.putNumber("rightvelocity",rightmotor1.getEncVelocity());
+			SmartDashboard.putNumber("leftvelocity",leftVal*Constants.SPEED_MODIFIER);
+			SmartDashboard.putNumber("rightvelocity",rightVal*Constants.SPEED_MODIFIER);
 			
 			leftmotor1.set(leftVal*Constants.SPEED_MODIFIER);
 			rightmotor1.set(-rightVal*Constants.SPEED_MODIFIER);

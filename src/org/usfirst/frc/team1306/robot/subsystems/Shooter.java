@@ -65,8 +65,8 @@ public class Shooter extends Subsystem {
 		shooterMotor.changeControlMode(TalonControlMode.PercentVbus);
 		/*if(shooterMotor.getEncVelocity() > 6000) {
 			shooterMotor.set(0.60);
-		} else */if (shooterMotor.getEncVelocity() > 4807) {
-			shooterMotor.set(0.55);
+		} else */if (shooterMotor.getEncVelocity() > 4369) {
+			shooterMotor.set(0.50);
 		}
 		else {
 			shooterMotor.set(1.0);

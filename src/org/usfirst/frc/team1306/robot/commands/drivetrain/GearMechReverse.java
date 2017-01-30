@@ -1,11 +1,8 @@
 package org.usfirst.frc.team1306.robot.commands.drivetrain;
 
-import org.usfirst.frc.team1306.robot.OI;
-import org.usfirst.frc.team1306.robot.OI.controller;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class GearMechReverse extends CommandBase {
 
@@ -21,11 +18,12 @@ public class GearMechReverse extends CommandBase {
 	@Override
 	protected void execute() {
 		drivetrain.tankDrive(-0.5, -0.5);
+		SmartDashboard.putNumber("enc position left",drivetrain.getPosition());
 	}
 	
 	@Override
 	protected boolean isFinished() {
-		if(drivetrain.getPosition() < 10000) {
+		if(drivetrain.getPosition() > -100000) {
 			return false;
 		} else {
 			return true;

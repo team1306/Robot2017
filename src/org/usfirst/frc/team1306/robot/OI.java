@@ -1,11 +1,10 @@
 package org.usfirst.frc.team1306.robot;
 
-import org.usfirst.frc.team1306.robot.commands.drivetrain.LeftStraightDrive;
+import org.usfirst.frc.team1306.robot.commands.drivetrain.GearMechReverse;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.QuickTurn;
-import org.usfirst.frc.team1306.robot.commands.drivetrain.RightStraightDrive;
+import org.usfirst.frc.team1306.robot.commands.hopper.SpinHopper;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
 import org.usfirst.frc.team1306.robot.commands.shooter.BangSpinShooter;
-import org.usfirst.frc.team1306.robot.commands.hopper.SpinHopper;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
@@ -76,6 +75,7 @@ public class OI {
 		pbuttonA.whenPressed(new SpinShooter());
 		pbuttonY.whenPressed(new BangSpinShooter());
 		pbuttonStart.whenPressed(new SpinHopper());
+		//pbuttonB.whenPressed(new GearMechReverse());
 		
 		//pbuttonB.whenPressed(new RightStraightDrive());
 		//pbuttonB.whenPressed(new LeftStraightDrive());

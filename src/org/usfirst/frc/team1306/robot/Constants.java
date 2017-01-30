@@ -28,7 +28,7 @@ public class Constants {
 	public final static double INTAKE_SPEED_CHANGE = 0.0; 	//Amount the speed goes down when changed with Intake.lowerSpeed()
 	
 	//Hoper Constants
-	public final static double HOPPER_SPEED = 0.5;
+	public final static double HOPPER_SPEED = 1.0;
 	public final static boolean HOPPER_ENABLED = true;
 	
 	//Shooter Constants
