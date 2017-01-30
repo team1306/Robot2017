@@ -17,13 +17,13 @@ public class GearMechReverse extends CommandBase {
 
 	@Override
 	protected void execute() {
-		drivetrain.tankDrive(-0.5, -0.5);
-		SmartDashboard.putNumber("enc position left",drivetrain.getPosition());
+		drivetrain.tankDrive(0.5, 0.5);
+		SmartDashboard.putNumber("Encoder Positions",drivetrain.getPosition());
 	}
 	
 	@Override
 	protected boolean isFinished() {
-		if(drivetrain.getPosition() > -100000) {
+		if(drivetrain.getPosition() > -10000) {
 			return false;
 		} else {
 			return true;

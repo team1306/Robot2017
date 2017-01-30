@@ -14,7 +14,7 @@ public class Intake extends Subsystem {
 
 	private final Talon intakeMotor;
 
-	public static double intakeSpeed = Constants.INTAKE_DEFAULT_SPEED;
+	public static double intakeSpeed = Constants.INTAKE_SPEED;
 	
 	public Intake() {
 		intakeMotor = new Talon(RobotMap.INTAKE_TALON_PORT);
@@ -28,24 +28,6 @@ public class Intake extends Subsystem {
 		if(Constants.INTAKE_ENABLED) {
 			intakeMotor.set(-intakeSpeed);
 		}
-	}
-	
-	/*
-	 * Lowers speed of intake for specific situations
-	 * See tankDrive(); for usage
-	 */
-	public static void lowerSpeed() {
-		
-		intakeSpeed = Constants.INTAKE_DEFAULT_SPEED - Constants.INTAKE_SPEED_CHANGE;
-	}
-	
-	/*
-	 * Raises speed of intake back to Default for specific situations
-	 *  See tankDrive(); for usage
-	 */
-	public static void raiseSpeed() {
-		
-		intakeSpeed = Constants.INTAKE_DEFAULT_SPEED;
 	}
 	
 	/*

@@ -11,7 +11,6 @@ import org.usfirst.frc.team1306.robot.commands.CommandBase;
  */
 public class BangSpinShooter extends CommandBase{
 
-	
 	public BangSpinShooter() {
 		requires(shooter);
 	}
@@ -24,6 +23,7 @@ public class BangSpinShooter extends CommandBase{
      * Spins up shooter while the bang shooter button is pressed
      */
     protected void execute() {
+    	
     	if(OI.getButtonVal(controller.p,Constants.BANG_SHOOTER_BUTTON)) {
     		shooter.bangBangSpinShooter();
     	}
@@ -35,8 +35,7 @@ public class BangSpinShooter extends CommandBase{
     protected boolean isFinished() {
     	if(OI.getButtonVal(controller.p,Constants.BANG_SHOOTER_BUTTON)) {
     		return false;
-    	} 
-    	else {
+    	} else {
     		shooter.stopAll();
     		return true;
     	}

@@ -6,7 +6,6 @@ import org.usfirst.frc.team1306.robot.commands.drivetrain.TankDrive;
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
-
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -81,15 +80,6 @@ public class Drivetrain extends Subsystem {
 		slave.enable();
 	}
 	
-	public void resetEncoders() {
-		leftmotor1.setPosition(0);
-		rightmotor1.setPosition(0);
-	}
-	
-	public double getPosition() {
-		return (leftmotor1.getEncPosition() + rightmotor1.getEncPosition()) / 2;
-	}
-	
 	/**
 	 * Sets up motors, master in pvb mode and sets 2 slaves as followers
 	 * @param master
@@ -124,35 +114,48 @@ public class Drivetrain extends Subsystem {
 	public void tankDrive(double leftVal, double rightVal) {
 		leftmotor1.changeControlMode(TalonControlMode.PercentVbus);
 		rightmotor1.changeControlMode(TalonControlMode.PercentVbus);
+		
 		if(Constants.DRIVETRAIN_ENABLED) {
-			SmartDashboard.putNumber("leftvelocity",leftVal*Constants.SPEED_MODIFIER);
-			SmartDashboard.putNumber("rightvelocity",rightVal*Constants.SPEED_MODIFIER);
+			SmartDashboard.putNumber("leftVal",leftVal*Constants.SPEED_MODIFIER);
+			SmartDashboard.putNumber("rightVal",-rightVal*Constants.SPEED_MODIFIER);
 			
 			leftmotor1.set(leftVal*Constants.SPEED_MODIFIER);
 			rightmotor1.set(-rightVal*Constants.SPEED_MODIFIER);
 		}
-			
-		/**
-		 * Currently lowers speed of intake motor when drivetrain speed is above 0.5
-		 */
-		if(rightVal*Constants.SPEED_MODIFIER > .5) {
-			Intake.lowerSpeed();
-		} 
-		else {
-			Intake.raiseSpeed();
-		}
-
 	}
 	
+	/**
+	 * Takes a desired speed to run both motors at
+	 * @param initVel
+	 * 	Speed for both sides to match
+	 */
 	public void drivePID(double initVel) {
 		leftmotor1.changeControlMode(TalonControlMode.PercentVbus);
 		rightmotor1.changeControlMode(TalonControlMode.PercentVbus);
 		
-		SmartDashboard.putNumber("initVel",initVel);
-		if(Constants.DRIVETRAIN_ENABLED) {
+		if(Constants.PID_DRIVETRAIN_ENABLED) {
+			SmartDashboard.putNumber("leftVal",initVel);
+			SmartDashboard.putNumber("rightVal",-initVel);
+			
 			leftmotor1.set(initVel);
 			rightmotor1.set(-initVel);
 		}
+	}
+	
+	/**
+	 * Resets the position of both encoders back to zero
+	 */
+	public void resetEncoders() {
+		leftmotor1.setPosition(0);
+		rightmotor1.setPosition(0);
+	}
+	
+	/**
+	 * Returns the position of both combined encoders
+	 * @return
+	 */
+	public double getPosition() {
+		return (leftmotor1.getEncPosition() + rightmotor1.getEncPosition()) / 2;
 	}
 	
 	/**

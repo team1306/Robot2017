@@ -1,16 +1,10 @@
 package org.usfirst.frc.team1306.robot.subsystems;
 
 import org.usfirst.frc.team1306.robot.Constants;
-import org.usfirst.frc.team1306.robot.OI;
 import org.usfirst.frc.team1306.robot.RobotMap;
-import org.usfirst.frc.team1306.robot.OI.controller;
-import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
-
+import org.usfirst.frc.team1306.robot.commands.shooter.BangSpinShooter;
 import com.ctre.CANTalon;
-import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
-
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -28,17 +22,6 @@ public class Shooter extends Subsystem {
 
 		shooterMotor = new CANTalon(RobotMap.FLYWHEEL_TALON_PORT);
 		shooterMotor.enable();
-		shooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		shooterMotor.reverseSensor(true);
-		shooterMotor.configEncoderCodesPerRev(256);
-		shooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
-		shooterMotor.configPeakOutputVoltage(+12.0f, -12.0f);
-
-		shooterMotor.setProfile(0);
-		shooterMotor.setF(0.1116076294277929);	//Calculated constant
-		shooterMotor.setP(Double.MAX_VALUE);
-		shooterMotor.setI(0);
-		shooterMotor.setD(0);
 	}
 	
 	/**
@@ -54,43 +37,18 @@ public class Shooter extends Subsystem {
 	/**
 	 * Spins the shooter with a bang bang loop
 	 */
-	
-	//private static double shooterMotorPVB = 0.80;
-	
 	public void bangBangSpinShooter() {
 
 		SmartDashboard.putNumber("Enc Velocity", shooterMotor.getEncVelocity());
 		
-		//Working Bang Bang Loop as of 1/28 11PM
 		shooterMotor.changeControlMode(TalonControlMode.PercentVbus);
-		/*if(shooterMotor.getEncVelocity() > 6000) {
-			shooterMotor.set(0.60);
-		} else */if (shooterMotor.getEncVelocity() > 4369) {
-			shooterMotor.set(0.50);
+		if (shooterMotor.getEncVelocity() > Constants.SHOOTER_BANG_RANGE) { //Calculated Value
+			shooterMotor.set(Constants.SHOOTER_BANG_RANGE);
 		}
 		else {
-			shooterMotor.set(1.0);
+			shooterMotor.set(Constants.SHOOTER_BANG_CEILING);
 		}
-		
-		
-		//TODO Stepper code that hasn't been properly tested or finished
-		/*final double stepValue = 0.01;
-		
-		if (((shooterMotor.getEncVelocity()*600)/1024) < 4000) {
-			//shooterMotorPVB+=stepValue;
-			double difference = 4000 - ((shooterMotor.getEncVelocity()*600)/1024);
-			double P = difference/4000;
-			shooterMotorPVB = shooterMotorPVB+P;
-		}
-		/*else {
-			shooterMotorPVB-=stepValue;
-		}*/
-		
-		//shooterMotor.set(shooterMotorPVB);
-		
-		//TODO PIDF code that hasn't been properly tested
-		/*shooterMotor.changeControlMode(TalonControlMode.Speed);
-		shooterMotor.set(1000);*/
+
 	}
 	
 	/**
@@ -110,6 +68,6 @@ public class Shooter extends Subsystem {
 	
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new SpinShooter());
+		setDefaultCommand(new BangSpinShooter());
 	}
 }

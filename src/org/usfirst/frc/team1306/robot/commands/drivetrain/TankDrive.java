@@ -46,9 +46,9 @@ public class TankDrive extends CommandBase {
 		
 		/*if(OI.getTriggerVal(controller.p, trigger.l) >= Constants.TRIGGER_DEADBAND || OI.getTriggerVal(controller.p, trigger.r) >= Constants.TRIGGER_DEADBAND) {
 			if(OI.getTriggerVal(controller.p, trigger.r) >= Constants.TRIGGER_DEADBAND) {
-				drivetrain.drivePID(Constants.DRIVETRAIN_PID_SPEED);
+				drivetrain.drivePID(Constants.PID_SPEED);
 			} else if(OI.getTriggerVal(controller.p, trigger.l) >= Constants.TRIGGER_DEADBAND) {
-				drivetrain.drivePID(-Constants.DRIVETRAIN_PID_SPEED);
+				drivetrain.drivePID(-Constants.PID_SPEED);
 			}
 		} else {
 			drivetrain.tankDrive(oi.getJoyVal(controller.p, joystick.l, axis.y), oi.getJoyVal(controller.p, joystick.r, axis.y));

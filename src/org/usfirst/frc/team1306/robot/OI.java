@@ -6,7 +6,6 @@ import org.usfirst.frc.team1306.robot.commands.hopper.SpinHopper;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
 import org.usfirst.frc.team1306.robot.commands.shooter.BangSpinShooter;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
-
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -17,11 +16,11 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI {
 	
-	//Declare xboxcontrollers for primary and secondary
+	//Declare primary and secondary xbox controllers
 	private static XboxController primaryController = null;
 	private static XboxController secondaryController = null;
 	
-	//Declare primary controller buttons
+	//Declare buttons on primary controller
 	private final Button pbuttonA;
 	private final Button pbuttonB;
 	private final Button pbuttonX;
@@ -31,7 +30,7 @@ public class OI {
 	private final Button pbuttonBack;
 	private final Button pbuttonStart;	
 	
-	//Declare secondary controller buttons
+	//Declare buttons on secondary controller
 	private final Button sbuttonA;
 	private final Button sbuttonB;
 	private final Button sbuttonX;
@@ -42,7 +41,7 @@ public class OI {
 	private final Button sbuttonStart;
 	
 	public OI() {
-		//Set xbox controller ports
+		//Declar ports of xbox controllers
 		primaryController = new XboxController(RobotMap.PRIMARY_PORT);
 		secondaryController = new XboxController(RobotMap.SECONDARY_PORT);
 		
@@ -72,13 +71,11 @@ public class OI {
 		pbuttonLB.whileHeld(new QuickTurn(false));
 		
 		pbuttonX.whenPressed(new SpinIntake());
-		pbuttonA.whenPressed(new SpinShooter());
-		pbuttonY.whenPressed(new BangSpinShooter());
+		//pbuttonA.whenPressed(new SpinShooter()); Use bang bang instead
+		pbuttonA.whenPressed(new BangSpinShooter());
 		pbuttonStart.whenPressed(new SpinHopper());
 		//pbuttonB.whenPressed(new GearMechReverse());
 		
-		//pbuttonB.whenPressed(new RightStraightDrive());
-		//pbuttonB.whenPressed(new LeftStraightDrive());
 	}
 	
 	public enum axis {x, y}; 		//X or Y Axis on Joystick

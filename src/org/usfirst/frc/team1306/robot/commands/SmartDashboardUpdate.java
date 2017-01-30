@@ -4,7 +4,6 @@ package org.usfirst.frc.team1306.robot.commands;
  * Periodically updates the SmartDashboard with new information
  */
 
-//TODO Do we still need this?
 public class SmartDashboardUpdate extends CommandBase {
 
 	public SmartDashboardUpdate() {
