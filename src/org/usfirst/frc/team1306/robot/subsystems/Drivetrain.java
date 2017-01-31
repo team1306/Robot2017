@@ -37,30 +37,30 @@ public class Drivetrain extends Subsystem {
 		setupMotors(rightmotor1,rightmotor2);
 		
 		//PID Drivetrain Code (KEEP)
-		/*leftmotor1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		leftmotor1.reverseSensor(true);
+		leftmotor1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		leftmotor1.reverseSensor(false);
 		leftmotor1.configEncoderCodesPerRev(256);
 		leftmotor1.configNominalOutputVoltage(+0.0f, -0.0f);
 		leftmotor1.configPeakOutputVoltage(+12.0f, -12.0f);
 		
 		rightmotor1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		rightmotor1.reverseSensor(true);
+		rightmotor1.reverseSensor(false);
 		rightmotor1.configEncoderCodesPerRev(256);
 		rightmotor1.configNominalOutputVoltage(+0.0f, -0.0f);
-		rightmotor1.configPeakOutputVoltage(+12.0f, -12.0f);*/
+		rightmotor1.configPeakOutputVoltage(+12.0f, -12.0f);
 
 		//TODO Calculate these values
-		/*leftmotor1.setProfile(0);
-		leftmotor1.setF(0.111);	//Calculated constant
+		leftmotor1.setProfile(0);
+		leftmotor1.setF(0.7494);	//Calculated constant
 		leftmotor1.setP(0.0);
 		leftmotor1.setI(0.0);
 		leftmotor1.setD(0.0);
 		
 		rightmotor1.setProfile(0);
-		rightmotor1.setF(0.111);	//Calculated constant
+		rightmotor1.setF(0.7494);	//Calculated constant
 		rightmotor1.setP(0.0);
 		rightmotor1.setI(0.0);
-		rightmotor1.setD(0.0);*/
+		rightmotor1.setD(0.0);
 	}
 	
 	/**
@@ -116,11 +116,13 @@ public class Drivetrain extends Subsystem {
 		rightmotor1.changeControlMode(TalonControlMode.PercentVbus);
 		
 		if(Constants.DRIVETRAIN_ENABLED) {
-			SmartDashboard.putNumber("leftVal",leftVal*Constants.SPEED_MODIFIER);
-			SmartDashboard.putNumber("rightVal",-rightVal*Constants.SPEED_MODIFIER);
+			SmartDashboard.putNumber("leftVal",leftVal/**Constants.SPEED_MODIFIER*/);
+			SmartDashboard.putNumber("rightVal",-rightVal/**Constants.SPEED_MODIFIER*/);
 			
-			leftmotor1.set(leftVal*Constants.SPEED_MODIFIER);
-			rightmotor1.set(-rightVal*Constants.SPEED_MODIFIER);
+			SmartDashboard.putNumber("leftencVel",leftmotor1.getEncVelocity());
+			
+			leftmotor1.set(leftVal/**Constants.SPEED_MODIFIER*/);
+			rightmotor1.set(-rightVal/**Constants.SPEED_MODIFIER*/);
 		}
 	}
 	
@@ -134,11 +136,11 @@ public class Drivetrain extends Subsystem {
 		rightmotor1.changeControlMode(TalonControlMode.PercentVbus);
 		
 		if(Constants.PID_DRIVETRAIN_ENABLED) {
-			SmartDashboard.putNumber("leftVal",initVel);
-			SmartDashboard.putNumber("rightVal",-initVel);
+			SmartDashboard.putNumber("leftVal",leftmotor1.getEncVelocity());
+			SmartDashboard.putNumber("rightVal",rightmotor1.getEncVelocity());
 			
-			leftmotor1.set(initVel);
-			rightmotor1.set(-initVel);
+			leftmotor1.set(0.5);
+			rightmotor1.set(-0.5);
 		}
 	}
 	
@@ -155,7 +157,7 @@ public class Drivetrain extends Subsystem {
 	 * @return
 	 */
 	public double getPosition() {
-		return (leftmotor1.getEncPosition() + rightmotor1.getEncPosition()) / 2;
+		return leftmotor1.getEncPosition();
 	}
 	
 	/**

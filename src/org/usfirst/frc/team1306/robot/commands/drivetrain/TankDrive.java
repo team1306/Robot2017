@@ -30,7 +30,7 @@ public class TankDrive extends CommandBase {
 		* 	Otherwise it assumes it is being controlled by joysticks and will drive robot based on their respective inputs
 		* 
 		*/
-		if(oi.getTriggerVal(controller.p, trigger.l) >= Constants.TRIGGER_DEADBAND || oi.getTriggerVal(controller.p, trigger.r) >= Constants.TRIGGER_DEADBAND) {
+		/*if(oi.getTriggerVal(controller.p, trigger.l) >= Constants.TRIGGER_DEADBAND || oi.getTriggerVal(controller.p, trigger.r) >= Constants.TRIGGER_DEADBAND) {
 			if(oi.getTriggerVal(controller.p, trigger.r) >= Constants.TRIGGER_DEADBAND) {
 				drivetrain.tankDrive(oi.getTriggerVal(controller.p, trigger.r), oi.getTriggerVal(controller.p, trigger.r));
 			} else if(oi.getTriggerVal(controller.p, trigger.l) >= Constants.TRIGGER_DEADBAND) {
@@ -38,21 +38,21 @@ public class TankDrive extends CommandBase {
 			}
 		} else {
 			drivetrain.tankDrive(oi.getJoyVal(controller.p, joystick.l, axis.y), oi.getJoyVal(controller.p, joystick.r, axis.y));
-		}
+		}*/
 		
 		/**
 		 * The following is driver input code for PID testing
 		 */
 		
-		/*if(OI.getTriggerVal(controller.p, trigger.l) >= Constants.TRIGGER_DEADBAND || OI.getTriggerVal(controller.p, trigger.r) >= Constants.TRIGGER_DEADBAND) {
-			if(OI.getTriggerVal(controller.p, trigger.r) >= Constants.TRIGGER_DEADBAND) {
-				drivetrain.drivePID(Constants.PID_SPEED);
-			} else if(OI.getTriggerVal(controller.p, trigger.l) >= Constants.TRIGGER_DEADBAND) {
-				drivetrain.drivePID(-Constants.PID_SPEED);
+		if(oi.getTriggerVal(controller.p, trigger.l) >= Constants.TRIGGER_DEADBAND || oi.getTriggerVal(controller.p, trigger.r) >= Constants.TRIGGER_DEADBAND) {
+			if(oi.getTriggerVal(controller.p, trigger.r) >= Constants.TRIGGER_DEADBAND) {
+				drivetrain.drivePID(0.5);
+			} else if(oi.getTriggerVal(controller.p, trigger.l) >= Constants.TRIGGER_DEADBAND) {
+				drivetrain.drivePID(0.5);
 			}
 		} else {
 			drivetrain.tankDrive(oi.getJoyVal(controller.p, joystick.l, axis.y), oi.getJoyVal(controller.p, joystick.r, axis.y));
-		}*/
+		}
 
 	}
 
