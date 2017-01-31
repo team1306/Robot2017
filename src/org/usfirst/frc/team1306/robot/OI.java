@@ -73,7 +73,7 @@ public class OI {
 		pbuttonX.whenPressed(new SpinIntake());
 		//pbuttonA.whenPressed(new SpinShooter()); Use bang bang instead
 		pbuttonA.whenPressed(new BangSpinShooter());
-		pbuttonStart.whenPressed(new SpinHopper());
+		pbuttonY.whenPressed(new SpinHopper());
 		//pbuttonB.whenPressed(new GearMechReverse());
 		
 	}

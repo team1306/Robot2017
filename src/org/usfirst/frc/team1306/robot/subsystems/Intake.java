@@ -20,7 +20,7 @@ public class Intake extends Subsystem {
 		intakeMotor = new Talon(RobotMap.INTAKE_TALON_PORT);
 	}
 	
-	/*
+	/**
 	 * Method that continually spins intake
 	 */
 	public void spinIntake() {
@@ -30,7 +30,7 @@ public class Intake extends Subsystem {
 		}
 	}
 	
-	/*
+	/**
 	 * Stops the intake when command is done
 	 */
 	public void stopMotor() {

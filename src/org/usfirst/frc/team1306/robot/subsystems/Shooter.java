@@ -43,7 +43,7 @@ public class Shooter extends Subsystem {
 		
 		shooterMotor.changeControlMode(TalonControlMode.PercentVbus);
 		if (shooterMotor.getEncVelocity() > Constants.SHOOTER_BANG_RANGE) { //Calculated Value
-			shooterMotor.set(Constants.SHOOTER_BANG_RANGE);
+			shooterMotor.set(Constants.SHOOTER_SPEED);
 		}
 		else {
 			shooterMotor.set(Constants.SHOOTER_BANG_CEILING);

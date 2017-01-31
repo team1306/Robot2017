@@ -1,17 +1,11 @@
 package org.usfirst.frc.team1306.robot.subsystems;
 
 import org.usfirst.frc.team1306.robot.Constants;
-import org.usfirst.frc.team1306.robot.OI;
 import org.usfirst.frc.team1306.robot.RobotMap;
-import org.usfirst.frc.team1306.robot.OI.controller;
 import org.usfirst.frc.team1306.robot.commands.hopper.SpinHopper;
-import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
 
 import com.ctre.CANTalon;
-import com.ctre.CANTalon.FeedbackDevice;
-import com.ctre.CANTalon.TalonControlMode;
 
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
