@@ -23,7 +23,7 @@ public class GearMechReverse extends CommandBase {
 	
 	@Override
 	protected boolean isFinished() {
-		if(drivetrain.getPosition() > -(256 * 2.55)) {
+		if(drivetrain.getPosition() > -652.8) {
 			return false;
 		} else {
 			return true;
