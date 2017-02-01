@@ -139,8 +139,8 @@ public class Drivetrain extends Subsystem {
 			SmartDashboard.putNumber("leftVal",leftmotor1.getEncVelocity());
 			SmartDashboard.putNumber("rightVal",rightmotor1.getEncVelocity());
 			
-			leftmotor1.set(0.5);
-			rightmotor1.set(-0.5);
+			leftmotor1.set(0.2);
+			rightmotor1.set(-0.2);
 		}
 	}
 	
