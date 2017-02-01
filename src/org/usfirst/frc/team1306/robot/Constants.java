@@ -80,4 +80,11 @@ public class Constants {
 	public final static double P = 0.0;	//Use Double.MAX_VALUE later
 	public final static double I = 0.0; 
 	public final static double D = 0.0;
+	
+	//Vision Constants
+	public final static double AXIS_HORIZ_ANGLE= 67;
+	public final static double AXIS_RES_HEIGHT=600;
+	public final static double AXIS_RES_WIDTH=800;
+
+	
 }
