@@ -22,6 +22,7 @@ public class VisionData extends Pipeline {
 	Pipeline pipeline; // This goes to the GRIP pipeline that does all the work
 	Mat image_process; // Input image
 	ArrayList<MatOfPoint> final_contours; // Contours that GRIP gives at the end
+	ArrayList<Rect> bbox = new ArrayList<Rect>();
 
 	public VisionData(Mat image) { // Init
 		image_process = image;
@@ -35,7 +36,6 @@ public class VisionData extends Pipeline {
 	}
 
 	public ArrayList<Rect> getBoundingBox() {
-		ArrayList<Rect> bbox = new ArrayList<Rect>();
 		for (int i = 0; i < final_contours.size(); i++) {
 			bbox.add(Imgproc.boundingRect(final_contours.get(i)));
 		}
@@ -43,14 +43,31 @@ public class VisionData extends Pipeline {
 	}
 	
 	public double getPitch() {
+		getBoundingBox();
+		int y = 0;
+		for (Rect r : bbox) {
+			y += r.y;
+		}
+		y /= bbox.size();
 		return 0.0;
 	}
 	
 	public double getYaw() {
+		getBoundingBox();
+		int x = 0;
+		for (Rect r : bbox) {
+			x += r.x;
+		}
+		x /= bbox.size();
 		return 0.0;
 	}
 	
 	public double getDist() {
+		getBoundingBox();
+		double area = 0.0;
+		for (Rect r : bbox) {
+			area += r.area();
+		}
 		return 0.0;
 	}
 	
