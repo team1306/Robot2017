@@ -52,13 +52,13 @@ public class Drivetrain extends Subsystem {
 		//TODO Calculate these values
 		leftmotor1.setProfile(0);
 		leftmotor1.setF(0.7494);	//Calculated constant
-		leftmotor1.setP(0.0);
+		leftmotor1.setP(0.33);
 		leftmotor1.setI(0.0);
 		leftmotor1.setD(0.0);
 		
 		rightmotor1.setProfile(0);
 		rightmotor1.setF(0.7494);	//Calculated constant
-		rightmotor1.setP(0.0);
+		rightmotor1.setP(0.33);
 		rightmotor1.setI(0.0);
 		rightmotor1.setD(0.0);
 	}
@@ -132,15 +132,17 @@ public class Drivetrain extends Subsystem {
 	 * 	Speed for both sides to match
 	 */
 	public void drivePID(double initVel) {
-		leftmotor1.changeControlMode(TalonControlMode.PercentVbus);
-		rightmotor1.changeControlMode(TalonControlMode.PercentVbus);
+		leftmotor1.changeControlMode(TalonControlMode.Speed);
+		rightmotor1.changeControlMode(TalonControlMode.Speed);
 		
 		if(Constants.PID_DRIVETRAIN_ENABLED) {
 			SmartDashboard.putNumber("leftVal",leftmotor1.getEncVelocity());
 			SmartDashboard.putNumber("rightVal",rightmotor1.getEncVelocity());
+			SmartDashboard.putNumber("left.err", 500 - leftmotor1.getEncVelocity());
+			SmartDashboard.putNumber("right.err", -500 - rightmotor1.getEncVelocity());
 			
-			leftmotor1.set(0.2);
-			rightmotor1.set(-0.2);
+			leftmotor1.set(100);
+			rightmotor1.set(-100);
 		}
 	}
 	
