@@ -34,11 +34,11 @@ public class Intake extends Subsystem {
 	 * Stops the intake when command is done
 	 */
 	public void stopMotor() {
-		intakeMotor.set(0.0);
+		intakeMotor.set(Constants.SPEED_ZERO);
 	}
 	
 	public void stopAll() {
-		intakeMotor.set(0.0);
+		intakeMotor.set(Constants.SPEED_ZERO);
 	}
 
 	@Override

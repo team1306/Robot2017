@@ -23,10 +23,7 @@ public class SpinShooter extends CommandBase{
      * Spins up shooter
      */
     protected void execute() {
-
-    	if(OI.getButtonVal(controller.p,Constants.SHOOTER_BUTTON)) {
-    		shooter.spinShooter();
-    	}
+    	shooter.spinShooter();
     }
 
     /**

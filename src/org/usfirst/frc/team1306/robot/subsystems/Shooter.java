@@ -2,7 +2,6 @@ package org.usfirst.frc.team1306.robot.subsystems;
 
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.RobotMap;
-import org.usfirst.frc.team1306.robot.commands.shooter.BangSpinShooter;
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -39,10 +38,10 @@ public class Shooter extends Subsystem {
 	 */
 	public void bangBangSpinShooter() {
 
-		SmartDashboard.putNumber("Enc Velocity", shooterMotor.getEncVelocity());
+		SmartDashboard.putNumber("Shooter Velocity", shooterMotor.getEncVelocity());
 		
 		shooterMotor.changeControlMode(TalonControlMode.PercentVbus);
-		if (shooterMotor.getEncVelocity() > Constants.SHOOTER_BANG_RANGE) { //Calculated Value
+		if (shooterMotor.getEncVelocity() > Constants.SHOOTER_BANG_RANGE) {
 			shooterMotor.set(Constants.SHOOTER_SPEED);
 		}
 		else {
@@ -56,18 +55,18 @@ public class Shooter extends Subsystem {
 	 * @deprecated Switch to stopAll()
 	 */
 	public void stopMotor() {
-		shooterMotor.set(0.0);
+		shooterMotor.set(Constants.SPEED_ZERO);
 	}
 	
 	/**
 	 * Stops the shooter motors
 	 */
 	public void stopAll() {
-		shooterMotor.set(0.0);
+		shooterMotor.set(Constants.SPEED_ZERO);
 	}
 	
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new BangSpinShooter());
+		
 	}
 }

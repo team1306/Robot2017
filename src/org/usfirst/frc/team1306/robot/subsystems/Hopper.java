@@ -2,12 +2,8 @@ package org.usfirst.frc.team1306.robot.subsystems;
 
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.RobotMap;
-import org.usfirst.frc.team1306.robot.commands.hopper.SpinHopper;
-
 import com.ctre.CANTalon;
-
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This controls the shooter and rate at which balls are shot
@@ -37,11 +33,11 @@ public class Hopper extends Subsystem {
 	 * Stops the shooter motors
 	 */
 	public void stopAll() {
-		hopperMotor.set(0.0);
+		hopperMotor.set(Constants.SPEED_ZERO);
 	}
 	
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new SpinHopper());
+		
 	}
 }

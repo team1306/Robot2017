@@ -1,7 +1,7 @@
 package org.usfirst.frc.team1306.robot;
 
-import org.usfirst.frc.team1306.robot.commands.drivetrain.GearMechReverse;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.QuickTurn;
+import org.usfirst.frc.team1306.robot.commands.gearmech.ReverseDrive;
 import org.usfirst.frc.team1306.robot.commands.hopper.SpinHopper;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
 import org.usfirst.frc.team1306.robot.commands.shooter.BangSpinShooter;

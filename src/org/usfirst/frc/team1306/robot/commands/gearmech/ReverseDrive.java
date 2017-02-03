@@ -1,12 +1,11 @@
-package org.usfirst.frc.team1306.robot.commands.drivetrain;
+package org.usfirst.frc.team1306.robot.commands.gearmech;
 
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
-
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class GearMechReverse extends CommandBase {
+public class ReverseDrive extends CommandBase {
 
-	public GearMechReverse() {
+	public ReverseDrive() {
 		requires(drivetrain);
 	}
 	
@@ -18,12 +17,13 @@ public class GearMechReverse extends CommandBase {
 	@Override
 	protected void execute() {
 		drivetrain.tankDrive(-0.5, -0.5);
-		SmartDashboard.putNumber("Encoder Positions",drivetrain.getPosition());
+		SmartDashboard.putNumber("Left Encoder Pos",drivetrain.getLeftPosition());
+		SmartDashboard.putNumber("Right Encoder Pos",drivetrain.getRightPosition());
 	}
 	
 	@Override
 	protected boolean isFinished() {
-		if(drivetrain.getPosition() > -652.8) {
+		if(drivetrain.getLeftPosition() > -652.8) { //TODO Make include right pos as well
 			return false;
 		} else {
 			return true;
