@@ -73,7 +73,7 @@ public class Constants {
 	
 	//Drivetrain Constants
 	public final static double SPEED_MODIFIER = 0.8;	//Multiplier of speeds inputed into tankDrive
-	public final static double PID_SPEED = 0.5;
+	public final static double PID_SPEED = 100;
 
 	//PID Constants
 	public final static double F = 0.0;	//0.0 values aren't used in calculation

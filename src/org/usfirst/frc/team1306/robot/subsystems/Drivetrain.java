@@ -138,11 +138,11 @@ public class Drivetrain extends Subsystem {
 		if(Constants.PID_DRIVETRAIN_ENABLED) {
 			SmartDashboard.putNumber("leftVal",leftmotor1.getEncVelocity());
 			SmartDashboard.putNumber("rightVal",rightmotor1.getEncVelocity());
-			SmartDashboard.putNumber("left.err", 500 - leftmotor1.getEncVelocity());
-			SmartDashboard.putNumber("right.err", -500 - rightmotor1.getEncVelocity());
+			SmartDashboard.putNumber("left.err", initVel - leftmotor1.getEncVelocity());
+			SmartDashboard.putNumber("right.err", -initVel - rightmotor1.getEncVelocity());
 			
-			leftmotor1.set(100);
-			rightmotor1.set(-100);
+			leftmotor1.set(initVel);
+			rightmotor1.set(-initVel);
 		}
 	}
 	
