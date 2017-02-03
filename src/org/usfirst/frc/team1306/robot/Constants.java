@@ -31,7 +31,7 @@ public class Constants {
 	public final static double HOPPER_SPEED = 1.0;	//Speed at which hopper motor turns
 	
 	//Shooter Constants
-	public final static double SHOOTER_SPEED = 0.55;	//When you adjust this you also have to change range
+	public final static double SHOOTER_SPEED = 0.75;	//When you adjust this you also have to change range
 	public final static int SHOOTER_BANG_RANGE = (int)(SHOOTER_SPEED * 8738);	//Calculated by old_range(new_speed / old_speed)
 	public final static double SHOOTER_BANG_CEILING = 1.0;
 	

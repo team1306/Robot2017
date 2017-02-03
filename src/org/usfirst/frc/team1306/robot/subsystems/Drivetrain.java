@@ -129,7 +129,7 @@ public class Drivetrain extends Subsystem {
 	/**
 	 * Takes a desired speed to run both motors at
 	 * @param initVel
-	 * 	Speed for both sides to match
+	 * 		Speed for both sides to match
 	 */
 	public void drivePID(double initVel) {
 		leftmotor1.changeControlMode(TalonControlMode.Speed);
