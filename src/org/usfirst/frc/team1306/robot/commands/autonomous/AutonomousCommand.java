@@ -22,9 +22,9 @@ public class AutonomousCommand extends CommandGroup{
 		/**
 		 * Does initial drive forward, turn to a given angle, and then does final drive to gear peg
 		 */
-		addSequential(station.getDriveCommand("initial"));
+		addSequential(station.getDriveCommand(0));
 		addSequential(station.getTurnCommand());
-		addSequential(station.getDriveCommand("final"));
+		addSequential(station.getDriveCommand(1));
 		//TODO Place gear (pneumatics?)
 		addSequential(new ReverseDrive());
 		//TODO Vision Targeting

@@ -25,6 +25,7 @@ public class BangSpinShooter extends CommandBase{
     protected void execute() {
     	
     	shooter.bangBangSpinShooter();
+    	hopper.spinHopper();
     }
 
     /**

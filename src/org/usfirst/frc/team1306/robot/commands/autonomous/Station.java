@@ -8,12 +8,12 @@ import org.usfirst.frc.team1306.robot.Constants;
  */
 public enum Station {
 	
-	RED_ONE(Constants.RED_ONE_TIME_INITIAL,Constants.RED_ONE_ANGLE,Constants.RED_ONE_TIME_FINAL),
-	RED_TWO(Constants.RED_TWO_TIME_INITIAL,Constants.RED_TWO_ANGLE,Constants.RED_TWO_TIME_FINAL),
-	RED_THREE(Constants.RED_THREE_TIME_INITIAL,Constants.RED_THREE_ANGLE,Constants.RED_THREE_TIME_FINAL),
-	BLUE_ONE(Constants.BLUE_ONE_TIME_INITIAL,Constants.BLUE_ONE_ANGLE,Constants.BLUE_ONE_TIME_FINAL),
-	BLUE_TWO(Constants.BLUE_TWO_TIME_INITIAL,Constants.BLUE_TWO_ANGLE,Constants.BLUE_TWO_TIME_FINAL),
-	BLUE_THREE(Constants.BLUE_THREE_TIME_INITIAL,Constants.BLUE_THREE_ANGLE,Constants.BLUE_THREE_TIME_FINAL);
+	RED_ONE(AutoConstants.RED_ONE_TIME_INITIAL,AutoConstants.RED_ONE_ANGLE,AutoConstants.RED_ONE_TIME_FINAL),
+	RED_TWO(AutoConstants.RED_TWO_TIME_INITIAL,AutoConstants.RED_TWO_ANGLE,AutoConstants.RED_TWO_TIME_FINAL),
+	RED_THREE(AutoConstants.RED_THREE_TIME_INITIAL,AutoConstants.RED_THREE_ANGLE,AutoConstants.RED_THREE_TIME_FINAL),
+	BLUE_ONE(AutoConstants.BLUE_ONE_TIME_INITIAL,AutoConstants.BLUE_ONE_ANGLE,AutoConstants.BLUE_ONE_TIME_FINAL),
+	BLUE_TWO(AutoConstants.BLUE_TWO_TIME_INITIAL,AutoConstants.BLUE_TWO_ANGLE,AutoConstants.BLUE_TWO_TIME_FINAL),
+	BLUE_THREE(AutoConstants.BLUE_THREE_TIME_INITIAL,AutoConstants.BLUE_THREE_ANGLE,AutoConstants.BLUE_THREE_TIME_FINAL);
 		
 	private final double initial_time;
 	private final double final_time;
@@ -26,12 +26,15 @@ public enum Station {
 		this.angle = angle;
 	}
 	
-	public TimedDrive getDriveCommand(String tracker) {
+	public TimedDrive getDriveCommand(int tracker) {
 		
-		if(tracker.equals("initial")) {
-			return new TimedDrive(speed,initial_time);
-		} else {
-			return new TimedDrive(speed,final_time);
+		switch(tracker) {
+			case 0:
+				return new TimedDrive(speed,initial_time);
+			case 1:
+				return new TimedDrive(speed,final_time);
+			default:
+				return null;
 		}
 		
 	}

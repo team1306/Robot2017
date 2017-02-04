@@ -17,7 +17,7 @@ public class Constants {
 	//OI Constants
 	public final static double DEADBAND = 0.15;	//Joystick deadband
 	public final static double TRIGGER_DEADBAND = 0.15;	//Trigger deadband
-	public final static double JOYSTICK_MULTIPLIER = 1.0;  	//(Use SPEED_MODIFIER for speed changes)
+	public final static double JOYSTICK_MULTIPLIER = 1.0;  	//(Use SPEED_MODIFIER for drivetrain speed changes)
 	
 	//Button Constants
 	public final static int INTAKE_BUTTON = XboxController.X;
@@ -44,43 +44,13 @@ public class Constants {
 	public final static double SHOOT_TIME = 10.0;
 	public final static double ROTATE_VEL = 0.2;
 	
-	/*
-	 * Amount of time for initial drive before turning. TODO Experimentally find the correct value for all of these
-	 */
-	public final static double RED_ONE_TIME_INITIAL = 1.0;
-	public final static double RED_TWO_TIME_INITIAL = 1.0;
-	public final static double RED_THREE_TIME_INITIAL = 1.0;
-	public final static double BLUE_ONE_TIME_INITIAL = 1.0;
-	public final static double BLUE_TWO_TIME_INITIAL = 1.0;
-	public final static double BLUE_THREE_TIME_INITIAL = 1.0;
-	
-	/*
-	 * Angle at which the robot turns to get in line with gear peg. TODO Experimentally find the correct value for all of these
-	 */
-	public final static double RED_ONE_ANGLE = 90.0;
-	public final static double RED_TWO_ANGLE = 0.0;
-	public final static double RED_THREE_ANGLE = -90.0;
-	public final static double BLUE_ONE_ANGLE = -90.0;
-	public final static double BLUE_TWO_ANGLE = 0.0;
-	public final static double BLUE_THREE_ANGLE = 90.0;
-	
-	/*
-	 * Amount of time the robot is supposed to drive to get the gear on peg. TODO Experimentally find the correct value for all of these
-	 */
-	public final static double RED_ONE_TIME_FINAL = 1.0;
-	public final static double RED_TWO_TIME_FINAL = 1.0;
-	public final static double RED_THREE_TIME_FINAL = 1.0;
-	public final static double BLUE_ONE_TIME_FINAL = 1.0;
-	public final static double BLUE_TWO_TIME_FINAL = 1.0;
-	public final static double BLUE_THREE_TIME_FINAL = 1.0;
-	
 	//Drivetrain Constants
 	public final static double SPEED_MODIFIER = 0.8;	//Multiplier of speeds inputed into tankDrive
 	public final static double PID_SPEED = 100;
 
-	//PID Constants
-	public final static double F = 0.0;	//0.0 values aren't used in calculation
-	public final static double P = 0.0;	//Use Double.MAX_VALUE later
-	public final static double I = 0.0; 
+	//PID Drivetrain Constants
+	public final static double F = 0.7494;	//0.0 values aren't used in calculation
+	public final static double P = 0.33;	
+	public final static double I = 0.0033; 
 	public final static double D = 0.0;
 }

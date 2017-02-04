@@ -50,16 +50,16 @@ public class Drivetrain extends Subsystem {
 		rightmotor1.configPeakOutputVoltage(+12.0f, -12.0f);
 
 		leftmotor1.setProfile(0);
-		leftmotor1.setF(0.7494);	//Calculated constant
-		leftmotor1.setP(0.33);		//Calculated constant
-		leftmotor1.setI(0.0033);	//Calculated constant 1/100 of P-gain
-		leftmotor1.setD(0.0);
+		leftmotor1.setF(Constants.F);	//Calculated constant
+		leftmotor1.setP(Constants.P);		//Calculated constant
+		leftmotor1.setI(Constants.I);	//Calculated constant 1/100 of P-gain
+		leftmotor1.setD(Constants.D);
 		
 		rightmotor1.setProfile(0);
-		rightmotor1.setF(0.7494);	//Calculated constant
-		rightmotor1.setP(0.33);		//Calculated constant
-		rightmotor1.setI(0.0033);	//Calculated constant 1/100 P-gain
-		rightmotor1.setD(0.0);
+		rightmotor1.setF(Constants.F);	//Calculated constant
+		rightmotor1.setP(Constants.P);		//Calculated constant
+		rightmotor1.setI(Constants.I);	//Calculated constant 1/100 P-gain
+		rightmotor1.setD(Constants.D);
 	}
 	
 	/**
@@ -115,7 +115,6 @@ public class Drivetrain extends Subsystem {
 		rightmotor1.changeControlMode(TalonControlMode.PercentVbus);
 		
 		if(Constants.DRIVETRAIN_ENABLED) {
-			
 			leftmotor1.set(leftVal*Constants.SPEED_MODIFIER);
 			rightmotor1.set(-rightVal*Constants.SPEED_MODIFIER);
 		}
@@ -151,12 +150,14 @@ public class Drivetrain extends Subsystem {
 	
 	/**
 	 * Returns the position of the left encoder
-	 * @return
 	 */
 	public double getLeftPosition() {
 		return leftmotor1.getEncPosition();
 	}
 	
+	/**
+	 * Returns the position of the right encoder
+	 */
 	public double getRightPosition() {
 		return rightmotor1.getEncPosition();
 	}
