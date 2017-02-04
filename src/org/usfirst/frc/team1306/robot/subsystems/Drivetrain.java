@@ -113,10 +113,12 @@ public class Drivetrain extends Subsystem {
 	public void tankDrive(double leftVal, double rightVal) {
 		leftmotor1.changeControlMode(TalonControlMode.PercentVbus);
 		rightmotor1.changeControlMode(TalonControlMode.PercentVbus);
+		SmartDashboard.putNumber("leftSpeed",leftmotor1.getEncVelocity());
+		SmartDashboard.putNumber("rightSpeed",rightmotor1.getEncVelocity());
 		
 		if(Constants.DRIVETRAIN_ENABLED) {
-			leftmotor1.set(leftVal*Constants.SPEED_MODIFIER);
-			rightmotor1.set(-rightVal*Constants.SPEED_MODIFIER);
+			leftmotor1.set(-leftVal/**Constants.SPEED_MODIFIER*/);
+			rightmotor1.set(rightVal/**Constants.SPEED_MODIFIER*/);
 		}
 	}
 	
@@ -135,8 +137,8 @@ public class Drivetrain extends Subsystem {
 			SmartDashboard.putNumber("left.err", initVel - leftmotor1.getEncVelocity());
 			SmartDashboard.putNumber("right.err", -initVel - rightmotor1.getEncVelocity());
 			
-			leftmotor1.set(initVel);
-			rightmotor1.set(-initVel);
+			leftmotor1.set(-initVel);
+			rightmotor1.set(initVel);
 		}
 	}
 	

@@ -36,7 +36,7 @@ public class QuickTurn extends CommandBase {
 
 	@Override
 	protected void execute() {
-		drivetrain.tankDrive(speed, -speed);
+		drivetrain.tankDrive(-speed, speed);
 	}
 
 	/**

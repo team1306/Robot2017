@@ -23,7 +23,7 @@ public class ReverseDrive extends CommandBase {
 	
 	@Override
 	protected boolean isFinished() {
-		if(drivetrain.getLeftPosition() > -652.8) { //TODO Make include right pos as well
+		if(drivetrain.getLeftPosition() < 652.8) { //TODO Make include right pos as well
 			return false;
 		} else {
 			return true;

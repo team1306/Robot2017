@@ -19,7 +19,7 @@ private double eUnits;
 
 	@Override
 	protected void execute() {
-		drivetrain.tankDrive(Constants.ROTATE_VEL,Constants.ROTATE_VEL);
+		drivetrain.tankDrive(-Constants.ROTATE_VEL,Constants.ROTATE_VEL);
 	}
 
 	@Override
