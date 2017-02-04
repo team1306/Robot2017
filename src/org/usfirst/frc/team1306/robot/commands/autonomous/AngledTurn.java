@@ -5,31 +5,32 @@ import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
 public class AngledTurn extends CommandBase {
 
-	private final double angle;
-	private final double speed = Constants.AUTO_SPEED;
+private double eUnits;
 	
-	public AngledTurn(double angle) {
+	public AngledTurn(double degree) {
 		requires(drivetrain);
-		this.angle = angle;
+		this.eUnits = degree; //TODO Find 1 Degree in Encoder Position Units and Convert Here
 	}
-	
+
 	@Override
 	protected void initialize() {
-		// Set Encoder Values to 0?
+		drivetrain.resetEncoders();
 	}
 
 	@Override
 	protected void execute() {
-		
-		drivetrain.tankDrive(speed,speed);
+		drivetrain.tankDrive(Constants.ROTATE_VEL,Constants.ROTATE_VEL);
 	}
-	
+
 	@Override
 	protected boolean isFinished() {
-		// Encoder values pass certain threshold?
-		return false;
+		if(drivetrain.getLeftPosition() > eUnits) {
+			return true;
+		} else {
+			return false;
+		}
 	}
-	
+
 	@Override
 	protected void end() {
 		drivetrain.stopAll();
@@ -37,6 +38,6 @@ public class AngledTurn extends CommandBase {
 
 	@Override
 	protected void interrupted() {
-		end();
+		
 	}
 }

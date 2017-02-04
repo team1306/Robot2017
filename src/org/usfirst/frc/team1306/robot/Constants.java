@@ -41,6 +41,8 @@ public class Constants {
 	
 	//Autonomous Constants 
 	public final static double AUTO_SPEED = 0.5;
+	public final static double SHOOT_TIME = 10.0;
+	public final static double ROTATE_VEL = 0.2;
 	
 	/*
 	 * Amount of time for initial drive before turning. TODO Experimentally find the correct value for all of these
