@@ -23,7 +23,7 @@ public class Robot extends IterativeRobot {
 	Command smartDashboard;
     Command autonomousCommand;
     SendableChooser<AutonomousCommand> chooser;
-
+    
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -33,7 +33,7 @@ public class Robot extends IterativeRobot {
     	CommandBase.init();
     	smartDashboard = new SmartDashboardUpdate();
         smartDashboard.start();
-    	
+        
         chooser = new SendableChooser<AutonomousCommand>();
         chooser.addObject("Red 1", new AutonomousCommand(Station.RED_ONE));
         chooser.addObject("Red 2", new AutonomousCommand(Station.RED_TWO));

@@ -3,7 +3,6 @@ package org.usfirst.frc.team1306.robot.commands;
 /**
  * Periodically updates the SmartDashboard with new information
  */
-
 public class SmartDashboardUpdate extends CommandBase {
 
 	public SmartDashboardUpdate() {

@@ -23,9 +23,7 @@ public class SpinHopper extends CommandBase {
      * Spins up hopper
      */
     protected void execute() {
-    	if(OI.getButtonVal(controller.p,Constants.HOPPER_BUTTON)) {
-    		hopper.spinHopper();
-    	}
+    	hopper.spinHopper();
     }
 
     /**

@@ -23,7 +23,13 @@ import org.usfirst.frc.team1306.robot.Constants;
 public class VisionData extends Pipeline {
 	Pipeline pipeline; // This goes to the GRIP pipeline that does all the work
 	Mat image_process; // Input image
+<<<<<<< HEAD
 	ArrayList<Rect> bbox;
+=======
+	ArrayList<MatOfPoint> final_contours; // Contours that GRIP gives at the end
+	ArrayList<Rect> bbox = new ArrayList<Rect>();
+
+>>>>>>> origin/master
 	public VisionData(Mat image) { // Init
 		image_process = image;
 		pipeline = new Pipeline();
@@ -37,19 +43,32 @@ public class VisionData extends Pipeline {
 		return final_contours;
 	}
 
+<<<<<<< HEAD
 	public ArrayList<Rect> getBoundingBox(ArrayList<MatOfPoint> contours) {
 		ArrayList<Rect> bbox= new ArrayList<Rect>(); //Bbox stuff
 
 		for (int i = 0; i < contours.size(); i++) {
 			bbox.add(Imgproc.boundingRect(contours.get(i)));
+=======
+	public ArrayList<Rect> getBoundingBox() {
+		for (int i = 0; i < final_contours.size(); i++) {
+			bbox.add(Imgproc.boundingRect(final_contours.get(i)));
+>>>>>>> origin/master
 		}
 		return bbox;
 	}
 	
 	public double getPitch() {
+		getBoundingBox();
+		int y = 0;
+		for (Rect r : bbox) {
+			y += r.y;
+		}
+		y /= bbox.size();
 		return 0.0;
 	}
 	
+<<<<<<< HEAD
 	public double[] getYaw(ArrayList<Rect> bounding_box) {
 		
 		double yaw_array[] = new double[bounding_box.size()]; 
@@ -73,8 +92,24 @@ public class VisionData extends Pipeline {
 		//Unless the image given fits the Axis camera constants used, the values are probably going to be off
 		}
 	
+=======
+	public double getYaw() {
+		getBoundingBox();
+		int x = 0;
+		for (Rect r : bbox) {
+			x += r.x;
+		}
+		x /= bbox.size();
+		return 0.0;
+	}
+>>>>>>> origin/master
 	
 	public double getDist() {
+		getBoundingBox();
+		double area = 0.0;
+		for (Rect r : bbox) {
+			area += r.area();
+		}
 		return 0.0;
 	}
 	

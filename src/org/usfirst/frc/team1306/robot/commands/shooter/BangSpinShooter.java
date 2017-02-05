@@ -24,9 +24,8 @@ public class BangSpinShooter extends CommandBase{
      */
     protected void execute() {
     	
-    	if(OI.getButtonVal(controller.p,Constants.BANG_SHOOTER_BUTTON)) {
-    		shooter.bangBangSpinShooter();
-    	}
+    	shooter.bangBangSpinShooter();
+    	hopper.spinHopper();
     }
 
     /**

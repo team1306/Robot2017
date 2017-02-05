@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1306.robot.commands.autonomous;
 
+import org.usfirst.frc.team1306.robot.commands.gearmech.ReverseDrive;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -21,10 +22,13 @@ public class AutonomousCommand extends CommandGroup{
 		/**
 		 * Does initial drive forward, turn to a given angle, and then does final drive to gear peg
 		 */
-		addSequential(station.getDriveCommand("initial"));
-		//addSequential(station.getTurnCommand()); TODO Get this working with gyro
-		addSequential(station.getDriveCommand("final"));
+		addSequential(station.getDriveCommand(0));
+		addSequential(station.getTurnCommand());
+		addSequential(station.getDriveCommand(1));
+		//TODO Place gear (pneumatics?)
+		addSequential(new ReverseDrive());
+		//TODO Vision Targeting
+		addSequential(new Fire());
 		
-		//TODO Shoot command?
 	}
 }

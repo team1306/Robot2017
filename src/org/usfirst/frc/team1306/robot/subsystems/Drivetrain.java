@@ -36,7 +36,7 @@ public class Drivetrain extends Subsystem {
 		setupMotors(leftmotor1,leftmotor2);
 		setupMotors(rightmotor1,rightmotor2);
 		
-		//PID Drivetrain Code (KEEP)
+		//PID Drivetrain Code
 		leftmotor1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		leftmotor1.reverseSensor(false);
 		leftmotor1.configEncoderCodesPerRev(256);
@@ -49,18 +49,17 @@ public class Drivetrain extends Subsystem {
 		rightmotor1.configNominalOutputVoltage(+0.0f, -0.0f);
 		rightmotor1.configPeakOutputVoltage(+12.0f, -12.0f);
 
-		//TODO Calculate these values
 		leftmotor1.setProfile(0);
-		leftmotor1.setF(0.7494);	//Calculated constant
-		leftmotor1.setP(0.0);
-		leftmotor1.setI(0.0);
-		leftmotor1.setD(0.0);
+		leftmotor1.setF(Constants.F);	//Calculated constant
+		leftmotor1.setP(Constants.P);		//Calculated constant
+		leftmotor1.setI(Constants.I);	//Calculated constant 1/100 of P-gain
+		leftmotor1.setD(Constants.D);
 		
 		rightmotor1.setProfile(0);
-		rightmotor1.setF(0.7494);	//Calculated constant
-		rightmotor1.setP(0.0);
-		rightmotor1.setI(0.0);
-		rightmotor1.setD(0.0);
+		rightmotor1.setF(Constants.F);	//Calculated constant
+		rightmotor1.setP(Constants.P);		//Calculated constant
+		rightmotor1.setI(Constants.I);	//Calculated constant 1/100 P-gain
+		rightmotor1.setD(Constants.D);
 	}
 	
 	/**
@@ -72,7 +71,7 @@ public class Drivetrain extends Subsystem {
 	 */
 	private void setupMotors(CANTalon master, CANTalon slave) {
 		master.changeControlMode(TalonControlMode.PercentVbus);
-		master.set(0.0);
+		master.set(Constants.SPEED_ZERO);
 		master.enable();
 		
 		slave.changeControlMode(TalonControlMode.Follower);
@@ -91,7 +90,7 @@ public class Drivetrain extends Subsystem {
 	 */
 	private void setupMotors(CANTalon master, CANTalon slave1, CANTalon slave2) {
 		master.changeControlMode(TalonControlMode.PercentVbus);
-		master.set(0.0);
+		master.set(Constants.SPEED_ZERO);
 		master.enable();
 		
 		slave1.changeControlMode(TalonControlMode.Follower);
@@ -114,33 +113,32 @@ public class Drivetrain extends Subsystem {
 	public void tankDrive(double leftVal, double rightVal) {
 		leftmotor1.changeControlMode(TalonControlMode.PercentVbus);
 		rightmotor1.changeControlMode(TalonControlMode.PercentVbus);
+		SmartDashboard.putNumber("leftSpeed",leftmotor1.getEncVelocity());
+		SmartDashboard.putNumber("rightSpeed",rightmotor1.getEncVelocity());
 		
 		if(Constants.DRIVETRAIN_ENABLED) {
-			SmartDashboard.putNumber("leftVal",leftVal/**Constants.SPEED_MODIFIER*/);
-			SmartDashboard.putNumber("rightVal",-rightVal/**Constants.SPEED_MODIFIER*/);
-			
-			SmartDashboard.putNumber("leftencVel",leftmotor1.getEncVelocity());
-			
-			leftmotor1.set(leftVal/**Constants.SPEED_MODIFIER*/);
-			rightmotor1.set(-rightVal/**Constants.SPEED_MODIFIER*/);
+			leftmotor1.set(-leftVal/**Constants.SPEED_MODIFIER*/);
+			rightmotor1.set(rightVal/**Constants.SPEED_MODIFIER*/);
 		}
 	}
 	
 	/**
 	 * Takes a desired speed to run both motors at
 	 * @param initVel
-	 * 	Speed for both sides to match
+	 * 		Speed for both sides to match
 	 */
 	public void drivePID(double initVel) {
-		leftmotor1.changeControlMode(TalonControlMode.PercentVbus);
-		rightmotor1.changeControlMode(TalonControlMode.PercentVbus);
+		leftmotor1.changeControlMode(TalonControlMode.Speed);
+		rightmotor1.changeControlMode(TalonControlMode.Speed);
 		
 		if(Constants.PID_DRIVETRAIN_ENABLED) {
 			SmartDashboard.putNumber("leftVal",leftmotor1.getEncVelocity());
 			SmartDashboard.putNumber("rightVal",rightmotor1.getEncVelocity());
+			SmartDashboard.putNumber("left.err", initVel - leftmotor1.getEncVelocity());
+			SmartDashboard.putNumber("right.err", -initVel - rightmotor1.getEncVelocity());
 			
-			leftmotor1.set(0.5);
-			rightmotor1.set(-0.5);
+			leftmotor1.set(-initVel);
+			rightmotor1.set(initVel);
 		}
 	}
 	
@@ -153,11 +151,17 @@ public class Drivetrain extends Subsystem {
 	}
 	
 	/**
-	 * Returns the position of both combined encoders
-	 * @return
+	 * Returns the position of the left encoder
 	 */
-	public double getPosition() {
+	public double getLeftPosition() {
 		return leftmotor1.getEncPosition();
+	}
+	
+	/**
+	 * Returns the position of the right encoder
+	 */
+	public double getRightPosition() {
+		return rightmotor1.getEncPosition();
 	}
 	
 	/**
@@ -168,12 +172,12 @@ public class Drivetrain extends Subsystem {
 	 */
 	
 	public void stopMotor(int motor) {
-		motors[motor].set(0.0);
+		motors[motor].set(Constants.SPEED_ZERO);
 	}
 	
 	public void stopAll() {
 		for (int i = 0; i < motors.length; i++) {
-			motors[i].set(0.0);
+			motors[i].set(Constants.SPEED_ZERO);
 		}
 	}
 
