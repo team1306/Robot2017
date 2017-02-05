@@ -55,9 +55,12 @@ public class Constants {
 	public final static double D = 0.0;
 	
 	//Vision Constants
-	public final static double AXIS_HORIZ_ANGLE= 67;
-	public final static double AXIS_RES_HEIGHT=600;
-	public final static double AXIS_RES_WIDTH=800;
+	public final static double LOGITECH_HORIZ_ANGLE= 60; //Degrees
+	public final static double LOGITECH_RES_HEIGHT=600; //Pixels
+	public final static double LOGITECH_FOCAL_LENGTH=0.15748; //inches (4 mm)
+	public final static double LOGITECH_RES_WIDTH=800; //Pixels
+	public final static double UPPER_TAPE_WIDTH= 4.00; //Inches
+	public final static double TOWER_HEIGHT= 88; //Inches
 
 	
 }
