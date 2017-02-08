@@ -2,6 +2,8 @@ package org.usfirst.frc.team1306.robot.commands.autonomous;
 
 import org.usfirst.frc.team1306.robot.Constants;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 /**
  * Enum that contains commands for different alliance stations
  * @author Jackson Goth
@@ -30,8 +32,10 @@ public enum Station {
 		
 		switch(tracker) {
 			case 0:
+				SmartDashboard.putString("case 0","true");
 				return new TimedDrive(speed,initial_time);
 			case 1:
+				SmartDashboard.putString("case 1","true");
 				return new TimedDrive(speed,final_time);
 			default:
 				return null;
@@ -41,6 +45,7 @@ public enum Station {
 	
 	public AngledTurn getTurnCommand() {
 		
+		SmartDashboard.putString("angle", "true");
 		return new AngledTurn(angle);
 	}
 }

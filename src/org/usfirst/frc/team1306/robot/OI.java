@@ -72,8 +72,8 @@ public class OI {
 		pbuttonX.whenPressed(new SpinIntake());
 		//pbuttonA.whenPressed(new SpinShooter()); Use bang bang instead
 		pbuttonA.whenPressed(new BangSpinShooter());
-		pbuttonY.whenPressed(new ReverseDrive());
-		pbuttonB.whenPressed(new AngledTurn(90));
+		//pbuttonY.whenPressed(new ReverseDrive());
+		//pbuttonB.whenPressed(new AngledTurn(90));
 		
 	}
 	
