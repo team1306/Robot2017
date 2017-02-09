@@ -31,7 +31,7 @@ public class Climb extends CommandBase {
 
 	@Override
 	protected void end() {
-		drivetrain.stopAll();
+		climber.stopAll();
 	}
 
 	@Override

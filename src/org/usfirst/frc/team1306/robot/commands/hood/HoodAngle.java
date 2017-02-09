@@ -11,4 +11,8 @@ public enum HoodAngle {
 		this.direction = direction;
 		this.name = name;
 	}
+	
+	public int getDir() {
+		return direction;
+	}
 }
