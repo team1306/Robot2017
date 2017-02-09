@@ -47,13 +47,13 @@ public class Drivetrain extends Subsystem {
 
 		leftmotor1.setProfile(0);
 		leftmotor1.setF(Constants.F);	//Calculated constant
-		leftmotor1.setP(Constants.P);		//Calculated constant
+		leftmotor1.setP(Constants.P);	//Calculated constant
 		leftmotor1.setI(Constants.I);	//Calculated constant 1/100 of P-gain
 		leftmotor1.setD(Constants.D);
 		
 		rightmotor1.setProfile(0);
 		rightmotor1.setF(Constants.F);	//Calculated constant
-		rightmotor1.setP(Constants.P);		//Calculated constant
+		rightmotor1.setP(Constants.P);	//Calculated constant
 		rightmotor1.setI(Constants.I);	//Calculated constant 1/100 P-gain
 		rightmotor1.setD(Constants.D);
 	}
