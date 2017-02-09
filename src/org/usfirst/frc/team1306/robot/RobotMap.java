@@ -29,10 +29,10 @@ public class RobotMap {
 	
 	//Hopper Ports
 	public static final int HOPPER_TALON_PORT = 0;
+
+	//Turret Ports
+	public static final int TURRET_TALON_PORT = 7;
 	
 	//Climber Ports
-	public static final int CLIMBER_TALON_PORT = 7;
-	
-	//Turret Ports
-	public static final int TURRET_TALON_PORT = 8;
+	public static final int CLIMBER_TALON_PORT = 8;
 }

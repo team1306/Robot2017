@@ -62,6 +62,8 @@ public class Constants {
 	public final static double LOGITECH_RES_WIDTH=800; //Pixels
 	public final static double UPPER_TAPE_WIDTH= 4.00; //Inches
 	public final static double TOWER_HEIGHT= 88; //Inches
-
 	
+	//Turret Constants
+	public static final boolean TURRET_ENABLED = true;
+	public static final double TURRET_TURN_SPEED = 0.5;
 }
