@@ -6,10 +6,9 @@ import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- * This controls the intake of the robot; the rate at which the wheels spin.
+ * This controls the intake of the robot.
  * @author Jackson Goth
  */
-
 public class Intake extends Subsystem {
 
 	private final Talon intakeMotor;

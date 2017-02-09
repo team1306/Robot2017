@@ -1,13 +1,15 @@
 package org.usfirst.frc.team1306.robot;
 
-import org.usfirst.frc.team1306.robot.commands.autonomous.AngledTurn;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.QuickTurn;
 import org.usfirst.frc.team1306.robot.commands.gearmech.ReverseDrive;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
 import org.usfirst.frc.team1306.robot.commands.shooter.BangSpinShooter;
+import org.usfirst.frc.team1306.robot.triggers.DPadDirection;
+import org.usfirst.frc.team1306.robot.triggers.DPadPress;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.buttons.Trigger;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -26,21 +28,19 @@ public class OI {
 	private final Button pbuttonY;
 	private final Button pbuttonRB;
 	private final Button pbuttonLB;
-	private final Button pbuttonBack;
 	private final Button pbuttonStart;	
 	
 	//Declare buttons on secondary controller
-	private final Button sbuttonA;
 	private final Button sbuttonB;
-	private final Button sbuttonX;
-	private final Button sbuttonY;
-	private final Button sbuttonRB;
-	private final Button sbuttonLB;
-	private final Button sbuttonBack;
-	private final Button sbuttonStart;
+	
+	//Declare D-Pad buttons
+	private final Trigger dPadSecUp;
+	private final Trigger dPadSecDown;
+	private final Trigger dPadSecLeft;
+	private final Trigger dPadSecRight;
 	
 	public OI() {
-		//Declar ports of xbox controllers
+		//Declare ports of xbox controllers
 		primaryController = new XboxController(RobotMap.PRIMARY_PORT);
 		secondaryController = new XboxController(RobotMap.SECONDARY_PORT);
 		
@@ -51,30 +51,34 @@ public class OI {
 		pbuttonY = new JoystickButton(primaryController, XboxController.Y);
 		pbuttonRB = new JoystickButton(primaryController, XboxController.RB);
 		pbuttonLB = new JoystickButton(primaryController, XboxController.LB); 
-		pbuttonBack = new JoystickButton(primaryController, XboxController.BACK);
 		pbuttonStart = new JoystickButton(primaryController, XboxController.START);
 		
 		//Map buttons to xbox controller buttons for secondary controller
-		sbuttonA = new JoystickButton(secondaryController, XboxController.A);
 		sbuttonB = new JoystickButton(secondaryController, XboxController.B);
-		sbuttonX = new JoystickButton(secondaryController, XboxController.X);
-		sbuttonY = new JoystickButton(secondaryController, XboxController.Y);
-		sbuttonRB = new JoystickButton(secondaryController, XboxController.RB);
-		sbuttonLB = new JoystickButton(secondaryController, XboxController.LB);
-		sbuttonBack = new JoystickButton(secondaryController, XboxController.BACK);
-		sbuttonStart = new JoystickButton(secondaryController, XboxController.START);
 		
+		//Maps d-pad to xbox controller
+		dPadSecUp = new DPadPress(secondaryController,DPadDirection.UP);
+		dPadSecDown = new DPadPress(secondaryController,DPadDirection.DOWN);
+		dPadSecLeft = new DPadPress(secondaryController,DPadDirection.LEFT);
+		dPadSecRight = new DPadPress(secondaryController,DPadDirection.RIGHT);
 		
 		//Bind commands to buttons
 		pbuttonRB.whileHeld(new QuickTurn(true));
 		pbuttonLB.whileHeld(new QuickTurn(false));
 		
-		pbuttonX.whenPressed(new SpinIntake());
-		//pbuttonA.whenPressed(new SpinShooter()); Use bang bang instead
 		pbuttonA.whenPressed(new BangSpinShooter());
-		//pbuttonY.whenPressed(new ReverseDrive());
-		//pbuttonB.whenPressed(new AngledTurn(90));
+		//pbuttonA.whenPressed(new SpinShooter()); Use bang bang instead
+		//pbuttonB.whenPressed(new ResetTurret());
+		pbuttonX.whenPressed(new SpinIntake()); //TODO Toggle-able
+		//pbuttonY.whenPressed(new Scan());
+		//pbuttonStart.whenPressed(new Climb());
 		
+		//sbuttonB.whenPressed(new ReverseDrive());
+		
+		//dPadSecUp.whenActive(new AdjustHood(HoodAngle.UP));
+		//dPadSecDown.whenActive(new AdjustHood(HoodAngle.DOWN));
+		//dPadSecLeft.whenActive(new FlipScanDirection(ScanDirection.LEFT));
+		//dPadSecRight.whenActive(new FlipScanDirection(ScanDirection.RIGHT));
 	}
 	
 	public enum axis {x, y}; 		//X or Y Axis on Joystick

@@ -21,16 +21,12 @@ public class Drivetrain extends Subsystem {
 	private final CANTalon rightmotor1;
 	private final CANTalon leftmotor2;
 	private final CANTalon rightmotor2;
-	//private final CANTalon leftmotor3;
-	//private final CANTalon rightmotor3;
 	
 	public Drivetrain() {
 		leftmotor1 = new CANTalon(RobotMap.LEFT_TALON_1_PORT);
 		rightmotor1 = new CANTalon(RobotMap.RIGHT_TALON_1_PORT);
 		leftmotor2 = new CANTalon(RobotMap.LEFT_TALON_2_PORT);
 		rightmotor2 = new CANTalon(RobotMap.RIGHT_TALON_2_PORT);
-		//leftmotor3 = new CANTalon(RobotMap.LEFT_TALON_3_PORT);
-		//rightmotor3 = new CANTalon(RobotMap.RIGHT_TALON_3_PORT);
 		
 		motors = new CANTalon[] {leftmotor1, rightmotor1};
 		setupMotors(leftmotor1,leftmotor2);
@@ -77,29 +73,6 @@ public class Drivetrain extends Subsystem {
 		slave.changeControlMode(TalonControlMode.Follower);
 		slave.set(master.getDeviceID());
 		slave.enable();
-	}
-	
-	/**
-	 * Sets up motors, master in pvb mode and sets 2 slaves as followers
-	 * @param master
-	 * 		The talon that will be the master, folower will follow this talon
-	 * @param slave1
-	 * 		First follower talon
-	 * @param slave2
-	 * 		Second follower talon
-	 */
-	private void setupMotors(CANTalon master, CANTalon slave1, CANTalon slave2) {
-		master.changeControlMode(TalonControlMode.PercentVbus);
-		master.set(Constants.SPEED_ZERO);
-		master.enable();
-		
-		slave1.changeControlMode(TalonControlMode.Follower);
-		slave1.set(master.getDeviceID());
-		slave1.enable();
-		
-		slave2.changeControlMode(TalonControlMode.Follower);
-		slave2.set(master.getDeviceID());
-		slave2.enable();
 	}
 	
 	/**

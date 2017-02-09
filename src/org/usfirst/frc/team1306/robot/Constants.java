@@ -12,6 +12,7 @@ public class Constants {
 	public final static boolean DRIVETRAIN_ENABLED = true;	//Drivetrain will only run when true
 	public final static boolean PID_DRIVETRAIN_ENABLED = true;	//PID-Drive will only run when true
 	public final static boolean HOPPER_ENABLED = true;	//Hopper will only run when true
+	public final static boolean CLIMBER_ENABLED = false; //Climber will only run when true
 	public final static double SPEED_ZERO = 0.0;
 	
 	//OI Constants

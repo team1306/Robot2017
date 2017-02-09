@@ -13,14 +13,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Shooter extends Subsystem {
 
-	private final CANTalon shooterMotor;
+	private final CANTalon shooterMotor1;
+	private final CANTalon shooterMotor2;
 	
 	public final static double shooterSpeed = Constants.SHOOTER_SPEED;
 	
 	public Shooter() {
 
-		shooterMotor = new CANTalon(RobotMap.FLYWHEEL_TALON_PORT);
-		shooterMotor.enable();
+		shooterMotor1 = new CANTalon(RobotMap.FLYWHEEL_TALON_1_PORT);
+		shooterMotor1.enable();
+		shooterMotor2 = new CANTalon(RobotMap.FLYWHEEL_TALON_2_PORT);
+		shooterMotor2.enable();
 	}
 	
 	/**
@@ -29,7 +32,8 @@ public class Shooter extends Subsystem {
 	public void spinShooter() {
 		
 		if(Constants.SHOOTER_ENABLED) {
-			shooterMotor.set(shooterSpeed);
+			shooterMotor1.set(shooterSpeed);
+			shooterMotor2.set(shooterSpeed);
 		}
 	}
 	
@@ -38,16 +42,24 @@ public class Shooter extends Subsystem {
 	 */
 	public void bangBangSpinShooter() {
 
-		SmartDashboard.putNumber("Shooter Velocity", shooterMotor.getEncVelocity());
+		SmartDashboard.putNumber("Shooter 1 Velocity", shooterMotor1.getEncVelocity());
+		SmartDashboard.putNumber("Shooter 2 Velocity", shooterMotor2.getEncVelocity());
 		
-		shooterMotor.changeControlMode(TalonControlMode.PercentVbus);
-		if (shooterMotor.getEncVelocity() > Constants.SHOOTER_BANG_RANGE) {
-			shooterMotor.set(Constants.SHOOTER_SPEED);
+		shooterMotor1.changeControlMode(TalonControlMode.PercentVbus);
+		if (shooterMotor1.getEncVelocity() > Constants.SHOOTER_BANG_RANGE) {
+			shooterMotor1.set(Constants.SHOOTER_SPEED);
 		}
 		else {
-			shooterMotor.set(Constants.SHOOTER_BANG_CEILING);
+			shooterMotor1.set(Constants.SHOOTER_BANG_CEILING);
 		}
 
+		shooterMotor2.changeControlMode(TalonControlMode.PercentVbus);
+		if (shooterMotor2.getEncVelocity() > Constants.SHOOTER_BANG_RANGE) {
+			shooterMotor2.set(Constants.SHOOTER_SPEED);
+		}
+		else {
+			shooterMotor2.set(Constants.SHOOTER_BANG_CEILING);
+		}
 	}
 	
 	/**
@@ -55,14 +67,16 @@ public class Shooter extends Subsystem {
 	 * @deprecated Switch to stopAll()
 	 */
 	public void stopMotor() {
-		shooterMotor.set(Constants.SPEED_ZERO);
+		shooterMotor1.set(Constants.SPEED_ZERO);
+		shooterMotor2.set(Constants.SPEED_ZERO);
 	}
 	
 	/**
 	 * Stops the shooter motors
 	 */
 	public void stopAll() {
-		shooterMotor.set(Constants.SPEED_ZERO);
+		shooterMotor1.set(Constants.SPEED_ZERO);
+		shooterMotor2.set(Constants.SPEED_ZERO);
 	}
 	
 	@Override
