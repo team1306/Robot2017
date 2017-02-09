@@ -2,17 +2,17 @@ package org.usfirst.frc.team1306.robot.subsystems;
 
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.RobotMap;
-
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
-
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Controls the shooter turrets
  * @author Sam Roquitte
  */
-public class Turret {
+public class Turret extends Subsystem {
+	
 	private final CANTalon turretMotor;
 	
 	public final static double turretTurnSpeed = Constants.TURRET_TURN_SPEED;

@@ -1,15 +1,16 @@
 package org.usfirst.frc.team1306.robot;
 
 import org.usfirst.frc.team1306.robot.commands.drivetrain.QuickTurn;
-import org.usfirst.frc.team1306.robot.commands.gearmech.ReverseDrive;
+import org.usfirst.frc.team1306.robot.commands.hood.AdjustHood;
+import org.usfirst.frc.team1306.robot.commands.hood.HoodAngle;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
 import org.usfirst.frc.team1306.robot.commands.shooter.BangSpinShooter;
-import org.usfirst.frc.team1306.robot.triggers.DPadDirection;
-import org.usfirst.frc.team1306.robot.triggers.DPadPress;
+import org.usfirst.frc.team1306.robot.commands.turret.Scan;
+import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
+
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.buttons.Trigger;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -31,13 +32,11 @@ public class OI {
 	private final Button pbuttonStart;	
 	
 	//Declare buttons on secondary controller
+	private final Button sbuttonA;
 	private final Button sbuttonB;
-	
-	//Declare D-Pad buttons
-	private final Trigger dPadSecUp;
-	private final Trigger dPadSecDown;
-	private final Trigger dPadSecLeft;
-	private final Trigger dPadSecRight;
+	private final Button sbuttonY;
+	private final Button sbuttonRB;
+	private final Button sbuttonLB;
 	
 	public OI() {
 		//Declare ports of xbox controllers
@@ -54,13 +53,11 @@ public class OI {
 		pbuttonStart = new JoystickButton(primaryController, XboxController.START);
 		
 		//Map buttons to xbox controller buttons for secondary controller
+		sbuttonA = new JoystickButton(secondaryController, XboxController.A);
 		sbuttonB = new JoystickButton(secondaryController, XboxController.B);
-		
-		//Maps d-pad to xbox controller
-		dPadSecUp = new DPadPress(secondaryController,DPadDirection.UP);
-		dPadSecDown = new DPadPress(secondaryController,DPadDirection.DOWN);
-		dPadSecLeft = new DPadPress(secondaryController,DPadDirection.LEFT);
-		dPadSecRight = new DPadPress(secondaryController,DPadDirection.RIGHT);
+		sbuttonY = new JoystickButton(secondaryController, XboxController.Y);
+		sbuttonRB = new JoystickButton(secondaryController, XboxController.RB);
+		sbuttonLB = new JoystickButton(secondaryController, XboxController.LB);
 		
 		//Bind commands to buttons
 		pbuttonRB.whileHeld(new QuickTurn(true));
@@ -73,12 +70,12 @@ public class OI {
 		//pbuttonY.whenPressed(new Scan());
 		//pbuttonStart.whenPressed(new Climb());
 		
+		//sbuttonA.whenPressed(new AdjustHood(HoodAngle.DOWN));
+		//sbuttonY.whenPressed(new AdjustHood(HoodAngle.UP));
+		//sbuttonRB.whenPressed(new Scan(ScanDirection.RIGHT));
+		//sbuttonLB.whenPressed(new Scan(ScanDirection.LEFT));
 		//sbuttonB.whenPressed(new ReverseDrive());
 		
-		//dPadSecUp.whenActive(new AdjustHood(HoodAngle.UP));
-		//dPadSecDown.whenActive(new AdjustHood(HoodAngle.DOWN));
-		//dPadSecLeft.whenActive(new FlipScanDirection(ScanDirection.LEFT));
-		//dPadSecRight.whenActive(new FlipScanDirection(ScanDirection.RIGHT));
 	}
 	
 	public enum axis {x, y}; 		//X or Y Axis on Joystick
