@@ -2,7 +2,6 @@ package org.usfirst.frc.team1306.robot.subsystems;
 
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.RobotMap;
-import org.usfirst.frc.team1306.robot.commands.shooter.BangSpinShooter;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
@@ -24,7 +23,9 @@ public class Turret {
 	}
 	
 	/**
-	 * Method that spins up shooter
+	 * Sets the speed of the turret turn to the passed speed
+	 * @param speed
+	 * 		Speed to turn (-1.0 to 1.0)  1=right -1=left
 	 */
 	public void set(double speed) {
 		if(Constants.TURRET_ENABLED) {
@@ -33,7 +34,7 @@ public class Turret {
 	}
 	
 	/**
-	 * Stops the shooter motors
+	 * Stops the turret turn motor
 	 */
 	public void stopAll() {
 		turretMotor.set(0.0);
