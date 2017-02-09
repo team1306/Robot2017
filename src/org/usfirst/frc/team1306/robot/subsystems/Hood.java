@@ -2,6 +2,10 @@ package org.usfirst.frc.team1306.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+/**
+ * Subsystem that controls hood
+ * @author Jackson Goth
+ */
 public class Hood extends Subsystem {
 
 	private static int pos = 0;

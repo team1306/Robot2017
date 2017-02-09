@@ -2,6 +2,10 @@ package org.usfirst.frc.team1306.robot.commands.hood;
 
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
+/**
+ * Command that adjusts hood to given position
+ * @author Jackson Goth
+ */
 public class AdjustHood extends CommandBase{
 
 	private final int direction;

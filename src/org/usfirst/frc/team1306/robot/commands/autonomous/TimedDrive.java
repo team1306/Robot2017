@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj.Timer;
 /**
  * A command that drives the robot in a direction for a certain amount of
  * time.
- * 
  * @author Jackson Goth
  */
 public class TimedDrive extends CommandBase {

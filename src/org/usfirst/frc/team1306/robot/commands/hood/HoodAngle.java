@@ -1,5 +1,9 @@
 package org.usfirst.frc.team1306.robot.commands.hood;
 
+/**
+ * Enum that contains both the hood postions; UP and DOWN.
+ * @author Jackson Goth
+ */
 public enum HoodAngle {
 
 	UP(0,"Up"),DOWN(1,"Down");

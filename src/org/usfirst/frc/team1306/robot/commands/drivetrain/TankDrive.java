@@ -1,13 +1,12 @@
 package org.usfirst.frc.team1306.robot.commands.drivetrain;
 
 import org.usfirst.frc.team1306.robot.Constants;
-import org.usfirst.frc.team1306.robot.OI;
 import org.usfirst.frc.team1306.robot.OI.*;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
 /**
  * Allows the robot drivetrain to be controlled with tank drive
- * @author Sam Roquitte
+ * @author Sam Roquitte and Jackson Goth
  */
 public class TankDrive extends CommandBase {
 	
@@ -30,6 +29,7 @@ public class TankDrive extends CommandBase {
 		* 	Otherwise it assumes it is being controlled by joysticks and will drive robot based on their respective inputs
 		* 
 		*/
+		
 //		if(oi.getTriggerVal(controller.p, trigger.l) >= Constants.TRIGGER_DEADBAND || oi.getTriggerVal(controller.p, trigger.r) >= Constants.TRIGGER_DEADBAND) {
 //			if(oi.getTriggerVal(controller.p, trigger.r) >= Constants.TRIGGER_DEADBAND) {
 //				drivetrain.tankDrive(1.0,1.0);/*oi.getTriggerVal(controller.p, trigger.r), oi.getTriggerVal(controller.p, trigger.r));*/

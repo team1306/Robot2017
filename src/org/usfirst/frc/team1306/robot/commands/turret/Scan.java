@@ -2,6 +2,10 @@ package org.usfirst.frc.team1306.robot.commands.turret;
 
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
+/**
+ * Command that scans with vision in given direction until a target is found.
+ * @author Jackson Goth
+ */
 public class Scan extends CommandBase {
 
 	private final double direction;

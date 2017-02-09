@@ -6,9 +6,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  * The autonomous command station
  * @author Jackson Goth
- *
  */
-
 public class AutonomousCommand extends CommandGroup{
 
 	/**

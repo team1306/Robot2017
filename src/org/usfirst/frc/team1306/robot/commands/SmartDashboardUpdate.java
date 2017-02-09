@@ -4,6 +4,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Periodically updates the SmartDashboard with new information
+ * 
+ * @author Jackson Goth
  */
 public class SmartDashboardUpdate extends CommandBase {
 

@@ -2,6 +2,10 @@ package org.usfirst.frc.team1306.robot.commands.turret;
 
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
+/**
+ * Command that resets turret to default position
+ * @author Jakcson Goth
+ */
 public class ResetTurret extends CommandBase{
 
 	public ResetTurret() {

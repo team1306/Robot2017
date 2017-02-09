@@ -1,7 +1,5 @@
 package org.usfirst.frc.team1306.robot.commands.autonomous;
 
-import org.usfirst.frc.team1306.robot.Constants;
-
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -20,7 +18,7 @@ public enum Station {
 	private final double initial_time;
 	private final double final_time;
 	private final double angle;
-	private final double speed = Constants.AUTO_SPEED;
+	private final double speed = AutoConstants.AUTO_SPEED;
 	
 	private Station(double initial_time, double angle, double final_time) {
 		this.initial_time = initial_time;

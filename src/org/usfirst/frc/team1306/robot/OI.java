@@ -67,10 +67,10 @@ public class OI {
 		pbuttonA.whenPressed(new BangSpinShooter());
 		//pbuttonA.whenPressed(new SpinShooter()); Use bang bang instead
 		//pbuttonB.whenPressed(new ResetTurret());
-		pbuttonX.whenPressed(new SpinIntake()); //TODO Toggle-able
+		pbuttonX.whenPressed(new SpinIntake());
 		//pbuttonY.whenPressed(new Scan());
 		//pbuttonStart.whenPressed(new Climb());
-		pbuttonStart.whenPressed(new TurnTurret());
+		pbuttonStart.whenPressed(new TurnTurret()); //Testing
 		
 		//sbuttonA.whenPressed(new AdjustHood(HoodAngle.DOWN));
 		//sbuttonY.whenPressed(new AdjustHood(HoodAngle.UP));

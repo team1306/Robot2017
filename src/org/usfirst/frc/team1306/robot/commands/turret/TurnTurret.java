@@ -1,14 +1,11 @@
 package org.usfirst.frc.team1306.robot.commands.turret;
 
-import org.usfirst.frc.team1306.robot.Constants;
-import org.usfirst.frc.team1306.robot.OI;
-import org.usfirst.frc.team1306.robot.OI.controller;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * Command that calls to spin shooter, stops when a button is no longer pressed
+ * Command that turns turret to a given position
  * @author Sam Roquitte
  */
 public class TurnTurret extends CommandBase {
@@ -22,7 +19,7 @@ public class TurnTurret extends CommandBase {
     }
     
     /**
-     * Spins up Turret
+     * Spins turret to correct position
      */
     protected void execute() {
     	SmartDashboard.putNumber("Turret", 1);
@@ -30,7 +27,11 @@ public class TurnTurret extends CommandBase {
     }
 
     protected boolean isFinished() {
-    	return false;
+    	if(turret.getPos() == 360) {
+    		return true;
+    	} else {
+    		return false;
+    	}
     }
     
     protected void end() {
@@ -38,6 +39,6 @@ public class TurnTurret extends CommandBase {
     }
     
     protected void interrupted() {
-    	
+    	end();
     }
 }

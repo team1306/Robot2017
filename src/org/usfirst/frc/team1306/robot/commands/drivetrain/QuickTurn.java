@@ -9,7 +9,6 @@ import org.usfirst.frc.team1306.robot.commands.CommandBase;
  * Turns the robot left and right with one button
  * @author Jackson Goth
  */
-
 public class QuickTurn extends CommandBase {
 	
 	private final double speed;
@@ -19,7 +18,6 @@ public class QuickTurn extends CommandBase {
 	 * @param left
 	 * 		if it should turn left or right. (T or F)
 	 */
-	
 	public QuickTurn(boolean left) {
 		requires(drivetrain);
 		if(left == true) {

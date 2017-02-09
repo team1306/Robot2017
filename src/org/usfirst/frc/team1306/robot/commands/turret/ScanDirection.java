@@ -1,5 +1,9 @@
 package org.usfirst.frc.team1306.robot.commands.turret;
 
+/**
+ * Enum that stores vision scanning directions; left and right.
+ * @author Jackson Goth
+ */
 public enum ScanDirection {
 
 	LEFT(-0.2,"Left"),RIGHT(0.2,"Right");

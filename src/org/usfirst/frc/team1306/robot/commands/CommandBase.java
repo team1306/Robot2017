@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.command.Command;
  * instances of all the subsystems and the oi class so that each command that
  * extends this class can have access to the subsystems.
  * 
+ * @author Jackson Goth and Sam Roquitte
  */
 
 public abstract class CommandBase extends Command {
