@@ -5,7 +5,7 @@ import org.usfirst.frc.team1306.robot.commands.CommandBase;
 public class FlipScanDirection extends CommandBase {
 
 	public FlipScanDirection(ScanDirection direction) {
-		this.direction = direction.getDir();
+		//this.direction = direction.getDir();
 	}
 	
 	@Override
@@ -15,7 +15,7 @@ public class FlipScanDirection extends CommandBase {
 
 	@Override
 	protected void execute() {
-		turret.flipDirection(direction);
+		//turret.flipDirection(direction);
 	}
 
 	@Override

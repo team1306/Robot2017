@@ -2,13 +2,11 @@ package org.usfirst.frc.team1306.robot.subsystems;
 
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.RobotMap;
+
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/master
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -17,13 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * @author Sam Roquitte
  */
 public class Turret extends Subsystem {
-<<<<<<< HEAD
-=======
-	
->>>>>>> origin/master
 	private final CANTalon turretMotor;
-	
-	public final static double turretTurnSpeed = Constants.TURRET_TURN_SPEED;
 	
 	private int initPos = 0;		//Initial encoder position (centered turret)
 	private int currentPos = 0;		//Current encoder position
