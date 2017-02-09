@@ -23,14 +23,14 @@ public class Turret extends Subsystem {
 	public Turret() {
 		turretMotor = new CANTalon(RobotMap.TURRET_TALON_PORT);
 		turretMotor.enable();
-		turretMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		/*turretMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		turretMotor.reverseSensor(false);
 		turretMotor.configEncoderCodesPerRev(1024);
 		turretMotor.configNominalOutputVoltage(+0.0f, -0.0f);
 		turretMotor.configPeakOutputVoltage(+12.0f, -12.0f);
 		turretMotor.setProfile(0);
 		
-		initPos = turretMotor.getEncPosition();
+		initPos = turretMotor.getEncPosition();*/
 	}
 	
 	/**
@@ -46,13 +46,14 @@ public class Turret extends Subsystem {
 	}
 	
 	/**
-	 * Uses PID to turn the turret to a certain angle
-	 * @param angle
-	 * 		The angle to go to
+	 * Uses PID to turn the turret to a certain position
+	 * @param position
+	 * 		The position to go to
 	 */
-	public void setPosition(int angle) {
+	public void setPosition(int position) {
 		turretMotor.changeControlMode(TalonControlMode.Position);
 		turretMotor.enableBrakeMode(true);
+		turretMotor.setPosition(position*35);
 	}
 	
 	/**

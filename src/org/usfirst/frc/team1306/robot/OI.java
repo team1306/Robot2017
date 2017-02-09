@@ -7,6 +7,7 @@ import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
 import org.usfirst.frc.team1306.robot.commands.shooter.BangSpinShooter;
 import org.usfirst.frc.team1306.robot.commands.turret.Scan;
 import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
+import org.usfirst.frc.team1306.robot.commands.turret.TurnTurret;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -69,6 +70,7 @@ public class OI {
 		pbuttonX.whenPressed(new SpinIntake()); //TODO Toggle-able
 		//pbuttonY.whenPressed(new Scan());
 		//pbuttonStart.whenPressed(new Climb());
+		pbuttonStart.whenPressed(new TurnTurret());
 		
 		//sbuttonA.whenPressed(new AdjustHood(HoodAngle.DOWN));
 		//sbuttonY.whenPressed(new AdjustHood(HoodAngle.UP));
