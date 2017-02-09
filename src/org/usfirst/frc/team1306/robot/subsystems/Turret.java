@@ -23,14 +23,14 @@ public class Turret extends Subsystem {
 	public Turret() {
 		turretMotor = new CANTalon(RobotMap.TURRET_TALON_PORT);
 		turretMotor.enable();
-		/*turretMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		turretMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		turretMotor.reverseSensor(false);
 		turretMotor.configEncoderCodesPerRev(1024);
 		turretMotor.configNominalOutputVoltage(+0.0f, -0.0f);
 		turretMotor.configPeakOutputVoltage(+12.0f, -12.0f);
 		turretMotor.setProfile(0);
 		
-		initPos = turretMotor.getEncPosition();*/
+		//initPos = turretMotor.getEncPosition();
 	}
 	
 	/**

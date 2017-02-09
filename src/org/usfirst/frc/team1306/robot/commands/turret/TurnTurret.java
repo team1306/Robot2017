@@ -22,16 +22,13 @@ public class TurnTurret extends CommandBase {
     }
     
     /**
-     * Spins up hopper
+     * Spins up Turret
      */
     protected void execute() {
     	SmartDashboard.putNumber("Turret", 1);
     	turret.setPosition(360);
     }
 
-    /**
-     * Stops spinning shooter when A is no longer pressed
-     */
     protected boolean isFinished() {
     	return false;
     }
