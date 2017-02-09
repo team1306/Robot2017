@@ -5,9 +5,11 @@ import org.usfirst.frc.team1306.robot.commands.CommandBase;
 public class AdjustHood extends CommandBase{
 
 	private final int direction;
+	private final String name;
 	
 	public AdjustHood(HoodAngle direction) {
 		this.direction = direction.getDir();
+		this.name = direction.getName();
 	}
 	
 	@Override
@@ -17,17 +19,12 @@ public class AdjustHood extends CommandBase{
 
 	@Override
 	protected void execute() {
-		if(direction == 0) {
-			
-		} else {
-			
-		}
+		hood.setPos(direction,name);
 	}
 
 	@Override
 	protected boolean isFinished() {
-		
-		return false;
+		return true;
 	}
 
 	@Override

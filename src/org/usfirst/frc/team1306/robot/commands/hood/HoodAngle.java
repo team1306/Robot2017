@@ -15,4 +15,8 @@ public enum HoodAngle {
 	public int getDir() {
 		return direction;
 	}
+	
+	public String getName() {
+		return name;
+	}
 }
