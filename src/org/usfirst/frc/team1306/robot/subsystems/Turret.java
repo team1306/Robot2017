@@ -40,6 +40,8 @@ public class Turret extends Subsystem {
 	 */
 	public void set(double speed) {
 		if(Constants.TURRET_ENABLED) {
+			SmartDashboard.putNumber("Turret Pos",getPos());
+			
 			turretMotor.changeControlMode(TalonControlMode.PercentVbus);
 			turretMotor.set(speed);
 		}
@@ -51,11 +53,18 @@ public class Turret extends Subsystem {
 	 * 		The position to go to
 	 */
 	public void setPosition(int position) {
-		turretMotor.changeControlMode(TalonControlMode.Position);
-		turretMotor.enableBrakeMode(true);
-		turretMotor.setPosition(position*35);
+		if(Constants.TURRET_ENABLED) {
+			SmartDashboard.putNumber("Turret Pos",getPos());
+			
+			turretMotor.changeControlMode(TalonControlMode.Position);
+			turretMotor.enableBrakeMode(true);
+			turretMotor.setPosition(position * 35);
+		}
 	}
 	
+	public double getPos() {
+		return turretMotor.getEncPosition();
+	}
 	/**
 	 * Stops the turret turn motor
 	 */
@@ -64,6 +73,6 @@ public class Turret extends Subsystem {
 	}
 	
 	protected void initDefaultCommand() {
-		//setDefaultCommand(new BangSpinShooter());
+		
 	}
 }

@@ -2,11 +2,9 @@ package org.usfirst.frc.team1306.robot.commands.turret;
 
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 public class Scan extends CommandBase {
 
-	private final int direction;
+	private final double direction;
 	
 	public Scan(ScanDirection direction) {
 		requires(turret);
@@ -20,21 +18,22 @@ public class Scan extends CommandBase {
 
 	@Override
 	protected void execute() {
-		
+		turret.set(direction);
 	}
 
 	@Override
 	protected boolean isFinished() {
+		//TODO Vision goes here
 		return false;
 	}
 
 	@Override
 	protected void end() {
-		
+		turret.stopAll();
 	}
 
 	@Override
 	protected void interrupted() {
-		
+		end();
 	}
 }

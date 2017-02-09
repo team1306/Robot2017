@@ -4,10 +4,36 @@ import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
 public class ResetTurret extends CommandBase{
 
+	public ResetTurret() {
+		requires(turret);
+	}
+	
 	@Override
-	protected boolean isFinished() {
+	protected void initialize() {
 		
-		return false;
 	}
 
+	@Override
+	protected void execute() {
+		turret.setPosition(0);
+	}
+
+	@Override
+	protected boolean isFinished() {
+		if(turret.getPos() == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	protected void end() {
+		turret.stopAll();
+	}
+
+	@Override
+	protected void interrupted() {
+		end();
+	}
 }
