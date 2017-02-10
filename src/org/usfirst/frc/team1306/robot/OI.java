@@ -1,12 +1,9 @@
 package org.usfirst.frc.team1306.robot;
 
+import org.usfirst.frc.team1306.robot.commands.autonomous.MotionProfile;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.QuickTurn;
-import org.usfirst.frc.team1306.robot.commands.hood.AdjustHood;
-import org.usfirst.frc.team1306.robot.commands.hood.HoodAngle;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
 import org.usfirst.frc.team1306.robot.commands.shooter.BangSpinShooter;
-import org.usfirst.frc.team1306.robot.commands.turret.Scan;
-import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
 import org.usfirst.frc.team1306.robot.commands.turret.TurnTurret;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
@@ -64,13 +61,14 @@ public class OI {
 		pbuttonRB.whileHeld(new QuickTurn(true));
 		pbuttonLB.whileHeld(new QuickTurn(false));
 		
-		pbuttonA.whenPressed(new BangSpinShooter());
+		pbuttonA.whileHeld(new BangSpinShooter());
 		//pbuttonA.whenPressed(new SpinShooter()); Use bang bang instead
 		//pbuttonB.whenPressed(new ResetTurret());
 		pbuttonX.whenPressed(new SpinIntake());
 		//pbuttonY.whenPressed(new Scan());
-		//pbuttonStart.whenPressed(new Climb());
+		//pbuttonStart.whileHeld(new Climb());
 		pbuttonStart.whenPressed(new TurnTurret()); //Testing
+		//pbuttonStart.whenPressed(new MotionProfile());
 		
 		//sbuttonA.whenPressed(new AdjustHood(HoodAngle.DOWN));
 		//sbuttonY.whenPressed(new AdjustHood(HoodAngle.UP));

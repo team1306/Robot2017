@@ -45,6 +45,11 @@ public class Drivetrain extends Subsystem {
 		rightmotor1.configNominalOutputVoltage(+0.0f, -0.0f);
 		rightmotor1.configPeakOutputVoltage(+12.0f, -12.0f);
 
+		leftmotor1.setMotionMagicCruiseVelocity(100);
+		leftmotor1.setMotionMagicAcceleration(20);
+		rightmotor1.setMotionMagicCruiseVelocity(100);
+		rightmotor1.setMotionMagicAcceleration(20);
+		
 		leftmotor1.setProfile(0);
 		leftmotor1.setF(Constants.F);	//Calculated constant
 		leftmotor1.setP(Constants.P);	//Calculated constant
@@ -113,6 +118,14 @@ public class Drivetrain extends Subsystem {
 			leftmotor1.set(-initVel);
 			rightmotor1.set(initVel);
 		}
+	}
+	
+	public void driveMP(double leftVal, double rightVal) {
+		leftmotor1.changeControlMode(TalonControlMode.MotionMagic);
+		rightmotor1.changeControlMode(TalonControlMode.MotionMagic);
+		
+		leftmotor1.set(40);
+		rightmotor1.set(-40);
 	}
 	
 	/**

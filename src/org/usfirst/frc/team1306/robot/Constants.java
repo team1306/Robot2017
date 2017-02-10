@@ -6,11 +6,12 @@ package org.usfirst.frc.team1306.robot;
  */
 public class Constants {
 
-	//Subsystem Constants
+	//Subsystem Constantss
 	public final static boolean INTAKE_ENABLED = true;			//Intake will only run when true
 	public final static boolean SHOOTER_ENABLED = true;			//Shooter will only run when true
-	public final static boolean DRIVETRAIN_ENABLED = true;		//Drivetrain will only run when true
+	public final static boolean DRIVETRAIN_ENABLED = false;		//Drivetrain will only run when true
 	public final static boolean PID_DRIVETRAIN_ENABLED = true;	//PID-Drive will only run when true
+	public final static boolean MP_DRIVETRAIN_ENABLED = false;
 	public final static boolean HOPPER_ENABLED = true;			//Hopper will only run when true
 	public final static boolean CLIMBER_ENABLED = false; 		//Climber will only run when true
 	public static final boolean TURRET_ENABLED = true;			//Turret will only be able to turn if true
@@ -41,11 +42,16 @@ public class Constants {
 	
 	//Turret Constants
 	public final static double TURRET_TURN_SPEED = 0.5;
+	public final static double TURRET_P = 0.0;
+	public final static double TURRET_I = 0.0;
+	public final static double TURRET_D = 0.0;
 	
 	//Drivetrain Constants
 	public final static double SPEED_MODIFIER = 0.8;			//Multiplier of speeds inputed into tankDrive
 	public final static double PID_SPEED = 200;
 	public final static double TURN_SPEED = 0.45;				//Speed at which QuickTurn turns robot
+	public final static double LEFT_ROTATIONS = 40;
+	public final static double RIGHT_ROTATIONS = -40;
 	public final static double F = 0.7494;						
 	public final static double P = 0.77;	
 	public final static double I = 0.0033; 

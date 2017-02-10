@@ -22,7 +22,6 @@ public class Climb extends CommandBase {
 		climber.spinClimber();
 	}
 
-	//TODO Finish isFinished
 	@Override
 	protected boolean isFinished() {
 		
@@ -36,6 +35,6 @@ public class Climb extends CommandBase {
 
 	@Override
 	protected void interrupted() {
-		
+		end();
 	}
 }

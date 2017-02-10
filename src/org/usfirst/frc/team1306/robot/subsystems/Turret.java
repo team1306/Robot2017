@@ -63,7 +63,7 @@ public class Turret extends Subsystem {
 	}
 	
 	public double getPos() {
-		return turretMotor.getEncPosition();
+		return turretMotor.getPosition();
 	}
 	/**
 	 * Stops the turret turn motor
