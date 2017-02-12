@@ -1,6 +1,8 @@
 package org.usfirst.frc.team1306.robot.commands.autonomous;
 
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.SPI;
 
 /**
  * Command that turns the drivetrain to a give degree
@@ -8,26 +10,38 @@ import org.usfirst.frc.team1306.robot.commands.CommandBase;
  */
 public class AngledTurn extends CommandBase {
 
-	private double eUnits;
+	private double degree;
+	private final double tolerance = 2;
+	AHRS ahrs;
 	
 	public AngledTurn(double degree) {
 		requires(drivetrain);
-		this.eUnits = degree; //TODO Find 1 Degree in Encoder Position Units and Convert Here
+		this.degree = degree;
+		try {
+			ahrs = new AHRS(SPI.Port.kMXP); 
+		} catch(RuntimeException ex) {
+			
+		}
 	}
 
 	@Override
 	protected void initialize() {
-		drivetrain.resetEncoders();
+		ahrs.reset();
 	}
 
 	@Override
 	protected void execute() {
-		drivetrain.tankDrive(-AutoConstants.ROTATE_VEL,AutoConstants.ROTATE_VEL);
+		
+		if(ahrs.getAngle() < degree) {
+			drivetrain.tankDrive(0.2, -0.2);
+		} else {
+			drivetrain.tankDrive(-0.2, 0.2);
+		}
 	}
 
 	@Override
 	protected boolean isFinished() {
-		if(drivetrain.getLeftPosition() > eUnits) {
+		if(Math.abs(degree - ahrs.getAngle()) < tolerance) {
 			return true;
 		} else {
 			return false;
@@ -41,6 +55,6 @@ public class AngledTurn extends CommandBase {
 
 	@Override
 	protected void interrupted() {
-		
+		end();
 	}
 }

@@ -139,14 +139,14 @@ public class Drivetrain extends Subsystem {
 	/**
 	 * Returns the position of the left encoder
 	 */
-	public double getLeftPosition() {
+	public int getLeftPosition() {
 		return leftmotor1.getEncPosition();
 	}
 	
 	/**
 	 * Returns the position of the right encoder
 	 */
-	public double getRightPosition() {
+	public int getRightPosition() {
 		return rightmotor1.getEncPosition();
 	}
 	
@@ -156,7 +156,6 @@ public class Drivetrain extends Subsystem {
 	 * @param motor
 	 * 		The motor that you would like to stop 0,1:(left1, right1), also stopps follower motors
 	 */
-	
 	public void stopMotor(int motor) {
 		motors[motor].set(Constants.SPEED_ZERO);
 	}

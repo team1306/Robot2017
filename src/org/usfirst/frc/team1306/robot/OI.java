@@ -1,6 +1,6 @@
 package org.usfirst.frc.team1306.robot;
 
-import org.usfirst.frc.team1306.robot.commands.autonomous.MotionProfile;
+import org.usfirst.frc.team1306.robot.commands.autonomous.AngledTurn;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.QuickTurn;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
 import org.usfirst.frc.team1306.robot.commands.shooter.BangSpinShooter;
@@ -60,6 +60,8 @@ public class OI {
 		//Bind commands to buttons
 		pbuttonRB.whileHeld(new QuickTurn(true));
 		pbuttonLB.whileHeld(new QuickTurn(false));
+		
+		pbuttonY.whenPressed(new AngledTurn(90));
 		
 		pbuttonA.whileHeld(new BangSpinShooter());
 		//pbuttonA.whenPressed(new SpinShooter()); Use bang bang instead
