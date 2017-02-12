@@ -21,7 +21,7 @@ public class Hopper extends Subsystem {
 	}
 	
 	/**
-	 * Method that spins up shooter
+	 * Method that spins hopper
 	 */
 	public void spinHopper() {
 		if(Constants.HOPPER_ENABLED) {
@@ -30,7 +30,7 @@ public class Hopper extends Subsystem {
 	}
 	
 	/**
-	 * Stops the shooter motors
+	 * Stops all hopper motors
 	 */
 	public void stopAll() {
 		hopperMotor.set(Constants.SPEED_ZERO);

@@ -23,16 +23,18 @@ public class RobotMap {
 	//Shooter Ports
 	public static final int LEFT_SHOOTER_PORT = 5;
 	public static final int RIGHT_SHOOTER_PORT = 6;
-	public static final int INDEX_TALON_PORT = 7;
+	public static final int INDEXER_TALON_PORT = 7;
 	
 	//Turret Ports
 	public static final int TURRET_TALON_PORT = 8;
 	
-	//Intake Ports
-	public static final int INTAKE_TALON_PORT = 1;
+	
 	
 	//Hopper Ports
 	public static final int HOPPER_TALON_PORT = 0;
+	
+	//Intake Ports
+	public static final int INTAKE_TALON_PORT = 1;
 	
 	//Climber Ports
 	public static final int CLIMBER_TALON_PORT = 2;

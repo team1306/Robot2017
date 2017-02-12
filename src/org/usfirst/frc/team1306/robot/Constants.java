@@ -11,10 +11,10 @@ public class Constants {
 	public final static boolean SHOOTER_ENABLED = true;			//Shooter will only run when true
 	public final static boolean DRIVETRAIN_ENABLED = true;		//Drivetrain will only run when true
 	public final static boolean PID_DRIVETRAIN_ENABLED = false;	//PID-Drive will only run when true
-	public final static boolean MP_DRIVETRAIN_ENABLED = false;
 	public final static boolean HOPPER_ENABLED = true;			//Hopper will only run when true
 	public final static boolean CLIMBER_ENABLED = false; 		//Climber will only run when true
-	public static final boolean TURRET_ENABLED = true;			//Turret will only be able to turn if true
+	public final static boolean TURRET_ENABLED = true;			//Turret will only be able to turn if true
+	public final static boolean INDEXER_ENABLED = true;
 	
 	//Global Constants
 	public final static double SPEED_ZERO = 0.0;
@@ -34,6 +34,9 @@ public class Constants {
 	
 	//Hopper Constants
 	public final static double HOPPER_SPEED = 1.0;				//Speed at which hopper motor turns
+	
+	//Indexer Constants
+	public final static double INDEXER_SPEED = 0.9;
 	
 	//Shooter Constants
 	public final static double SHOOTER_SPEED = 0.95;			//When you adjust this you also have to change range

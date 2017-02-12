@@ -15,6 +15,7 @@ public class Shooter extends Subsystem {
 
 	private final CANTalon leftShooterMotor;
 	private final CANTalon rightShooterMotor;
+	private final CANTalon indexerMotor;
 	
 	public final static double shooterSpeed = Constants.SHOOTER_SPEED;
 	
@@ -23,6 +24,8 @@ public class Shooter extends Subsystem {
 		leftShooterMotor.enable();
 		rightShooterMotor = new CANTalon(RobotMap.RIGHT_SHOOTER_PORT);
 		rightShooterMotor.enable();
+		
+		indexerMotor = new CANTalon(RobotMap.INDEXER_TALON_PORT);
 	}
 	
 	/**
@@ -39,27 +42,35 @@ public class Shooter extends Subsystem {
 	 * Spins the shooter with a bang bang loop
 	 */
 	public void bangBangSpinShooter() {
-		
-		leftShooterMotor.enableBrakeMode(false);
-		rightShooterMotor.enableBrakeMode(false);
+		if(Constants.SHOOTER_ENABLED) {
+			leftShooterMotor.enableBrakeMode(false);
+			rightShooterMotor.enableBrakeMode(false);
 
-		SmartDashboard.putNumber("Shooter 1 Velocity", leftShooterMotor.getEncVelocity());
-		SmartDashboard.putNumber("Shooter 2 Velocity", rightShooterMotor.getEncVelocity());
-		
-		leftShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
-		if (leftShooterMotor.getEncVelocity() > Constants.SHOOTER_BANG_RANGE) {
-			leftShooterMotor.set(Constants.SHOOTER_SPEED);
-		}
-		else {
-			leftShooterMotor.set(Constants.SHOOTER_BANG_CEILING);
-		}
+			SmartDashboard.putNumber("Shooter 1 Velocity", leftShooterMotor.getEncVelocity());
+			SmartDashboard.putNumber("Shooter 2 Velocity", rightShooterMotor.getEncVelocity());
+			
+			leftShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
+			if (leftShooterMotor.getEncVelocity() > Constants.SHOOTER_BANG_RANGE) {
+				leftShooterMotor.set(Constants.SHOOTER_SPEED);
+			}
+			else {
+				leftShooterMotor.set(Constants.SHOOTER_BANG_CEILING);
+			}
 
-		rightShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
-		if (rightShooterMotor.getEncVelocity() > Constants.SHOOTER_BANG_RANGE) {
-			rightShooterMotor.set(Constants.SHOOTER_SPEED);
+			rightShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
+			if (rightShooterMotor.getEncVelocity() > Constants.SHOOTER_BANG_RANGE) {
+				rightShooterMotor.set(Constants.SHOOTER_SPEED);
+			}
+			else {
+				rightShooterMotor.set(Constants.SHOOTER_BANG_CEILING);
+			}
 		}
-		else {
-			rightShooterMotor.set(Constants.SHOOTER_BANG_CEILING);
+	}
+	
+	public void spinIndexer() {
+		if(Constants.INDEXER_ENABLED) {
+			indexerMotor.changeControlMode(TalonControlMode.PercentVbus);
+			indexerMotor.set(Constants.INDEXER_SPEED);
 		}
 	}
 	
