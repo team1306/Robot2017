@@ -33,34 +33,34 @@ public class Drivetrain extends Subsystem {
 		setupMotors(rightmotor1,rightmotor2);
 		
 		//PID Drivetrain Code
-		leftmotor1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		leftmotor1.reverseSensor(false);
-		leftmotor1.configEncoderCodesPerRev(256);
-		leftmotor1.configNominalOutputVoltage(+0.0f, -0.0f);
-		leftmotor1.configPeakOutputVoltage(+12.0f, -12.0f);
-		
-		rightmotor1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		rightmotor1.reverseSensor(false);
-		rightmotor1.configEncoderCodesPerRev(256);
-		rightmotor1.configNominalOutputVoltage(+0.0f, -0.0f);
-		rightmotor1.configPeakOutputVoltage(+12.0f, -12.0f);
-
-		leftmotor1.setMotionMagicCruiseVelocity(100);
-		leftmotor1.setMotionMagicAcceleration(20);
-		rightmotor1.setMotionMagicCruiseVelocity(100);
-		rightmotor1.setMotionMagicAcceleration(20);
-		
-		leftmotor1.setProfile(0);
-		leftmotor1.setF(Constants.F);	//Calculated constant
-		leftmotor1.setP(Constants.P);	//Calculated constant
-		leftmotor1.setI(Constants.I);	//Calculated constant 1/100 of P-gain
-		leftmotor1.setD(Constants.D);
-		
-		rightmotor1.setProfile(0);
-		rightmotor1.setF(Constants.F);	//Calculated constant
-		rightmotor1.setP(Constants.P);	//Calculated constant
-		rightmotor1.setI(Constants.I);	//Calculated constant 1/100 P-gain
-		rightmotor1.setD(Constants.D);
+//		leftmotor1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+//		leftmotor1.reverseSensor(false);
+//		leftmotor1.configEncoderCodesPerRev(256);
+//		leftmotor1.configNominalOutputVoltage(+0.0f, -0.0f);
+//		leftmotor1.configPeakOutputVoltage(+12.0f, -12.0f);
+//		
+//		rightmotor1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+//		rightmotor1.reverseSensor(false);
+//		rightmotor1.configEncoderCodesPerRev(256);
+//		rightmotor1.configNominalOutputVoltage(+0.0f, -0.0f);
+//		rightmotor1.configPeakOutputVoltage(+12.0f, -12.0f);
+//
+//		/*leftmotor1.setMotionMagicCruiseVelocity(100);
+//		leftmotor1.setMotionMagicAcceleration(20);
+//		rightmotor1.setMotionMagicCruiseVelocity(100);
+//		rightmotor1.setMotionMagicAcceleration(20);*/
+//		
+//		leftmotor1.setProfile(0);
+//		leftmotor1.setF(Constants.F);	//Calculated constant
+//		leftmotor1.setP(Constants.P);	//Calculated constant
+//		leftmotor1.setI(Constants.I);	//Calculated constant 1/100 of P-gain
+//		leftmotor1.setD(Constants.D);
+//		
+//		rightmotor1.setProfile(0);
+//		rightmotor1.setF(Constants.F);	//Calculated constant
+//		rightmotor1.setP(Constants.P);	//Calculated constant
+//		rightmotor1.setI(Constants.I);	//Calculated constant 1/100 P-gain
+//		rightmotor1.setD(Constants.D);
 	}
 	
 	/**
@@ -95,8 +95,8 @@ public class Drivetrain extends Subsystem {
 		SmartDashboard.putNumber("rightSpeed",rightmotor1.getEncVelocity());
 		
 		if(Constants.DRIVETRAIN_ENABLED) {
-			leftmotor1.set(-leftVal/**Constants.SPEED_MODIFIER*/);
-			rightmotor1.set(rightVal/**Constants.SPEED_MODIFIER*/);
+			leftmotor1.set(leftVal/**Constants.SPEED_MODIFIER*/);
+			rightmotor1.set(-rightVal/**Constants.SPEED_MODIFIER*/);
 		}
 	}
 	

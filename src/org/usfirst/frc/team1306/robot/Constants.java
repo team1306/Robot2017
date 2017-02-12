@@ -9,8 +9,8 @@ public class Constants {
 	//Subsystem Constantss
 	public final static boolean INTAKE_ENABLED = true;			//Intake will only run when true
 	public final static boolean SHOOTER_ENABLED = true;			//Shooter will only run when true
-	public final static boolean DRIVETRAIN_ENABLED = false;		//Drivetrain will only run when true
-	public final static boolean PID_DRIVETRAIN_ENABLED = true;	//PID-Drive will only run when true
+	public final static boolean DRIVETRAIN_ENABLED = true;		//Drivetrain will only run when true
+	public final static boolean PID_DRIVETRAIN_ENABLED = false;	//PID-Drive will only run when true
 	public final static boolean MP_DRIVETRAIN_ENABLED = false;
 	public final static boolean HOPPER_ENABLED = true;			//Hopper will only run when true
 	public final static boolean CLIMBER_ENABLED = false; 		//Climber will only run when true
