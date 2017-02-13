@@ -10,6 +10,15 @@ public class AutoConstants {
 	public final static double SHOOT_TIME = 10.0;
 	public final static double ROTATE_VEL = 0.2;
 	
+	public final static double SCAN_DELAY = 1.0;
+	
+	public final static int MP_ONE = 1;
+	public final static int MP_TWO = 2;
+	public final static int MP_THREE = 3;
+	public final static int MP_FOUR = 4;
+	public final static int MP_FIVE = 5;;
+	public final static int MP_SIX = 6;
+	
 	/*
 	 * Amount of time for initial drive before turning. TODO Experimentally find the correct value for all of these
 	 */

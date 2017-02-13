@@ -1,13 +1,13 @@
 package org.usfirst.frc.team1306.robot.commands;
 
 import org.usfirst.frc.team1306.robot.OI;
+import org.usfirst.frc.team1306.robot.subsystems.AltTurret;
 import org.usfirst.frc.team1306.robot.subsystems.Climber;
 import org.usfirst.frc.team1306.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1306.robot.subsystems.Hood;
 import org.usfirst.frc.team1306.robot.subsystems.Hopper;
 import org.usfirst.frc.team1306.robot.subsystems.Intake;
 import org.usfirst.frc.team1306.robot.subsystems.Shooter;
-import org.usfirst.frc.team1306.robot.subsystems.Turret;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -27,14 +27,15 @@ public abstract class CommandBase extends Command {
 	protected static Intake intake;
 	protected static Hopper hopper;
 	protected static Hood hood;
-	protected static Turret turret;
+	//protected static Turret turret;
+	protected static AltTurret turret;
 	protected static Climber climber;
 	
 	public static void init() {
 		drivetrain = new Drivetrain();
 		shooter = new Shooter();
 		intake = new Intake();
-		turret = new Turret();
+		turret = new AltTurret();
 		hood = new Hood();
 		hopper = new Hopper();
 		climber = new Climber();

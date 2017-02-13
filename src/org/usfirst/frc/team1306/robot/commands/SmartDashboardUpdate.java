@@ -38,5 +38,4 @@ public class SmartDashboardUpdate extends CommandBase {
 	protected void interrupted() {
 		
 	}
-
 }

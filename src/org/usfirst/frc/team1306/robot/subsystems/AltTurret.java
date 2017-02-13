@@ -6,6 +6,7 @@ import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AltTurret extends PIDSubsystem {
 
@@ -32,6 +33,13 @@ public class AltTurret extends PIDSubsystem {
 			turretMotor.changeControlMode(TalonControlMode.Position);
 			turretMotor.set(setpoint);
 			turretMotor.enable();
+		}
+	}
+	
+	public void set(double speed) {
+		if(Constants.TURRET_ENABLED) {
+			turretMotor.changeControlMode(TalonControlMode.PercentVbus);
+			turretMotor.set(speed);
 		}
 	}
 	

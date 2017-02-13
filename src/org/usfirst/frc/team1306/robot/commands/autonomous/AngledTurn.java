@@ -3,6 +3,7 @@ package org.usfirst.frc.team1306.robot.commands.autonomous;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Command that turns the drivetrain to a give degree
@@ -31,6 +32,8 @@ public class AngledTurn extends CommandBase {
 
 	@Override
 	protected void execute() {
+		
+		SmartDashboard.putNumber("Gyro Direction",ahrs.getAngle());
 		
 		if(ahrs.getAngle() < degree) {
 			drivetrain.tankDrive(0.2, -0.2);

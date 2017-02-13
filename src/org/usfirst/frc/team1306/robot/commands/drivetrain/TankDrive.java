@@ -1,7 +1,10 @@
 package org.usfirst.frc.team1306.robot.commands.drivetrain;
 
 import org.usfirst.frc.team1306.robot.Constants;
-import org.usfirst.frc.team1306.robot.OI.*;
+import org.usfirst.frc.team1306.robot.OI.axis;
+import org.usfirst.frc.team1306.robot.OI.controller;
+import org.usfirst.frc.team1306.robot.OI.joystick;
+import org.usfirst.frc.team1306.robot.OI.trigger;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
 /**
@@ -32,9 +35,9 @@ public class TankDrive extends CommandBase {
 		
 		if(oi.getTriggerVal(controller.p, trigger.l) >= Constants.TRIGGER_DEADBAND || oi.getTriggerVal(controller.p, trigger.r) >= Constants.TRIGGER_DEADBAND) {
 			if(oi.getTriggerVal(controller.p, trigger.r) >= Constants.TRIGGER_DEADBAND) {
-				drivetrain.tankDrive(1.0,1.0);/*oi.getTriggerVal(controller.p, trigger.r), oi.getTriggerVal(controller.p, trigger.r));*/
+				drivetrain.tankDrive(oi.getTriggerVal(controller.p, trigger.r), oi.getTriggerVal(controller.p, trigger.r));
 			} else if(oi.getTriggerVal(controller.p, trigger.l) >= Constants.TRIGGER_DEADBAND) {
-				drivetrain.tankDrive(1.0,1.0);/*-oi.getTriggerVal(controller.p, trigger.l), -oi.getTriggerVal(controller.p, trigger.l));*/
+				drivetrain.tankDrive(-oi.getTriggerVal(controller.p, trigger.l), -oi.getTriggerVal(controller.p, trigger.l));
 			}
 		} else {
 			drivetrain.tankDrive(oi.getJoyVal(controller.p, joystick.l, axis.y), oi.getJoyVal(controller.p, joystick.r, axis.y));

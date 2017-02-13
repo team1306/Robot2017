@@ -4,6 +4,7 @@ import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Trajectory;
 import jaci.pathfinder.Waypoint;
@@ -31,9 +32,9 @@ public class MotionProfile extends CommandBase {
 	protected void initialize() {
 		Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH, 0.05, max_velocity, max_accel, 60.0);
 		Waypoint[] points = new Waypoint[]	{
-			new Waypoint(0,1,0),
-			new Waypoint(0,2,0),
-			new Waypoint(0,3,0)
+			new Waypoint(1,0,0),
+			new Waypoint(2,0,0),
+			new Waypoint(3,0,0)
 		};
 		Trajectory trajectory = Pathfinder.generate(points, config);
 		TankModifier modifier = new TankModifier(trajectory).modify(0.5);
@@ -53,6 +54,9 @@ public class MotionProfile extends CommandBase {
 		
 	@Override
 	protected void execute() {
+		
+		SmartDashboard.putNumber("X",ahrs.getRawGyroX());
+		SmartDashboard.putNumber("Y",ahrs.getRawGyroY());
 		
 		double l = left.calculate(drivetrain.getLeftPosition());
 		double r = right.calculate(drivetrain.getRightPosition());
