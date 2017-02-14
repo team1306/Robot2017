@@ -25,20 +25,16 @@ public class ResetTurret extends CommandBase{
 
 	@Override
 	protected boolean isFinished() {
-		if(turret.getPos() == 0) {
-			return true;
-		} else {
-			return false;
-		}
+		return false;
 	}
 
 	@Override
 	protected void end() {
-		turret.stopAll();
+		//turret.stopAll();
 	}
 
 	@Override
 	protected void interrupted() {
-		end();
+		//end();
 	}
 }

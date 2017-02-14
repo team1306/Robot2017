@@ -33,11 +33,11 @@ public class Scan extends CommandBase {
 
 	@Override
 	protected void end() {
-		turret.stopAll();
+		//turret.stopAll();
 	}
 
 	@Override
 	protected void interrupted() {
-		end();
+		//end();
 	}
 }

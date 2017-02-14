@@ -27,6 +27,11 @@ public class AltTurret extends PIDSubsystem {
 		setSetpoint(0.0);
 	}
 	
+	
+	public double getPos() {
+		return turretMotor.getPosition();
+	}
+	
 	public void setPosition(double setpoint) {
 		if(Constants.TURRET_ENABLED) {
 			getPIDController().reset();
@@ -56,10 +61,9 @@ public class AltTurret extends PIDSubsystem {
 			turretMotor.set(output);
 		}
 	}
-
+	
 	@Override
 	protected void initDefaultCommand() {
 		
 	}
-
 }
