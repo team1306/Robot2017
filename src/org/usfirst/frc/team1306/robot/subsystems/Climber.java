@@ -2,9 +2,11 @@ package org.usfirst.frc.team1306.robot.subsystems;
 
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.RobotMap;
+
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
 
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -13,16 +15,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Climber extends Subsystem{
 
-	private final CANTalon climberMotor;
+	private final Talon climberMotor;
 	
 	public Climber() {
-		climberMotor = new CANTalon(RobotMap.CLIMBER_TALON_PORT);
-		climberMotor.enable();
+		climberMotor = new Talon(RobotMap.CLIMBER_TALON_PORT);
 	}
 	
 	public void spinClimber() {
 		if(Constants.CLIMBER_ENABLED) {
-			climberMotor.changeControlMode(TalonControlMode.PercentVbus);
 			climberMotor.set(0.5);
 		}
 	}
