@@ -35,6 +35,7 @@ public class AltTurret extends PIDSubsystem {
 	public void setPosition(double setpoint) {
 		if(Constants.TURRET_ENABLED) {
 			getPIDController().reset();
+			SmartDashboard.putNumber("Position",getPos());
 			turretMotor.changeControlMode(TalonControlMode.Position);
 			turretMotor.set(setpoint);
 			turretMotor.enable();
@@ -43,6 +44,7 @@ public class AltTurret extends PIDSubsystem {
 	
 	public void set(double speed) {
 		if(Constants.TURRET_ENABLED) {
+			SmartDashboard.putNumber("Position",getPos());
 			turretMotor.changeControlMode(TalonControlMode.PercentVbus);
 			turretMotor.set(speed);
 		}
@@ -57,6 +59,7 @@ public class AltTurret extends PIDSubsystem {
 	@Override
 	protected void usePIDOutput(double output) {
 		if(Constants.TURRET_ENABLED) {
+			SmartDashboard.putNumber("Position",getPos());
 			turretMotor.changeControlMode(TalonControlMode.PercentVbus);
 			turretMotor.set(output);
 		}

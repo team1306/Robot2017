@@ -24,6 +24,8 @@ public class SpinShooter extends CommandBase{
      */
     protected void execute() {
     	shooter.spinShooter();
+    	shooter.spinIndexer();
+    	hopper.spinHopper();
     }
 
     /**

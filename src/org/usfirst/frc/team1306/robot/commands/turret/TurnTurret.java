@@ -1,8 +1,7 @@
 package org.usfirst.frc.team1306.robot.commands.turret;
 
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
-
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team1306.robot.commands.autonomous.Wait;
 
 /**
  * Command that turns turret to a given position
@@ -22,12 +21,12 @@ public class TurnTurret extends CommandBase {
      * Spins turret to correct position
      */
     protected void execute() {
-    	SmartDashboard.putNumber("Turret", 1);
-    	turret.setPosition(360);
+    	turret.setPosition(turret.getPos() + 1);
+    	//new Wait(1);
     }
 
     protected boolean isFinished() {
-    	if(turret.getPos() == 360) {
+    	if(turret.getPos() == 40) {
     		return true;
     	} else {
     		return false;

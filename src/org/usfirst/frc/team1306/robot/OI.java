@@ -2,8 +2,7 @@ package org.usfirst.frc.team1306.robot;
 
 import org.usfirst.frc.team1306.robot.commands.drivetrain.QuickTurn;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
-import org.usfirst.frc.team1306.robot.commands.shooter.BangSpinShooter;
-import org.usfirst.frc.team1306.robot.commands.turret.ResetTurret;
+import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
 import org.usfirst.frc.team1306.robot.commands.turret.TurnTurret;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
@@ -64,12 +63,12 @@ public class OI {
 		//pbuttonY.whenPressed(new AngledTurn(90));
 		
 		//pbuttonA.whileHeld(new BangSpinShooter());
-		//pbuttonA.whenPressed(new SpinShooter()); Use bang bang instead
+		pbuttonA.whenPressed(new SpinShooter()); 
 		//pbuttonB.whenPressed(new ResetTurret());
 		pbuttonX.whenPressed(new SpinIntake());
 		//pbuttonY.whenPressed(new Scan());
 		//pbuttonStart.whileHeld(new Climb());
-		//pbuttonStart.whenPressed(new TurnTurret()); //Testing
+		pbuttonStart.whenPressed(new TurnTurret()); //Testing
 		//pbuttonStart.whenPressed(new MotionProfile());
 		
 		//sbuttonA.whenPressed(new AdjustHood(HoodAngle.DOWN));
