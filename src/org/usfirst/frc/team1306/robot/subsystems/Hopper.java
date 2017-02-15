@@ -3,6 +3,8 @@ package org.usfirst.frc.team1306.robot.subsystems;
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.RobotMap;
 import com.ctre.CANTalon;
+
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -11,13 +13,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Hopper extends Subsystem {
 
-	private final CANTalon hopperMotor;
+	private final Talon hopperMotor;
 	
 	public final static double hopperSpeed = Constants.HOPPER_SPEED;
 	
 	public Hopper() {
-		hopperMotor = new CANTalon(RobotMap.HOPPER_TALON_PORT);
-		hopperMotor.enable();
+		hopperMotor = new Talon(RobotMap.HOPPER_TALON_PORT);
+		//hopperMotor.enable();
 	}
 	
 	/**

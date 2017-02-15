@@ -25,7 +25,7 @@ public class Intake extends Subsystem {
 	public void spinIntake() {
 		
 		if(Constants.INTAKE_ENABLED) {
-			intakeMotor.set(-intakeSpeed);
+			intakeMotor.set(intakeSpeed);
 		}
 	}
 	

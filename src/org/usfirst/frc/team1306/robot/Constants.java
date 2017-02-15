@@ -30,13 +30,13 @@ public class Constants {
 	public final static int BANG_SHOOTER_BUTTON = XboxController.A;
 	
 	//Intake Constants
-	public final static double INTAKE_SPEED = 0.85;				//Speed at which intake motor turns
+	public final static double INTAKE_SPEED = 0.70;				//Speed at which intake motor turns
 	
 	//Hopper Constants
-	public final static double HOPPER_SPEED = 1.0;				//Speed at which hopper motor turns
+	public final static double HOPPER_SPEED = 0.7;				//Speed at which hopper motor turns
 	
 	//Indexer Constants
-	public final static double INDEXER_SPEED = 0.9;
+	public final static double INDEXER_SPEED = 0.7;
 	
 	//Shooter Constants
 	public final static double SHOOTER_SPEED = 0.95;			//When you adjust this you also have to change range

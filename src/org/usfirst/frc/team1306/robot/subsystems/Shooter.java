@@ -17,7 +17,7 @@ public class Shooter extends Subsystem {
 	private final CANTalon rightShooterMotor;
 	private final CANTalon indexerMotor;
 	
-	public final static double shooterSpeed = Constants.SHOOTER_SPEED;
+	public final static double shooterSpeed = -Constants.SHOOTER_SPEED;
 	
 	public Shooter() {
 		leftShooterMotor = new CANTalon(RobotMap.LEFT_SHOOTER_PORT);
@@ -70,7 +70,7 @@ public class Shooter extends Subsystem {
 	public void spinIndexer() {
 		if(Constants.INDEXER_ENABLED) {
 			indexerMotor.changeControlMode(TalonControlMode.PercentVbus);
-			indexerMotor.set(Constants.INDEXER_SPEED);
+			indexerMotor.set(-Constants.INDEXER_SPEED);
 		}
 	}
 	
