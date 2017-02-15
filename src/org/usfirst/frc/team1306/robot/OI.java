@@ -33,9 +33,11 @@ public class OI {
 	//Declare buttons on secondary controller
 	private final Button sbuttonA;
 	private final Button sbuttonB;
+	private final Button sbuttonX;
 	private final Button sbuttonY;
 	private final Button sbuttonRB;
 	private final Button sbuttonLB;
+	private final Button sbuttonStart;	
 	
 	public OI() {
 		//Declare ports of xbox controllers
@@ -54,9 +56,11 @@ public class OI {
 		//Map buttons to xbox controller buttons for secondary controller
 		sbuttonA = new JoystickButton(secondaryController, XboxController.A);
 		sbuttonB = new JoystickButton(secondaryController, XboxController.B);
+		sbuttonX = new JoystickButton(secondaryController, XboxController.X);
 		sbuttonY = new JoystickButton(secondaryController, XboxController.Y);
 		sbuttonRB = new JoystickButton(secondaryController, XboxController.RB);
 		sbuttonLB = new JoystickButton(secondaryController, XboxController.LB);
+		sbuttonStart = new JoystickButton(secondaryController, XboxController.START);
 		
 		//Bind commands to buttons
 		pbuttonRB.whileHeld(new QuickTurn(true));
@@ -69,7 +73,7 @@ public class OI {
 		//pbuttonB.whenPressed(new ResetTurret());
 		pbuttonX.whenPressed(new SpinIntake());
 		//pbuttonY.whenPressed(new Scan());
-		pbuttonStart.whileHeld(new Climb());
+		sbuttonStart.whileHeld(new Climb());
 		//pbuttonStart.whileHeld(new Climb());
 		//pbuttonStart.whenPressed(new TurnTurret()); //Testing
 		//pbuttonStart.whenPressed(new MotionProfile());

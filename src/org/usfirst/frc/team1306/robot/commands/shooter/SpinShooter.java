@@ -42,6 +42,7 @@ public class SpinShooter extends CommandBase{
     
     protected void end() {
     	shooter.stopAll();
+    	hopper.stopAll();
     }
     
     protected void interrupted() {

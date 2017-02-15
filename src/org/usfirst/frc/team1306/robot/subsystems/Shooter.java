@@ -89,6 +89,7 @@ public class Shooter extends Subsystem {
 	public void stopAll() {
 		leftShooterMotor.set(Constants.SPEED_ZERO);
 		rightShooterMotor.set(Constants.SPEED_ZERO);
+		indexerMotor.set(Constants.SPEED_ZERO);
 	}
 	
 	@Override
