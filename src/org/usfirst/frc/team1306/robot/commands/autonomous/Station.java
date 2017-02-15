@@ -13,8 +13,9 @@ public enum Station {
 	RED_THREE(AutoConstants.MP_THREE,ScanDirection.LEFT,ScanDirection.RIGHT),
 	BLUE_ONE(AutoConstants.MP_FOUR,ScanDirection.RIGHT,ScanDirection.RIGHT),
 	BLUE_TWO(AutoConstants.MP_FIVE,ScanDirection.RIGHT,ScanDirection.RIGHT),
-	BLUE_THREE(AutoConstants.MP_SIX,ScanDirection.RIGHT,ScanDirection.LEFT);
-		
+	BLUE_THREE(AutoConstants.MP_SIX,ScanDirection.RIGHT,ScanDirection.LEFT),
+	UNKNOWN(0,ScanDirection.UNKNOWN,ScanDirection.UNKNOWN);	
+	
 	private final int motionProfile;
 	private final ScanDirection dir1;
 	private final ScanDirection dir2;
@@ -26,8 +27,15 @@ public enum Station {
 		this.dir2 = dir2;
 	}
 	
-	public ScanDirection getScanDir(int shot) {
+	public ScanDirection getScanDir() {
 		return dir1;
-		
+	}
+	
+	public ScanDirection getScanDir(int shot) {
+		if(shot == 0) {
+			return dir1;
+		} else {
+			return dir2;
+		}
 	}
 }

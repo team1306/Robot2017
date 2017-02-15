@@ -4,6 +4,9 @@ import org.usfirst.frc.team1306.robot.commands.CommandBase;
 import org.usfirst.frc.team1306.robot.commands.SmartDashboardUpdate;
 import org.usfirst.frc.team1306.robot.commands.autonomous.AutonomousCommand;
 import org.usfirst.frc.team1306.robot.commands.autonomous.Station;
+
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -31,17 +34,9 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	
     	CommandBase.init();
+    	
     	smartDashboard = new SmartDashboardUpdate();
         smartDashboard.start();
-        
-        chooser = new SendableChooser<AutonomousCommand>();
-        chooser.addObject("Red 1", new AutonomousCommand(Station.RED_ONE));
-        chooser.addObject("Red 2", new AutonomousCommand(Station.RED_TWO));
-        chooser.addObject("Red 3", new AutonomousCommand(Station.RED_THREE));
-        chooser.addObject("Blue 1", new AutonomousCommand(Station.BLUE_ONE));
-        chooser.addObject("Blue 2", new AutonomousCommand(Station.BLUE_TWO));
-        chooser.addObject("Blue 3", new AutonomousCommand(Station.BLUE_THREE));
-        SmartDashboard.putData("Auto mode", chooser);
     }
 	
 	/**
@@ -61,7 +56,20 @@ public class Robot extends IterativeRobot {
 	 * Gets chosen autonomous mode from SmartDashboard and starts it
 	 */
     public void autonomousInit() {
-        autonomousCommand = (Command) chooser.getSelected();
+    	
+    	DriverStation.Alliance alliance = DriverStation.getInstance().getAlliance();
+        int station = DriverStation.getInstance().getLocation();
+        
+        if(alliance.equals(Alliance.Red)) {
+        	autonomousCommand = new AutonomousCommand(Alliance.Red,station);
+        	SmartDashboard.putString("Alliance: ","Red");
+        } else if(alliance.equals(Alliance.Blue)) {
+        	autonomousCommand = new AutonomousCommand(Alliance.Blue,station);
+        	SmartDashboard.putString("Alliance: ","Blue");
+        } else {
+        	autonomousCommand = new AutonomousCommand(Alliance.Invalid,-1);
+        }
+    	SmartDashboard.putNumber("Station: ",station);
         
         if (autonomousCommand != null) {
         	autonomousCommand.start();
