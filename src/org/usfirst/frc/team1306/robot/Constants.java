@@ -67,4 +67,5 @@ public class Constants {
 	public final static double LOGITECH_RES_WIDTH = 800; 		//Pixels
 	public final static double UPPER_TAPE_WIDTH = 4.00; 		//Inches
 	public final static double TOWER_HEIGHT = 88; 				//Inches
+	public final static double DATA_REFRESH_RATE = 0.1;
 }

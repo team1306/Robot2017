@@ -2,7 +2,10 @@ package org.usfirst.frc.team1306.robot.subsystems;
 
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.RobotMap;
+<<<<<<< HEAD
 import com.ctre.CANTalon;
+=======
+>>>>>>> origin/master
 
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -19,7 +22,10 @@ public class Hopper extends Subsystem {
 	
 	public Hopper() {
 		hopperMotor = new Talon(RobotMap.HOPPER_TALON_PORT);
+<<<<<<< HEAD
 		//hopperMotor.enable();
+=======
+>>>>>>> origin/master
 	}
 	
 	/**
