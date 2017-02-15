@@ -12,7 +12,7 @@ import org.usfirst.frc.team1306.robot.commands.CommandBase;
 public class SpinIntake extends CommandBase {
 
 	//private final Timer timer;
-	private static boolean running = true;
+	//private static boolean running = true;
 	
     public SpinIntake() {
         requires(intake);

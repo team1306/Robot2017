@@ -1,7 +1,6 @@
 package org.usfirst.frc.team1306.robot.commands.turret;
 
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
-import org.usfirst.frc.team1306.robot.commands.autonomous.Wait;
 
 /**
  * Command that turns turret to a given position

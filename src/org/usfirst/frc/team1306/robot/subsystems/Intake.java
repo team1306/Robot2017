@@ -23,7 +23,6 @@ public class Intake extends Subsystem {
 	 * Method that continually spins intake
 	 */
 	public void spinIntake() {
-		
 		if(Constants.INTAKE_ENABLED) {
 			intakeMotor.set(intakeSpeed);
 		}
@@ -44,5 +43,4 @@ public class Intake extends Subsystem {
 	protected void initDefaultCommand() {
 		
 	}
-
 }

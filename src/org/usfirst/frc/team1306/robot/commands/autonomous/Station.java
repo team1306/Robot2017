@@ -2,8 +2,6 @@ package org.usfirst.frc.team1306.robot.commands.autonomous;
 
 import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 /**
  * Enum that contains commands for different alliance stations
  * @author Jackson Goth

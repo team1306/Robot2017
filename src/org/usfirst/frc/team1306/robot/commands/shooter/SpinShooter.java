@@ -6,7 +6,7 @@ import org.usfirst.frc.team1306.robot.OI.controller;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
 /**
- * Command that calls to spin shooter, stops when a button is no longer pressed
+ * Command that calls to spin shooter, stops when shooter button is no longer pressed
  * @author Jackson Goth
  */
 public class SpinShooter extends CommandBase{
@@ -29,7 +29,7 @@ public class SpinShooter extends CommandBase{
     }
 
     /**
-     * Stops spinning shooter when A is no longer pressed
+     * Stops spinning shooter when shooter button is no longer pressed
      */
     protected boolean isFinished() {
     	if(OI.getButtonVal(controller.p,Constants.SHOOTER_BUTTON)) {

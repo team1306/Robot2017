@@ -28,8 +28,6 @@ public class RobotMap {
 	//Turret Ports
 	public static final int TURRET_TALON_PORT = 8;
 	
-	
-	
 	//Hopper Ports
 	public static final int HOPPER_TALON_PORT = 0;
 	
