@@ -46,7 +46,7 @@ public class TimedDrive extends CommandBase {
 	 */
 	@Override
 	protected void execute() {
-		drivetrain.driveTank(throttle, throttle);
+		drivetrain.tankDrive(throttle, throttle);
 	}
 
 	/**
@@ -63,7 +63,7 @@ public class TimedDrive extends CommandBase {
 	 */
 	@Override
 	protected void end() {
-		drivetrain.stop();
+		drivetrain.stopAll();
 	}
 
 	/**

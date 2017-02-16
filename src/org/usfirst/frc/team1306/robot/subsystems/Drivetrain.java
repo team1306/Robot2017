@@ -3,9 +3,12 @@ package org.usfirst.frc.team1306.robot.subsystems;
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.RobotMap;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.TankDrive;
+
 import com.ctre.CANTalon;
-import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
+import com.kauailabs.navx.frc.AHRS;
+
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -21,6 +24,7 @@ public class Drivetrain extends Subsystem {
 	private final CANTalon rightmotor1;
 	private final CANTalon leftmotor2;
 	private final CANTalon rightmotor2;
+	AHRS ahrs;
 	
 	public Drivetrain() {
 		leftmotor1 = new CANTalon(RobotMap.LEFT_TALON_1_PORT);
@@ -31,6 +35,15 @@ public class Drivetrain extends Subsystem {
 		motors = new CANTalon[] {leftmotor1, rightmotor1};
 		setupMotors(leftmotor1,leftmotor2);
 		setupMotors(rightmotor1,rightmotor2);
+		
+		try {
+			ahrs = new AHRS(SPI.Port.kMXP);
+			SmartDashboard.putString("Gyro Connected","True");
+		} catch(RuntimeException ex) {
+			SmartDashboard.putString("Gyro Connected","False");
+		}
+		
+		ahrs.reset();
 		
 		//PID Drivetrain Code
 //		leftmotor1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
@@ -97,6 +110,7 @@ public class Drivetrain extends Subsystem {
 		if(Constants.DRIVETRAIN_ENABLED) {
 			leftmotor1.set(leftVal/**Constants.SPEED_MODIFIER*/);
 			rightmotor1.set(-rightVal/**Constants.SPEED_MODIFIER*/);
+			SmartDashboard.putNumber("Gyro Angle",ahrs.getAngle());
 		}
 	}
 	
