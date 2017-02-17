@@ -6,28 +6,30 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class getData extends CommandBase {
+public class GetData extends CommandBase {
 
 	Timer timer;
 	NetworkTable table;
 	
-	public getData() {
+	public GetData() {
 		timer = new Timer();
+		NetworkTable.setClientMode();
 		NetworkTable.initialize();
-		NetworkTable.setTeam(1306);
+		//NetworkTable.setIPAddress(Constants.JETSON_IP);
 		table = NetworkTable.getTable("1306");
 	}
 	
 	@Override
 	protected void initialize() {
-		SmartDashboard.putString("reachedData","true");
 		timer.reset();
 		timer.start();
 	}
 
 	@Override
 	protected void execute() {
-		//table.putNumber("newValue",5);
+		table.putNumber("roboValue",5);
+		SmartDashboard.getNumber("roboValue",0);
+		SmartDashboard.putBoolean("Connected?: ",table.isConnected());
 		if(timer.hasPeriodPassed(Constants.DATA_REFRESH_RATE)) {
 			int defaultValue = 0;
 			double newValue = table.getNumber("newValue",defaultValue);

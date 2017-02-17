@@ -4,9 +4,13 @@ import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
 public class DeployGear extends CommandBase {
 	
+	public DeployGear() {
+		requires(gearmech);
+	}
+	
 	@Override
 	protected void initialize() {
-		
+		gearmech.deployGear();
 	}
 
 	@Override
@@ -16,7 +20,7 @@ public class DeployGear extends CommandBase {
 
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return true;
 	}
 
 	@Override
@@ -25,7 +29,7 @@ public class DeployGear extends CommandBase {
 	}
 
 	@Override
-	protected void interrupted() {
+	protected void interrupted() {	
 		
 	}
 }

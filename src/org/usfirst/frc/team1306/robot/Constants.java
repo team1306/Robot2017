@@ -7,14 +7,14 @@ package org.usfirst.frc.team1306.robot;
 public class Constants {
 
 	//Subsystem Constantss
-	public final static boolean INTAKE_ENABLED = false;			//Intake will only run when true
-	public final static boolean SHOOTER_ENABLED = false;			//Shooter will only run when true
-	public final static boolean DRIVETRAIN_ENABLED = false;		//Drivetrain will only run when true
+	public final static boolean INTAKE_ENABLED = true;			//Intake will only run when true
+	public final static boolean SHOOTER_ENABLED = true;			//Shooter will only run when true
+	public final static boolean DRIVETRAIN_ENABLED = true;		//Drivetrain will only run when true
 	public final static boolean PID_DRIVETRAIN_ENABLED = false;	//PID-Drive will only run when true
-	public final static boolean HOPPER_ENABLED = false;			//Hopper will only run when true
+	public final static boolean HOPPER_ENABLED = true;			//Hopper will only run when true
 	public final static boolean CLIMBER_ENABLED = false; 		//Climber will only run when true
 	public final static boolean TURRET_ENABLED = false;			//Turret will only be able to turn if true
-	public final static boolean INDEXER_ENABLED = false;
+	public final static boolean INDEXER_ENABLED = true;
 	
 	//Global Constants
 	public final static double SPEED_ZERO = 0.0;
@@ -28,6 +28,9 @@ public class Constants {
 	public final static int INTAKE_BUTTON = XboxController.X;
 	public final static int SHOOTER_BUTTON = XboxController.A;
 	public final static int BANG_SHOOTER_BUTTON = XboxController.A;
+	
+	//GearMech Constants
+	public final static int GEAR_DEPLOY_TIME = 1;
 	
 	//Intake Constants
 	public final static double INTAKE_SPEED = 0.70;				//Speed at which intake motor turns
@@ -50,7 +53,7 @@ public class Constants {
 	public final static double TURRET_D = 0.0;
 	
 	//Drivetrain Constants
-	public final static double SPEED_MODIFIER = 0.8;			//Multiplier of speeds inputed into tankDrive
+	public final static double SPEED_MODIFIER = 0.7;			//Multiplier of speeds inputed into tankDrive
 	public final static double PID_SPEED = 200;
 	public final static double TURN_SPEED = 0.45;				//Speed at which QuickTurn turns robot
 	public final static double LEFT_ROTATIONS = 40;
@@ -68,4 +71,5 @@ public class Constants {
 	public final static double UPPER_TAPE_WIDTH = 4.00; 		//Inches
 	public final static double TOWER_HEIGHT = 88; 				//Inches
 	public final static double DATA_REFRESH_RATE = 0.1;
+	public final static String JETSON_IP = "";
 }

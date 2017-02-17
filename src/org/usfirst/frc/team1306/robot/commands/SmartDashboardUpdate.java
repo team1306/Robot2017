@@ -1,6 +1,6 @@
 package org.usfirst.frc.team1306.robot.commands;
 
-import org.usfirst.frc.team1306.robot.vision.getData;
+import org.usfirst.frc.team1306.robot.vision.GetData;
 
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
@@ -29,7 +29,9 @@ public class SmartDashboardUpdate extends CommandBase {
 
 	@Override
 	protected void execute() {
-		//SmartDashboard.putString("Hood Position",hood.getPos());
+		SmartDashboard.putString("Hood Position",hood.getPos());
+		
+		SmartDashboard.putNumber("Turret Position",turret.getPos());
 		
 		SmartDashboard.putNumber("Hopper Draw",panel.getCurrent(2));
 		SmartDashboard.putNumber("Indexers Draw",panel.getCurrent(4));
