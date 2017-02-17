@@ -13,17 +13,21 @@ public class getData extends CommandBase {
 	
 	public getData() {
 		timer = new Timer();
+		NetworkTable.initialize();
+		NetworkTable.setTeam(1306);
 		table = NetworkTable.getTable("1306");
 	}
 	
 	@Override
 	protected void initialize() {
+		SmartDashboard.putString("reachedData","true");
 		timer.reset();
 		timer.start();
 	}
 
 	@Override
 	protected void execute() {
+		//table.putNumber("newValue",5);
 		if(timer.hasPeriodPassed(Constants.DATA_REFRESH_RATE)) {
 			int defaultValue = 0;
 			double newValue = table.getNumber("newValue",defaultValue);

@@ -1,6 +1,9 @@
 package org.usfirst.frc.team1306.robot.commands;
 
+import org.usfirst.frc.team1306.robot.vision.getData;
+
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -11,6 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class SmartDashboardUpdate extends CommandBase {
 
 	PowerDistributionPanel panel;
+	NetworkTable table;
 	
 	public SmartDashboardUpdate() {
 		requires(hood);
