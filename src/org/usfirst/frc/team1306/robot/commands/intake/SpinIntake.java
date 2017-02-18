@@ -60,7 +60,7 @@ public class SpinIntake extends CommandBase {
 //    		return true;
 //    	}
     	
-    	if(OI.getButtonVal(controller.p,Constants.INTAKE_BUTTON)) {
+    	if(OI.getButtonVal(controller.s,Constants.INTAKE_BUTTON)) {
     		return false;
     	} else {
     		intake.stopAll();

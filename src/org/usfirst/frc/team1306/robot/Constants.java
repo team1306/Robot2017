@@ -7,14 +7,14 @@ package org.usfirst.frc.team1306.robot;
 public class Constants {
 
 	//Subsystem Constantss
-	public final static boolean INTAKE_ENABLED = false;			//Intake will only run when true
-	public final static boolean SHOOTER_ENABLED = false;			//Shooter will only run when true
-	public final static boolean DRIVETRAIN_ENABLED = false;		//Drivetrain will only run when true
+	public final static boolean INTAKE_ENABLED = true;			//Intake will only run when true
+	public final static boolean SHOOTER_ENABLED = true;			//Shooter will only run when true
+	public final static boolean DRIVETRAIN_ENABLED = true;		//Drivetrain will only run when true
 	public final static boolean PID_DRIVETRAIN_ENABLED = false;	//PID-Drive will only run when true
-	public final static boolean HOPPER_ENABLED = false;			//Hopper will only run when true
+	public final static boolean HOPPER_ENABLED = true;			//Hopper will only run when true
 	public final static boolean CLIMBER_ENABLED = false; 		//Climber will only run when true
 	public final static boolean TURRET_ENABLED = false;			//Turret will only be able to turn if true
-	public final static boolean INDEXER_ENABLED = false;
+	public final static boolean INDEXER_ENABLED = true;
 	
 	//Global Constants
 	public final static double SPEED_ZERO = 0.0;
