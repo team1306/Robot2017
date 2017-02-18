@@ -28,8 +28,10 @@ public class Hood extends Subsystem {
 		name = angle.getName();
 		if(pos == 0) {
 			leftHoodShifter.set(DoubleSolenoid.Value.kForward);
+			rightHoodShifter.set(DoubleSolenoid.Value.kForward);
 		} else {
 			leftHoodShifter.set(DoubleSolenoid.Value.kReverse);
+			rightHoodShifter.set(DoubleSolenoid.Value.kReverse);
 		}
 	}
 	

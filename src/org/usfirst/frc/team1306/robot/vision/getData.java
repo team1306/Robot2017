@@ -13,7 +13,9 @@ public class GetData extends CommandBase {
 	
 	public GetData() {
 		timer = new Timer();
-		NetworkTable.setClientMode();
+		NetworkTable.setServerMode();
+		//NetworkTable.setIPAddress("172.22.11.2");
+		NetworkTable.setTeam(1306);
 		NetworkTable.initialize();
 		//NetworkTable.setIPAddress(Constants.JETSON_IP);
 		table = NetworkTable.getTable("1306");
@@ -27,8 +29,8 @@ public class GetData extends CommandBase {
 
 	@Override
 	protected void execute() {
-		table.putNumber("roboValue",5);
-		SmartDashboard.getNumber("roboValue",0);
+		//table.putNumber("roboValue",5);
+		//SmartDashboard.putNumber("roboValue",table.getNumber("roboValue",0));
 		SmartDashboard.putBoolean("Connected?: ",table.isConnected());
 		if(timer.hasPeriodPassed(Constants.DATA_REFRESH_RATE)) {
 			int defaultValue = 0;
