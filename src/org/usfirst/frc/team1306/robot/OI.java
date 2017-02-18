@@ -79,6 +79,8 @@ public class OI {
 		//pbuttonY.whenPressed(new Scan());
 		//pbuttonStart.whenPressed(new GetData());
 		sbuttonStart.whileHeld(new Climb());
+		//pbuttonStart.whenPressed(new GetData());
+		//pbuttonStart.whileHeld(new Climb());
 		//pbuttonStart.whenPressed(new TurnTurret()); //Testing
 		//pbuttonStart.whenPressed(new MotionProfile());
 		
