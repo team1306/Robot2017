@@ -24,7 +24,6 @@ public class Shooter extends Subsystem {
 		leftShooterMotor.enable();
 		rightShooterMotor = new CANTalon(RobotMap.RIGHT_SHOOTER_PORT);
 		rightShooterMotor.enable();
-		
 		indexerMotor = new CANTalon(RobotMap.INDEXER_TALON_PORT);
 	}
 	
@@ -35,6 +34,23 @@ public class Shooter extends Subsystem {
 		if(Constants.SHOOTER_ENABLED) {
 			leftShooterMotor.set(shooterSpeed);
 			rightShooterMotor.set(shooterSpeed);
+		}
+	}
+	
+	public void spinShooterBack() {
+		if (Constants.SHOOTER_ENABLED) {
+			leftShooterMotor.set(-shooterSpeed);
+			rightShooterMotor.set(-shooterSpeed);
+		}
+	}
+	
+	public double getVel(int motor) {
+		if(motor == 0) {
+			return leftShooterMotor.getEncVelocity();
+		} else if(motor == 1) {
+			return rightShooterMotor.getEncVelocity();
+		} else {
+			return indexerMotor.getEncVelocity();
 		}
 	}
 	
@@ -71,6 +87,13 @@ public class Shooter extends Subsystem {
 		if(Constants.INDEXER_ENABLED) {
 			indexerMotor.changeControlMode(TalonControlMode.PercentVbus);
 			indexerMotor.set(-Constants.INDEXER_SPEED);
+		}
+	}
+	
+	public void spinIndexerBack() {
+		if (Constants.INDEXER_ENABLED) {
+			indexerMotor.changeControlMode(TalonControlMode.PercentVbus);
+			indexerMotor.set(Constants.INDEXER_SPEED);
 		}
 	}
 	

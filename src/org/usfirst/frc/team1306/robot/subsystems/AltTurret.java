@@ -29,7 +29,7 @@ public class AltTurret extends PIDSubsystem {
 	
 	
 	public double getPos() {
-		return turretMotor.getPosition();
+		return turretMotor.getEncPosition();
 	}
 	
 	public void setPosition(double setpoint) {

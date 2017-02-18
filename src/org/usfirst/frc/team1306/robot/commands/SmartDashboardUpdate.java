@@ -40,6 +40,10 @@ public class SmartDashboardUpdate extends CommandBase {
 		SmartDashboard.putNumber("Intake Draw",panel.getCurrent(1));
 		SmartDashboard.putNumber("Turret Draw",panel.getCurrent(6));
 		SmartDashboard.putNumber("Climber Draw",panel.getCurrent(0));
+		
+		SmartDashboard.putNumber("LShooterVel",shooter.getVel(0));
+		SmartDashboard.putNumber("RShooterVel",shooter.getVel(1));
+		SmartDashboard.putNumber("IndexerVel",shooter.getVel(2));
 	}
 
 	@Override
