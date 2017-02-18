@@ -1,8 +1,10 @@
 package org.usfirst.frc.team1306.robot;
 
 import org.usfirst.frc.team1306.robot.commands.climber.Climb;
+import org.usfirst.frc.team1306.robot.commands.climber.ClimbBack;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.QuickTurn;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
+import org.usfirst.frc.team1306.robot.commands.shooter.ShooterBack;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
@@ -35,7 +37,8 @@ public class OI {
 	private final Button sbuttonY;
 	private final Button sbuttonRB;
 	private final Button sbuttonLB;
-	private final Button sbuttonStart;	
+	private final Button sbuttonStart;
+	private final Button sbuttonBack;	
 	
 	public OI() {
 		//Declare ports of xbox controllers
@@ -59,6 +62,7 @@ public class OI {
 		sbuttonRB = new JoystickButton(secondaryController, XboxController.RB);
 		sbuttonLB = new JoystickButton(secondaryController, XboxController.LB);
 		sbuttonStart = new JoystickButton(secondaryController, XboxController.START);
+		sbuttonBack = new JoystickButton(secondaryController, XboxController.BACK);
 		
 		//Bind commands to buttons
 		pbuttonRB.whileHeld(new QuickTurn(true));
@@ -70,9 +74,11 @@ public class OI {
 		sbuttonA.whenPressed(new SpinShooter());
 		//pbuttonB.whenPressed(new ResetTurret());
 		sbuttonX.whenPressed(new SpinIntake());
+		//sbuttonStart.whenPressed(new ShooterBack());
+		sbuttonBack.whenPressed(new ClimbBack());
 		//pbuttonY.whenPressed(new Scan());
 		//pbuttonStart.whenPressed(new GetData());
-		pbuttonStart.whileHeld(new Climb());
+		sbuttonStart.whileHeld(new Climb());
 		//pbuttonStart.whenPressed(new TurnTurret()); //Testing
 		//pbuttonStart.whenPressed(new MotionProfile());
 		

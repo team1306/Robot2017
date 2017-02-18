@@ -1,6 +1,11 @@
 package org.usfirst.frc.team1306.robot.commands.climber;
 
+import org.usfirst.frc.team1306.robot.Constants;
+import org.usfirst.frc.team1306.robot.OI;
+import org.usfirst.frc.team1306.robot.OI.controller;
+import org.usfirst.frc.team1306.robot.XboxController;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
+
 
 /**
  * Command that runs the climber motor and stops when a button is pressed or reaches top
@@ -24,8 +29,12 @@ public class Climb extends CommandBase {
 
 	@Override
 	protected boolean isFinished() {
-		
-		return false;
+    	if(OI.getButtonVal(controller.s,XboxController.START)) {
+    		return false;
+    	} else {
+    		climber.stopAll();
+    		return true;
+    	}
 	}
 
 	@Override

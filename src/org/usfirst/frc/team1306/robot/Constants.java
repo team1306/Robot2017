@@ -12,7 +12,7 @@ public class Constants {
 	public final static boolean DRIVETRAIN_ENABLED = true;		//Drivetrain will only run when true
 	public final static boolean PID_DRIVETRAIN_ENABLED = false;	//PID-Drive will only run when true
 	public final static boolean HOPPER_ENABLED = true;			//Hopper will only run when true
-	public final static boolean CLIMBER_ENABLED = false; 		//Climber will only run when true
+	public final static boolean CLIMBER_ENABLED = true; 		//Climber will only run when true
 	public final static boolean TURRET_ENABLED = false;			//Turret will only be able to turn if true
 	public final static boolean INDEXER_ENABLED = true;
 	
@@ -27,6 +27,7 @@ public class Constants {
 	//Button Constants
 	public final static int INTAKE_BUTTON = XboxController.X;
 	public final static int SHOOTER_BUTTON = XboxController.A;
+	public final static int SHOOTER_BACK_BUTTON = XboxController.START;
 	public final static int BANG_SHOOTER_BUTTON = XboxController.A;
 	
 	//GearMech Constants
