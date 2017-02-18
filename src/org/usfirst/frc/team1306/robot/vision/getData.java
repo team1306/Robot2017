@@ -34,8 +34,9 @@ public class GetData extends CommandBase {
 		SmartDashboard.putBoolean("Connected?: ",table.isConnected());
 		if(timer.hasPeriodPassed(Constants.DATA_REFRESH_RATE)) {
 			int defaultValue = 0;
-			double newValue = table.getNumber("newValue",defaultValue);
-			SmartDashboard.putNumber("NetworkTables Output: ",newValue);
+			SmartDashboard.putNumber("Yaw",table.getNumber("Yaw",defaultValue));
+			SmartDashboard.putNumber("Dist",table.getNumber("dist",defaultValue));
+			SmartDashboard.putNumber("Pitch",table.getNumber("angle",defaultValue));
 			SmartDashboard.putString("Getting Data: ","True");
 			timer.reset();
 			timer.start();
