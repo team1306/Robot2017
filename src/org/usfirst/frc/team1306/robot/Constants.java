@@ -12,8 +12,8 @@ public class Constants {
 	public final static boolean DRIVETRAIN_ENABLED = true;		//Drivetrain will only run when true
 	public final static boolean PID_DRIVETRAIN_ENABLED = false;	//PID-Drive will only run when true
 	public final static boolean HOPPER_ENABLED = true;			//Hopper will only run when true
-	public final static boolean CLIMBER_ENABLED = false; 		//Climber will only run when true
-	public final static boolean TURRET_ENABLED = true;			//Turret will only be able to turn if true
+	public final static boolean CLIMBER_ENABLED = true; 		//Climber will only run when true
+	public final static boolean TURRET_ENABLED = false;			//Turret will only be able to turn if true
 	public final static boolean INDEXER_ENABLED = true;
 	
 	//Global Constants
@@ -27,7 +27,11 @@ public class Constants {
 	//Button Constants
 	public final static int INTAKE_BUTTON = XboxController.X;
 	public final static int SHOOTER_BUTTON = XboxController.A;
+	public final static int SHOOTER_BACK_BUTTON = XboxController.START;
 	public final static int BANG_SHOOTER_BUTTON = XboxController.A;
+	
+	//GearMech Constants
+	public final static int GEAR_DEPLOY_TIME = 1;
 	
 	//Intake Constants
 	public final static double INTAKE_SPEED = 0.70;				//Speed at which intake motor turns
@@ -39,7 +43,7 @@ public class Constants {
 	public final static double INDEXER_SPEED = 0.7;				//Speed at which indexer motor turns
 	
 	//Shooter Constants
-	public final static double SHOOTER_SPEED = 0.95;			//Shooter low speed
+	public final static double SHOOTER_SPEED = 0.90;			//Shooter low speed
 	public final static int SHOOTER_BANG_RANGE = (int)(SHOOTER_SPEED * 8738);
 	public final static double SHOOTER_BANG_CEILING = 1.0;		//Value bang bang sets to when under desired speed
 	
@@ -50,7 +54,7 @@ public class Constants {
 	public final static double TURRET_D = 0.0;
 	
 	//Drivetrain Constants
-	public final static double SPEED_MODIFIER = 0.8;			//Multiplier of speeds inputed into tankDrive
+	public final static double SPEED_MODIFIER = 0.7;			//Multiplier of speeds inputed into tankDrive
 	public final static double PID_SPEED = 200;
 	public final static double TURN_SPEED = 0.45;				//Speed at which QuickTurn turns robot
 	public final static double LEFT_ROTATIONS = 40;
@@ -68,4 +72,5 @@ public class Constants {
 	public final static double UPPER_TAPE_WIDTH = 4.00; 		//Inches
 	public final static double TOWER_HEIGHT = 88; 				//Inches
 	public final static double DATA_REFRESH_RATE = 0.1;
+	public final static String JETSON_IP = "";
 }

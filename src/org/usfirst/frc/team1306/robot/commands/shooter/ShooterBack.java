@@ -5,13 +5,9 @@ import org.usfirst.frc.team1306.robot.OI;
 import org.usfirst.frc.team1306.robot.OI.controller;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
-/**
- * Command that calls to spin shooter, stops when shooter button is no longer pressed
- * @author Jackson Goth
- */
-public class SpinShooter extends CommandBase{
-
-	public SpinShooter() {
+public class ShooterBack extends CommandBase {
+	
+	public ShooterBack() {
 		requires(shooter);
 	}
 	
@@ -23,16 +19,16 @@ public class SpinShooter extends CommandBase{
      * Spins up shooter
      */
     protected void execute() {
-    	shooter.spinShooter();
-    	shooter.spinIndexer();
-    	hopper.spinHopper();
+    	shooter.spinShooterBack();
+    	shooter.spinIndexerBack();
+    	hopper.spinHopperBack();
     }
 
     /**
      * Stops spinning shooter when shooter button is no longer pressed
      */
     protected boolean isFinished() {
-    	if(OI.getButtonVal(controller.s,Constants.SHOOTER_BUTTON)) {
+    	if(OI.getButtonVal(controller.s,Constants.SHOOTER_BACK_BUTTON)) {
     		return false;
     	} else {
     		shooter.stopAll();
@@ -48,4 +44,5 @@ public class SpinShooter extends CommandBase{
     protected void interrupted() {
     	
     }
+
 }

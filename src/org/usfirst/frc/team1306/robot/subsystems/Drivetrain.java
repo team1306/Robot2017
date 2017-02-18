@@ -108,8 +108,8 @@ public class Drivetrain extends Subsystem {
 		SmartDashboard.putNumber("rightSpeed",rightmotor1.getEncVelocity());
 		
 		if(Constants.DRIVETRAIN_ENABLED) {
-			leftmotor1.set(leftVal/**Constants.SPEED_MODIFIER*/);
-			rightmotor1.set(-rightVal/**Constants.SPEED_MODIFIER*/);
+			leftmotor1.set(leftVal*Constants.SPEED_MODIFIER);
+			rightmotor1.set(-rightVal*Constants.SPEED_MODIFIER);
 			SmartDashboard.putNumber("Gyro Angle",ahrs.getAngle());
 		}
 	}

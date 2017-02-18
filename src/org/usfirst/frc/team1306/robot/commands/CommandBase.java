@@ -4,6 +4,7 @@ import org.usfirst.frc.team1306.robot.OI;
 import org.usfirst.frc.team1306.robot.subsystems.AltTurret;
 import org.usfirst.frc.team1306.robot.subsystems.Climber;
 import org.usfirst.frc.team1306.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team1306.robot.subsystems.GearMech;
 import org.usfirst.frc.team1306.robot.subsystems.Hood;
 import org.usfirst.frc.team1306.robot.subsystems.Hopper;
 import org.usfirst.frc.team1306.robot.subsystems.Intake;
@@ -11,7 +12,7 @@ import org.usfirst.frc.team1306.robot.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
+/**s
  * This class is the abstract for all other commands. This static class contains
  * instances of all the subsystems and the oi class so that each command that
  * extends this class can have access to the subsystems.
@@ -30,6 +31,7 @@ public abstract class CommandBase extends Command {
 	//protected static Turret turret;
 	protected static AltTurret turret;
 	protected static Climber climber;
+	protected static GearMech gearmech;
 	
 	public static void init() {
 		drivetrain = new Drivetrain();
@@ -40,6 +42,7 @@ public abstract class CommandBase extends Command {
 		hopper = new Hopper();
 		climber = new Climber();
 		oi = new OI();
+		gearmech = new GearMech();
 	}
 
 }
