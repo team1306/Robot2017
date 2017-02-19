@@ -4,6 +4,7 @@ import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.OI;
 import org.usfirst.frc.team1306.robot.OI.controller;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
+import org.usfirst.frc.team1306.robot.commands.turret.ResetTurret;
 
 /**
  * Command that spins the shooter with a bang bang loop
@@ -43,6 +44,7 @@ public class BangSpinShooter extends CommandBase{
 
     protected void end() {
     	shooter.stopAll();
+    	new ResetTurret().start();
     }
 
     protected void interrupted() {

@@ -4,8 +4,8 @@ import org.usfirst.frc.team1306.robot.commands.climber.Climb;
 import org.usfirst.frc.team1306.robot.commands.climber.ClimbBack;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.QuickTurn;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
-import org.usfirst.frc.team1306.robot.commands.shooter.ShooterBack;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
+import org.usfirst.frc.team1306.robot.commands.turret.ResetTurret;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -69,6 +69,8 @@ public class OI {
 		pbuttonLB.whileHeld(new QuickTurn(false));
 		
 		//pbuttonY.whenPressed(new AngledTurn(90));
+		
+		pbuttonY.whenPressed(new ResetTurret());
 		
 		//pbuttonA.whileHeld(new BangSpinShooter());
 		sbuttonA.whenPressed(new SpinShooter());

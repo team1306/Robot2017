@@ -27,13 +27,16 @@ public class Scan extends CommandBase {
 
 	@Override
 	protected boolean isFinished() {
-		//TODO Vision goes here
-		return false;
+		if(turret.getEncPos() > 600 || turret.getEncPos() < -500) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
 	protected void end() {
-		//turret.stopAll();
+		
 	}
 
 	@Override
