@@ -54,7 +54,7 @@ public class Constants {
 	public final static double TURRET_D = 0.0;
 	
 	//Drivetrain Constants
-	public final static double SPEED_MODIFIER = 0.7;			//Multiplier of speeds inputed into tankDrive
+	public final static double SPEED_MODIFIER = 1.0;			//Multiplier of speeds inputed into tankDrive
 	public final static double PID_SPEED = 200;
 	public final static double TURN_SPEED = 0.45;				//Speed at which QuickTurn turns robot
 	public final static double LEFT_ROTATIONS = 40;
