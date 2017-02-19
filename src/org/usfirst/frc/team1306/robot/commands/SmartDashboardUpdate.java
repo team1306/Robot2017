@@ -44,6 +44,10 @@ public class SmartDashboardUpdate extends CommandBase {
 		SmartDashboard.putNumber("LShooterVel",shooter.getVel(0));
 		SmartDashboard.putNumber("RShooterVel",shooter.getVel(1));
 		SmartDashboard.putNumber("IndexerVel",shooter.getVel(2));
+		
+		SmartDashboard.putNumber("TURRET GET POS", turret.getPos());
+		SmartDashboard.putNumber("TURRET GET ENCPOS", turret.getEncPos());
+		SmartDashboard.putNumber("TURRET GET ANALOGPOS", turret.getAnalogPos());
 	}
 
 	@Override
