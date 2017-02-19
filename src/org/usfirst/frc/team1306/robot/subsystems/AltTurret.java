@@ -2,9 +2,13 @@ package org.usfirst.frc.team1306.robot.subsystems;
 
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.RobotMap;
+import org.usfirst.frc.team1306.robot.commands.drivetrain.TankDrive;
+import org.usfirst.frc.team1306.robot.vision.GetData;
+
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
+
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -67,6 +71,6 @@ public class AltTurret extends PIDSubsystem {
 	
 	@Override
 	protected void initDefaultCommand() {
-		
+		setDefaultCommand(new GetData());
 	}
 }
