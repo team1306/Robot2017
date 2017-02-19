@@ -8,8 +8,11 @@ import org.usfirst.frc.team1306.robot.commands.CommandBase;
  */
 public class TurnTurret extends CommandBase {
 
-	public TurnTurret() {
+	int position;
+	
+	public TurnTurret(int position) {
 		requires(turret);
+		this.position = position;
 	}
 	
 	protected void initialize() {
@@ -20,12 +23,15 @@ public class TurnTurret extends CommandBase {
      * Spins turret to correct position
      */
     protected void execute() {
-    	turret.setPosition(turret.getPos() + 1);
-    	//new Wait(1);
+    	if(turret.getEncPos() < position) {
+    		turret.set(0.05);
+    	} else {
+    		turret.set(-0.05);
+    	}
     }
 
     protected boolean isFinished() {
-    	if(turret.getPos() == 40) {
+    	if(Math.abs(position - turret.getEncPos()) < 20) {
     		return true;
     	} else {
     		return false;

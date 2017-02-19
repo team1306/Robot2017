@@ -44,7 +44,7 @@ public class Constants {
 	
 	//Shooter Constants
 	public final static double SHOOTER_SPEED = 0.90;			//Shooter low speed
-	public final static int SHOOTER_BANG_RANGE = (int)(SHOOTER_SPEED * 8738);
+	public final static int SHOOTER_BANG_RANGE = 250;//(int)(SHOOTER_SPEED * 8738);
 	public final static double SHOOTER_BANG_CEILING = 1.0;		//Value bang bang sets to when under desired speed
 	
 	//Turret Constants

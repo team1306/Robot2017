@@ -18,9 +18,9 @@ public class AutonomousCommand extends CommandGroup {
 	 */
 	public AutonomousCommand(Alliance alliance,int station) {
 		
-		addSequential(new TimedDrive(AutoConstants.AUTO_SPEED,1));
-		addSequential(new Scan(getLocation(alliance,station).getScanDir()));
-		addSequential(new Fire());
+//		addSequential(new TimedDrive(AutoConstants.AUTO_SPEED,1));
+//		addSequential(new Scan(getLocation(alliance,station).getScanDir()));
+//		addSequential(new Fire());
 		
 //		addSequential(new Scan(station.getScanDir(0)));
 //		addParallel(new MotionProfile());

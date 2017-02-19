@@ -2,6 +2,7 @@ package org.usfirst.frc.team1306.robot.commands.turret;
 
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -11,10 +12,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Scan extends CommandBase {
 
 	private final double direction;
+	NetworkTable table;
 	
 	public Scan(ScanDirection direction) {
 		requires(turret);
 		this.direction = direction.getDir();
+		NetworkTable.setServerMode();
+		//NetworkTable.setIPAddress("172.22.11.2");
+		NetworkTable.setTeam(1306);
+		NetworkTable.initialize();
+		//NetworkTable.setIPAddress(Constants.JETSON_IP);
+		table = NetworkTable.getTable("1306");
 	}
 	
 	@Override
@@ -32,7 +40,7 @@ public class Scan extends CommandBase {
 	@Override
 	protected boolean isFinished() {
 		SmartDashboard.putNumber("EncPos",turret.getEncPos());
-		if(turret.getEncPos() > 600 || turret.getEncPos() < -500) {
+		if(turret.getEncPos() > 600 || turret.getEncPos() < -500 || Math.abs(table.getNumber("yaw",0)) < 1) {
 			return true;
 		} else {
 			return false;

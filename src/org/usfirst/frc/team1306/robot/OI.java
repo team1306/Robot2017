@@ -4,10 +4,8 @@ import org.usfirst.frc.team1306.robot.commands.climber.Climb;
 import org.usfirst.frc.team1306.robot.commands.climber.ClimbBack;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.QuickTurn;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
+import org.usfirst.frc.team1306.robot.commands.shooter.BangSpinShooter;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
-import org.usfirst.frc.team1306.robot.commands.turret.ResetTurret;
-import org.usfirst.frc.team1306.robot.commands.turret.Scan;
-import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -30,7 +28,8 @@ public class OI {
 	private final Button pbuttonY;
 	private final Button pbuttonRB;
 	private final Button pbuttonLB;
-	private final Button pbuttonStart;	
+	private final Button pbuttonStart;
+	private final Button pbuttonBack;
 	
 	//Declare buttons on secondary controller
 	private final Button sbuttonA;
@@ -55,6 +54,7 @@ public class OI {
 		pbuttonRB = new JoystickButton(primaryController, XboxController.RB);
 		pbuttonLB = new JoystickButton(primaryController, XboxController.LB); 
 		pbuttonStart = new JoystickButton(primaryController, XboxController.START);
+		pbuttonBack = new JoystickButton(primaryController, XboxController.BACK);
 		
 		//Map buttons to xbox controller buttons for secondary controller
 		sbuttonA = new JoystickButton(secondaryController, XboxController.A);
@@ -72,11 +72,15 @@ public class OI {
 		
 		//pbuttonY.whenPressed(new AngledTurn(90));
 		
-		pbuttonY.whenPressed(new Scan(ScanDirection.LEFT));
-		pbuttonB.whenPressed(new Scan(ScanDirection.RIGHT));
-		pbuttonA.whenPressed(new ResetTurret());
+//		pbuttonY.whenPressed(new Scan(ScanDirection.LEFT));
+//		pbuttonB.whenPressed(new Scan(ScanDirection.RIGHT));
+//		pbuttonA.whenPressed(new ResetTurret());
+//		pbuttonX.whenPressed(new TurnTurret(0));
 		
-		//pbuttonA.whileHeld(new BangSpinShooter());
+		//pbuttonStart.whenPressed(new DeployGear());
+		//pbuttonBack.whenPressed(new ReverseGear());
+		
+		//pbuttonA.whenPressed(new BangSpinShooter());
 		sbuttonA.whenPressed(new SpinShooter());
 		//pbuttonB.whenPressed(new ResetTurret());
 		sbuttonX.whenPressed(new SpinIntake());

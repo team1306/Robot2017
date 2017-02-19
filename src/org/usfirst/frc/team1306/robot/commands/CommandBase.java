@@ -41,8 +41,8 @@ public abstract class CommandBase extends Command {
 		hood = new Hood();
 		hopper = new Hopper();
 		climber = new Climber();
-		oi = new OI();
 		gearmech = new GearMech();
+		oi = new OI();
 	}
 
 }

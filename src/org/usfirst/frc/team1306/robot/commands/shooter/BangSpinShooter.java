@@ -44,7 +44,7 @@ public class BangSpinShooter extends CommandBase{
 
     protected void end() {
     	shooter.stopAll();
-    	new ResetTurret().start();
+    	hopper.stopAll();
     }
 
     protected void interrupted() {

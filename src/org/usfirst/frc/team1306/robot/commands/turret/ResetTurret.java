@@ -19,7 +19,7 @@ public class ResetTurret extends CommandBase{
 
 	@Override
 	protected void execute() {
-		turret.setPosition(0);
+		turret.setPosition(0.0);
 		//turretPID.setPosition(0.0);
 	}
 

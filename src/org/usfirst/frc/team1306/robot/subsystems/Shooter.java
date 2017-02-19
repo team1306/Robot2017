@@ -21,9 +21,11 @@ public class Shooter extends Subsystem {
 	
 	public Shooter() {
 		leftShooterMotor = new CANTalon(RobotMap.LEFT_SHOOTER_PORT);
+		leftShooterMotor.configEncoderCodesPerRev(12);
 		leftShooterMotor.enable();
 		rightShooterMotor = new CANTalon(RobotMap.RIGHT_SHOOTER_PORT);
 		rightShooterMotor.enable();
+		rightShooterMotor.configEncoderCodesPerRev(12);
 		indexerMotor = new CANTalon(RobotMap.INDEXER_TALON_PORT);
 	}
 	
@@ -34,6 +36,8 @@ public class Shooter extends Subsystem {
 		if(Constants.SHOOTER_ENABLED) {
 			leftShooterMotor.set(shooterSpeed);
 			rightShooterMotor.set(shooterSpeed);
+			SmartDashboard.putNumber("LeftShooter",Math.abs(leftShooterMotor.getEncVelocity()));
+			SmartDashboard.putNumber("RightShooter",Math.abs(rightShooterMotor.getEncVelocity()));
 		}
 	}
 	
@@ -62,23 +66,23 @@ public class Shooter extends Subsystem {
 			leftShooterMotor.enableBrakeMode(false);
 			rightShooterMotor.enableBrakeMode(false);
 
-			SmartDashboard.putNumber("Shooter 1 Velocity", leftShooterMotor.getEncVelocity());
-			SmartDashboard.putNumber("Shooter 2 Velocity", rightShooterMotor.getEncVelocity());
+			SmartDashboard.putNumber("LeftShooterBang", Math.abs(leftShooterMotor.getEncVelocity()));
+			SmartDashboard.putNumber("RightShooterBang", Math.abs(rightShooterMotor.getEncVelocity()));
 			
 			leftShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
-			if (leftShooterMotor.getEncVelocity() > Constants.SHOOTER_BANG_RANGE) {
-				leftShooterMotor.set(Constants.SHOOTER_SPEED);
+			if (Math.abs(leftShooterMotor.getEncVelocity()) > Constants.SHOOTER_BANG_RANGE) {
+				leftShooterMotor.set(-Constants.SHOOTER_SPEED);
 			}
 			else {
-				leftShooterMotor.set(Constants.SHOOTER_BANG_CEILING);
+				leftShooterMotor.set(-Constants.SHOOTER_BANG_CEILING);
 			}
 
 			rightShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
-			if (rightShooterMotor.getEncVelocity() > Constants.SHOOTER_BANG_RANGE) {
-				rightShooterMotor.set(Constants.SHOOTER_SPEED);
+			if (Math.abs(rightShooterMotor.getEncVelocity()) > Constants.SHOOTER_BANG_RANGE) {
+				rightShooterMotor.set(-Constants.SHOOTER_SPEED);
 			}
 			else {
-				rightShooterMotor.set(Constants.SHOOTER_BANG_CEILING);
+				rightShooterMotor.set(-Constants.SHOOTER_BANG_CEILING);
 			}
 		}
 	}

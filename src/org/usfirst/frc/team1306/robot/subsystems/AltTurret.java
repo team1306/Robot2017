@@ -24,6 +24,15 @@ public class AltTurret extends PIDSubsystem {
 		
 		turretMotor = new CANTalon(RobotMap.TURRET_TALON_PORT);
 		turretMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		/*turretMotor.setProfile(0);
+		turretMotor.configNominalOutputVoltage(+0.0f,-0.0f);
+		turretMotor.configPeakOutputVoltage(+12.0f,-12.0f);
+		turretMotor.setF(0.0);
+		turretMotor.setP(0.0);
+		turretMotor.setI(0.0);
+		turretMotor.setD(0.0);
+		turretMotor.setMotionMagicAcceleration(0.0);
+		turretMotor.setMotionMagicCruiseVelocity(0.0);*/
 		turretMotor.enableBrakeMode(true);
 		turretMotor.changeControlMode(TalonControlMode.PercentVbus);
 		turretMotor.enable();
@@ -50,11 +59,13 @@ public class AltTurret extends PIDSubsystem {
 		return turretMotor.getAnalogInPosition();
 	}
 	
+	//-840
+	//-43
 	public void setPosition(double setpoint) {
 		if(Constants.TURRET_ENABLED) {
 			getPIDController().reset();
 			SmartDashboard.putNumber("Position",getPos());
-			turretMotor.changeControlMode(TalonControlMode.Position);
+			turretMotor.changeControlMode(TalonControlMode.MotionMagic);
 			turretMotor.set(setpoint);
 			turretMotor.enable();
 		}
@@ -72,8 +83,9 @@ public class AltTurret extends PIDSubsystem {
 	
 	@Override
 	protected double returnPIDInput() {
-		SmartDashboard.putNumber("setpoint",turretMotor.getSetpoint());
-		return turretMotor.getSetpoint() - turretMotor.getEncPosition();
+		SmartDashboard.putNumber("setpoint error",turretMotor.getSetpoint() - turretMotor.getEncPosition());
+		//return turretMotor.getSetpoint() - turretMotor.getEncPosition();
+		return turretMotor.getEncPosition();
 	}
 
 	@Override
