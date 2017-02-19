@@ -20,6 +20,7 @@ public class Scan extends CommandBase {
 	@Override
 	protected void initialize() {
 		SmartDashboard.putString("finishedtttt","false");
+		turret.resetEncoder();
 	}
 
 	@Override
@@ -30,17 +31,19 @@ public class Scan extends CommandBase {
 
 	@Override
 	protected boolean isFinished() {
-//		if(turret.getEncPos() > 600 || turret.getEncPos() < -500) {
-//			return true;
-//		} else {
-//			return false;
-//		}
-		return false;
+		SmartDashboard.putNumber("EncPos",turret.getEncPos());
+		if(turret.getEncPos() > 600 || turret.getEncPos() < -500) {
+			return true;
+		} else {
+			return false;
+		}
+		
 	}
 
 	@Override
 	protected void end() {
 		SmartDashboard.putString("finishedtttt","true");
+		
 	}
 
 	@Override
