@@ -29,12 +29,19 @@ public class AltTurret extends PIDSubsystem {
 		turretMotor.enable();
 		
 		setSetpoint(0.0);
-		turretMotor.reset();
+		//turretMotor.reset();
 	}
 	
+	public double getEncPos() {
+		return turretMotor.getEncPosition();
+	}
 	
 	public double getPos() {
-		return turretMotor.getEncPosition();
+		return turretMotor.getPosition();
+	}
+	
+	public double getAnalogPos() {
+		return turretMotor.getAnalogInPosition();
 	}
 	
 	public void setPosition(double setpoint) {
@@ -72,6 +79,6 @@ public class AltTurret extends PIDSubsystem {
 	
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new GetData());
+		//setDefaultCommand(new GetData());
 	}
 }
