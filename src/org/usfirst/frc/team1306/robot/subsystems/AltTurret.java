@@ -20,13 +20,13 @@ public class AltTurret extends PIDSubsystem {
 		super("Turret PID",Constants.TURRET_P,Constants.TURRET_I,Constants.TURRET_D);
 		
 		setAbsoluteTolerance(2);
-		setOutputRange(-0.2,0.2);
+		setOutputRange(-0.6,0.6);
 		
 		turretMotor = new CANTalon(RobotMap.TURRET_TALON_PORT);
 		turretMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		turretMotor.enableBrakeMode(true);
 		turretMotor.changeControlMode(TalonControlMode.PercentVbus);
-		turretMotor.enable();
+		//turretMotor.enable();
 		
 		setSetpoint(0.0);
 		//turretMotor.reset();
@@ -56,7 +56,9 @@ public class AltTurret extends PIDSubsystem {
 	
 	public void set(double speed) {
 		if(Constants.TURRET_ENABLED) {
-			SmartDashboard.putNumber("Position",getPos());
+			//turretMotor.enable();
+			SmartDashboard.putNumber("Position",getEncPos());
+			SmartDashboard.putNumber("Speed",speed);
 			turretMotor.changeControlMode(TalonControlMode.PercentVbus);
 			turretMotor.set(speed);
 		}

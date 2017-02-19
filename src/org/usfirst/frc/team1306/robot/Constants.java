@@ -13,7 +13,7 @@ public class Constants {
 	public final static boolean PID_DRIVETRAIN_ENABLED = false;	//PID-Drive will only run when true
 	public final static boolean HOPPER_ENABLED = true;			//Hopper will only run when true
 	public final static boolean CLIMBER_ENABLED = true; 		//Climber will only run when true
-	public final static boolean TURRET_ENABLED = false;			//Turret will only be able to turn if true
+	public final static boolean TURRET_ENABLED = true;			//Turret will only be able to turn if true
 	public final static boolean INDEXER_ENABLED = true;
 	
 	//Global Constants
