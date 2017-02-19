@@ -29,6 +29,7 @@ public class AltTurret extends PIDSubsystem {
 		turretMotor.enable();
 		
 		setSetpoint(0.0);
+		turretMotor.reset();
 	}
 	
 	
