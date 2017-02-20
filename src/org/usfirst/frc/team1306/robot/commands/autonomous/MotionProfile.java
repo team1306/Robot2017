@@ -11,20 +11,23 @@ import jaci.pathfinder.Waypoint;
 import jaci.pathfinder.followers.EncoderFollower;
 import jaci.pathfinder.modifiers.TankModifier;
 
+/**
+ * Command being used to test motion profiling/pathfinder to do more advanced autonomous modes
+ * @author Jackson Goth
+ */
 public class MotionProfile extends CommandBase {
 
 	public static final double max_velocity = 0.3048;
 	public static final double max_accel = 0.5;
 	EncoderFollower left;
 	EncoderFollower right;
-	AHRS ahrs;
+	AHRS ahrs; //Navx Gyro
 	
 	public MotionProfile() {
 		requires(drivetrain);
 		try {
-			ahrs = new AHRS(SPI.Port.kMXP); 
+			ahrs = new AHRS(SPI.Port.kMXP); //Trying to initialize the gyro
 		} catch(RuntimeException ex) {
-			
 		}
 	}
 	

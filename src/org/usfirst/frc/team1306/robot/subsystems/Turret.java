@@ -2,9 +2,6 @@ package org.usfirst.frc.team1306.robot.subsystems;
 
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.RobotMap;
-import org.usfirst.frc.team1306.robot.commands.drivetrain.TankDrive;
-import org.usfirst.frc.team1306.robot.vision.GetData;
-
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
@@ -12,15 +9,19 @@ import com.ctre.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class AltTurret extends PIDSubsystem {
+/**
+ * Subsystem that controls the turret and sets it to differen't positions
+ * @author Jackson Goth
+ */
+public class Turret extends PIDSubsystem {
 
 	private final CANTalon turretMotor;
 	
-	public AltTurret() {
+	public Turret() {
 		super("Turret PID",Constants.TURRET_P,Constants.TURRET_I,Constants.TURRET_D);
 		
 		setAbsoluteTolerance(2);
-		setOutputRange(-0.05,0.05);
+		setOutputRange(-0.1,0.1);
 		
 		turretMotor = new CANTalon(RobotMap.TURRET_TALON_PORT);
 		turretMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
@@ -39,44 +40,39 @@ public class AltTurret extends PIDSubsystem {
 		
 		setSetpoint(0.0);
 		
-	}//-1140 -320 460
+	}
 	
 	public double getEncPos() {
 		return turretMotor.getEncPosition();
 	}
 	
 	public void resetEncoder() {
-		SmartDashboard.putString("resetting encoder","true");
 		turretMotor.reset();
-		turretMotor.enable();
 	}
 	
-	public double getPos() {
-		return turretMotor.getPosition();
-	}
-	
-	public double getAnalogPos() {
-		return turretMotor.getAnalogInPosition();
-	}
-	
-	//-840
-	//-43
+	/**
+	 * Turns the turret to a given set-point
+	 * @param setpoint
+	 */
 	public void setPosition(double setpoint) {
 		if(Constants.TURRET_ENABLED) {
 			getPIDController().reset();
-			SmartDashboard.putNumber("Position",getPos());
+			SmartDashboard.putNumber("Position",getEncPos());
 			turretMotor.changeControlMode(TalonControlMode.MotionMagic);
 			turretMotor.set(setpoint);
 			turretMotor.enable();
 		}
 	}
 	
+	/**
+	 * Turns the turret with a given speed
+	 * @param speed
+	 */
 	public void set(double speed) {
 		if(Constants.TURRET_ENABLED) {
-			//turretMotor.enable();
 			SmartDashboard.putNumber("Position",getEncPos());
-			SmartDashboard.putNumber("SetSpeed",speed);
-			SmartDashboard.putNumber("ActualSpeed",turretMotor.getEncVelocity());
+			SmartDashboard.putNumber("Set-Speed",speed);
+			SmartDashboard.putNumber("Read-Speed",turretMotor.getEncVelocity());
 			turretMotor.changeControlMode(TalonControlMode.PercentVbus);
 			turretMotor.set(speed);
 		}
@@ -84,15 +80,14 @@ public class AltTurret extends PIDSubsystem {
 	
 	@Override
 	protected double returnPIDInput() {
-		SmartDashboard.putNumber("setpoint error",turretMotor.getSetpoint() - turretMotor.getEncPosition());
-		//return turretMotor.getSetpoint() - turretMotor.getEncPosition();
-		return turretMotor.getEncPosition();
+
+		return getEncPos();
 	}
 
 	@Override
 	protected void usePIDOutput(double output) {
 		if(Constants.TURRET_ENABLED) {
-			SmartDashboard.putNumber("Position",getPos());
+			SmartDashboard.putNumber("PID-T Position",getEncPos());
 			turretMotor.changeControlMode(TalonControlMode.PercentVbus);
 			turretMotor.set(output);
 		}
@@ -100,6 +95,6 @@ public class AltTurret extends PIDSubsystem {
 	
 	@Override
 	protected void initDefaultCommand() {
-		//setDefaultCommand(new GetData());
+		
 	}
 }

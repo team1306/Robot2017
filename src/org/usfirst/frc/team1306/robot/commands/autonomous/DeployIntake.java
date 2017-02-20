@@ -1,15 +1,16 @@
 package org.usfirst.frc.team1306.robot.commands.autonomous;
 
-import org.usfirst.frc.team1306.robot.OI;
-import org.usfirst.frc.team1306.robot.OI.controller;
-import org.usfirst.frc.team1306.robot.XboxController;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
-
 import edu.wpi.first.wpilibj.Timer;
 
+/**
+ * Spins the climber backwards so the intake will fall down and allow for the collection of balls
+ * @author Jackson Goth
+ */
 public class DeployIntake extends CommandBase {
 
-	Timer timer;
+	private final double deployTime = 1.0;
+	private final Timer timer;
 	
 	public DeployIntake() {
 		requires(climber);
@@ -23,18 +24,20 @@ public class DeployIntake extends CommandBase {
 		timer.start();
 	}
 
+	/**
+	 * Spins the climber backwards
+	 */
 	@Override
 	protected void execute() {
 		climber.spinClimberBack();
 	}
 
+	/**
+	 * Stops spinning climber after one second
+	 */
 	@Override
 	protected boolean isFinished() {
-    	if(timer.hasPeriodPassed(1)) {
-    		return true;
-    	} else {
-    		return false;
-    	}
+    	return timer.hasPeriodPassed(deployTime);
 	}
 
 	@Override

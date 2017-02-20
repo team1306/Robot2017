@@ -1,7 +1,7 @@
 package org.usfirst.frc.team1306.robot.commands;
 
 import org.usfirst.frc.team1306.robot.OI;
-import org.usfirst.frc.team1306.robot.subsystems.AltTurret;
+import org.usfirst.frc.team1306.robot.subsystems.Turret;
 import org.usfirst.frc.team1306.robot.subsystems.Climber;
 import org.usfirst.frc.team1306.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1306.robot.subsystems.GearMech;
@@ -19,7 +19,6 @@ import edu.wpi.first.wpilibj.command.Command;
  * 
  * @author Jackson Goth and Sam Roquitte
  */
-
 public abstract class CommandBase extends Command {
 
 	protected static OI oi;
@@ -28,8 +27,7 @@ public abstract class CommandBase extends Command {
 	protected static Intake intake;
 	protected static Hopper hopper;
 	protected static Hood hood;
-	//protected static Turret turret;
-	protected static AltTurret turret;
+	protected static Turret turret;
 	protected static Climber climber;
 	protected static GearMech gearmech;
 	
@@ -37,7 +35,7 @@ public abstract class CommandBase extends Command {
 		drivetrain = new Drivetrain();
 		shooter = new Shooter();
 		intake = new Intake();
-		turret = new AltTurret();
+		turret = new Turret();
 		hood = new Hood();
 		hopper = new Hopper();
 		climber = new Climber();

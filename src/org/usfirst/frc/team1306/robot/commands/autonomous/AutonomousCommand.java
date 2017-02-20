@@ -1,6 +1,5 @@
 package org.usfirst.frc.team1306.robot.commands.autonomous;
 
-import org.usfirst.frc.team1306.robot.commands.turret.Scan;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 

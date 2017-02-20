@@ -24,12 +24,19 @@ public class Fire extends CommandBase {
 		timer.start();
 	}
 
+	/**
+	 * Spins up shooter, indexers, and hopper
+	 */
 	@Override
 	protected void execute() {
 		hopper.spinHopper();
 		shooter.bangBangSpinShooter();
+		shooter.spinIndexer();
 	}
 
+	/**
+	 * Stops shooting after a certain amount of time
+	 */
 	@Override
 	protected boolean isFinished() {
 		return timer.hasPeriodPassed(time);

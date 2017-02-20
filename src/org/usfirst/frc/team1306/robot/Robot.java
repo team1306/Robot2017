@@ -32,7 +32,9 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
+    	
     	CommandBase.init();
+    	
     	smartDashboard = new SmartDashboardUpdate();
         smartDashboard.start();
     }

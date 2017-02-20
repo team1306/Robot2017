@@ -6,7 +6,7 @@ import org.usfirst.frc.team1306.robot.OI.controller;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
 /**
- * Command that runs the climber motor and stops when a button is pressed or reaches top
+ * Command that runs the climber motor backwards and stops when the buttoon is released
  * @author Jackson Goth
  */
 public class ClimbBack extends CommandBase {

@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- * Subsystem that controls hood
+ * Subsystem that controls solenoids of the hood to adjust the current position
  * @author Jackson Goth
  */
 public class Hood extends Subsystem {

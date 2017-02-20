@@ -6,6 +6,10 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+/**
+ * Command used to test receiving values from networktables
+ * @author Jackson Goth
+ */
 public class GetData extends CommandBase {
 
 	Timer timer;
@@ -29,8 +33,6 @@ public class GetData extends CommandBase {
 
 	@Override
 	protected void execute() {
-		//table.putNumber("roboValue",5);
-		//SmartDashboard.putNumber("roboValue",table.getNumber("roboValue",0));
 		SmartDashboard.putBoolean("Connected?: ",table.isConnected());
 		if(timer.hasPeriodPassed(Constants.DATA_REFRESH_RATE)) {
 			int defaultValue = 0;

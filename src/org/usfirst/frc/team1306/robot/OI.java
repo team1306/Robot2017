@@ -10,7 +10,6 @@ import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
 import org.usfirst.frc.team1306.robot.commands.turret.Scan;
 import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
 import org.usfirst.frc.team1306.robot.commands.turret.TurnTurret;
-
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -79,7 +78,7 @@ public class OI {
 		pbuttonY.whenPressed(new Scan(ScanDirection.LEFT));
 		pbuttonB.whenPressed(new Scan(ScanDirection.RIGHT));
 //		pbuttonA.whenPressed(new ResetTurret());
-		//pbuttonX.whenPressed(new TurnTurret(10));
+//		pbuttonX.whenPressed(new TurnTurret(10));
 		
 		pbuttonStart.whenPressed(new DeployGear());
 		pbuttonBack.whenPressed(new ReverseGear());
@@ -90,20 +89,11 @@ public class OI {
 		sbuttonX.whenPressed(new SpinIntake());
 		//sbuttonStart.whenPressed(new ShooterBack());
 		sbuttonBack.whenPressed(new ClimbBack());
-		//pbuttonY.whenPressed(new Scan());
-		//pbuttonStart.whenPressed(new GetData());
 		sbuttonStart.whileHeld(new Climb());
-		//pbuttonStart.whenPressed(new TurnTurret()); //Testing
-		//pbuttonStart.whenPressed(new MotionProfile());
-		
-		//pbuttonStart.whenPressed(new putData());
-		
 		//sbuttonA.whenPressed(new AdjustHood(HoodAngle.DOWN));
 		//sbuttonY.whenPressed(new AdjustHood(HoodAngle.UP));
 		//sbuttonRB.whenPressed(new Scan(ScanDirection.RIGHT));
-		//sbuttonLB.whenPressed(new Scan(ScanDirection.LEFT));
-		//sbuttonB.whenPressed(new ReverseDrive());
-		
+		//sbuttonLB.whenPressed(new Scan(ScanDirection.LEFT));	
 	}
 	
 	public enum axis {x, y}; 		//X or Y Axis on Joystick

@@ -5,9 +5,13 @@ import org.usfirst.frc.team1306.robot.OI;
 import org.usfirst.frc.team1306.robot.OI.controller;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
-public class ShooterBack extends CommandBase {
+/**
+ * Command used to debug shooter and spins all shooter-related motors in reverse
+ * @author Sam Roquitte
+ */
+public class SpinShooterBack extends CommandBase {
 	
-	public ShooterBack() {
+	public SpinShooterBack() {
 		requires(shooter);
 	}
 	
@@ -16,7 +20,7 @@ public class ShooterBack extends CommandBase {
     }
     
     /**
-     * Spins up shooter
+     * Spins both shooters, hopper, and indexers backwards
      */
     protected void execute() {
     	shooter.spinShooterBack();
@@ -25,7 +29,7 @@ public class ShooterBack extends CommandBase {
     }
 
     /**
-     * Stops spinning shooter when shooter button is no longer pressed
+     * Stops spinning shooters, hopper, and indexers backwards
      */
     protected boolean isFinished() {
     	if(OI.getButtonVal(controller.s,Constants.SHOOTER_BACK_BUTTON)) {
