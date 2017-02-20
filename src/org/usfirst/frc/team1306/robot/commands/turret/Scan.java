@@ -17,6 +17,7 @@ public class Scan extends CommandBase {
 	public Scan(ScanDirection direction) {
 		requires(turret);
 		this.direction = direction.getDir();
+		SmartDashboard.putNumber("Dir", direction.getDir());
 		NetworkTable.setServerMode();
 		//NetworkTable.setIPAddress("172.22.11.2");
 		NetworkTable.setTeam(1306);
@@ -40,11 +41,12 @@ public class Scan extends CommandBase {
 	@Override
 	protected boolean isFinished() {
 		SmartDashboard.putNumber("EncPos",turret.getEncPos());
-		if(turret.getEncPos() > 600 || turret.getEncPos() < -500 || Math.abs(table.getNumber("yaw",0)) < 1) {
+		/*if(turret.getEncPos() > 400 || turret.getEncPos() < -1000 || Math.abs(table.getNumber("yaw",0)) == 1) {
 			return true;
 		} else {
 			return false;
-		}
+		}*/
+		return false;
 		
 	}
 

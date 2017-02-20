@@ -39,7 +39,7 @@ public class AltTurret extends PIDSubsystem {
 		
 		setSetpoint(0.0);
 		
-	}
+	}//-1140 -320 460
 	
 	public double getEncPos() {
 		return turretMotor.getEncPosition();
@@ -75,7 +75,8 @@ public class AltTurret extends PIDSubsystem {
 		if(Constants.TURRET_ENABLED) {
 			//turretMotor.enable();
 			SmartDashboard.putNumber("Position",getEncPos());
-			SmartDashboard.putNumber("Speed",speed);
+			SmartDashboard.putNumber("SetSpeed",speed);
+			SmartDashboard.putNumber("ActualSpeed",turretMotor.getEncVelocity());
 			turretMotor.changeControlMode(TalonControlMode.PercentVbus);
 			turretMotor.set(speed);
 		}
