@@ -16,16 +16,16 @@ public class GearMech extends Subsystem {
 	}
 
 	public void deployGear() {
-		//gearSolenoid.set(true);
+		gearSolenoid.set(true);
 //		timer.reset();
 //		timer.start();
 //		while(!timer.hasPeriodPassed(Constants.GEAR_DEPLOY_TIME)) {
 //		}
-//		gearSolenoid.set(false);
+		//gearSolenoid.set(false);
 	}
 	
 	public void reverseGear() {
-		//gearSolenoid.set(false);
+		gearSolenoid.set(false);
 	}
 	
 	@Override

@@ -15,7 +15,7 @@ public class VisionData extends Pipeline {
 	public VisionData(Mat image) { // Init
 		image_process = image;
 		pipeline = new Pipeline();
-
+		Math.atan(0);
 	}
 
 	public ArrayList<MatOfPoint> processImage() {
