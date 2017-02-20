@@ -4,6 +4,7 @@ import org.usfirst.frc.team1306.robot.Constants;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class GearMech extends Subsystem {
 	
@@ -17,6 +18,7 @@ public class GearMech extends Subsystem {
 
 	public void deployGear() {
 		gearSolenoid.set(true);
+		SmartDashboard.putString("deploying","true");
 //		timer.reset();
 //		timer.start();
 //		while(!timer.hasPeriodPassed(Constants.GEAR_DEPLOY_TIME)) {
@@ -26,6 +28,7 @@ public class GearMech extends Subsystem {
 	
 	public void reverseGear() {
 		gearSolenoid.set(false);
+		SmartDashboard.putString("deploying","false");
 	}
 	
 	@Override
