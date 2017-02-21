@@ -1,27 +1,25 @@
 package org.usfirst.frc.team1306.robot.subsystems;
 
+import org.usfirst.frc.team1306.robot.Constants;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-/**
- * GearMech subsystem that controls the solenoid pushing out the gear
- * @author Jackson Goth
- */
 public class GearMech extends Subsystem {
 	
 	private final Solenoid gearSolenoid;
-	//private final Timer timer;
+	private final Timer timer;
 	
 	public GearMech() {
-		gearSolenoid = new Solenoid(5);
-		//timer = new Timer();
+		gearSolenoid = new Solenoid(0);
+		timer = new Timer();
 	}
 
-	/**
-	 * Deploys the gear onto the peg
-	 */
 	public void deployGear() {
 		gearSolenoid.set(true);
+		//timer.delay(1);
+		SmartDashboard.putString("deploying","true");
 //		timer.reset();
 //		timer.start();
 //		while(!timer.hasPeriodPassed(Constants.GEAR_DEPLOY_TIME)) {
@@ -29,11 +27,10 @@ public class GearMech extends Subsystem {
 		//gearSolenoid.set(false);
 	}
 	
-	/**
-	 * Puts the GearMech back into the original position
-	 */
 	public void reverseGear() {
 		gearSolenoid.set(false);
+		//timer.delay(1);
+		SmartDashboard.putString("deploying","false");
 	}
 	
 	@Override

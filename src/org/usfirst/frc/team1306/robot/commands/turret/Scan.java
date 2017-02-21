@@ -28,14 +28,15 @@ public class Scan extends CommandBase {
 	
 	@Override
 	protected void initialize() {
-		SmartDashboard.putString("finishedtttt","false");
+		SmartDashboard.putString("Scan Done","false");
 		turret.resetEncoder();
 	}
 
 	@Override
 	protected void execute() {
-		turret.set(direction);
+		//turret.set(direction);
 		SmartDashboard.putNumber("Scanning",direction);
+		SmartDashboard.putNumber("Turret Enc Pos", turret.getEncPos());
 	}
 
 	@Override
@@ -52,8 +53,7 @@ public class Scan extends CommandBase {
 
 	@Override
 	protected void end() {
-		SmartDashboard.putString("finishedtttt","true");
-		
+		SmartDashboard.putString("Scan Done","true");
 	}
 
 	@Override
