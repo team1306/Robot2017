@@ -6,6 +6,8 @@ import org.usfirst.frc.team1306.robot.commands.drivetrain.QuickTurn;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
 import org.usfirst.frc.team1306.robot.commands.shooter.BangSpinShooter;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
+import org.usfirst.frc.team1306.robot.commands.turret.ResetTurret;
+import org.usfirst.frc.team1306.robot.commands.turret.TurnTurret;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -80,6 +82,7 @@ public class OI {
 		//pbuttonStart.whenPressed(new DeployGear());
 		//pbuttonBack.whenPressed(new ReverseGear());
 		
+		pbuttonB.whenPressed(new TurnTurret(2048));
 		pbuttonA.whenPressed(new BangSpinShooter());
 		sbuttonA.whenPressed(new SpinShooter());
 		//pbuttonB.whenPressed(new ResetTurret());
