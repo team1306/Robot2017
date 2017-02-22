@@ -29,12 +29,12 @@ public class Scan extends CommandBase {
 	@Override
 	protected void initialize() {
 		SmartDashboard.putString("Scan Done","false");
-		turret.resetEncoder();
+		//turret.resetEncoder();
 	}
 
 	@Override
 	protected void execute() {
-		//turret.set(direction);
+		turret.set(direction);
 		SmartDashboard.putNumber("Scanning",direction);
 		SmartDashboard.putNumber("Turret Enc Pos", turret.getEncPos());
 	}
@@ -42,13 +42,11 @@ public class Scan extends CommandBase {
 	@Override
 	protected boolean isFinished() {
 		SmartDashboard.putNumber("EncPos",turret.getEncPos());
-		/*if(turret.getEncPos() > 400 || turret.getEncPos() < -1000 || Math.abs(table.getNumber("yaw",0)) == 1) {
+		if(turret.getEncPos() > 2800 || turret.getEncPos() < 1150) {
 			return true;
 		} else {
 			return false;
-		}*/
-		return false;
-		
+		}
 	}
 
 	@Override

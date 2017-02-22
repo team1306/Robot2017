@@ -6,7 +6,7 @@ package org.usfirst.frc.team1306.robot.commands.turret;
  */
 public enum ScanDirection {
 
-	LEFT(-0.4,"Left"),RIGHT(0.4,"Right"),UNKNOWN(-0.2,"Unknown");
+	LEFT(-0.2,"Left"),RIGHT(0.2,"Right"),UNKNOWN(-0.2,"Unknown");
 	
 	private final double direction;
 	private final String name;
