@@ -34,15 +34,17 @@ public class Shooter extends Subsystem {
 	 */
 	public void spinShooter() {
 		if(Constants.SHOOTER_ENABLED) {
+			leftShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
+			rightShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
 			leftShooterMotor.set(shooterSpeed);
 			rightShooterMotor.set(shooterSpeed);
-			SmartDashboard.putNumber("LeftShooter",Math.abs(leftShooterMotor.getEncVelocity()));
-			SmartDashboard.putNumber("RightShooter",Math.abs(rightShooterMotor.getEncVelocity()));
 		}
 	}
 	
 	public void spinShooterBack() {
 		if (Constants.SHOOTER_ENABLED) {
+			leftShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
+			rightShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
 			leftShooterMotor.set(-shooterSpeed);
 			rightShooterMotor.set(-shooterSpeed);
 		}
@@ -63,11 +65,6 @@ public class Shooter extends Subsystem {
 	 */
 	public void bangBangSpinShooter() {
 		if(Constants.SHOOTER_ENABLED) {
-			leftShooterMotor.enableBrakeMode(false);
-			rightShooterMotor.enableBrakeMode(false);
-
-			SmartDashboard.putNumber("LeftShooterBang", Math.abs(leftShooterMotor.getEncVelocity()));
-			SmartDashboard.putNumber("RightShooterBang", Math.abs(rightShooterMotor.getEncVelocity()));
 			
 			leftShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
 			if (Math.abs(leftShooterMotor.getEncVelocity()) > Constants.SHOOTER_BANG_RANGE) {

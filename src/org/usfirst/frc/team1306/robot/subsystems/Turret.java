@@ -43,7 +43,7 @@ public class Turret extends PIDSubsystem {
 	}
 	
 	public double getEncPos() {
-		return turretMotor.getEncPosition();
+		return turretMotor.getPulseWidthPosition();
 	}
 	
 	public void resetEncoder() {

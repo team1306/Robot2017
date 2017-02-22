@@ -3,13 +3,10 @@ package org.usfirst.frc.team1306.robot;
 import org.usfirst.frc.team1306.robot.commands.climber.Climb;
 import org.usfirst.frc.team1306.robot.commands.climber.ClimbBack;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.QuickTurn;
-import org.usfirst.frc.team1306.robot.commands.gearmech.DeployGear;
-import org.usfirst.frc.team1306.robot.commands.gearmech.ReverseGear;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
+import org.usfirst.frc.team1306.robot.commands.shooter.BangSpinShooter;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
-import org.usfirst.frc.team1306.robot.commands.turret.Scan;
-import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
-import org.usfirst.frc.team1306.robot.commands.turret.TurnTurret;
+
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -75,21 +72,21 @@ public class OI {
 		
 		//pbuttonY.whenPressed(new AngledTurn(90));
 		
-		pbuttonY.whenPressed(new Scan(ScanDirection.LEFT));
-		pbuttonB.whenPressed(new Scan(ScanDirection.RIGHT));
+		//pbuttonY.whenPressed(new Scan(ScanDirection.LEFT));
+		//pbuttonB.whenPressed(new Scan(ScanDirection.RIGHT));
 //		pbuttonA.whenPressed(new ResetTurret());
 //		pbuttonX.whenPressed(new TurnTurret(10));
 		
-		pbuttonStart.whenPressed(new DeployGear());
-		pbuttonBack.whenPressed(new ReverseGear());
+		//pbuttonStart.whenPressed(new DeployGear());
+		//pbuttonBack.whenPressed(new ReverseGear());
 		
-		//pbuttonA.whenPressed(new BangSpinShooter());
+		pbuttonA.whenPressed(new BangSpinShooter());
 		sbuttonA.whenPressed(new SpinShooter());
 		//pbuttonB.whenPressed(new ResetTurret());
 		sbuttonX.whenPressed(new SpinIntake());
 		//sbuttonStart.whenPressed(new ShooterBack());
 		sbuttonBack.whenPressed(new ClimbBack());
-		sbuttonStart.whileHeld(new Climb());
+		sbuttonStart.whenPressed(new Climb());
 		//sbuttonA.whenPressed(new AdjustHood(HoodAngle.DOWN));
 		//sbuttonY.whenPressed(new AdjustHood(HoodAngle.UP));
 		//sbuttonRB.whenPressed(new Scan(ScanDirection.RIGHT));

@@ -20,13 +20,13 @@ public class Climber extends Subsystem{
 	
 	public void spinClimber() {
 		if(Constants.CLIMBER_ENABLED) {
-			climberMotor.set(0.5);	//TODO constant
+			climberMotor.set(Constants.CLIMBER_SPEED);	
 		}
 	}
 	
 	public void spinClimberBack() {
 		if (Constants.CLIMBER_ENABLED) {
-			climberMotor.set(-0.5);
+			climberMotor.set(-Constants.CLIMBER_SPEED);
 		}
 	}
 	

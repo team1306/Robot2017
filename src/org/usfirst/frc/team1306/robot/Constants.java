@@ -33,6 +33,9 @@ public class Constants {
 	//GearMech Constants
 	public final static int GEAR_DEPLOY_TIME = 1;
 	
+	//Climber Constants
+	public final static double CLIMBER_SPEED = 1.0;
+	
 	//Intake Constants
 	public final static double INTAKE_SPEED = 0.70;				//Speed at which intake motor turns
 	
