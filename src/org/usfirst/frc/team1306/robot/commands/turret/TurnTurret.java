@@ -32,6 +32,7 @@ public class TurnTurret extends CommandBase {
     }
 
     protected boolean isFinished() {
+    	if(Math.abs(position - turret.getEncPos()) < 50 || turret.getEncPos() > 2800 || turret.getEncPos() < 1150) {
     		return true;
     	} else {
     		return false;
