@@ -34,20 +34,18 @@ public class Turret extends PIDSubsystem {
 		turretMotor.setD(0.0);
 		turretMotor.setMotionMagicAcceleration(0.0);
 		turretMotor.setMotionMagicCruiseVelocity(0.0);*/
-		turretMotor.enableBrakeMode(true);
-		turretMotor.changeControlMode(TalonControlMode.PercentVbus);
+		turretMotor.changeControlMode(TalonControlMode.Position);
 		turretMotor.enable();
-		
-		setSetpoint(0.0);
 		
 	}
 	
 	public double getEncPos() {
-		return turretMotor.getPulseWidthPosition();
+		//return turretMotor.getPulseWidthPosition();
+		return turretMotor.getEncPosition();
 	}
 	
 	public void resetEncoder() {
-		turretMotor.reset();
+		//turretMotor.reset();
 	}
 	
 	/**

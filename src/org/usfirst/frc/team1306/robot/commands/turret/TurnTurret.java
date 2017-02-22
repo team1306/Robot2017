@@ -23,15 +23,15 @@ public class TurnTurret extends CommandBase {
      * Spins turret to correct position
      */
     protected void execute() {
-    	if(turret.getEncPos() / 17.11 < position) {
-    		turret.set(0.05);
-    	} else if(turret.getEncPos() / 17.11 > position) {
-    		turret.set(-0.05);
+    	if (turret.getEncPos() < position) {
+    		turret.set(0.1);
+    	}
+    	else {
+    		turret.set(-0.1);
     	}
     }
 
     protected boolean isFinished() {
-    	if(Math.abs(position - turret.getEncPos() / 17.11) < 17.11) {
     		return true;
     	} else {
     		return false;
