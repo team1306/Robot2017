@@ -7,21 +7,22 @@ import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Subsystem that controls the turret and sets it to differen't positions
  * @author Jackson Goth
  */
-public class Turret extends PIDSubsystem {
+public class Turret extends Subsystem {
 
 	private final CANTalon turretMotor;
 	
 	public Turret() {
-		super("Turret PID",Constants.TURRET_P,Constants.TURRET_I,Constants.TURRET_D);
+		//super("Turret PID",Constants.TURRET_P,Constants.TURRET_I,Constants.TURRET_D);
 		
-		setAbsoluteTolerance(2);
-		setOutputRange(-0.1,0.1);
+		//setAbsoluteTolerance(2);
+		//setOutputRange(-0.1,0.1);
 		
 		turretMotor = new CANTalon(RobotMap.TURRET_TALON_PORT);
 		turretMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
@@ -34,14 +35,13 @@ public class Turret extends PIDSubsystem {
 		turretMotor.setD(0.0);
 		turretMotor.setMotionMagicAcceleration(0.0);
 		turretMotor.setMotionMagicCruiseVelocity(0.0);*/
-		turretMotor.changeControlMode(TalonControlMode.Position);
-		turretMotor.enable();
+		//turretMotor.enable();
 		
 	}
 	
 	public double getEncPos() {
-		//return turretMotor.getPulseWidthPosition();
-		return turretMotor.getEncPosition();
+		return turretMotor.getPulseWidthPosition();
+		//return turretMotor.get;
 	}
 	
 	public void resetEncoder() {
@@ -54,11 +54,10 @@ public class Turret extends PIDSubsystem {
 	 */
 	public void setPosition(double setpoint) {
 		if(Constants.TURRET_ENABLED) {
-			getPIDController().reset();
+			//getPIDController().reset();
 			SmartDashboard.putNumber("Position",getEncPos());
-			turretMotor.changeControlMode(TalonControlMode.MotionMagic);
+			turretMotor.changeControlMode(TalonControlMode.Position);
 			turretMotor.set(setpoint);
-			turretMotor.enable();
 		}
 	}
 	
@@ -66,7 +65,7 @@ public class Turret extends PIDSubsystem {
 	 * Turns the turret with a given speed
 	 * @param speed
 	 */
-	public void set(double speed) {
+	public void setSpeed(double speed) {
 		if(Constants.TURRET_ENABLED) {
 			SmartDashboard.putNumber("Position",getEncPos());
 			SmartDashboard.putNumber("Set-Speed",speed);
@@ -76,7 +75,7 @@ public class Turret extends PIDSubsystem {
 		}
 	}
 	
-	@Override
+	/*@Override
 	protected double returnPIDInput() {
 
 		return getEncPos();
@@ -89,7 +88,7 @@ public class Turret extends PIDSubsystem {
 			turretMotor.changeControlMode(TalonControlMode.PercentVbus);
 			turretMotor.set(output);
 		}
-	}
+	}*/
 	
 	@Override
 	protected void initDefaultCommand() {

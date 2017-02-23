@@ -34,7 +34,7 @@ public class Scan extends CommandBase {
 
 	@Override
 	protected void execute() {
-		turret.set(direction);
+		turret.setSpeed(direction);
 		SmartDashboard.putNumber("Scanning",direction);
 		SmartDashboard.putNumber("Turret Enc Pos", turret.getEncPos());
 	}
