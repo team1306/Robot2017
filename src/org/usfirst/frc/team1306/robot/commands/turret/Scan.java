@@ -34,7 +34,11 @@ public class Scan extends CommandBase {
 
 	@Override
 	protected void execute() {
-		turret.setSpeed(direction);
+		if(turret.getEncPos() > 2600 || turret.getEncPos() < 1200) {
+			
+		} else {
+			turret.setSpeed(direction);
+		}
 		SmartDashboard.putNumber("Scanning",direction);
 		SmartDashboard.putNumber("Turret Enc Pos", turret.getEncPos());
 	}
@@ -42,7 +46,13 @@ public class Scan extends CommandBase {
 	@Override
 	protected boolean isFinished() {
 		SmartDashboard.putNumber("EncPos",turret.getEncPos());
-		if(turret.getEncPos() > 2800 || turret.getEncPos() < 1150) {
+		//2700 1250
+		if(turret.getEncPos() > 2600 || turret.getEncPos() < 1200) {
+			/*if(direction == 0.2) {
+				new Scan(ScanDirection.LEFT).start();
+			} else {
+				new Scan(ScanDirection.RIGHT).start();
+			}*/
 			return true;
 		} else {
 			return false;

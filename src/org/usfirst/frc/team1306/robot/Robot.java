@@ -5,6 +5,7 @@ import org.usfirst.frc.team1306.robot.commands.SmartDashboardUpdate;
 import org.usfirst.frc.team1306.robot.commands.autonomous.AutonomousCommand;
 import org.usfirst.frc.team1306.robot.commands.autonomous.Station;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -37,6 +38,8 @@ public class Robot extends IterativeRobot {
     	
     	smartDashboard = new SmartDashboardUpdate();
         smartDashboard.start();
+        
+        CameraServer.getInstance().startAutomaticCapture();
     }
 	
 	/**

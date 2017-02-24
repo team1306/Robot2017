@@ -35,7 +35,8 @@ public class Turret extends Subsystem {
 		turretMotor.setD(0.0);
 		turretMotor.setMotionMagicAcceleration(0.0);
 		turretMotor.setMotionMagicCruiseVelocity(0.0);*/
-		//turretMotor.enable();
+		turretMotor.changeControlMode(TalonControlMode.PercentVbus);
+		turretMotor.enable();
 		
 	}
 	
@@ -67,9 +68,7 @@ public class Turret extends Subsystem {
 	 */
 	public void setSpeed(double speed) {
 		if(Constants.TURRET_ENABLED) {
-			SmartDashboard.putNumber("Position",getEncPos());
-			SmartDashboard.putNumber("Set-Speed",speed);
-			SmartDashboard.putNumber("Read-Speed",turretMotor.getEncVelocity());
+			SmartDashboard.putBoolean("Setting Turret Speed: ",true);
 			turretMotor.changeControlMode(TalonControlMode.PercentVbus);
 			turretMotor.set(speed);
 		}
@@ -89,6 +88,10 @@ public class Turret extends Subsystem {
 			turretMotor.set(output);
 		}
 	}*/
+	
+	public void stopAll() {
+		turretMotor.set(Constants.SPEED_ZERO);
+	}
 	
 	@Override
 	protected void initDefaultCommand() {
