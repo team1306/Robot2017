@@ -5,18 +5,24 @@ import org.usfirst.frc.team1306.robot.OI;
 import org.usfirst.frc.team1306.robot.OI.controller;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
+import edu.wpi.first.wpilibj.Timer;
+
 /**
  * Command that calls to spin shooter, stops when shooter button is no longer pressed
  * @author Jackson Goth
  */
 public class SpinShooter extends CommandBase{
 
+	private final Timer timer;
+	
 	public SpinShooter() {
 		requires(shooter);
+		timer = new Timer();
 	}
 	
 	protected void initialize() {
-    	
+    	timer.reset();
+    	timer.start();
     }
     
     /**
@@ -26,6 +32,11 @@ public class SpinShooter extends CommandBase{
     	shooter.spinShooter();
     	shooter.spinIndexer();
     	hopper.spinHopper();
+//    	if(timer.hasPeriodPassed(1)) {
+//    		hopper.spinHopper();
+//    	} else {
+//    		hopper.spinHopperBack();
+//    	}
     }
 
     /**
@@ -36,6 +47,7 @@ public class SpinShooter extends CommandBase{
     		return false;
     	} else {
     		shooter.stopAll();
+    		hopper.stopAll();
     		return true;
     	}
     }
@@ -46,6 +58,6 @@ public class SpinShooter extends CommandBase{
     }
     
     protected void interrupted() {
-    	
+    	end();
     }
 }

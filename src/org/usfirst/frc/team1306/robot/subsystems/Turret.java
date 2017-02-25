@@ -54,7 +54,7 @@ public class Turret extends Subsystem {
 	 * Resets the encoder
 	 */
 	public void resetEncoder() {
-		//turretMotor.reset();
+		turretMotor.setPosition(0);
 	}
 	
 	/**
@@ -62,14 +62,14 @@ public class Turret extends Subsystem {
 	 * @param setpoint
 	 * 		Point to set turret to
 	 */
-	public void setPosition(double setpoint) {
-		if(Constants.TURRET_ENABLED) {
-			//getPIDController().reset();
-			SmartDashboard.putNumber("Position",getEncPos());
-			turretMotor.changeControlMode(TalonControlMode.Position);
-			turretMotor.set(setpoint);
-		}
-	}
+//	public void setPosition(double setpoint) {
+//		if(Constants.TURRET_ENABLED) {
+//			//getPIDController().reset();
+//			SmartDashboard.putNumber("Position",getEncPos());
+//			turretMotor.changeControlMode(TalonControlMode.Position);
+//			turretMotor.set(setpoint);
+//		}
+//	}
 	
 	/**
 	 * Turns the turret with a given speed

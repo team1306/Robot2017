@@ -2,8 +2,11 @@ package org.usfirst.frc.team1306.robot.subsystems;
 
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.RobotMap;
+
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -21,12 +24,24 @@ public class Shooter extends Subsystem {
 	
 	public Shooter() {
 		leftShooterMotor = new CANTalon(RobotMap.LEFT_SHOOTER_PORT);
-		leftShooterMotor.configEncoderCodesPerRev(12);
 		leftShooterMotor.enable();
 		rightShooterMotor = new CANTalon(RobotMap.RIGHT_SHOOTER_PORT);
 		rightShooterMotor.enable();
-		rightShooterMotor.configEncoderCodesPerRev(12);
+		
+		leftShooterMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Absolute);
+		leftShooterMotor.reverseSensor(false);
+		leftShooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
+		leftShooterMotor.configPeakOutputVoltage(+12.0f, -12.0f);
+		leftShooterMotor.setP(1024);
+		
+		rightShooterMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Absolute);
+		rightShooterMotor.reverseSensor(false);
+		rightShooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
+		rightShooterMotor.configPeakOutputVoltage(+12.0f, -12.0f);
+		rightShooterMotor.setP(1024);
+		
 		indexerMotor = new CANTalon(RobotMap.INDEXER_TALON_PORT);
+		indexerMotor.enable();
 	}
 	
 	/**
@@ -36,6 +51,8 @@ public class Shooter extends Subsystem {
 		if(Constants.SHOOTER_ENABLED) {
 			leftShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
 			rightShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
+			SmartDashboard.putNumber("L-Shooter:",Math.abs(leftShooterMotor.getEncVelocity()));
+			SmartDashboard.putNumber("R-Shooter:",Math.abs(rightShooterMotor.getEncVelocity()));
 			leftShooterMotor.set(shooterSpeed);
 			rightShooterMotor.set(shooterSpeed);
 		}
@@ -100,6 +117,7 @@ public class Shooter extends Subsystem {
 	public void spinIndexer() {
 		if(Constants.INDEXER_ENABLED) {
 			indexerMotor.changeControlMode(TalonControlMode.PercentVbus);
+			SmartDashboard.putNumber("Indexers:",indexerMotor.getEncVelocity());
 			indexerMotor.set(-Constants.INDEXER_SPEED);
 		}
 	}

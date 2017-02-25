@@ -33,7 +33,7 @@ public class Hopper extends Subsystem {
 	 */
 	public void spinHopperBack() {
 		if (Constants.HOPPER_ENABLED) {
-			hopperMotor.set(-hopperSpeed);
+			hopperMotor.set(-0.2);
 		}
 	}
 	

@@ -1,11 +1,10 @@
 package org.usfirst.frc.team1306.robot;
 
-import org.usfirst.frc.team1306.robot.commands.climber.Climb;
-import org.usfirst.frc.team1306.robot.commands.climber.ClimbBack;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.QuickTurn;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
-import org.usfirst.frc.team1306.robot.commands.shooter.BangSpinShooter;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
+import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooterBack;
+import org.usfirst.frc.team1306.robot.commands.turret.ResetEncoder;
 import org.usfirst.frc.team1306.robot.commands.turret.Scan;
 import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
 import org.usfirst.frc.team1306.robot.commands.turret.TurnTurret;
@@ -72,29 +71,24 @@ public class OI {
 		//Bind commands to buttons
 		pbuttonRB.whileHeld(new QuickTurn(true));
 		pbuttonLB.whileHeld(new QuickTurn(false));
-		
-		//pbuttonY.whenPressed(new AngledTurn(90));
-		
+
 		pbuttonY.whenPressed(new Scan(ScanDirection.LEFT));
 		pbuttonB.whenPressed(new Scan(ScanDirection.RIGHT));
-//		pbuttonA.whenPressed(new ResetTurret());
-//		pbuttonX.whenPressed(new TurnTurret(10));
 		
 		//pbuttonStart.whenPressed(new DeployGear());
 		//pbuttonBack.whenPressed(new ReverseGear());
-		
-		pbuttonStart.whenPressed(new TurnTurret(1500));
-		pbuttonA.whenPressed(new BangSpinShooter());
+
 		sbuttonA.whenPressed(new SpinShooter());
-		//pbuttonB.whenPressed(new ResetTurret());
+		sbuttonB.whenPressed(new TurnTurret(Constants.TURRET_RESET_POSITION));
 		sbuttonX.whenPressed(new SpinIntake());
-		//sbuttonStart.whenPressed(new ShooterBack());
-		sbuttonBack.whenPressed(new ClimbBack());
-		sbuttonStart.whenPressed(new Climb());
+		
+		sbuttonY.whenPressed(new SpinShooterBack());
+		//sbuttonBack.whenPressed(new ClimbBack());
+		
+		sbuttonStart.whenPressed(new ResetEncoder());
+		//sbuttonStart.whenPressed(new Climb());
 		//sbuttonA.whenPressed(new AdjustHood(HoodAngle.DOWN));
 		//sbuttonY.whenPressed(new AdjustHood(HoodAngle.UP));
-		//sbuttonRB.whenPressed(new Scan(ScanDirection.RIGHT));
-		//sbuttonLB.whenPressed(new Scan(ScanDirection.LEFT));	
 	}
 	
 	public enum axis {x, y}; 		//X or Y Axis on Joystick

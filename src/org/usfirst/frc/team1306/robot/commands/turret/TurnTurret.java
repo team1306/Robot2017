@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1306.robot.commands.turret;
 
+import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -28,10 +29,10 @@ public class TurnTurret extends CommandBase {
     	SmartDashboard.putNumber("EncPos",turret.getEncPos());
     	SmartDashboard.putNumber("Position",position);
     	if (turret.getEncPos() < position) {
-    		turret.setSpeed(0.18);
+    		turret.setSpeed(Constants.TURRET_TURN_LEFT_SPEED);
     		SmartDashboard.putNumber("Setting Speed: ",0.1);
     	} else if(turret.getEncPos() > position) {
-    		turret.setSpeed(-0.18);
+    		turret.setSpeed(Constants.TURRET_TURN_RIGHT_SPEED);
     		SmartDashboard.putNumber("Setting Speed: ",-0.1);
     	}
     }
