@@ -30,7 +30,7 @@ public class Shooter extends Subsystem {
 	}
 	
 	/**
-	 * Method that spins up shooter
+	 * Spins shooter forward (shooting fuel out)
 	 */
 	public void spinShooter() {
 		if(Constants.SHOOTER_ENABLED) {
@@ -41,6 +41,9 @@ public class Shooter extends Subsystem {
 		}
 	}
 	
+	/**
+	 * Spins shooter backward (pulling fuel back in)
+	 */
 	public void spinShooterBack() {
 		if (Constants.SHOOTER_ENABLED) {
 			leftShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
@@ -50,10 +53,17 @@ public class Shooter extends Subsystem {
 		}
 	}
 	
-	public double getVel(int motor) {
-		if(motor == 0) {
+	/**
+	 * Returns the velocity of the shooter
+	 * @param shooter
+	 * 		Which shooter to read velocity from (0=left, 1=right, 2=index)
+	 * @return
+	 * 		Returns getEncVelocity() from talonSRX
+	 */
+	public double getVel(int shooter) {
+		if(shooter == 0) {
 			return leftShooterMotor.getEncVelocity();
-		} else if(motor == 1) {
+		} else if(shooter == 1) {
 			return rightShooterMotor.getEncVelocity();
 		} else {
 			return indexerMotor.getEncVelocity();
@@ -61,7 +71,7 @@ public class Shooter extends Subsystem {
 	}
 	
 	/**
-	 * Spins the shooter with a bang bang loop
+	 * Spins the shooters with a bang bang loop
 	 */
 	public void bangBangSpinShooter() {
 		if(Constants.SHOOTER_ENABLED) {
@@ -84,6 +94,9 @@ public class Shooter extends Subsystem {
 		}
 	}
 	
+	/**
+	 * Spins the indexer forward (push fuel to shooters)
+	 */
 	public void spinIndexer() {
 		if(Constants.INDEXER_ENABLED) {
 			indexerMotor.changeControlMode(TalonControlMode.PercentVbus);
@@ -91,6 +104,9 @@ public class Shooter extends Subsystem {
 		}
 	}
 	
+	/**
+	 * Spins indexer backward (pull fuel away from shooters)
+	 */
 	public void spinIndexerBack() {
 		if (Constants.INDEXER_ENABLED) {
 			indexerMotor.changeControlMode(TalonControlMode.PercentVbus);
@@ -100,7 +116,8 @@ public class Shooter extends Subsystem {
 	
 	/**
 	 * Stops the shooter when done shooting
-	 * @deprecated Switch to stopAll()
+	 * @deprecated 
+	 * 		Switch to stopAll()
 	 */
 	public void stopMotor() {
 		leftShooterMotor.set(Constants.SPEED_ZERO);

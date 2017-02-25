@@ -20,7 +20,7 @@ public class Intake extends Subsystem {
 	}
 	
 	/**
-	 * Method that continually spins intake
+	 * Spins the intake forward
 	 */
 	public void spinIntake() {
 		if(Constants.INTAKE_ENABLED) {
@@ -29,12 +29,17 @@ public class Intake extends Subsystem {
 	}
 	
 	/**
-	 * Stops the intake when command is done
+	 * Stops the intake
+	 * @deprecated
+	 * 		Use stopAll()
 	 */
 	public void stopMotor() {
 		intakeMotor.set(Constants.SPEED_ZERO);
 	}
 	
+	/**
+	 * Stops the intake motor
+	 */
 	public void stopAll() {
 		intakeMotor.set(Constants.SPEED_ZERO);
 	}

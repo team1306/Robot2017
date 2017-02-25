@@ -18,18 +18,27 @@ public class Climber extends Subsystem{
 		climberMotor = new Talon(RobotMap.CLIMBER_TALON_PORT);
 	}
 	
+	/**
+	 * Spins the climber forward
+	 */
 	public void spinClimber() {
 		if(Constants.CLIMBER_ENABLED) {
 			climberMotor.set(Constants.CLIMBER_SPEED);	
 		}
 	}
 	
+	/**
+	 * Spins the climber backwards
+	 */
 	public void spinClimberBack() {
 		if (Constants.CLIMBER_ENABLED) {
 			climberMotor.set(-Constants.CLIMBER_SPEED);
 		}
 	}
 	
+	/**
+	 * Stops the climber
+	 */
 	public void stopAll() {
 		climberMotor.set(Constants.SPEED_ZERO);
 	}

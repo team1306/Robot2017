@@ -20,7 +20,7 @@ public class Hopper extends Subsystem {
 	}
 	
 	/**
-	 * Method that spins hopper
+	 * Spins hopper forward (fuel up to shooters)
 	 */
 	public void spinHopper() {
 		if(Constants.HOPPER_ENABLED) {
@@ -28,6 +28,9 @@ public class Hopper extends Subsystem {
 		}
 	}
 	
+	/**
+	 * Spins hopper backwards (fuel down away from shooters)
+	 */
 	public void spinHopperBack() {
 		if (Constants.HOPPER_ENABLED) {
 			hopperMotor.set(-hopperSpeed);

@@ -15,7 +15,10 @@ public class GearMech extends Subsystem {
 		gearSolenoid = new Solenoid(0);
 		timer = new Timer();
 	}
-
+	
+	/**
+	 * Sets the solenoid to true and pushes out the gear
+	 */
 	public void deployGear() {
 		gearSolenoid.set(true);
 		//timer.delay(1);
@@ -27,6 +30,9 @@ public class GearMech extends Subsystem {
 		//gearSolenoid.set(false);
 	}
 	
+	/**
+	 * Sets the solenoid to false and pulls gear back
+	 */
 	public void reverseGear() {
 		gearSolenoid.set(false);
 		//timer.delay(1);

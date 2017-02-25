@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1306.robot.commands.turret;
 
+import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
@@ -49,10 +50,10 @@ public class Scan extends CommandBase {
 //			turret.stopAll();
 //		}
 //		
-		if(turret.getEncPos() > 2700 && direction == 0.18) {
+		if(turret.getEncPos() > Constants.TURRET_RIGHT_LIMIT && direction == ScanDirection.RIGHT.getDir()) {	//2700 0.18
 			turret.stopAll();
 			return true;
-		} else if(turret.getEncPos() < 1250 && direction == -0.18) {
+		} else if(turret.getEncPos() < Constants.TURRET_LEFT_LIMIT && direction == ScanDirection.LEFT.getDir()) {	//1250 -0.18
 			turret.stopAll();
 			return true;
 		} else {

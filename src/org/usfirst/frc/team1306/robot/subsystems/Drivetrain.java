@@ -24,7 +24,7 @@ public class Drivetrain extends Subsystem {
 	private final CANTalon rightmotor1;
 	private final CANTalon leftmotor2;
 	private final CANTalon rightmotor2;
-	AHRS ahrs;
+	AHRS ahrs;								//Gyro
 	
 	public Drivetrain() {
 		leftmotor1 = new CANTalon(RobotMap.LEFT_TALON_1_PORT);
@@ -174,6 +174,9 @@ public class Drivetrain extends Subsystem {
 		motors[motor].set(Constants.SPEED_ZERO);
 	}
 	
+	/**
+	 * Stops all of the drive motors
+	 */
 	public void stopAll() {
 		for (int i = 0; i < motors.length; i++) {
 			motors[i].set(Constants.SPEED_ZERO);

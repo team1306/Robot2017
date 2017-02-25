@@ -23,6 +23,11 @@ public class Hood extends Subsystem {
 		setPos(HoodAngle.UP);
 	}
 	
+	/**
+	 * Sets the position of the hood
+	 * @param angle
+	 * 		HoodAngle enum (UP or DOWN)
+	 */
 	public void setPos(HoodAngle angle) {
 		pos = angle.getDir();
 		name = angle.getName();
@@ -35,8 +40,22 @@ public class Hood extends Subsystem {
 		}
 	}
 	
-	public String getPos() {
+	/**
+	 * Returns the name of the hood pos (good for smartdash/debug)
+	 * @return
+	 * 		Pos of hood
+	 */
+	public String getDir() {
 		return name;
+	}
+	
+	/**
+	 * Returns the pos of the hood
+	 * @return
+	 * 		Pos of hood
+	 */
+	public int getPos() {
+		return pos;
 	}
 	
 	@Override

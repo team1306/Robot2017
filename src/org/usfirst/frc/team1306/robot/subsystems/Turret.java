@@ -40,11 +40,19 @@ public class Turret extends Subsystem {
 		
 	}
 	
+	/**
+	 * Returns the encoder position (abs mode)
+	 * @return
+	 * 		Encoder position
+	 */
 	public double getEncPos() {
 		return turretMotor.getPulseWidthPosition();
 		//return turretMotor.get;
 	}
 	
+	/**
+	 * Resets the encoder
+	 */
 	public void resetEncoder() {
 		//turretMotor.reset();
 	}
@@ -52,6 +60,7 @@ public class Turret extends Subsystem {
 	/**
 	 * Turns the turret to a given set-point
 	 * @param setpoint
+	 * 		Point to set turret to
 	 */
 	public void setPosition(double setpoint) {
 		if(Constants.TURRET_ENABLED) {
@@ -89,6 +98,9 @@ public class Turret extends Subsystem {
 		}
 	}*/
 	
+	/**
+	 * Stops the turret
+	 */
 	public void stopAll() {
 		turretMotor.set(Constants.SPEED_ZERO);
 	}
