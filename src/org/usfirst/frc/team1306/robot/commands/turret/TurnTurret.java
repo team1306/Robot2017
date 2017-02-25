@@ -28,17 +28,17 @@ public class TurnTurret extends CommandBase {
     	SmartDashboard.putNumber("EncPos",turret.getEncPos());
     	SmartDashboard.putNumber("Position",position);
     	if (turret.getEncPos() < position) {
-    		turret.setSpeed(0.2);
+    		turret.setSpeed(0.18);
     		SmartDashboard.putNumber("Setting Speed: ",0.1);
     	} else if(turret.getEncPos() > position) {
-    		turret.setSpeed(-0.2);
+    		turret.setSpeed(-0.18);
     		SmartDashboard.putNumber("Setting Speed: ",-0.1);
     	}
     }
 
     protected boolean isFinished() {
     	SmartDashboard.putNumber("TurretPos - EncPos", Math.abs(position - turret.getEncPos()));
-    	if(Math.abs(position - turret.getEncPos()) < 50 || turret.getEncPos() > 2800 || turret.getEncPos() < 1150) {
+    	if(Math.abs(position - turret.getEncPos()) < 50 || (turret.getEncPos() > 2700 && turret.getEncPos() < position) || (turret.getEncPos() < 1250 && turret.getEncPos() > position)) {
     		SmartDashboard.putBoolean("IsFinished: ",true);
     		return true;
     	} else {
