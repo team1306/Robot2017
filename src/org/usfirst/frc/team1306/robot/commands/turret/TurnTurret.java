@@ -15,7 +15,7 @@ public class TurnTurret extends CommandBase {
 	
 	public TurnTurret(int position) {
 		requires(turret);
-		this.position = position;
+		this.position = position; //Desired position of turret (You can get this value from IE dashboard)
 	}
 	
 	protected void initialize() {
@@ -26,24 +26,21 @@ public class TurnTurret extends CommandBase {
      * Spins turret to correct position
      */
     protected void execute() {
-    	SmartDashboard.putNumber("EncPos",turret.getEncPos());
-    	SmartDashboard.putNumber("Position",position);
     	if (turret.getEncPos() < position) {
-    		turret.setSpeed(Constants.TURRET_TURN_LEFT_SPEED);
-    		SmartDashboard.putNumber("Setting Speed: ",0.1);
+    		turret.setSpeed(Constants.TURRET_TURN_LEFT_SPEED); //If Turret position is below desired position the turret needs to turn left
     	} else if(turret.getEncPos() > position) {
-    		turret.setSpeed(Constants.TURRET_TURN_RIGHT_SPEED);
-    		SmartDashboard.putNumber("Setting Speed: ",-0.1);
+    		turret.setSpeed(Constants.TURRET_TURN_RIGHT_SPEED); //If Turret position is above desired position the turret needs to turn right
     	}
     }
 
     protected boolean isFinished() {
-    	SmartDashboard.putNumber("TurretPos - EncPos", Math.abs(position - turret.getEncPos()));
-    	if(Math.abs(position - turret.getEncPos()) < 50 || (turret.getEncPos() > 2700 && turret.getEncPos() < position) || (turret.getEncPos() < 1250 && turret.getEncPos() > position)) {
-    		SmartDashboard.putBoolean("IsFinished: ",true);
+    	if(Math.abs(position - turret.getEncPos()) < Constants.TURRET_TURN_TOLERANCE) { //Stops turning turret if in tolerance of position
+    		turret.stopAll();
     		return true;
-    	} else {
-    		SmartDashboard.putBoolean("IsFinished: ",false);
+    	} else if((turret.getEncPos() > Constants.TURRET_LEFT_LIMIT && turret.getEncPos() < position) || (turret.getEncPos() < Constants.TURRET_RIGHT_LIMIT && turret.getEncPos() > position)) {
+    		turret.stopAll(); //Stops turning if turret is outside soft limits
+    		return true;
+    	} else { //Continues turning turret
     		return false;
     	}
     }

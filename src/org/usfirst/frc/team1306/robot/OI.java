@@ -4,10 +4,9 @@ import org.usfirst.frc.team1306.robot.commands.drivetrain.QuickTurn;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooterBack;
-import org.usfirst.frc.team1306.robot.commands.turret.ResetEncoder;
+import org.usfirst.frc.team1306.robot.commands.turret.ResetTurret;
 import org.usfirst.frc.team1306.robot.commands.turret.Scan;
 import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
-import org.usfirst.frc.team1306.robot.commands.turret.TurnTurret;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -79,13 +78,12 @@ public class OI {
 		//pbuttonBack.whenPressed(new ReverseGear());
 
 		sbuttonA.whenPressed(new SpinShooter());
-		sbuttonB.whenPressed(new TurnTurret(Constants.TURRET_RESET_POSITION));
+		sbuttonB.whenPressed(new ResetTurret());
 		sbuttonX.whenPressed(new SpinIntake());
 		
 		sbuttonY.whenPressed(new SpinShooterBack());
 		//sbuttonBack.whenPressed(new ClimbBack());
-		
-		sbuttonStart.whenPressed(new ResetEncoder());
+
 		//sbuttonStart.whenPressed(new Climb());
 		//sbuttonA.whenPressed(new AdjustHood(HoodAngle.DOWN));
 		//sbuttonY.whenPressed(new AdjustHood(HoodAngle.UP));

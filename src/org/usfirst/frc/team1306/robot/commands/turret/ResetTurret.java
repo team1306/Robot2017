@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1306.robot.commands.turret;
 
+import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
 /**
@@ -19,8 +20,7 @@ public class ResetTurret extends CommandBase{
 
 	@Override
 	protected void execute() {
-		//turret.setPosition(0.0);
-		//turretPID.setPosition(0.0);
+		new TurnTurret(Constants.TURRET_RESET_POSITION).start();
 	}
 
 	@Override
@@ -30,11 +30,11 @@ public class ResetTurret extends CommandBase{
 
 	@Override
 	protected void end() {
-		//turret.stopAll();
+		turret.stopAll();
 	}
 
 	@Override
 	protected void interrupted() {
-		//end();
+		end();
 	}
 }

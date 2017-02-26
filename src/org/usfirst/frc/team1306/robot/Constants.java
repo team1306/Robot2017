@@ -47,15 +47,16 @@ public class Constants {
 	
 	//Shooter Constants
 	public final static double SHOOTER_SPEED = 0.95;			//Shooter low speed
-	public final static int SHOOTER_BANG_RANGE = 250;//(int)(SHOOTER_SPEED * 8738);
+	public final static int SHOOTER_BANG_RANGE = 250;			//(int)(SHOOTER_SPEED * 8738);
 	public final static double SHOOTER_BANG_CEILING = 1.0;		//Value bang bang sets to when under desired speed
 	
 	//Turret Constants
-	public final static double TURRET_TURN_LEFT_SPEED = 0.25;	//0.18
-	public final static double TURRET_TURN_RIGHT_SPEED = -0.25;	//-0.18
-	public final static double TURRET_LEFT_LIMIT = 3170;		//2700
-	public final static double TURRET_RIGHT_LIMIT = 1180;		//1250
-	public final static int TURRET_RESET_POSITION = 2150;		//2080
+	public final static double TURRET_TURN_LEFT_SPEED = 0.25;	
+	public final static double TURRET_TURN_RIGHT_SPEED = -0.25;	
+	public final static double TURRET_LEFT_LIMIT = 3170;		
+	public final static double TURRET_RIGHT_LIMIT = 1180;		
+	public final static int TURRET_RESET_POSITION = 2150;		
+	public final static double TURRET_TURN_TOLERANCE = 20; //TODO Refine
 	public final static double TURRET_P = 0.0;
 	public final static double TURRET_I = 0.0;
 	public final static double TURRET_D = 0.0;
@@ -79,5 +80,6 @@ public class Constants {
 	public final static double UPPER_TAPE_WIDTH = 4.00; 		//Inches
 	public final static double TOWER_HEIGHT = 88; 				//Inches
 	public final static double DATA_REFRESH_RATE = 0.1;
+	public final static double VISION_YAW_TOLERANCE = 5;		//TODO Refine
 	public final static String JETSON_IP = "";
 }
