@@ -24,7 +24,7 @@ public class Drivetrain extends Subsystem {
 	private final CANTalon rightmotor1;
 	private final CANTalon leftmotor2;
 	private final CANTalon rightmotor2;
-	AHRS ahrs;								//Gyro
+	AHRS ahrs; //Navx Gyro
 	
 	public Drivetrain() {
 		leftmotor1 = new CANTalon(RobotMap.LEFT_TALON_1_PORT);
@@ -37,43 +37,13 @@ public class Drivetrain extends Subsystem {
 		setupMotors(rightmotor1,rightmotor2);
 		
 		try {
-			ahrs = new AHRS(SPI.Port.kMXP);
-			SmartDashboard.putString("Gyro Connected","True");
+			ahrs = new AHRS(SPI.Port.kMXP); //Attempting to Initialize Gyro
+			SmartDashboard.putBoolean("Gyro Connected",true);
 		} catch(RuntimeException ex) {
-			SmartDashboard.putString("Gyro Connected","False");
+			SmartDashboard.putBoolean("Gyro Connected",false);
 		}
 		
 		ahrs.reset();
-		
-		//PID Drivetrain Code
-//		leftmotor1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-//		leftmotor1.reverseSensor(false);
-//		leftmotor1.configEncoderCodesPerRev(256);
-//		leftmotor1.configNominalOutputVoltage(+0.0f, -0.0f);
-//		leftmotor1.configPeakOutputVoltage(+12.0f, -12.0f);
-//		
-//		rightmotor1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-//		rightmotor1.reverseSensor(false);
-//		rightmotor1.configEncoderCodesPerRev(256);
-//		rightmotor1.configNominalOutputVoltage(+0.0f, -0.0f);
-//		rightmotor1.configPeakOutputVoltage(+12.0f, -12.0f);
-//
-//		/*leftmotor1.setMotionMagicCruiseVelocity(100);
-//		leftmotor1.setMotionMagicAcceleration(20);
-//		rightmotor1.setMotionMagicCruiseVelocity(100);
-//		rightmotor1.setMotionMagicAcceleration(20);*/
-//		
-//		leftmotor1.setProfile(0);
-//		leftmotor1.setF(Constants.F);	//Calculated constant
-//		leftmotor1.setP(Constants.P);	//Calculated constant
-//		leftmotor1.setI(Constants.I);	//Calculated constant 1/100 of P-gain
-//		leftmotor1.setD(Constants.D);
-//		
-//		rightmotor1.setProfile(0);
-//		rightmotor1.setF(Constants.F);	//Calculated constant
-//		rightmotor1.setP(Constants.P);	//Calculated constant
-//		rightmotor1.setI(Constants.I);	//Calculated constant 1/100 P-gain
-//		rightmotor1.setD(Constants.D);
 	}
 	
 	/**
@@ -91,10 +61,36 @@ public class Drivetrain extends Subsystem {
 		slave.changeControlMode(TalonControlMode.Follower);
 		slave.set(master.getDeviceID());
 		slave.enable();
+		
+//		Setting up Encoder for Left Drivetrain
+//		leftmotor1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+//		leftmotor1.reverseSensor(false);
+//		leftmotor1.configEncoderCodesPerRev(256);
+//		leftmotor1.configNominalOutputVoltage(+0.0f, -0.0f);
+//		leftmotor1.configPeakOutputVoltage(+12.0f, -12.0f);
+//		
+//		Setting up Encoder for Right Drivetrain
+//		rightmotor1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+//		rightmotor1.reverseSensor(false);
+//		rightmotor1.configEncoderCodesPerRev(256);
+//		rightmotor1.configNominalOutputVoltage(+0.0f, -0.0f);
+//		rightmotor1.configPeakOutputVoltage(+12.0f, -12.0f);
+//
+//		Setting up PIDF for Left Drivetrain
+//		leftmotor1.setF(Constants.F);	
+//		leftmotor1.setP(Constants.P);	
+//		leftmotor1.setI(Constants.I);	
+//		leftmotor1.setD(Constants.D);
+//		
+//      Setting up PIDF for Right Drivetrain
+//		rightmotor1.setF(Constants.F);	
+//		rightmotor1.setP(Constants.P);	
+//		rightmotor1.setI(Constants.I);	
+//		rightmotor1.setD(Constants.D);
 	}
 	
 	/**
-	 * Takes 2 params to control the motors
+	 * Takes 2 desired speeds to run the drive motors at
 	 * 
 	 * @param leftVal
 	 * 		Speed for the left side (from -1 to 1)
@@ -104,9 +100,7 @@ public class Drivetrain extends Subsystem {
 	public void tankDrive(double leftVal, double rightVal) {
 		leftmotor1.changeControlMode(TalonControlMode.PercentVbus);
 		rightmotor1.changeControlMode(TalonControlMode.PercentVbus);
-		SmartDashboard.putNumber("leftSpeed",leftmotor1.getEncVelocity());
-		SmartDashboard.putNumber("rightSpeed",rightmotor1.getEncVelocity());
-		
+
 		if(Constants.DRIVETRAIN_ENABLED) {
 			leftmotor1.set(leftVal*Constants.SPEED_MODIFIER);
 			rightmotor1.set(-rightVal*Constants.SPEED_MODIFIER);
@@ -115,7 +109,7 @@ public class Drivetrain extends Subsystem {
 	}
 	
 	/**
-	 * Takes a desired speed to run both motors at
+	 * Takes a desired speed to run both drive motors at and tries to maintain that with PID
 	 * @param initVel
 	 * 		Speed for both sides to match
 	 */
@@ -123,25 +117,12 @@ public class Drivetrain extends Subsystem {
 		leftmotor1.changeControlMode(TalonControlMode.Speed);
 		rightmotor1.changeControlMode(TalonControlMode.Speed);
 		
-		if(Constants.PID_DRIVETRAIN_ENABLED) {
-			SmartDashboard.putNumber("leftVal",leftmotor1.getEncVelocity());
-			SmartDashboard.putNumber("rightVal",rightmotor1.getEncVelocity());
-			SmartDashboard.putNumber("left.err", initVel - leftmotor1.getEncVelocity());
-			SmartDashboard.putNumber("right.err", -initVel - rightmotor1.getEncVelocity());
-			
+		if(Constants.DRIVETRAIN_ENABLED) {
 			leftmotor1.set(-initVel);
 			rightmotor1.set(initVel);
 		}
 	}
-	
-	public void driveMP(double leftVal, double rightVal) {
-		leftmotor1.changeControlMode(TalonControlMode.MotionMagic);
-		rightmotor1.changeControlMode(TalonControlMode.MotionMagic);
-		
-		leftmotor1.set(40);
-		rightmotor1.set(-40);
-	}
-	
+
 	/**
 	 * Resets the position of both encoders back to zero
 	 */
@@ -162,16 +143,6 @@ public class Drivetrain extends Subsystem {
 	 */
 	public int getRightPosition() {
 		return rightmotor1.getEncPosition();
-	}
-	
-	/**
-	 * Sets the motor speed to 0
-	 * 
-	 * @param motor
-	 * 		The motor that you would like to stop 0,1:(left1, right1), also stopps follower motors
-	 */
-	public void stopMotor(int motor) {
-		motors[motor].set(Constants.SPEED_ZERO);
 	}
 	
 	/**

@@ -3,17 +3,15 @@ package org.usfirst.frc.team1306.robot.commands.turret;
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 /**
  * Command that turns turret to a given position
  * @author Sam Roquitte
  */
 public class TurnTurret extends CommandBase {
 
-	int position;
+	double position;
 	
-	public TurnTurret(int position) {
+	public TurnTurret(double position) {
 		requires(turret);
 		this.position = position; //Desired position of turret (You can get this value from IE dashboard)
 	}

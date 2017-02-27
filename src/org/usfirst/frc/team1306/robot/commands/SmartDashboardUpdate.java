@@ -2,7 +2,6 @@ package org.usfirst.frc.team1306.robot.commands;
 
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.hal.HAL;
-import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -12,7 +11,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class SmartDashboardUpdate extends CommandBase {
 
 	PowerDistributionPanel panel;
-	NetworkTable table;
 	
 	public SmartDashboardUpdate() {
 		requires(hood);
@@ -45,7 +43,7 @@ public class SmartDashboardUpdate extends CommandBase {
 		//Shooting Velocities
 		SmartDashboard.putNumber("SD-LShooterVel",Math.abs(shooter.getVel(0)));
 		SmartDashboard.putNumber("SD-RShooterVel",Math.abs(shooter.getVel(1)));
-//		SmartDashboard.putNumber("IndexerVel",shooter.getVel(2));
+		SmartDashboard.putNumber("IndexerVel",shooter.getVel(2));
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1306.robot.commands.autonomous;
 
+import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
 
 /**
@@ -8,18 +9,18 @@ import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
  */
 public enum Station {
 	
-	RED_ONE(AutoConstants.MP_ONE,ScanDirection.LEFT,ScanDirection.LEFT),
-	RED_TWO(AutoConstants.MP_TWO,ScanDirection.LEFT,ScanDirection.LEFT),
-	RED_THREE(AutoConstants.MP_THREE,ScanDirection.LEFT,ScanDirection.RIGHT),
-	BLUE_ONE(AutoConstants.MP_FOUR,ScanDirection.RIGHT,ScanDirection.RIGHT),
-	BLUE_TWO(AutoConstants.MP_FIVE,ScanDirection.RIGHT,ScanDirection.RIGHT),
-	BLUE_THREE(AutoConstants.MP_SIX,ScanDirection.RIGHT,ScanDirection.LEFT),
+	RED_ONE(Constants.MP_ONE,ScanDirection.LEFT,ScanDirection.LEFT),
+	RED_TWO(Constants.MP_TWO,ScanDirection.LEFT,ScanDirection.LEFT),
+	RED_THREE(Constants.MP_THREE,ScanDirection.LEFT,ScanDirection.RIGHT),
+	BLUE_ONE(Constants.MP_FOUR,ScanDirection.RIGHT,ScanDirection.RIGHT),
+	BLUE_TWO(Constants.MP_FIVE,ScanDirection.RIGHT,ScanDirection.RIGHT),
+	BLUE_THREE(Constants.MP_SIX,ScanDirection.RIGHT,ScanDirection.LEFT),
 	UNKNOWN(0,ScanDirection.UNKNOWN,ScanDirection.UNKNOWN);	
 	
 	private final int motionProfile;
 	private final ScanDirection dir1;
 	private final ScanDirection dir2;
-	private final double speed = AutoConstants.AUTO_SPEED;
+	private final double speed = Constants.AUTO_SPEED;
 	
 	private Station(int motionProfile,ScanDirection dir1,ScanDirection dir2) {
 		this.motionProfile = motionProfile;

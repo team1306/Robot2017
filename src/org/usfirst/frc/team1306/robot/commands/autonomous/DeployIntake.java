@@ -4,7 +4,7 @@ import org.usfirst.frc.team1306.robot.commands.CommandBase;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- * Spins the climber backwards so the intake will fall down and allow for the collection of balls
+ * Spins the climber backwards so the intake will fall down
  * @author Jackson Goth
  */
 public class DeployIntake extends CommandBase {
