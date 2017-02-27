@@ -4,6 +4,7 @@ import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Command that scans with vision in given direction until a target is found.
@@ -35,18 +36,24 @@ public class Scan extends CommandBase {
 	@Override
 	protected void execute() {
 		turret.setSpeed(turn_speed);
+		SmartDashboard.putString("Direction",direction);
 		if(table.getBoolean("seeTarget",false)) {
 			targetInSight = true;
+		} else {
+			targetInSight = false;
 		}
 	}
 
 	@Override
 	protected boolean isFinished() {
 		
-		if(turret.getEncPos() < Constants.TURRET_RIGHT_LIMIT && direction.equals("Right") && !targetInSight) {
+		if(turret.getEncPos() < Constants.TURRET_RIGHT_LIMIT && direction.equals("Right")) {
 			turret.stopAll();
 			return true;
-		} else if(turret.getEncPos() > Constants.TURRET_LEFT_LIMIT && direction.equals("Left") && !targetInSight) {
+		} else if(turret.getEncPos() > Constants.TURRET_LEFT_LIMIT && direction.equals("Left")) {
+			turret.stopAll();
+			return true;
+		} else if(targetInSight) {
 			turret.stopAll();
 			return true;
 		} else {

@@ -39,9 +39,9 @@ public class TurnTarget extends CommandBase {
 		
 		//Turns the turret based on yaw (0 is the center, so if yaw is negative the turret must turn left)
 		if(table.getNumber("yaw",0) < 0) {
-			//turret.setSpeed(Constants.TURRET_TURN_LEFT_SPEED); TODO Re-Add When Received Yaw is Correct
+			turret.setSpeed(Constants.TURRET_TURN_LEFT_SPEED);
 		} else if(table.getNumber("yaw",0) > 0) {
-			//turret.setSpeed(Constants.TURRET_TURN_RIGHT_SPEED); TODO Re-Add When Received Yaw is Correct
+			turret.setSpeed(Constants.TURRET_TURN_RIGHT_SPEED);
 		}
 		
 		//If the target is lost a timer will start
