@@ -20,7 +20,7 @@ public class Shooter extends Subsystem {
 	private final CANTalon rightShooterMotor;
 	private final CANTalon indexerMotor;
 	
-	public final static double shooterSpeed = -Constants.SHOOTER_SPEED;
+	public final static double shooterSpeed = Constants.SHOOTER_SPEED;
 	
 	public Shooter() {
 		leftShooterMotor = new CANTalon(RobotMap.LEFT_SHOOTER_PORT);
@@ -28,17 +28,23 @@ public class Shooter extends Subsystem {
 		rightShooterMotor = new CANTalon(RobotMap.RIGHT_SHOOTER_PORT);
 		rightShooterMotor.enable();
 		
-//		leftShooterMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
-//		leftShooterMotor.reverseSensor(false);
-//		leftShooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
-//		leftShooterMotor.configPeakOutputVoltage(+12.0f, -12.0f);
-//		leftShooterMotor.setP(1023);
-//		
-//		rightShooterMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
-//		rightShooterMotor.reverseSensor(false);
-//		rightShooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
-//		rightShooterMotor.configPeakOutputVoltage(+12.0f, -12.0f);
-//		rightShooterMotor.setP(1023);
+		leftShooterMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		leftShooterMotor.reverseSensor(false);
+		leftShooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
+		leftShooterMotor.configPeakOutputVoltage(+12.0f, -12.0f);
+//		leftShooterMotor.setF(0);
+//		leftShooterMotor.setP(0);
+//		leftShooterMotor.setI(0);
+//		leftShooterMotor.setD(0);
+		
+		rightShooterMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		rightShooterMotor.reverseSensor(false);
+		rightShooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
+		rightShooterMotor.configPeakOutputVoltage(+12.0f, -12.0f);
+//		rightShooterMotor.setF(0);
+//		rightShooterMotor.setP(0);
+//		rightShooterMotor.setI(0);
+//		rightShooterMotor.setD(0);
 		
 		indexerMotor = new CANTalon(RobotMap.INDEXER_TALON_PORT);
 		indexerMotor.enable();
@@ -49,12 +55,14 @@ public class Shooter extends Subsystem {
 	 */
 	public void spinShooter() {
 		if(Constants.SHOOTER_ENABLED) {
-			leftShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
-			rightShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
+			leftShooterMotor.changeControlMode(TalonControlMode.Speed);
+			rightShooterMotor.changeControlMode(TalonControlMode.Speed);
 			SmartDashboard.putNumber("L-Shooter:",Math.abs(leftShooterMotor.getSpeed()));
 			SmartDashboard.putNumber("R-Shooter:",Math.abs(rightShooterMotor.getSpeed()));
-			leftShooterMotor.set(-shooterSpeed);
-			rightShooterMotor.set(-shooterSpeed);
+			SmartDashboard.putNumber("L-Error",leftShooterMotor.getClosedLoopError());
+			SmartDashboard.putNumber("R-Error",rightShooterMotor.getClosedLoopError());
+			leftShooterMotor.set(shooterSpeed);
+			rightShooterMotor.set(shooterSpeed);
 		}
 	}
 	
@@ -65,8 +73,8 @@ public class Shooter extends Subsystem {
 		if (Constants.SHOOTER_ENABLED) {
 			leftShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
 			rightShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
-			leftShooterMotor.set(shooterSpeed);
-			rightShooterMotor.set(shooterSpeed);
+			leftShooterMotor.set(-shooterSpeed);
+			rightShooterMotor.set(-shooterSpeed);
 		}
 	}
 	
@@ -95,18 +103,18 @@ public class Shooter extends Subsystem {
 			
 			leftShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
 			if (Math.abs(leftShooterMotor.getEncVelocity()) > Constants.SHOOTER_BANG_RANGE) {
-				leftShooterMotor.set(Constants.SHOOTER_SPEED);
+				leftShooterMotor.set(-Constants.SHOOTER_SPEED);
 			}
 			else {
-				leftShooterMotor.set(Constants.SHOOTER_BANG_CEILING);
+				leftShooterMotor.set(-Constants.SHOOTER_BANG_CEILING);
 			}
 
 			rightShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
 			if (Math.abs(rightShooterMotor.getEncVelocity()) > Constants.SHOOTER_BANG_RANGE) {
-				rightShooterMotor.set(Constants.SHOOTER_SPEED);
+				rightShooterMotor.set(-Constants.SHOOTER_SPEED);
 			}
 			else {
-				rightShooterMotor.set(Constants.SHOOTER_BANG_CEILING);
+				rightShooterMotor.set(-Constants.SHOOTER_BANG_CEILING);
 			}
 		}
 	}

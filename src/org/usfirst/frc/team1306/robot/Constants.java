@@ -57,7 +57,7 @@ public class Constants {
 	public final static double INDEXER_SPEED = 1.0;
 	
 	//Shooter Constants
-	public final static double SHOOTER_SPEED = 0.7;
+	public final static double SHOOTER_SPEED = 972;
 	public final static int SHOOTER_BANG_RANGE = 240;			//If shooter speed is below this number, bang bang will kick in
 	public final static double SHOOTER_BANG_CEILING = 1.0;		//Speed bang bang uses when below desired speed
 	
