@@ -68,20 +68,20 @@ public class OI {
 		sbuttonBack = new JoystickButton(secondaryController, XboxController.BACK);
 		
 		//Bind commands to buttons
-		pbuttonRB.whileHeld(new QuickTurn(true));
-		pbuttonLB.whileHeld(new QuickTurn(false));
+		//pbuttonRB.whileHeld(new QuickTurn(true));
+		//pbuttonLB.whileHeld(new QuickTurn(false));
 
-		pbuttonY.whenPressed(new Scan(ScanDirection.LEFT));
-		pbuttonB.whenPressed(new Scan(ScanDirection.RIGHT));
+		pbuttonLB.whenPressed(new Scan(ScanDirection.LEFT));
+		pbuttonRB.whenPressed(new Scan(ScanDirection.RIGHT));
 		
 		//pbuttonStart.whenPressed(new DeployGear());
 		//pbuttonBack.whenPressed(new ReverseGear());
 
-		sbuttonA.whenPressed(new SpinShooter());
-		sbuttonB.whenPressed(new ResetTurret());
+		pbuttonA.whenPressed(new SpinShooter());
+		pbuttonB.whenPressed(new ResetTurret());
 		sbuttonX.whenPressed(new SpinIntake());
 		
-		sbuttonY.whenPressed(new SpinShooterBack());
+		//sbuttonY.whenPressed(new SpinShooterBack());
 		//sbuttonBack.whenPressed(new ClimbBack());
 
 		//sbuttonStart.whenPressed(new Climb());

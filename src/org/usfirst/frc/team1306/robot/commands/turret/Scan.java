@@ -35,13 +35,20 @@ public class Scan extends CommandBase {
 
 	@Override
 	protected void execute() {
-		turret.setSpeed(turn_speed);
-		SmartDashboard.putString("Direction",direction);
-		if(table.getBoolean("seeTarget",false)) {
-			targetInSight = true;
+		
+		targetInSight = table.getBoolean("seeTarget",false);
+
+		if(targetInSight) {
+			if(table.getNumber("yaw",0) < 0) {
+				turret.setSpeed(Constants.TURRET_TURN_LEFT_SPEED);
+			} else if(table.getNumber("yaw",0) > 0) {
+				turret.setSpeed(Constants.TURRET_TURN_RIGHT_SPEED);
+			}
 		} else {
-			targetInSight = false;
+			turret.setSpeed(turn_speed);
 		}
+		SmartDashboard.putBoolean("Target In Sight",targetInSight);
+		SmartDashboard.putNumber("Yaw",table.getNumber("yaw",0));
 	}
 
 	@Override
@@ -53,10 +60,11 @@ public class Scan extends CommandBase {
 		} else if(turret.getEncPos() > Constants.TURRET_LEFT_LIMIT && direction.equals("Left")) {
 			turret.stopAll();
 			return true;
-		} else if(targetInSight) {
+		}/* else if(Math.abs(table.getNumber("yaw",0)) < Constants.VISION_YAW_TOLERANCE) { //Stops turning if target is in tolerance
+			SmartDashboard.putBoolean("Locked-On",true);
 			turret.stopAll();
 			return true;
-		} else {
+		}*/ else {
 			return false;
 		}
 	}
@@ -64,11 +72,11 @@ public class Scan extends CommandBase {
 	@Override
 	protected void end() {
 		turret.stopAll();
-		if(targetInSight) {
-			new TurnTarget(direction).start();
-		} else {
-			new TurnTurret(Constants.TURRET_RESET_POSITION).start();
-		}
+//		if(targetInSight) {
+//			new TurnTarget(direction).start();
+//		} else {
+//			new TurnTurret(Constants.TURRET_RESET_POSITION).start();
+//		}
 		
 	}
 
