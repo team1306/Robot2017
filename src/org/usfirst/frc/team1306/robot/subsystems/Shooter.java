@@ -53,8 +53,8 @@ public class Shooter extends Subsystem {
 			rightShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
 			SmartDashboard.putNumber("L-Shooter:",Math.abs(leftShooterMotor.getEncVelocity()));
 			SmartDashboard.putNumber("R-Shooter:",Math.abs(rightShooterMotor.getEncVelocity()));
-			leftShooterMotor.set(shooterSpeed);
-			rightShooterMotor.set(shooterSpeed);
+			leftShooterMotor.set(-shooterSpeed);
+			rightShooterMotor.set(-shooterSpeed);
 		}
 	}
 	
@@ -65,8 +65,8 @@ public class Shooter extends Subsystem {
 		if (Constants.SHOOTER_ENABLED) {
 			leftShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
 			rightShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
-			leftShooterMotor.set(-shooterSpeed);
-			rightShooterMotor.set(-shooterSpeed);
+			leftShooterMotor.set(shooterSpeed);
+			rightShooterMotor.set(shooterSpeed);
 		}
 	}
 	
