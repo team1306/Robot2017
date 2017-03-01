@@ -6,18 +6,24 @@ import org.usfirst.frc.team1306.robot.OI.controller;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 import org.usfirst.frc.team1306.robot.commands.turret.ResetTurret;
 
+import edu.wpi.first.wpilibj.Timer;
+
 /**
  * Command that spins the shooter with a bang bang loop
  * @author Sam Roquitte
  */
 public class BangSpinShooter extends CommandBase{
 
+	private final Timer timer;
+	
 	public BangSpinShooter() {
 		requires(shooter);
+		timer = new Timer();
 	}
 	
 	protected void initialize() {
-    	
+    	timer.reset();
+    	timer.start();
     }
     
     /**
@@ -26,8 +32,10 @@ public class BangSpinShooter extends CommandBase{
     protected void execute() {
     	
     	shooter.bangBangSpinShooter();
-    	shooter.spinIndexer();
-    	hopper.spinHopper();
+    	if(timer.hasPeriodPassed(1)) {
+    		hopper.spinHopper();
+    		shooter.spinIndexer();
+    	}
     }
 
     /**

@@ -28,17 +28,17 @@ public class Shooter extends Subsystem {
 		rightShooterMotor = new CANTalon(RobotMap.RIGHT_SHOOTER_PORT);
 		rightShooterMotor.enable();
 		
-		leftShooterMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
-		leftShooterMotor.reverseSensor(false);
-		leftShooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
-		leftShooterMotor.configPeakOutputVoltage(+12.0f, -12.0f);
-		leftShooterMotor.setP(1024);
-		
-		rightShooterMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
-		rightShooterMotor.reverseSensor(false);
-		rightShooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
-		rightShooterMotor.configPeakOutputVoltage(+12.0f, -12.0f);
-		rightShooterMotor.setP(1024);
+//		leftShooterMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+//		leftShooterMotor.reverseSensor(false);
+//		leftShooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
+//		leftShooterMotor.configPeakOutputVoltage(+12.0f, -12.0f);
+//		leftShooterMotor.setP(1023);
+//		
+//		rightShooterMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+//		rightShooterMotor.reverseSensor(false);
+//		rightShooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
+//		rightShooterMotor.configPeakOutputVoltage(+12.0f, -12.0f);
+//		rightShooterMotor.setP(1023);
 		
 		indexerMotor = new CANTalon(RobotMap.INDEXER_TALON_PORT);
 		indexerMotor.enable();
@@ -51,8 +51,8 @@ public class Shooter extends Subsystem {
 		if(Constants.SHOOTER_ENABLED) {
 			leftShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
 			rightShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
-			SmartDashboard.putNumber("L-Shooter:",Math.abs(leftShooterMotor.getEncVelocity()));
-			SmartDashboard.putNumber("R-Shooter:",Math.abs(rightShooterMotor.getEncVelocity()));
+			SmartDashboard.putNumber("L-Shooter:",Math.abs(leftShooterMotor.getSpeed()));
+			SmartDashboard.putNumber("R-Shooter:",Math.abs(rightShooterMotor.getSpeed()));
 			leftShooterMotor.set(-shooterSpeed);
 			rightShooterMotor.set(-shooterSpeed);
 		}
@@ -95,18 +95,18 @@ public class Shooter extends Subsystem {
 			
 			leftShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
 			if (Math.abs(leftShooterMotor.getEncVelocity()) > Constants.SHOOTER_BANG_RANGE) {
-				leftShooterMotor.set(-Constants.SHOOTER_SPEED);
+				leftShooterMotor.set(Constants.SHOOTER_SPEED);
 			}
 			else {
-				leftShooterMotor.set(-Constants.SHOOTER_BANG_CEILING);
+				leftShooterMotor.set(Constants.SHOOTER_BANG_CEILING);
 			}
 
 			rightShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
 			if (Math.abs(rightShooterMotor.getEncVelocity()) > Constants.SHOOTER_BANG_RANGE) {
-				rightShooterMotor.set(-Constants.SHOOTER_SPEED);
+				rightShooterMotor.set(Constants.SHOOTER_SPEED);
 			}
 			else {
-				rightShooterMotor.set(-Constants.SHOOTER_BANG_CEILING);
+				rightShooterMotor.set(Constants.SHOOTER_BANG_CEILING);
 			}
 		}
 	}

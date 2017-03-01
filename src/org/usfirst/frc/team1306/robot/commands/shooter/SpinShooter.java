@@ -30,20 +30,19 @@ public class SpinShooter extends CommandBase{
      */
     protected void execute() {
     	shooter.spinShooter();
-    	shooter.spinIndexer();
-    	hopper.spinHopper();
-//    	if(timer.hasPeriodPassed(1)) {
-//    		hopper.spinHopper();
-//    	} else {
-//    		hopper.spinHopperBack();
-//    	}
+    	//shooter.spinIndexer();
+    	//hopper.spinHopper();
+    	if(timer.hasPeriodPassed(1)) {
+    		hopper.spinHopper();
+    		shooter.spinIndexer();
+    	}
     }
 
     /**
      * Stops spinning shooter when shooter button is no longer pressed
      */
     protected boolean isFinished() {
-    	if(OI.getButtonVal(controller.s,Constants.SHOOTER_BUTTON)) {
+    	if(OI.getButtonVal(controller.p,Constants.SHOOTER_BUTTON)) {
     		return false;
     	} else {
     		shooter.stopAll();

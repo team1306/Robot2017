@@ -27,7 +27,7 @@ public class Constants {
 	public final static int INTAKE_BUTTON = XboxController.X;
 	public final static int SHOOTER_BUTTON = XboxController.A;
 	public final static int SHOOTER_BACK_BUTTON = XboxController.START;
-	public final static int BANG_SHOOTER_BUTTON = XboxController.A;
+	public final static int BANG_SHOOTER_BUTTON = XboxController.B;
 	
 	//Autonomous Constants
 	public final static double AUTO_SPEED = 0.5;
@@ -57,8 +57,8 @@ public class Constants {
 	public final static double INDEXER_SPEED = 1.0;
 	
 	//Shooter Constants
-	public final static double SHOOTER_SPEED = 0.95;
-	public final static int SHOOTER_BANG_RANGE = 250;			//If shooter speed is below this number, bang bang will kick in
+	public final static double SHOOTER_SPEED = 0.7;
+	public final static int SHOOTER_BANG_RANGE = 240;			//If shooter speed is below this number, bang bang will kick in
 	public final static double SHOOTER_BANG_CEILING = 1.0;		//Speed bang bang uses when below desired speed
 	
 	//Turret Constants

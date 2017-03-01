@@ -2,6 +2,7 @@ package org.usfirst.frc.team1306.robot;
 
 import org.usfirst.frc.team1306.robot.commands.drivetrain.QuickTurn;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
+import org.usfirst.frc.team1306.robot.commands.shooter.BangSpinShooter;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooterBack;
 import org.usfirst.frc.team1306.robot.commands.turret.ResetTurret;
@@ -78,7 +79,8 @@ public class OI {
 		//pbuttonBack.whenPressed(new ReverseGear());
 
 		pbuttonA.whenPressed(new SpinShooter());
-		pbuttonB.whenPressed(new ResetTurret());
+		pbuttonB.whenPressed(new BangSpinShooter());
+		sbuttonB.whenPressed(new ResetTurret());
 		sbuttonX.whenPressed(new SpinIntake());
 		
 		//sbuttonY.whenPressed(new SpinShooterBack());
