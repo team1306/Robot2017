@@ -29,6 +29,7 @@ public class SpinShooter extends CommandBase{
      * Spins up shooter
      */
     protected void execute() {
+    	//shooter.setRPM(1000);
     	shooter.spinShooter();
     	//shooter.spinIndexer();
     	//hopper.spinHopper();

@@ -38,7 +38,7 @@ public class Shooter extends Subsystem {
 //		leftShooterMotor.setD(0);
 		
 		rightShooterMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
-		rightShooterMotor.reverseSensor(false);
+		rightShooterMotor.reverseSensor(true);
 		rightShooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
 		rightShooterMotor.configPeakOutputVoltage(+12.0f, -12.0f);
 //		rightShooterMotor.setF(0);
@@ -55,14 +55,26 @@ public class Shooter extends Subsystem {
 	 */
 	public void spinShooter() {
 		if(Constants.SHOOTER_ENABLED) {
-			leftShooterMotor.changeControlMode(TalonControlMode.Speed);
-			rightShooterMotor.changeControlMode(TalonControlMode.Speed);
-			SmartDashboard.putNumber("L-Shooter:",Math.abs(leftShooterMotor.getSpeed()));
-			SmartDashboard.putNumber("R-Shooter:",Math.abs(rightShooterMotor.getSpeed()));
+//			leftShooterMotor.changeControlMode(TalonControlMode.Speed);
+//			rightShooterMotor.changeControlMode(TalonControlMode.Speed);
+			SmartDashboard.putNumber("L-Shooter:",Math.abs(leftShooterMotor.getEncVelocity()));
+			SmartDashboard.putNumber("R-Shooter:",Math.abs(rightShooterMotor.getEncVelocity()));
 			SmartDashboard.putNumber("L-Error",leftShooterMotor.getClosedLoopError());
 			SmartDashboard.putNumber("R-Error",rightShooterMotor.getClosedLoopError());
-			leftShooterMotor.set(shooterSpeed);
-			rightShooterMotor.set(shooterSpeed);
+			leftShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
+			rightShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
+			leftShooterMotor.set(0.95);
+			rightShooterMotor.set(0.95);
+//			leftShooterMotor.set(1100);
+//			rightShooterMotor.set(1100);
+		}
+	}
+	
+	public void setRPM(int rpm) {
+		if (Constants.SHOOTER_ENABLED) {
+			leftShooterMotor.changeControlMode(TalonControlMode.Speed);
+			SmartDashboard.putNumber("L Shooter RPM: ", rpm);
+			leftShooterMotor.set(rpm);
 		}
 	}
 	

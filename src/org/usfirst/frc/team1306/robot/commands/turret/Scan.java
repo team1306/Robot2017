@@ -31,6 +31,7 @@ public class Scan extends CommandBase {
 	@Override
 	protected void initialize() {
 		targetInSight = false;
+		table.putBoolean("seeTarget",false);
 	}
 
 	@Override
