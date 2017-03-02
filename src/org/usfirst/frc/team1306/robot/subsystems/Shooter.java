@@ -2,11 +2,9 @@ package org.usfirst.frc.team1306.robot.subsystems;
 
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.RobotMap;
-
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
-
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -33,20 +31,20 @@ public class Shooter extends Subsystem {
 		leftShooterMotor.reverseSensor(false);
 		leftShooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
 		leftShooterMotor.configPeakOutputVoltage(+12.0f, -12.0f);
-//		leftShooterMotor.setF(0);
-//		leftShooterMotor.setP(0);
-//		leftShooterMotor.setI(0);
-//		leftShooterMotor.setD(0);
+		leftShooterMotor.setF(13.28);
+		leftShooterMotor.setP(Double.MAX_VALUE);
+		leftShooterMotor.setI(0.0);
+		leftShooterMotor.setD(0.0);
 		
 		rightShooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		rightShooterMotor.configEncoderCodesPerRev(12);
 		rightShooterMotor.reverseSensor(true);
 		rightShooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
 		rightShooterMotor.configPeakOutputVoltage(+12.0f, -12.0f);
-//		rightShooterMotor.setF(0);
-//		rightShooterMotor.setP(0);
-//		rightShooterMotor.setI(0);
-//		rightShooterMotor.setD(0);
+		rightShooterMotor.setF(13.28);
+		rightShooterMotor.setP(Double.MAX_VALUE);
+		rightShooterMotor.setI(0.0);
+		rightShooterMotor.setD(0.0);
 		
 		indexerMotor = new CANTalon(RobotMap.INDEXER_TALON_PORT);
 		indexerMotor.enable();
@@ -65,8 +63,8 @@ public class Shooter extends Subsystem {
 			SmartDashboard.putNumber("R-Error",rightShooterMotor.getClosedLoopError());
 			leftShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
 			rightShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
-			leftShooterMotor.set(0.95);
-			rightShooterMotor.set(0.95);
+			leftShooterMotor.set(1.0);
+			rightShooterMotor.set(0.86);
 //			leftShooterMotor.set(1100);
 //			rightShooterMotor.set(1100);
 		}

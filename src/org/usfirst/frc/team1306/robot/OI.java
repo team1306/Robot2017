@@ -78,8 +78,8 @@ public class OI {
 		//pbuttonStart.whenPressed(new DeployGear());
 		//pbuttonBack.whenPressed(new ReverseGear());
 
-		pbuttonA.whenPressed(new SpinShooter());
-		pbuttonB.whenPressed(new BangSpinShooter());
+		sbuttonA.whenPressed(new SpinShooter());
+		//pbuttonB.whenPressed(new BangSpinShooter());
 		sbuttonB.whenPressed(new ResetTurret());
 		sbuttonX.whenPressed(new SpinIntake());
 		
