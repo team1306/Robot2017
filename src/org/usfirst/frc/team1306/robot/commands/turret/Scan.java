@@ -40,9 +40,11 @@ public class Scan extends CommandBase {
 		targetInSight = table.getBoolean("seeTarget",false);
 
 		if(targetInSight) {
-			if(table.getNumber("yaw",0) < 0) {
+			if(Math.abs(table.getNumber("yaw",0)) + 8 < 15) {
+				turret.setSpeed(0);
+			} else if(table.getNumber("yaw",0) + 8 < 0) {
 				turret.setSpeed(Constants.TURRET_TURN_LEFT_SPEED);
-			} else if(table.getNumber("yaw",0) > 0) {
+			} else if(table.getNumber("yaw",0) + 8 > 0) {
 				turret.setSpeed(Constants.TURRET_TURN_RIGHT_SPEED);
 			}
 		} else {

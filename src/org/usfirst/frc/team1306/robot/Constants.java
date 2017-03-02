@@ -62,11 +62,11 @@ public class Constants {
 	public final static double SHOOTER_BANG_CEILING = 1.0;		//Speed bang bang uses when below desired speed
 	
 	//Turret Constants
-	public final static double TURRET_TURN_LEFT_SPEED = 0.17;	
-	public final static double TURRET_TURN_RIGHT_SPEED = -0.17;	
-	public final static double TURRET_LEFT_LIMIT = 5000;		
-	public final static double TURRET_RIGHT_LIMIT = 1130;		
-	public final static double TURRET_RESET_POSITION = 3020;		
+	public final static double TURRET_TURN_LEFT_SPEED = 0.13;	
+	public final static double TURRET_TURN_RIGHT_SPEED = -0.13;	
+	public final static double TURRET_LEFT_LIMIT = 9020;		
+	public final static double TURRET_RIGHT_LIMIT = 5270;		
+	public final static double TURRET_RESET_POSITION = 7180;		
 	public final static double TURRET_TURN_TOLERANCE = 10;
 	public final static double TURRET_F = 0.0;
 	public final static double TURRET_P = 0.0;

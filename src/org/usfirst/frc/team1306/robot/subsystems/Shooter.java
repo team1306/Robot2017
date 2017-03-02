@@ -28,7 +28,8 @@ public class Shooter extends Subsystem {
 		rightShooterMotor = new CANTalon(RobotMap.RIGHT_SHOOTER_PORT);
 		rightShooterMotor.enable();
 		
-		leftShooterMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		leftShooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		leftShooterMotor.configEncoderCodesPerRev(12);
 		leftShooterMotor.reverseSensor(false);
 		leftShooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
 		leftShooterMotor.configPeakOutputVoltage(+12.0f, -12.0f);
@@ -37,7 +38,8 @@ public class Shooter extends Subsystem {
 //		leftShooterMotor.setI(0);
 //		leftShooterMotor.setD(0);
 		
-		rightShooterMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		rightShooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		rightShooterMotor.configEncoderCodesPerRev(12);
 		rightShooterMotor.reverseSensor(true);
 		rightShooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
 		rightShooterMotor.configPeakOutputVoltage(+12.0f, -12.0f);
