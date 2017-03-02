@@ -28,6 +28,8 @@ public class Constants {
 	public final static int SHOOTER_BUTTON = XboxController.A;
 	public final static int SHOOTER_BACK_BUTTON = XboxController.START;
 	public final static int BANG_SHOOTER_BUTTON = XboxController.B;
+	public final static int AIM_LEFT_BUTTON = XboxController.LB;
+	public final static int AIM_RIGHT_BUTTON = XboxController.RB;
 	
 	//Autonomous Constants
 	public final static double AUTO_SPEED = 0.5;
@@ -57,9 +59,17 @@ public class Constants {
 	public final static double INDEXER_SPEED = 1.0;
 	
 	//Shooter Constants
-	public final static double SHOOTER_SPEED = 972;
-	public final static int SHOOTER_BANG_RANGE = 240;			//If shooter speed is below this number, bang bang will kick in
-	public final static double SHOOTER_BANG_CEILING = 1.0;		//Speed bang bang uses when below desired speed
+	public final static double SHOOTER_SPEED = 0.87;
+	public final static int SHOOTER_BANG_RANGE = 240;	//If shooter speed is below this number, bang bang will kick in
+	public final static double SHOOTER_BANG_CEILING = 1.0;	//Speed bang bang uses when below desired speed
+	public final static double SHOOTER_F = 13.28;
+	public final static double SHOOTER_P = Double.MAX_VALUE;
+	public final static double SHOOTER_I = 0.0;
+	public final static double SHOOTER_D = 0.0;
+	public final static double INDEXER_F = 0.0; //TODO Experimentally calculate
+	public final static double INDEXER_P = 0.0; //Double.MAX_VALUE;
+	public final static double INDEXER_I = 0.0;
+	public final static double INDEXER_D = 0.0;
 	
 	//Turret Constants
 	public final static double TURRET_TURN_LEFT_SPEED = 0.13;	
@@ -68,10 +78,6 @@ public class Constants {
 	public final static double TURRET_RIGHT_LIMIT = 5270;		
 	public final static double TURRET_RESET_POSITION = 7180;		
 	public final static double TURRET_TURN_TOLERANCE = 10;
-	public final static double TURRET_F = 0.0;
-	public final static double TURRET_P = 0.0;
-	public final static double TURRET_I = 0.0;
-	public final static double TURRET_D = 0.0;
 	
 	//Drivetrain Constants
 	public final static double SPEED_MODIFIER = 1.0;			//Multiplier of speeds inputed into tankDrive

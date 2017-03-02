@@ -5,7 +5,7 @@ import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
 /**
  * Command that turns turret to a given position
- * @author Sam Roquitte
+ * @author Sam Roquitte and Jackson Goth
  */
 public class TurnTurret extends CommandBase {
 

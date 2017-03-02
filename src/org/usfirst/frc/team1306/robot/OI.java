@@ -1,10 +1,9 @@
 package org.usfirst.frc.team1306.robot;
 
-import org.usfirst.frc.team1306.robot.commands.drivetrain.QuickTurn;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
-import org.usfirst.frc.team1306.robot.commands.shooter.BangSpinShooter;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
-import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooterBack;
+import org.usfirst.frc.team1306.robot.commands.turret.Aim;
+import org.usfirst.frc.team1306.robot.commands.turret.Direction;
 import org.usfirst.frc.team1306.robot.commands.turret.ResetTurret;
 import org.usfirst.frc.team1306.robot.commands.turret.Scan;
 import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
@@ -75,11 +74,14 @@ public class OI {
 		pbuttonLB.whenPressed(new Scan(ScanDirection.LEFT));
 		pbuttonRB.whenPressed(new Scan(ScanDirection.RIGHT));
 		
+		sbuttonLB.whenPressed(new Aim(Direction.LEFT));
+		sbuttonRB.whenPressed(new Aim(Direction.RIGHT));
+		
 		//pbuttonStart.whenPressed(new DeployGear());
 		//pbuttonBack.whenPressed(new ReverseGear());
 
 		sbuttonA.whenPressed(new SpinShooter());
-		//pbuttonB.whenPressed(new BangSpinShooter());
+		
 		sbuttonB.whenPressed(new ResetTurret());
 		sbuttonX.whenPressed(new SpinIntake());
 		

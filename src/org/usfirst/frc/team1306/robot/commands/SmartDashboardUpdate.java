@@ -43,7 +43,7 @@ public class SmartDashboardUpdate extends CommandBase {
 		//Shooting Velocities
 		SmartDashboard.putNumber("SD-LShooterVel",Math.abs(shooter.getVel(0)));
 		SmartDashboard.putNumber("SD-RShooterVel",Math.abs(shooter.getVel(1)));
-		SmartDashboard.putNumber("IndexerVel",shooter.getVel(2));
+		SmartDashboard.putNumber("SD-IndexerVel",Math.abs(shooter.getVel(2)));
 	}
 
 	@Override

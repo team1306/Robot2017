@@ -25,29 +25,37 @@ public class Shooter extends Subsystem {
 		leftShooterMotor.enable();
 		rightShooterMotor = new CANTalon(RobotMap.RIGHT_SHOOTER_PORT);
 		rightShooterMotor.enable();
+		indexerMotor = new CANTalon(RobotMap.INDEXER_TALON_PORT);
+		indexerMotor.enable();
 		
 		leftShooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		leftShooterMotor.configEncoderCodesPerRev(12);
 		leftShooterMotor.reverseSensor(false);
 		leftShooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
 		leftShooterMotor.configPeakOutputVoltage(+12.0f, -12.0f);
-		leftShooterMotor.setF(13.28);
-		leftShooterMotor.setP(Double.MAX_VALUE);
-		leftShooterMotor.setI(0.0);
-		leftShooterMotor.setD(0.0);
+		leftShooterMotor.setF(Constants.SHOOTER_F);
+		leftShooterMotor.setP(Constants.SHOOTER_P);
+		leftShooterMotor.setI(Constants.SHOOTER_I);
+		leftShooterMotor.setD(Constants.SHOOTER_D);
 		
 		rightShooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		rightShooterMotor.configEncoderCodesPerRev(12);
 		rightShooterMotor.reverseSensor(true);
 		rightShooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
 		rightShooterMotor.configPeakOutputVoltage(+12.0f, -12.0f);
-		rightShooterMotor.setF(13.28);
-		rightShooterMotor.setP(Double.MAX_VALUE);
-		rightShooterMotor.setI(0.0);
-		rightShooterMotor.setD(0.0);
+		rightShooterMotor.setF(Constants.SHOOTER_F);
+		rightShooterMotor.setP(Constants.SHOOTER_P);
+		rightShooterMotor.setI(Constants.SHOOTER_I);
+		rightShooterMotor.setD(Constants.SHOOTER_D);
 		
-		indexerMotor = new CANTalon(RobotMap.INDEXER_TALON_PORT);
-		indexerMotor.enable();
+		indexerMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		indexerMotor.reverseSensor(false); //TODO Figure out
+		indexerMotor.configNominalOutputVoltage(+0.0f, -0.0f);
+		indexerMotor.configPeakOutputVoltage(+12.0f, -12.0f);
+		indexerMotor.setF(Constants.INDEXER_F);
+		indexerMotor.setP(Constants.INDEXER_P);
+		indexerMotor.setI(Constants.INDEXER_I);
+		indexerMotor.setD(Constants.INDEXER_D);
 	}
 	
 	/**
@@ -55,26 +63,10 @@ public class Shooter extends Subsystem {
 	 */
 	public void spinShooter() {
 		if(Constants.SHOOTER_ENABLED) {
-//			leftShooterMotor.changeControlMode(TalonControlMode.Speed);
-//			rightShooterMotor.changeControlMode(TalonControlMode.Speed);
-			SmartDashboard.putNumber("L-Shooter:",Math.abs(leftShooterMotor.getEncVelocity()));
-			SmartDashboard.putNumber("R-Shooter:",Math.abs(rightShooterMotor.getEncVelocity()));
-			SmartDashboard.putNumber("L-Error",leftShooterMotor.getClosedLoopError());
-			SmartDashboard.putNumber("R-Error",rightShooterMotor.getClosedLoopError());
 			leftShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
 			rightShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
-			leftShooterMotor.set(1.0);
-			rightShooterMotor.set(0.86);
-//			leftShooterMotor.set(1100);
-//			rightShooterMotor.set(1100);
-		}
-	}
-	
-	public void setRPM(int rpm) {
-		if (Constants.SHOOTER_ENABLED) {
-			leftShooterMotor.changeControlMode(TalonControlMode.Speed);
-			SmartDashboard.putNumber("L Shooter RPM: ", rpm);
-			leftShooterMotor.set(rpm);
+			leftShooterMotor.set(shooterSpeed);
+			rightShooterMotor.set(shooterSpeed);
 		}
 	}
 	
@@ -91,6 +83,26 @@ public class Shooter extends Subsystem {
 	}
 	
 	/**
+	 * Spins the indexer forward (push fuel to shooters)
+	 */
+	public void spinIndexer() {
+		if(Constants.INDEXER_ENABLED) {
+			indexerMotor.changeControlMode(TalonControlMode.PercentVbus);
+			indexerMotor.set(-Constants.INDEXER_SPEED);
+		}
+	}
+	
+	/**
+	 * Spins indexer backward (pull fuel away from shooters)
+	 */
+	public void spinIndexerBack() {
+		if (Constants.INDEXER_ENABLED) {
+			indexerMotor.changeControlMode(TalonControlMode.PercentVbus);
+			indexerMotor.set(Constants.INDEXER_SPEED);
+		}
+	}
+	
+	/**
 	 * Returns the velocity of the shooter
 	 * @param shooter
 	 * 		Which shooter to read velocity from (0=left, 1=right, 2=index)
@@ -99,11 +111,11 @@ public class Shooter extends Subsystem {
 	 */
 	public double getVel(int shooter) {
 		if(shooter == 0) {
-			return leftShooterMotor.getEncVelocity();
+			return leftShooterMotor.getSpeed();
 		} else if(shooter == 1) {
-			return rightShooterMotor.getEncVelocity();
+			return rightShooterMotor.getSpeed();
 		} else {
-			return indexerMotor.getEncVelocity();
+			return indexerMotor.getSpeed();
 		}
 	}
 	
@@ -112,7 +124,6 @@ public class Shooter extends Subsystem {
 	 */
 	public void bangBangSpinShooter() {
 		if(Constants.SHOOTER_ENABLED) {
-			
 			leftShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
 			if (Math.abs(leftShooterMotor.getEncVelocity()) > Constants.SHOOTER_BANG_RANGE) {
 				leftShooterMotor.set(-Constants.SHOOTER_SPEED);
@@ -129,37 +140,6 @@ public class Shooter extends Subsystem {
 				rightShooterMotor.set(-Constants.SHOOTER_BANG_CEILING);
 			}
 		}
-	}
-	
-	/**
-	 * Spins the indexer forward (push fuel to shooters)
-	 */
-	public void spinIndexer() {
-		if(Constants.INDEXER_ENABLED) {
-			indexerMotor.changeControlMode(TalonControlMode.PercentVbus);
-			SmartDashboard.putNumber("Indexers:",indexerMotor.getEncVelocity());
-			indexerMotor.set(-Constants.INDEXER_SPEED);
-		}
-	}
-	
-	/**
-	 * Spins indexer backward (pull fuel away from shooters)
-	 */
-	public void spinIndexerBack() {
-		if (Constants.INDEXER_ENABLED) {
-			indexerMotor.changeControlMode(TalonControlMode.PercentVbus);
-			indexerMotor.set(Constants.INDEXER_SPEED);
-		}
-	}
-	
-	/**
-	 * Stops the shooter when done shooting
-	 * @deprecated 
-	 * 		Switch to stopAll()
-	 */
-	public void stopMotor() {
-		leftShooterMotor.set(Constants.SPEED_ZERO);
-		rightShooterMotor.set(Constants.SPEED_ZERO);
 	}
 	
 	/**
