@@ -5,6 +5,8 @@ import org.usfirst.frc.team1306.robot.RobotMap;
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
+import com.ctre.CANTalon.VelocityMeasurementPeriod;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -33,6 +35,8 @@ public class Shooter extends Subsystem {
 		leftShooterMotor.reverseSensor(false);
 		leftShooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
 		leftShooterMotor.configPeakOutputVoltage(+12.0f, -12.0f);
+		leftShooterMotor.SetVelocityMeasurementPeriod(VelocityMeasurementPeriod.Period_1Ms);
+		leftShooterMotor.SetVelocityMeasurementWindow(16);
 		leftShooterMotor.setF(Constants.SHOOTER_F);
 		leftShooterMotor.setP(Constants.SHOOTER_P);
 		leftShooterMotor.setI(Constants.SHOOTER_I);
@@ -43,6 +47,8 @@ public class Shooter extends Subsystem {
 		rightShooterMotor.reverseSensor(true);
 		rightShooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
 		rightShooterMotor.configPeakOutputVoltage(+12.0f, -12.0f);
+		rightShooterMotor.SetVelocityMeasurementPeriod(VelocityMeasurementPeriod.Period_1Ms);
+		rightShooterMotor.SetVelocityMeasurementWindow(16);
 		rightShooterMotor.setF(Constants.SHOOTER_F);
 		rightShooterMotor.setP(Constants.SHOOTER_P);
 		rightShooterMotor.setI(Constants.SHOOTER_I);
@@ -67,6 +73,10 @@ public class Shooter extends Subsystem {
 			rightShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
 			leftShooterMotor.set(shooterSpeed);
 			rightShooterMotor.set(shooterSpeed);
+			/*leftShooterMotor.changeControlMode(TalonControlMode.Speed);
+			rightShooterMotor.changeControlMode(TalonControlMode.Speed);
+			leftShooterMotor.set(2000);
+			rightShooterMotor.set(2000);*/
 		}
 	}
 	

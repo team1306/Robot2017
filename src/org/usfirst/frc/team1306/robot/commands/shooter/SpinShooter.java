@@ -28,14 +28,21 @@ public class SpinShooter extends CommandBase{
     /**
      * Spins up shooter
      */
+	private int hopperRampI = 1;
     protected void execute() {
     	//shooter.setRPM(1000);
     	shooter.spinShooter();
+		shooter.spinIndexer();
     	//shooter.spinIndexer();
     	//hopper.spinHopper();
-    	if(timer.hasPeriodPassed(5)) {
-    		hopper.spinHopper();
-    		shooter.spinIndexer();
+    	if(timer.hasPeriodPassed(3)) {
+    		if (timer.hasPeriodPassed(3+(0.5*hopperRampI)) && hopperRampI < 5) {
+    			hopper.spinHopper(hopperRampI);
+    		}
+    		else {
+    			hopper.spinHopper();
+    		}
+    		//hopper.spinHopper();
     	}
     }
 

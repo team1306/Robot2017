@@ -14,6 +14,8 @@ public class Hopper extends Subsystem {
 	private final Talon hopperMotor;
 	
 	public final static double hopperSpeed = Constants.HOPPER_SPEED;
+	public final static double hopperStartSpeed = 0.0;
+	private final static double hopperStepTime = 0.5;
 	
 	public Hopper() {
 		hopperMotor = new Talon(RobotMap.HOPPER_TALON_PORT);
@@ -25,6 +27,17 @@ public class Hopper extends Subsystem {
 	public void spinHopper() {
 		if(Constants.HOPPER_ENABLED) {
 			hopperMotor.set(hopperSpeed);
+		}
+	}
+	
+	/**
+	 * Spins hopper forward (fuel up to shooters) with steps (increasing speed)
+	 * @param step
+	 * 		Step of speed (1-5)
+	 */
+	public void spinHopper(int step) {
+		if (Constants.HOPPER_ENABLED) {
+			hopperMotor.set(0.1*step + 0.5);
 		}
 	}
 	
