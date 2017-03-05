@@ -21,12 +21,13 @@ public class Constants {
 	//OI Constants
 	public final static double DEADBAND = 0.15;					//Joystick deadband
 	public final static double TRIGGER_DEADBAND = 0.15;			//Trigger deadband
-	public final static double JOYSTICK_MULTIPLIER = 1.0;  
+	public final static double JOYSTICK_MULTIPLIER = 1.0;		//Multiplier for the joystick inputs  
 	
 	//Button Constants
 	public final static int INTAKE_BUTTON = XboxController.X;
 	public final static int SHOOTER_BUTTON = XboxController.A;
 	public final static int SHOOTER_BACK_BUTTON = XboxController.START;
+	public final static int MANUAL_TURRET_BUTTON = XboxController.RB;
 	public final static int BANG_SHOOTER_BUTTON = XboxController.B;
 	public final static int AIM_LEFT_BUTTON = XboxController.LB;
 	public final static int AIM_RIGHT_BUTTON = XboxController.RB;
@@ -59,19 +60,22 @@ public class Constants {
 	public final static double INDEXER_SPEED = 1.0;
 	
 	//Shooter Constants
-	public final static double SHOOTER_SPEED = 0.72;	//0.84
-	public final static int SHOOTER_BANG_RANGE = 240;	//If shooter speed is below this number, bang bang will kick in
-	public final static double SHOOTER_BANG_CEILING = 1.0;	//Speed bang bang uses when below desired speed
-	public final static double SHOOTER_F = 13.28;	//13.28
+	public final static double SHOOTER_SPEED = 0.72;			//0.84
+	public final static double SHOOTER_RPM_SPEED = 3000;		//Shooter speed in RPM (default:3000)
+	public final static int SHOOTER_SPIN_UP_TIME = 3;			//Time to let shooters spin up before turning on hopper and indexers
+	public final static int SHOOTER_BANG_RANGE = 240;			//If shooter speed is below this number, bang bang will kick in
+	public final static double SHOOTER_BANG_CEILING = 1.0;		//Speed bang bang uses when below desired speed
+	public final static double SHOOTER_F = 13.28;				//13.28
 	public final static double SHOOTER_P = Double.MAX_VALUE;
 	public final static double SHOOTER_I = 0.0;
 	public final static double SHOOTER_D = 0.0;
-	public final static double INDEXER_F = 0.0; //TODO Experimentally calculate
-	public final static double INDEXER_P = 0.0; //Double.MAX_VALUE;
+	public final static double INDEXER_F = 0.0; 				//TODO Experimentally calculate
+	public final static double INDEXER_P = 0.0; 				//Double.MAX_VALUE;
 	public final static double INDEXER_I = 0.0;
 	public final static double INDEXER_D = 0.0;
 	
 	//Turret Constants
+	public final static double MANUAL_TURRET_ROT = 1;			//Maxumum rotation value for the turret when in manual mode
 	public final static double TURRET_TURN_LEFT_SPEED = 0.13;	
 	public final static double TURRET_TURN_RIGHT_SPEED = -0.13;	
 	public final static double TURRET_LEFT_LIMIT = 9020;		
