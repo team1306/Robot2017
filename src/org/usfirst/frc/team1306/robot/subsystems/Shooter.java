@@ -8,7 +8,6 @@ import com.ctre.CANTalon.TalonControlMode;
 import com.ctre.CANTalon.VelocityMeasurementPeriod;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This controls the shooter and rate at which balls are shot
@@ -44,9 +43,9 @@ public class Shooter extends Subsystem {
 		
 		rightShooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		rightShooterMotor.configEncoderCodesPerRev(12);
-		rightShooterMotor.reverseSensor(true);
+		rightShooterMotor.reverseSensor(false);
 		rightShooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
-		rightShooterMotor.configPeakOutputVoltage(+12.0f, 0.0f);
+		rightShooterMotor.configPeakOutputVoltage(-12.0f, 0.0f);
 		rightShooterMotor.SetVelocityMeasurementPeriod(VelocityMeasurementPeriod.Period_10Ms);
 		rightShooterMotor.SetVelocityMeasurementWindow(20);
 		rightShooterMotor.setF(Constants.SHOOTER_F);
@@ -54,14 +53,17 @@ public class Shooter extends Subsystem {
 		rightShooterMotor.setI(Constants.SHOOTER_I);
 		rightShooterMotor.setD(Constants.SHOOTER_D);
 		
-		indexerMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
-		indexerMotor.reverseSensor(false); //TODO Figure out
-		indexerMotor.configNominalOutputVoltage(+0.0f, -0.0f);
-		indexerMotor.configPeakOutputVoltage(+12.0f, 0.0f);
-		indexerMotor.setF(Constants.INDEXER_F);
-		indexerMotor.setP(Constants.INDEXER_P);
-		indexerMotor.setI(Constants.INDEXER_I);
-		indexerMotor.setD(Constants.INDEXER_D);
+//		indexerMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+//		indexerMotor.configEncoderCodesPerRev(4096);
+//		indexerMotor.reverseSensor(false);
+//		indexerMotor.configNominalOutputVoltage(+0.0f, -0.0f);
+//		indexerMotor.configPeakOutputVoltage(+12.0f, 0.0f);
+//		rightShooterMotor.SetVelocityMeasurementPeriod(VelocityMeasurementPeriod.Period_10Ms);
+//		rightShooterMotor.SetVelocityMeasurementWindow(20);
+//		indexerMotor.setF(Constants.INDEXER_F);
+//		indexerMotor.setP(Constants.INDEXER_P);
+//		indexerMotor.setI(Constants.INDEXER_I);
+//		indexerMotor.setD(Constants.INDEXER_D);
 	}
 	
 	/**
@@ -98,8 +100,10 @@ public class Shooter extends Subsystem {
 	 */
 	public void spinIndexer() {
 		if(Constants.INDEXER_ENABLED) {
-			indexerMotor.changeControlMode(TalonControlMode.PercentVbus);
-			indexerMotor.set(-Constants.INDEXER_SPEED);
+//			indexerMotor.changeControlMode(TalonControlMode.PercentVbus);
+//			indexerMotor.set(-Constants.INDEXER_SPEED);
+			indexerMotor.changeControlMode(TalonControlMode.Speed);
+			indexerMotor.set(Constants.INDEXER_RPM_SPEED);
 		}
 	}
 	
