@@ -32,8 +32,8 @@ public class SpinShooter extends CommandBase{
      */
 	private int hopperRampI = 1;
     protected void execute() {
-    	shooter.spinIndexer();
-    	/*shooter.spinShooter();
+    	//shooter.spinIndexer();
+    	shooter.spinShooter();
 		shooter.spinIndexer();
     	if(timer.hasPeriodPassed(Constants.SHOOTER_SPIN_UP_TIME)) {
     		if (timer.hasPeriodPassed(Constants.SHOOTER_SPIN_UP_TIME+(0.5*hopperRampI)) && hopperRampI < 5) {
@@ -44,7 +44,7 @@ public class SpinShooter extends CommandBase{
     			hopper.spinHopper();
     			intake.spinIntake();
     		}
-    	}*/
+    	}
     }
 
     /**

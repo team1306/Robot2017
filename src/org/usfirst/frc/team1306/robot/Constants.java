@@ -61,8 +61,8 @@ public class Constants {
 	
 	//Shooter Constants
 	public final static double SHOOTER_SPEED = 0.72;			//0.84
-	public final static double SHOOTER_RPM_SPEED = 3700;		//Shooter speed in RPM (default:3000)
-	public final static double INDEXER_RPM_SPEED = 2000;		//Shooter speed in RPM (default:2000)
+	public final static double SHOOTER_RPM_SPEED = 3800;		//Shooter speed in RPM (default:3000) 3600 2750 3200
+	public final static double INDEXER_RPM_SPEED = 2700;		//Shooter speed in RPM (default:2000) 4500 2700 2700
 	public final static int SHOOTER_SPIN_UP_TIME = 2;			//Time to let shooters spin up before turning on hopper and indexers
 	public final static int SHOOTER_BANG_RANGE = 240;			//If shooter speed is below this number, bang bang will kick in
 	public final static double SHOOTER_BANG_CEILING = 1.0;		//Speed bang bang uses when below desired speed
@@ -71,9 +71,9 @@ public class Constants {
 	public final static double SHOOTER_I = 0.0;
 	public final static double SHOOTER_D = 0.0;
 	public final static double INDEXER_F = 0.02886; 				//0.1162 0.1249
-	public final static double INDEXER_P = 0.0; 	//0.04092
-	public final static double INDEXER_I = 0.0;
-	public final static double INDEXER_D = 0.0;
+	public final static double INDEXER_P = 0.04092; 				//0.04092
+	public final static double INDEXER_I = 0.0;						//TODO Calculate indexer I
+	public final static double INDEXER_D = 0.0;						//TODO Calculate indexer D
 	
 	//Turret Constants
 	public final static double MANUAL_TURRET_ROT = 1;			//Maxumum rotation value for the turret when in manual mode

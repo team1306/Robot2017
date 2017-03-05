@@ -32,14 +32,14 @@ public class ManualTurret extends CommandBase {
 		if(OI.getButtonVal(controller.s,Constants.MANUAL_TURRET_BUTTON)) {
     		return false;
     	} else {
-    		turret.stopAll();
+    		//turret.stopAll();
     		return true;
     	}
 	}
 
 	@Override
 	protected void end() {
-		turret.stopAll();
+		//turret.stopAll();
 	}
 
 	@Override
