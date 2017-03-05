@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.Timer;
 
 /**
  * Command that calls to spin shooter, stops when shooter button is no longer pressed
- * @author Jackson Goth
+ * @author Jackson Goth and Sam Roquitte
  */
 public class SpinShooter extends CommandBase{
 
@@ -17,6 +17,8 @@ public class SpinShooter extends CommandBase{
 	
 	public SpinShooter() {
 		requires(shooter);
+		requires(hopper);
+		requires(intake);
 		timer = new Timer();
 	}
 	
@@ -30,16 +32,19 @@ public class SpinShooter extends CommandBase{
      */
 	private int hopperRampI = 1;
     protected void execute() {
-    	shooter.spinShooter();
+    	shooter.spinIndexer();
+    	/*shooter.spinShooter();
 		shooter.spinIndexer();
     	if(timer.hasPeriodPassed(Constants.SHOOTER_SPIN_UP_TIME)) {
     		if (timer.hasPeriodPassed(Constants.SHOOTER_SPIN_UP_TIME+(0.5*hopperRampI)) && hopperRampI < 5) {
     			hopper.spinHopper(hopperRampI);
+    			intake.spinIntake();
     		}
     		else {
     			hopper.spinHopper();
+    			intake.spinIntake();
     		}
-    	}
+    	}*/
     }
 
     /**
@@ -58,6 +63,7 @@ public class SpinShooter extends CommandBase{
     protected void end() {
     	shooter.stopAll();
     	hopper.stopAll();
+    	intake.stopAll();
     }
     
     protected void interrupted() {

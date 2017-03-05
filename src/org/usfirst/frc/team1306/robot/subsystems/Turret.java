@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Subsystem that controls the turret and sets it to differen't positions
- * @author Jackson Goth
+ * @author Jackson Goth and Sam Roquitte
  */
 public class Turret extends Subsystem {
 

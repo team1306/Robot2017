@@ -31,10 +31,10 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
     	
-    	CommandBase.init(); //Initializes all Subsystems
+    	CommandBase.init(); 								//Initializes all Subsystems
     	CameraServer.getInstance().startAutomaticCapture(); //GearMech Camera
     	
-    	new SmartDashboardUpdate().start(); //Starts Running SmartDashboardUpdate
+    	new SmartDashboardUpdate().start(); 				//Starts Running SmartDashboardUpdate
     }
 	
 	/**

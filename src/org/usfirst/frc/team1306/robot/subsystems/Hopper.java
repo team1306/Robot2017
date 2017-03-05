@@ -15,7 +15,6 @@ public class Hopper extends Subsystem {
 	
 	public final static double hopperSpeed = Constants.HOPPER_SPEED;
 	public final static double hopperStartSpeed = 0.0;
-	private final static double hopperStepTime = 0.5;
 	
 	public Hopper() {
 		hopperMotor = new Talon(RobotMap.HOPPER_TALON_PORT);

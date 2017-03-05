@@ -61,16 +61,17 @@ public class Constants {
 	
 	//Shooter Constants
 	public final static double SHOOTER_SPEED = 0.72;			//0.84
-	public final static double SHOOTER_RPM_SPEED = 3000;		//Shooter speed in RPM (default:3000)
-	public final static int SHOOTER_SPIN_UP_TIME = 3;			//Time to let shooters spin up before turning on hopper and indexers
+	public final static double SHOOTER_RPM_SPEED = 3700;		//Shooter speed in RPM (default:3000)
+	public final static double INDEXER_RPM_SPEED = 1000;		//Shooter speed in RPM (default:2000)
+	public final static int SHOOTER_SPIN_UP_TIME = 2;			//Time to let shooters spin up before turning on hopper and indexers
 	public final static int SHOOTER_BANG_RANGE = 240;			//If shooter speed is below this number, bang bang will kick in
 	public final static double SHOOTER_BANG_CEILING = 1.0;		//Speed bang bang uses when below desired speed
 	public final static double SHOOTER_F = 13.28;				//13.28
 	public final static double SHOOTER_P = Double.MAX_VALUE;
 	public final static double SHOOTER_I = 0.0;
 	public final static double SHOOTER_D = 0.0;
-	public final static double INDEXER_F = 0.0; 				//TODO Experimentally calculate
-	public final static double INDEXER_P = 0.0; 				//Double.MAX_VALUE;
+	public final static double INDEXER_F = 0.1249; 				//0.1162 0.1249
+	public final static double INDEXER_P = Double.MAX_VALUE; 	//Double.MAX_VALUE;
 	public final static double INDEXER_I = 0.0;
 	public final static double INDEXER_D = 0.0;
 	

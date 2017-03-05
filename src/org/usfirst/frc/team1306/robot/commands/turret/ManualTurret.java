@@ -2,7 +2,6 @@ package org.usfirst.frc.team1306.robot.commands.turret;
 
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.OI;
-import org.usfirst.frc.team1306.robot.XboxController;
 import org.usfirst.frc.team1306.robot.OI.axis;
 import org.usfirst.frc.team1306.robot.OI.controller;
 import org.usfirst.frc.team1306.robot.OI.joystick;
@@ -25,7 +24,7 @@ public class ManualTurret extends CommandBase {
 
 	@Override
 	protected void execute() {
-		turret.moveRot(OI.getJoyVal(controller.s, joystick.r, axis.x) * Constants.MANUAL_TURRET_ROT);
+		turret.moveRot(-(OI.getJoyVal(controller.s, joystick.r, axis.x) * Constants.MANUAL_TURRET_ROT));
 	}
 
 	@Override
