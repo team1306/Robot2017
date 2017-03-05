@@ -33,12 +33,12 @@ public class SmartDashboardUpdate extends CommandBase {
 		//Subsystem Current Draws
 //		SmartDashboard.putNumber("Hopper Draw",panel.getCurrent(2));
 //		SmartDashboard.putNumber("Indexers Draw",panel.getCurrent(4));
-//		SmartDashboard.putNumber("Shooter L Draw",panel.getCurrent(7));
-//		SmartDashboard.putNumber("Shooter R Draw",panel.getCurrent(5));
+		SmartDashboard.putNumber("Shooter L Draw",panel.getCurrent(7));
+		SmartDashboard.putNumber("Shooter R Draw",panel.getCurrent(5));
 //		SmartDashboard.putNumber("Intake Draw",panel.getCurrent(1));
 //		SmartDashboard.putNumber("Turret Draw",panel.getCurrent(6));
 //		SmartDashboard.putNumber("Climber Draw",panel.getCurrent(0));
-		SmartDashboard.putBoolean("Browning Out?: ",HAL.getBrownedOut());
+//		SmartDashboard.putBoolean("Browning Out?: ",HAL.getBrownedOut());
 		
 		//Shooting Velocities
 		SmartDashboard.putNumber("SD-LShooterVel",Math.abs(shooter.getVel(0)));

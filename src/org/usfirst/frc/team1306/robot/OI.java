@@ -1,9 +1,12 @@
 package org.usfirst.frc.team1306.robot;
 
+import org.usfirst.frc.team1306.robot.commands.climber.Climb;
+import org.usfirst.frc.team1306.robot.commands.climber.ClimbBack;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
 import org.usfirst.frc.team1306.robot.commands.turret.Aim;
 import org.usfirst.frc.team1306.robot.commands.turret.Direction;
+import org.usfirst.frc.team1306.robot.commands.turret.ManualTurret;
 import org.usfirst.frc.team1306.robot.commands.turret.ResetTurret;
 import org.usfirst.frc.team1306.robot.commands.turret.Scan;
 import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
@@ -74,8 +77,8 @@ public class OI {
 		pbuttonLB.whenPressed(new Scan(ScanDirection.LEFT));
 		pbuttonRB.whenPressed(new Scan(ScanDirection.RIGHT));
 		
-		sbuttonLB.whenPressed(new Aim(Direction.LEFT));
-		sbuttonRB.whenPressed(new Aim(Direction.RIGHT));
+//		sbuttonLB.whenPressed(new Aim(Direction.LEFT));
+//		sbuttonRB.whenPressed(new Aim(Direction.RIGHT));
 		
 		//pbuttonStart.whenPressed(new DeployGear());
 		//pbuttonBack.whenPressed(new ReverseGear());
@@ -85,10 +88,13 @@ public class OI {
 		sbuttonB.whenPressed(new ResetTurret());
 		sbuttonX.whenPressed(new SpinIntake());
 		
+		sbuttonRB.whenPressed(new ManualTurret());
+		
 		//sbuttonY.whenPressed(new SpinShooterBack());
 		//sbuttonBack.whenPressed(new ClimbBack());
 
-		//sbuttonStart.whenPressed(new Climb());
+		sbuttonStart.whenPressed(new Climb());
+		sbuttonBack.whenPressed(new ClimbBack());
 		//sbuttonA.whenPressed(new AdjustHood(HoodAngle.DOWN));
 		//sbuttonY.whenPressed(new AdjustHood(HoodAngle.UP));
 	}
@@ -109,7 +115,7 @@ public class OI {
 	 * @return
 	 * 		Returns the value of the specified controller's joystick's axis (from -1.0 to 1.0)
 	 */
-	public double getJoyVal(controller controller, joystick joystick, axis axis) {
+	public static double getJoyVal(controller controller, joystick joystick, axis axis) {
 		double returnVal = 0.0;
 		switch (controller) {
 			case p:

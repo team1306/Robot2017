@@ -34,9 +34,9 @@ public class Shooter extends Subsystem {
 		leftShooterMotor.configEncoderCodesPerRev(12);
 		leftShooterMotor.reverseSensor(false);
 		leftShooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
-		leftShooterMotor.configPeakOutputVoltage(+12.0f, -12.0f);
-		leftShooterMotor.SetVelocityMeasurementPeriod(VelocityMeasurementPeriod.Period_1Ms);
-		leftShooterMotor.SetVelocityMeasurementWindow(16);
+		leftShooterMotor.configPeakOutputVoltage(+12.0f, 0.0f);
+		leftShooterMotor.SetVelocityMeasurementPeriod(VelocityMeasurementPeriod.Period_10Ms);
+		leftShooterMotor.SetVelocityMeasurementWindow(20);
 		leftShooterMotor.setF(Constants.SHOOTER_F);
 		leftShooterMotor.setP(Constants.SHOOTER_P);
 		leftShooterMotor.setI(Constants.SHOOTER_I);
@@ -46,9 +46,9 @@ public class Shooter extends Subsystem {
 		rightShooterMotor.configEncoderCodesPerRev(12);
 		rightShooterMotor.reverseSensor(true);
 		rightShooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
-		rightShooterMotor.configPeakOutputVoltage(+12.0f, -12.0f);
-		rightShooterMotor.SetVelocityMeasurementPeriod(VelocityMeasurementPeriod.Period_1Ms);
-		rightShooterMotor.SetVelocityMeasurementWindow(16);
+		rightShooterMotor.configPeakOutputVoltage(+12.0f, 0.0f);
+		rightShooterMotor.SetVelocityMeasurementPeriod(VelocityMeasurementPeriod.Period_10Ms);
+		rightShooterMotor.SetVelocityMeasurementWindow(20);
 		rightShooterMotor.setF(Constants.SHOOTER_F);
 		rightShooterMotor.setP(Constants.SHOOTER_P);
 		rightShooterMotor.setI(Constants.SHOOTER_I);
@@ -57,7 +57,7 @@ public class Shooter extends Subsystem {
 		indexerMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		indexerMotor.reverseSensor(false); //TODO Figure out
 		indexerMotor.configNominalOutputVoltage(+0.0f, -0.0f);
-		indexerMotor.configPeakOutputVoltage(+12.0f, -12.0f);
+		indexerMotor.configPeakOutputVoltage(+12.0f, 0.0f);
 		indexerMotor.setF(Constants.INDEXER_F);
 		indexerMotor.setP(Constants.INDEXER_P);
 		indexerMotor.setI(Constants.INDEXER_I);
@@ -69,14 +69,15 @@ public class Shooter extends Subsystem {
 	 */
 	public void spinShooter() {
 		if(Constants.SHOOTER_ENABLED) {
-			leftShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
-			rightShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
-			leftShooterMotor.set(shooterSpeed);
-			rightShooterMotor.set(shooterSpeed);
-			/*leftShooterMotor.changeControlMode(TalonControlMode.Speed);
+//			leftShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
+//			rightShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
+//			leftShooterMotor.set(shooterSpeed);
+//			rightShooterMotor.set(shooterSpeed);
+			
+			leftShooterMotor.changeControlMode(TalonControlMode.Speed);
 			rightShooterMotor.changeControlMode(TalonControlMode.Speed);
-			leftShooterMotor.set(2000);
-			rightShooterMotor.set(2000);*/
+			leftShooterMotor.set(Constants.SHOOTER_RPM_SPEED);
+			rightShooterMotor.set(Constants.SHOOTER_RPM_SPEED);
 		}
 	}
 	
