@@ -22,15 +22,16 @@ public class DPadTurret extends CommandBase {
 
 	@Override
 	protected void execute() {	//TODO finish this
-		int dpadval = 0;
-		int step = (int) (4/Constants.MANUAL_TURRET_ROT);
-		if (OI.getDPad(controller.s) <= 3) {
-			dpadval = -OI.getDPad(controller.s);
-		}
-		else {
-			dpadval = 3-OI.getDPad(controller.s);
-		}
-		turret.moveRot(dpadval*step);
+		int dpadVal = OI.getDPad(controller.s);
+//		int dpadval = 0;
+//		int step = (int) (4/Constants.MANUAL_TURRET_ROT);
+//		if (OI.getDPad(controller.s) <= 3) {
+//			dpadval = -OI.getDPad(controller.s);
+//		}
+//		else {
+//			dpadval = 3-OI.getDPad(controller.s);
+//		}
+//		turret.moveRot(dpadval*step);
 	}
 
 	@Override

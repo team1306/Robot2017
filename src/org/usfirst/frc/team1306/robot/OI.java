@@ -102,11 +102,41 @@ public class OI {
 		//sbuttonY.whenPressed(new AdjustHood(HoodAngle.UP));
 	}
 	
-	public enum axis {x, y}; 		//X or Y Axis on Joystick
-	public enum controller {p, s}; 	//Primary or Secondary Controller
-	public enum trigger {l, r}; 	//Left or Right Trigger
-	public enum joystick {l, r}; 	//Left or Right Joystick
-	public enum side {l, r};		//Left or Right Side
+	/**
+	 * Joystick axis (x or y)
+	 * @author Sam Roquitte
+	 */
+	public enum axis {x, y};
+	
+	/**
+	 * Controller primary or secondary (p or s)
+	 * @author Sam Roquitte
+	 */
+	public enum controller {p, s};
+	
+	/**
+	 * Trigger left or right (l or r)
+	 * @author Sam Roquitte
+	 */
+	public enum trigger {l, r};
+	
+	/**
+	 * Joystick left or right (l or r)
+	 * @author Sam Roquitte
+	 */
+	public enum joystick {l, r};
+	
+	/**
+	 * Side left or right, for rumble (l or r)
+	 * @author Sam Roquitte
+	 */
+	public enum side {l, r};
+	
+	/**
+	 * Direction of the dpad, similar to cardinal directions but instead of north east south west, up right down left (u, r, d, l).  Up/down first, followed by left/right
+	 * @author Sam Roquitte
+	 */
+	public enum dpaddirection {u, ur, r, dr, d, dl, l, ul};
 	
 	/**
 	 * Returns the joystick value (from -1.0 to 1.0) for the specified controller's joystick's axis (uses deadband)
