@@ -3,6 +3,7 @@ package org.usfirst.frc.team1306.robot.commands.shooter;
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.OI;
 import org.usfirst.frc.team1306.robot.OI.controller;
+import org.usfirst.frc.team1306.robot.OI.side;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
 import edu.wpi.first.wpilibj.Timer;
@@ -32,6 +33,10 @@ public class SpinShooter extends CommandBase{
      */
 	private int hopperRampI = 1;
     protected void execute() {
+    	OI.setRumble(controller.s, side.l, 1);
+    	OI.setRumble(controller.s, side.r, 1);
+    	OI.setRumble(controller.p, side.l, 1);
+    	OI.setRumble(controller.p, side.r, 1);
     	//shooter.spinIndexer();
     	shooter.spinShooter();
 		shooter.spinIndexer();
@@ -64,6 +69,10 @@ public class SpinShooter extends CommandBase{
     	shooter.stopAll();
     	hopper.stopAll();
     	intake.stopAll();
+    	OI.setRumble(controller.s, side.l, 0);
+    	OI.setRumble(controller.s, side.r, 0);
+    	OI.setRumble(controller.p, side.l, 0);
+    	OI.setRumble(controller.p, side.r, 0);
     }
     
     protected void interrupted() {

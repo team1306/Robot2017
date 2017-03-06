@@ -11,6 +11,7 @@ import org.usfirst.frc.team1306.robot.commands.turret.ResetTurret;
 import org.usfirst.frc.team1306.robot.commands.turret.Scan;
 import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
 
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -103,6 +104,7 @@ public class OI {
 	public enum controller {p, s}; 	//Primary or Secondary Controller
 	public enum trigger {l, r}; 	//Left or Right Trigger
 	public enum joystick {l, r}; 	//Left or Right Joystick
+	public enum side {l, r};		//Left or Right Side
 	
 	/**
 	 * Returns the joystick value (from -1.0 to 1.0) for the specified controller's joystick's axis (uses deadband)
@@ -215,7 +217,6 @@ public class OI {
 	 */
 	public static boolean getButtonVal(controller controller, int button) {
 		boolean returnVal = false;
-		
 		switch(controller) {
 			case p:
 				returnVal = primaryController.getRawButton(button);
@@ -224,8 +225,41 @@ public class OI {
 				returnVal = secondaryController.getRawButton(button);
 			break;
 		}
-
 		return returnVal;
+	}
+	
+	/**
+	 * Sets the rumble of a controller
+	 * @param controller
+	 * 		Which controller to set rumble
+	 * @param side
+	 * 		Which side (l=left r=right)
+	 * @param rumbleness
+	 * 		RUMBLE!!! (0-1)
+	 */
+	public static void setRumble(controller controller, side side, int rumbleness) {
+		switch (controller) {
+			case p:
+				switch (side) {
+					case l:
+						primaryController.setRumble(GenericHID.RumbleType.kLeftRumble, rumbleness);
+					break;
+					case r:
+						primaryController.setRumble(GenericHID.RumbleType.kRightRumble, rumbleness);
+					break;
+				}
+			break;
+			case s:
+				switch (side) {
+				case l:
+					secondaryController.setRumble(GenericHID.RumbleType.kLeftRumble, rumbleness);
+				break;
+				case r:
+					secondaryController.setRumble(GenericHID.RumbleType.kRightRumble, rumbleness);
+				break;
+			}
+			break;
+		}
 	}
 	
 	/**

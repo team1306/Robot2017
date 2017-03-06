@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1306.robot;
 
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 
 /**
@@ -99,6 +100,20 @@ public class XboxController extends Joystick {
 	@Override
 	public int getPOV() {
 		return super.getPOV();
+	}
+	
+	/**
+	 * Get the value of D-Pad button.  -1=not pressed, then 0-7 for D-Pad directions
+	 * @return
+	 * 		D-Pad button being pressed
+	 */
+	public int getDPAD() {
+		if (super.getPOV() == -1) {
+			return -1;
+		}
+		else {
+			return (super.getPOV()/45);
+		}
 	}
 
 	/** The A button index */
