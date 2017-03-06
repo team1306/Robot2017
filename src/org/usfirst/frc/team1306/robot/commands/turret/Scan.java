@@ -40,13 +40,15 @@ public class Scan extends CommandBase {
 		targetInSight = table.getBoolean("seeTarget",false);
 
 		if(targetInSight) {
-			if(Math.abs(table.getNumber("yaw",0)) + 8 < 15) {
-				turret.setSpeed(0);
-			} else if(table.getNumber("yaw",0) + 8 < 0) {
-				turret.setSpeed(Constants.TURRET_TURN_LEFT_SPEED);
-			} else if(table.getNumber("yaw",0) + 8 > 0) {
-				turret.setSpeed(Constants.TURRET_TURN_RIGHT_SPEED);
-			}
+//			if(Math.abs(table.getNumber("yaw",0)) + 8 < 15) {
+//				turret.setSpeed(0);
+//			} else if(table.getNumber("yaw",0) + 8 < 0) {
+//				turret.setSpeed(Constants.TURRET_TURN_LEFT_SPEED);
+//			} else if(table.getNumber("yaw",0) + 8 > 0) {
+//				turret.setSpeed(Constants.TURRET_TURN_RIGHT_SPEED);
+//			}
+			new TurnTurret((table.getNumber("yaw",0)/360)*Constants.TURRET_GEAR_CONVERSION);
+			end();
 		} else {
 			turret.setSpeed(turn_speed);
 		}

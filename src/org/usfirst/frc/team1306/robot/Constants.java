@@ -83,8 +83,9 @@ public class Constants {
 	public final static double TURRET_TURN_RIGHT_SPEED = -0.13;	
 	public final static double TURRET_LEFT_LIMIT = 9020;		
 	public final static double TURRET_RIGHT_LIMIT = 5270;		
-	public final static double TURRET_RESET_POSITION = 7180;		
+	public final static double TURRET_RESET_POSITION = 0;		
 	public final static double TURRET_TURN_TOLERANCE = 10;
+	public final static double TURRET_GEAR_CONVERSION = 1; //Conversion turret rotations into gear rotations TODO Experimentally calculate this value
 	
 	//Drivetrain Constants
 	public final static DriveMode DRIVE_MODE = DriveMode.TANK;	//Drive modes defined in DriveMode ENUM

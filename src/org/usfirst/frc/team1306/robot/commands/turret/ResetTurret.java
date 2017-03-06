@@ -20,7 +20,8 @@ public class ResetTurret extends CommandBase{
 
 	@Override
 	protected void execute() {
-		new TurnTurret(Constants.TURRET_RESET_POSITION).start();
+		turret.moveRot(Constants.TURRET_RESET_POSITION);
+		//new TurnTurret(Constants.TURRET_RESET_POSITION).start();
 	}
 
 	@Override
