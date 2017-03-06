@@ -30,6 +30,7 @@ public class Constants {
 	public final static int SHOOTER_BUTTON = XboxController.A;
 	public final static int SHOOTER_BACK_BUTTON = XboxController.START;
 	public final static int MANUAL_TURRET_BUTTON = XboxController.RB;
+	public final static int DPAD_TURRET_BUTTON = XboxController.LB;
 	public final static int BANG_SHOOTER_BUTTON = XboxController.B;
 	public final static int AIM_LEFT_BUTTON = XboxController.LB;
 	public final static int AIM_RIGHT_BUTTON = XboxController.RB;
@@ -72,10 +73,10 @@ public class Constants {
 	public final static double SHOOTER_P = Double.MAX_VALUE;
 	public final static double SHOOTER_I = 0.0;
 	public final static double SHOOTER_D = 0.0;
-	public final static double INDEXER_F = 0.02886; 				//0.1162 0.1249
-	public final static double INDEXER_P = 0.04092; 				//0.04092
-	public final static double INDEXER_I = 0.0;						//TODO Calculate indexer I
-	public final static double INDEXER_D = 0.0;						//TODO Calculate indexer D
+	public final static double INDEXER_F = 0.02886; 			//0.1162 0.1249
+	public final static double INDEXER_P = 0.04092; 			//0.04092
+	public final static double INDEXER_I = 0.0;					//TODO Calculate indexer I
+	public final static double INDEXER_D = 0.0;					//TODO Calculate indexer D
 	
 	//Turret Constants
 	public final static double MANUAL_TURRET_ROT = 1;			//Maxumum rotation value for the turret when in manual mode

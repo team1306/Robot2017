@@ -5,6 +5,7 @@ import org.usfirst.frc.team1306.robot.commands.climber.ClimbBack;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
 import org.usfirst.frc.team1306.robot.commands.turret.Aim;
+import org.usfirst.frc.team1306.robot.commands.turret.DPadTurret;
 import org.usfirst.frc.team1306.robot.commands.turret.Direction;
 import org.usfirst.frc.team1306.robot.commands.turret.ManualTurret;
 import org.usfirst.frc.team1306.robot.commands.turret.ResetTurret;
@@ -90,6 +91,7 @@ public class OI {
 		sbuttonX.whenPressed(new SpinIntake());
 		
 		sbuttonRB.whenPressed(new ManualTurret());
+		sbuttonLB.whenPressed(new DPadTurret());
 		
 		//sbuttonY.whenPressed(new SpinShooterBack());
 		//sbuttonBack.whenPressed(new ClimbBack());
@@ -260,6 +262,21 @@ public class OI {
 			}
 			break;
 		}
+	}
+	
+	/**
+	 * Returns the D-Pad button being pressed
+	 * @return
+	 * 		-1=not being pressed, 0-7 for pressed button
+	 */
+	public static int getDPad(controller controller) {
+		switch (controller) {
+			case p:
+				return primaryController.getDPAD();
+			case s:
+				return primaryController.getDPAD();
+		}
+		return 0;
 	}
 	
 	/**
