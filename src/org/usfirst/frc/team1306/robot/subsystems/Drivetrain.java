@@ -2,6 +2,8 @@ package org.usfirst.frc.team1306.robot.subsystems;
 
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.RobotMap;
+import org.usfirst.frc.team1306.robot.commands.drivetrain.ArcadeDrive;
+import org.usfirst.frc.team1306.robot.commands.drivetrain.DriveMode;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.TankDrive;
 
 import com.ctre.CANTalon;
@@ -156,6 +158,14 @@ public class Drivetrain extends Subsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new TankDrive());
+		if (Constants.DRIVE_MODE == DriveMode.TANK) {			//If mode is tank, set default command to tankdrive
+			setDefaultCommand(new TankDrive());
+		}
+		else if (Constants.DRIVE_MODE == DriveMode.ARCADE) {	//If mode is arcade, set default command to arcadedrive
+			setDefaultCommand(new ArcadeDrive());
+		}
+		else {													//Defaults to tankdrive
+			setDefaultCommand(new TankDrive());
+		}
 	}
 }

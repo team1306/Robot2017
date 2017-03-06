@@ -1,5 +1,7 @@
 package org.usfirst.frc.team1306.robot;
 
+import org.usfirst.frc.team1306.robot.commands.drivetrain.DriveMode;
+
 /**
  * To store finalized variables all in one place
  * @author Jackson Goth and Sam Roquitte
@@ -85,6 +87,7 @@ public class Constants {
 	public final static double TURRET_TURN_TOLERANCE = 10;
 	
 	//Drivetrain Constants
+	public final static DriveMode DRIVE_MODE = DriveMode.TANK;	//Drive modes defined in DriveMode ENUM
 	public final static double SPEED_MODIFIER = 1.0;			//Multiplier of speeds inputed into tankDrive
 	public final static double TURN_SPEED = 0.65;				//Speed at which QuickTurn turns robot
 	public final static double F = 0.7494;						

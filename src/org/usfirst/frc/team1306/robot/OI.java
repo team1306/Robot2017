@@ -105,7 +105,7 @@ public class OI {
 	public enum joystick {l, r}; 	//Left or Right Joystick
 	
 	/**
-	 * Returns the joystick value (from -1.0 to 1.0) for the specified controller's joystick's axis
+	 * Returns the joystick value (from -1.0 to 1.0) for the specified controller's joystick's axis (uses deadband)
 	 * @param controller
 	 * 		The controller that you would like to read from (p or s)
 	 * @param joystick
