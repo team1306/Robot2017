@@ -34,6 +34,7 @@ public class Constants {
 	public final static int BANG_SHOOTER_BUTTON = XboxController.B;
 	public final static int AIM_LEFT_BUTTON = XboxController.LB;
 	public final static int AIM_RIGHT_BUTTON = XboxController.RB;
+	public final static int GEARTAKE_BUTTON = XboxController.Y;
 	
 	//Autonomous Constants
 	public final static double AUTO_SPEED = 0.5;
