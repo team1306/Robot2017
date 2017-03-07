@@ -17,8 +17,8 @@ public class Hood extends Subsystem {
 	private final DoubleSolenoid rightHoodShifter;
 	
 	public Hood() {
-		leftHoodShifter = new DoubleSolenoid(1,2);
-		rightHoodShifter = new DoubleSolenoid(3,4);
+		leftHoodShifter = new DoubleSolenoid(0,1);
+		rightHoodShifter = new DoubleSolenoid(2,3);
 		
 		setPos(HoodAngle.UP);
 	}

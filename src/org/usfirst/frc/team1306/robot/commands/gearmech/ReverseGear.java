@@ -2,18 +2,20 @@ package org.usfirst.frc.team1306.robot.commands.gearmech;
 
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 public class ReverseGear extends CommandBase {
 
+	public ReverseGear() {
+		requires(gearmech);
+	}
+	
 	@Override
 	protected void initialize() {
-		
+		gearmech.reverseGear();
 	}
 
 	@Override
 	protected void execute() {
-		gearmech.reverseGear();
+		
 	}
 
 	@Override

@@ -2,10 +2,10 @@ package org.usfirst.frc.team1306.robot;
 
 import org.usfirst.frc.team1306.robot.commands.climber.Climb;
 import org.usfirst.frc.team1306.robot.commands.climber.ClimbBack;
+import org.usfirst.frc.team1306.robot.commands.gearmech.DeployGear;
+import org.usfirst.frc.team1306.robot.commands.gearmech.ReverseGear;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
-import org.usfirst.frc.team1306.robot.commands.turret.Aim;
-import org.usfirst.frc.team1306.robot.commands.turret.Direction;
 import org.usfirst.frc.team1306.robot.commands.turret.ManualTurret;
 import org.usfirst.frc.team1306.robot.commands.turret.ResetTurret;
 import org.usfirst.frc.team1306.robot.commands.turret.Scan;
@@ -81,8 +81,8 @@ public class OI {
 //		sbuttonLB.whenPressed(new Aim(Direction.LEFT));
 //		sbuttonRB.whenPressed(new Aim(Direction.RIGHT));
 		
-		//pbuttonStart.whenPressed(new DeployGear());
-		//pbuttonBack.whenPressed(new ReverseGear());
+		pbuttonStart.whenPressed(new DeployGear());
+		pbuttonBack.whenPressed(new ReverseGear());
 
 		sbuttonA.whenPressed(new SpinShooter());
 		
