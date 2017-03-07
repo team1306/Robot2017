@@ -6,6 +6,12 @@ import org.usfirst.frc.team1306.robot.commands.gearmech.DeployGear;
 import org.usfirst.frc.team1306.robot.commands.gearmech.ReverseGear;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
+<<<<<<< HEAD
+=======
+import org.usfirst.frc.team1306.robot.commands.turret.Aim;
+import org.usfirst.frc.team1306.robot.commands.turret.DPadTurret;
+import org.usfirst.frc.team1306.robot.commands.turret.Direction;
+>>>>>>> origin/master
 import org.usfirst.frc.team1306.robot.commands.turret.ManualTurret;
 import org.usfirst.frc.team1306.robot.commands.turret.ResetTurret;
 import org.usfirst.frc.team1306.robot.commands.turret.Scan;
@@ -90,6 +96,7 @@ public class OI {
 		sbuttonX.whenPressed(new SpinIntake());
 		
 		sbuttonRB.whenPressed(new ManualTurret());
+		sbuttonLB.whenPressed(new DPadTurret());
 		
 		//sbuttonY.whenPressed(new SpinShooterBack());
 		//sbuttonBack.whenPressed(new ClimbBack());
@@ -100,11 +107,41 @@ public class OI {
 		//sbuttonY.whenPressed(new AdjustHood(HoodAngle.UP));
 	}
 	
-	public enum axis {x, y}; 		//X or Y Axis on Joystick
-	public enum controller {p, s}; 	//Primary or Secondary Controller
-	public enum trigger {l, r}; 	//Left or Right Trigger
-	public enum joystick {l, r}; 	//Left or Right Joystick
-	public enum side {l, r};		//Left or Right Side
+	/**
+	 * Joystick axis (x or y)
+	 * @author Sam Roquitte
+	 */
+	public enum axis {x, y};
+	
+	/**
+	 * Controller primary or secondary (p or s)
+	 * @author Sam Roquitte
+	 */
+	public enum controller {p, s};
+	
+	/**
+	 * Trigger left or right (l or r)
+	 * @author Sam Roquitte
+	 */
+	public enum trigger {l, r};
+	
+	/**
+	 * Joystick left or right (l or r)
+	 * @author Sam Roquitte
+	 */
+	public enum joystick {l, r};
+	
+	/**
+	 * Side left or right, for rumble (l or r)
+	 * @author Sam Roquitte
+	 */
+	public enum side {l, r};
+	
+	/**
+	 * Direction of the dpad, similar to cardinal directions but instead of north east south west, up right down left (u, r, d, l).  Up/down first, followed by left/right
+	 * @author Sam Roquitte
+	 */
+	public enum dpaddirection {u, ur, r, dr, d, dl, l, ul};
 	
 	/**
 	 * Returns the joystick value (from -1.0 to 1.0) for the specified controller's joystick's axis (uses deadband)
@@ -260,6 +297,21 @@ public class OI {
 			}
 			break;
 		}
+	}
+	
+	/**
+	 * Returns the D-Pad button being pressed
+	 * @return
+	 * 		-1=not being pressed, 0-7 for pressed button
+	 */
+	public static int getDPad(controller controller) {
+		switch (controller) {
+			case p:
+				return primaryController.getDPAD();
+			case s:
+				return primaryController.getDPAD();
+		}
+		return 0;
 	}
 	
 	/**
