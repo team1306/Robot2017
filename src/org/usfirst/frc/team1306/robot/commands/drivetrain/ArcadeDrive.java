@@ -26,9 +26,14 @@ public class ArcadeDrive extends CommandBase {
 	@Override
 	protected void execute() {
 		if (OI.getTriggerVal(controller.p, trigger.r) >= Constants.TRIGGER_DEADBAND) {		//Forward trigger pressed
+			if (OI.getTriggerVal(controller.p, trigger.r) + OI.getTriggerVal(controller.p, trigger.r) <= Constants.TRIGGER_DEADBAND*2) {
+				drivetrain.tankDrive(0,0);
+			}
+			else {
+				drivetrain.tankDrive(OI.getTriggerVal(controller.p, trigger.r) - OI.getJoyVal(controller.p, joystick.l, axis.x), OI.getTriggerVal(controller.p, trigger.r) + OI.getJoyVal(controller.p, joystick.l, axis.x));
+			}
 //			left+= (OI.getTriggerVal(controller.p, trigger.r) * 0.5) + (OI.getJoyVal(controller.p, joystick.l, axis.x) * 0.5);
 //			right+=(OI.getTriggerVal(controller.p, trigger.r) * 0.5) + (OI.getJoyVal(controller.p, joystick.l, axis.x) * 0.5);
-			drivetrain.tankDrive(OI.getTriggerVal(controller.p, trigger.r) - OI.getJoyVal(controller.p, joystick.l, axis.x), OI.getTriggerVal(controller.p, trigger.r) + OI.getJoyVal(controller.p, joystick.l, axis.x));
 		}
 	}
 
