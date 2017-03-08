@@ -2,16 +2,11 @@ package org.usfirst.frc.team1306.robot;
 
 import org.usfirst.frc.team1306.robot.commands.climber.Climb;
 import org.usfirst.frc.team1306.robot.commands.climber.ClimbBack;
-import org.usfirst.frc.team1306.robot.commands.gearmech.DeployGear;
-import org.usfirst.frc.team1306.robot.commands.gearmech.ReverseGear;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
-<<<<<<< HEAD
-=======
 import org.usfirst.frc.team1306.robot.commands.turret.Aim;
 import org.usfirst.frc.team1306.robot.commands.turret.DPadTurret;
 import org.usfirst.frc.team1306.robot.commands.turret.Direction;
->>>>>>> origin/master
 import org.usfirst.frc.team1306.robot.commands.turret.ManualTurret;
 import org.usfirst.frc.team1306.robot.commands.turret.ResetTurret;
 import org.usfirst.frc.team1306.robot.commands.turret.Scan;
@@ -87,16 +82,16 @@ public class OI {
 //		sbuttonLB.whenPressed(new Aim(Direction.LEFT));
 //		sbuttonRB.whenPressed(new Aim(Direction.RIGHT));
 		
-		pbuttonStart.whenPressed(new DeployGear());
-		pbuttonBack.whenPressed(new ReverseGear());
+		//pbuttonStart.whenPressed(new DeployGear());
+		//pbuttonBack.whenPressed(new ReverseGear());
 
 		sbuttonA.whenPressed(new SpinShooter());
 		
 		sbuttonB.whenPressed(new ResetTurret());
 		sbuttonX.whenPressed(new SpinIntake());
 		
-		sbuttonRB.whenPressed(new ManualTurret());
-		sbuttonLB.whenPressed(new DPadTurret());
+		sbuttonLB.whenPressed(new ManualTurret());
+		sbuttonRB.whenPressed(new DPadTurret());
 		
 		//sbuttonY.whenPressed(new SpinShooterBack());
 		//sbuttonBack.whenPressed(new ClimbBack());
@@ -138,10 +133,11 @@ public class OI {
 	public enum side {l, r};
 	
 	/**
-	 * Direction of the dpad, similar to cardinal directions but instead of north east south west, up right down left (u, r, d, l).  Up/down first, followed by left/right
+	 * Direction of the dpad, similar to cardinal directions but instead of north east south west, up right down left (u, r, d, l).  Up/down first, followed by left
+	 * no=not pressed
 	 * @author Sam Roquitte
 	 */
-	public enum dpaddirection {u, ur, r, dr, d, dl, l, ul};
+	public enum dpaddirection {no, u, ur, r, dr, d, dl, l, ul};
 	
 	/**
 	 * Returns the joystick value (from -1.0 to 1.0) for the specified controller's joystick's axis (uses deadband)
@@ -304,14 +300,14 @@ public class OI {
 	 * @return
 	 * 		-1=not being pressed, 0-7 for pressed button
 	 */
-	public static int getDPad(controller controller) {
+	public static dpaddirection getDPad(controller controller) {
 		switch (controller) {
 			case p:
 				return primaryController.getDPAD();
 			case s:
 				return primaryController.getDPAD();
 		}
-		return 0;
+		return null;
 	}
 	
 	/**

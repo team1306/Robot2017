@@ -1,5 +1,7 @@
 package org.usfirst.frc.team1306.robot;
 
+import org.usfirst.frc.team1306.robot.OI.dpaddirection;
+
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 
@@ -103,16 +105,18 @@ public class XboxController extends Joystick {
 	}
 	
 	/**
-	 * Get the value of D-Pad button.  -1=not pressed, then 0-7 for D-Pad directions
+	 * Get the value of D-Pad button.  Uses dpaddirection enum
 	 * @return
 	 * 		D-Pad button being pressed
 	 */
-	public int getDPAD() {
+	public dpaddirection getDPAD() {
 		if (super.getPOV() == -1) {
-			return -1;
+			//return dpaddirection.no;
+			return dpaddirection.no;
 		}
 		else {
-			return (super.getPOV()/45);
+			return dpaddirection.values()[(super.getPOV()/45)];
+			//return (super.getPOV()/45);
 		}
 	}
 

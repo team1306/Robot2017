@@ -76,10 +76,22 @@ public class Turret extends Subsystem {
 	}
 	
 	/**
+	 * Turns the turret to a certain degree measurement
+	 * @param degrees
+	 * 		Degree measurement to turn to
+	 */
+	public void moveDeg(double degrees) {
+		if (Constants.TURRET_ENABLED) {
+			turretMotor.changeControlMode(TalonControlMode.MotionMagic);
+			turretMotor.set(degrees/360);
+		}
+	}
+	
+	/**
 	 * Stops the turret
 	 */
 	public void stopAll() {
-		turretMotor.set(Constants.SPEED_ZERO);
+		turretMotor.set(0);
 	}
 	
 	@Override

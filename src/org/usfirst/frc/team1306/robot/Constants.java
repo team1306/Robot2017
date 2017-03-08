@@ -29,8 +29,8 @@ public class Constants {
 	public final static int INTAKE_BUTTON = XboxController.X;
 	public final static int SHOOTER_BUTTON = XboxController.A;
 	public final static int SHOOTER_BACK_BUTTON = XboxController.START;
-	public final static int MANUAL_TURRET_BUTTON = XboxController.RB;
-	public final static int DPAD_TURRET_BUTTON = XboxController.LB;
+	public final static int MANUAL_TURRET_BUTTON = XboxController.LB;
+	public final static int DPAD_TURRET_BUTTON = XboxController.RB;
 	public final static int BANG_SHOOTER_BUTTON = XboxController.B;
 	public final static int AIM_LEFT_BUTTON = XboxController.LB;
 	public final static int AIM_RIGHT_BUTTON = XboxController.RB;
@@ -80,16 +80,17 @@ public class Constants {
 	
 	//Turret Constants
 	public final static double MANUAL_TURRET_ROT = 1;			//Maxumum rotation value for the turret when in manual mode
+	public final static double DPAD_TURRET_STEP = 0.2;
 	public final static double TURRET_TURN_LEFT_SPEED = 0.13;	
 	public final static double TURRET_TURN_RIGHT_SPEED = -0.13;	
 	public final static double TURRET_LEFT_LIMIT = 9020;		
 	public final static double TURRET_RIGHT_LIMIT = 5270;		
 	public final static double TURRET_RESET_POSITION = 0;		
 	public final static double TURRET_TURN_TOLERANCE = 10;
-	public final static double TURRET_GEAR_CONVERSION = 1; //Conversion turret rotations into gear rotations TODO Experimentally calculate this value
+	public final static double TURRET_GEAR_CONVERSION = 1; 		//Conversion turret rotations into gear rotations TODO Calculate this value with the gear tooth ratio
 	
 	//Drivetrain Constants
-	public final static DriveMode DRIVE_MODE = DriveMode.TANK;	//Drive modes defined in DriveMode ENUM
+	public final static DriveMode DRIVE_MODE = DriveMode.ARCADE;	//Drive modes defined in DriveMode ENUM
 	public final static double SPEED_MODIFIER = 1.0;			//Multiplier of speeds inputed into tankDrive
 	public final static double TURN_SPEED = 0.65;				//Speed at which QuickTurn turns robot
 	public final static double F = 0.7494;						
