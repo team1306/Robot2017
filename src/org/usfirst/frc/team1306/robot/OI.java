@@ -136,13 +136,13 @@ public class OI {
 	public enum joystick {l, r};
 	
 	/**
-	 * Side left or right, for rumble (l or r)
+	 * Side left or right (l, r)
 	 * @author Sam Roquitte
 	 */
 	public enum side {l, r};
 	
 	/**
-	 * Direction of the dpad, similar to cardinal directions but instead of north east south west, up right down left (u, r, d, l).  Up/down first, followed by left
+	 * Direction of the dpad, similar to cardinal directions but instead of north east south west, up right down left (u, r, d, l).  Up/down first, followed by left.
 	 * no=not pressed
 	 * @author Sam Roquitte
 	 */
@@ -215,7 +215,7 @@ public class OI {
 	}
 	
 	/**
-	 * Returns the value of the specified trigger (from -1.0 to 1.0)
+	 * Returns the value of the specified trigger (from 0.0 to 1.0)
 	 * @param controller
 	 * 		Which controller to read (p or s)
 	 * @param trigger

@@ -1,7 +1,6 @@
 package org.usfirst.frc.team1306.robot;
 
 import org.usfirst.frc.team1306.robot.OI.dpaddirection;
-
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 
