@@ -17,8 +17,9 @@ import jaci.pathfinder.modifiers.TankModifier;
  */
 public class MotionProfile extends CommandBase {
 
-	public static final double max_velocity = 0.3048;
-	public static final double max_accel = 0.5;
+	public final double max_velocity = 0.3048;
+	public final double max_accel = 0.5;
+	public double initAngle;
 	EncoderFollower left;
 	EncoderFollower right;
 	AHRS ahrs; //Navx Gyro
@@ -36,8 +37,8 @@ public class MotionProfile extends CommandBase {
 		Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH, 0.05, max_velocity, max_accel, 60.0);
 		Waypoint[] points = new Waypoint[]	{
 			new Waypoint(1,0,0),
-			new Waypoint(2,0,0),
-			new Waypoint(3,0,0)
+			//new Waypoint(2,0,0),
+			//new Waypoint(3,0,0)
 		};
 		Trajectory trajectory = Pathfinder.generate(points, config);
 		TankModifier modifier = new TankModifier(trajectory).modify(0.5);
@@ -53,23 +54,33 @@ public class MotionProfile extends CommandBase {
 		
 		ahrs.reset();
 		drivetrain.resetEncoders();
+		
+		initAngle = ahrs.getAngle();
 	}
 		
 	@Override
 	protected void execute() {
 		
-		SmartDashboard.putNumber("X",ahrs.getRawGyroX());
-		SmartDashboard.putNumber("Y",ahrs.getRawGyroY());
-		
 		double l = left.calculate(drivetrain.getLeftPosition());
 		double r = right.calculate(drivetrain.getRightPosition());
 		
 		double gyro_heading = ahrs.getAngle();
-		double desired_heading = 0;
+		double desired_heading = initAngle;
+		
+		SmartDashboard.putNumber("Gyro-Heading",gyro_heading);
+		SmartDashboard.putNumber("Desired-Heading",desired_heading);
 		
 		double angleDifference = Pathfinder.boundHalfDegrees(desired_heading - gyro_heading);
 		double turn = 0.8 * (-1.0/80.0) * angleDifference;
 
+		SmartDashboard.putNumber("Gyro-X",ahrs.getRawGyroX());
+		SmartDashboard.putNumber("Gyro-Y",ahrs.getRawGyroY());
+		SmartDashboard.putNumber("MP-Left",l);
+		SmartDashboard.putNumber("MP-Right",r);
+		SmartDashboard.putNumber("MP-Turn",turn);
+		SmartDashboard.putNumber("Left-Speed",l + turn);
+		SmartDashboard.putNumber("Right-Speed", r - turn);
+		
 		drivetrain.tankDrive(l + turn, r - turn);
 	}
 
