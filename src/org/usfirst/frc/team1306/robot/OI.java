@@ -7,10 +7,17 @@ import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
 import org.usfirst.frc.team1306.robot.commands.turret.Aim;
 import org.usfirst.frc.team1306.robot.commands.turret.DPadTurret;
 import org.usfirst.frc.team1306.robot.commands.turret.Direction;
+import org.usfirst.frc.team1306.robot.commands.gearmech.DeployGeartake;
+import org.usfirst.frc.team1306.robot.commands.gearmech.RetractGeartake;
+import org.usfirst.frc.team1306.robot.commands.gearmech.SpinGeartake;
+import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
+import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
+import org.usfirst.frc.team1306.robot.commands.turret.DPadTurret;
 import org.usfirst.frc.team1306.robot.commands.turret.ManualTurret;
 import org.usfirst.frc.team1306.robot.commands.turret.ResetTurret;
 import org.usfirst.frc.team1306.robot.commands.turret.Scan;
 import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
+import org.usfirst.frc.team1306.robot.commands.turret.TurnTurret;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
@@ -73,21 +80,23 @@ public class OI {
 		sbuttonBack = new JoystickButton(secondaryController, XboxController.BACK);
 		
 		//Bind commands to buttons
-		//pbuttonRB.whileHeld(new QuickTurn(true));
-		//pbuttonLB.whileHeld(new QuickTurn(false));
-
+		
 		pbuttonLB.whenPressed(new Scan(ScanDirection.LEFT));
 		pbuttonRB.whenPressed(new Scan(ScanDirection.RIGHT));
 		
 //		sbuttonLB.whenPressed(new Aim(Direction.LEFT));
 //		sbuttonRB.whenPressed(new Aim(Direction.RIGHT));
 		
-		//pbuttonStart.whenPressed(new DeployGear());
-		//pbuttonBack.whenPressed(new ReverseGear());
+		//pbuttonStart.whenPressed(new DeployGeartake());
+		//pbuttonBack.whenPressed(new RetractGeartake());
 
 		sbuttonA.whenPressed(new SpinShooter());
 		
-		sbuttonB.whenPressed(new ResetTurret());
+		sbuttonY.whenPressed(new SpinGeartake(Constants.GEARTAKE_SPEED));
+		sbuttonB.whenPressed(new SpinGeartake(-Constants.GEARTAKE_SPEED));
+		
+		pbuttonA.whenPressed(new TurnTurret(1));//(30/360)*Constants.TURRET_GEAR_CONVERSION));
+		//sbuttonB.whenPressed(new ResetTurret());
 		sbuttonX.whenPressed(new SpinIntake());
 		
 		sbuttonLB.whenPressed(new ManualTurret());
@@ -270,7 +279,7 @@ public class OI {
 	 * @param rumbleness
 	 * 		RUMBLE!!! (0-1)
 	 */
-	public static void setRumble(controller controller, side side, int rumbleness) {
+	public static void setRumble(controller controller, side side, double rumbleness) {
 		switch (controller) {
 			case p:
 				switch (side) {

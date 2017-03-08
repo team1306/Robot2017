@@ -34,6 +34,7 @@ public class Constants {
 	public final static int BANG_SHOOTER_BUTTON = XboxController.B;
 	public final static int AIM_LEFT_BUTTON = XboxController.LB;
 	public final static int AIM_RIGHT_BUTTON = XboxController.RB;
+	public final static int GEARTAKE_BUTTON = XboxController.Y;
 	
 	//Autonomous Constants
 	public final static double AUTO_SPEED = 0.5;
@@ -49,6 +50,7 @@ public class Constants {
 	
 	//GearMech Constants
 	public final static int GEAR_DEPLOY_TIME = 1;
+	public final static double GEARTAKE_SPEED = 0.6;
 	
 	//Climber Constants
 	public final static double CLIMBER_SPEED = 1.0;
@@ -58,6 +60,7 @@ public class Constants {
 	
 	//Hopper Constants
 	public final static double HOPPER_SPEED = 1.0;	
+	public final static int HOPPER_RAMP_I = 1;
 	
 	//Indexer Constants
 	public final static double INDEXER_SPEED = 1.0;
@@ -79,7 +82,7 @@ public class Constants {
 	public final static double INDEXER_D = 0.0;					//TODO Calculate indexer D
 	
 	//Turret Constants
-	public final static double MANUAL_TURRET_ROT = 1;			//Maxumum rotation value for the turret when in manual mode
+	public final static double MANUAL_TURRET_ROT = 0.5;			//Maxumum rotation value for the turret when in manual mode
 	public final static double DPAD_TURRET_STEP = 0.2;
 	public final static double TURRET_TURN_LEFT_SPEED = 0.13;	
 	public final static double TURRET_TURN_RIGHT_SPEED = -0.13;	
