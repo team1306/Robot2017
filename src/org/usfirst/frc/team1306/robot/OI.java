@@ -2,8 +2,8 @@ package org.usfirst.frc.team1306.robot;
 
 import org.usfirst.frc.team1306.robot.commands.climber.Climb;
 import org.usfirst.frc.team1306.robot.commands.climber.ClimbBack;
-import org.usfirst.frc.team1306.robot.commands.gearmech.DeployGear;
-import org.usfirst.frc.team1306.robot.commands.gearmech.ReverseGear;
+import org.usfirst.frc.team1306.robot.commands.gearmech.DeployGeartake;
+import org.usfirst.frc.team1306.robot.commands.gearmech.RetractGeartake;
 import org.usfirst.frc.team1306.robot.commands.gearmech.SpinGeartake;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
@@ -75,9 +75,6 @@ public class OI {
 		sbuttonBack = new JoystickButton(secondaryController, XboxController.BACK);
 		
 		//Bind commands to buttons
-		//pbuttonRB.whileHeld(new QuickTurn(true));
-		//pbuttonLB.whileHeld(new QuickTurn(false));
-
 		
 		pbuttonLB.whenPressed(new Scan(ScanDirection.LEFT));
 		pbuttonRB.whenPressed(new Scan(ScanDirection.RIGHT));
@@ -85,13 +82,13 @@ public class OI {
 //		sbuttonLB.whenPressed(new Aim(Direction.LEFT));
 //		sbuttonRB.whenPressed(new Aim(Direction.RIGHT));
 		
-		pbuttonStart.whenPressed(new DeployGear());
-		pbuttonBack.whenPressed(new ReverseGear());
+		//pbuttonStart.whenPressed(new DeployGeartake());
+		//pbuttonBack.whenPressed(new RetractGeartake());
 
 		sbuttonA.whenPressed(new SpinShooter());
 		
-		sbuttonY.whenPressed(new SpinGeartake(0.6));
-		sbuttonB.whenPressed(new SpinGeartake(-0.6));
+		sbuttonY.whenPressed(new SpinGeartake(Constants.GEARTAKE_SPEED));
+		sbuttonB.whenPressed(new SpinGeartake(-Constants.GEARTAKE_SPEED));
 		
 		pbuttonA.whenPressed(new TurnTurret(1));//(30/360)*Constants.TURRET_GEAR_CONVERSION));
 		//sbuttonB.whenPressed(new ResetTurret());
@@ -276,7 +273,7 @@ public class OI {
 	 * @param rumbleness
 	 * 		RUMBLE!!! (0-1)
 	 */
-	public static void setRumble(controller controller, side side, int rumbleness) {
+	public static void setRumble(controller controller, side side, double rumbleness) {
 		switch (controller) {
 			case p:
 				switch (side) {

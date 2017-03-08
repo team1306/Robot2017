@@ -3,7 +3,6 @@ package org.usfirst.frc.team1306.robot.commands.shooter;
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.OI;
 import org.usfirst.frc.team1306.robot.OI.controller;
-import org.usfirst.frc.team1306.robot.OI.side;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
 import edu.wpi.first.wpilibj.Timer;
@@ -27,22 +26,20 @@ public class SpinShooter extends CommandBase{
     	timer.reset();
     	timer.start();
     }
-    
-    /**
+	
+	/**
      * Spins up shooter
      */
-	private int hopperRampI = 1;
     protected void execute() {
-    	OI.setRumble(controller.s, side.l, 1);
-    	OI.setRumble(controller.s, side.r, 1);
-    	OI.setRumble(controller.p, side.l, 1);
-    	OI.setRumble(controller.p, side.r, 1);
-    	//shooter.spinIndexer();
+
+    	//Starts ramping up shooters and indexers
     	shooter.spinShooter();
 		shooter.spinIndexer();
+		
+		//This timer is to give the shooters and indexers enough time to get up to speed before shooting
     	if(timer.hasPeriodPassed(Constants.SHOOTER_SPIN_UP_TIME)) {
-    		if (timer.hasPeriodPassed(Constants.SHOOTER_SPIN_UP_TIME+(0.5*hopperRampI)) && hopperRampI < 5) {
-    			hopper.spinHopper(hopperRampI);
+    		if (timer.hasPeriodPassed(Constants.SHOOTER_SPIN_UP_TIME+(0.5*Constants.HOPPER_RAMP_I)) && Constants.HOPPER_RAMP_I < 5) {
+    			hopper.spinHopper(Constants.HOPPER_RAMP_I);
     			intake.spinIntake();
     		}
     		else {
@@ -69,10 +66,6 @@ public class SpinShooter extends CommandBase{
     	shooter.stopAll();
     	hopper.stopAll();
     	intake.stopAll();
-    	OI.setRumble(controller.s, side.l, 0);
-    	OI.setRumble(controller.s, side.r, 0);
-    	OI.setRumble(controller.p, side.l, 0);
-    	OI.setRumble(controller.p, side.r, 0);
     }
     
     protected void interrupted() {

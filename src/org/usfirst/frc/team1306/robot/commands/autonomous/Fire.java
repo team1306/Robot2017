@@ -31,7 +31,7 @@ public class Fire extends CommandBase {
 	@Override
 	protected void execute() {
 		hopper.spinHopper();
-		shooter.bangBangSpinShooter();
+		shooter.spinShooter();
 		shooter.spinIndexer();
 	}
 

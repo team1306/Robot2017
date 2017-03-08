@@ -2,15 +2,15 @@ package org.usfirst.frc.team1306.robot.commands.gearmech;
 
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
-public class DeployGear extends CommandBase {
-	
-	public DeployGear() {
+public class RetractGeartake extends CommandBase {
+
+	public RetractGeartake() {
 		requires(gearmech);
 	}
 	
 	@Override
 	protected void initialize() {
-		gearmech.deployGear();
+		gearmech.reverseGear();
 	}
 
 	@Override
@@ -29,7 +29,8 @@ public class DeployGear extends CommandBase {
 	}
 
 	@Override
-	protected void interrupted() {	
+	protected void interrupted() {
 		
 	}
+
 }

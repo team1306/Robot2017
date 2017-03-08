@@ -123,9 +123,9 @@ public class Shooter extends Subsystem {
 	/**
 	 * Returns the velocity of the shooter
 	 * @param shooter
-	 * 		Which shooter to read velocity from (0=left, 1=right, 2=index)
+	 * 		Which motor to read velocity from (0=left, 1=right, 2=index)
 	 * @return
-	 * 		Returns getEncVelocity() from talonSRX
+	 * 		Returns RPM from the talon
 	 */
 	public double getVel(int shooter) {
 		if(shooter == 0) {
@@ -138,30 +138,7 @@ public class Shooter extends Subsystem {
 	}
 	
 	/**
-	 * Spins the shooters with a bang bang loop
-	 */
-	public void bangBangSpinShooter() {
-		if(Constants.SHOOTER_ENABLED) {
-			leftShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
-			if (Math.abs(leftShooterMotor.getEncVelocity()) > Constants.SHOOTER_BANG_RANGE) {
-				leftShooterMotor.set(-Constants.SHOOTER_SPEED);
-			}
-			else {
-				leftShooterMotor.set(-Constants.SHOOTER_BANG_CEILING);
-			}
-
-			rightShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
-			if (Math.abs(rightShooterMotor.getEncVelocity()) > Constants.SHOOTER_BANG_RANGE) {
-				rightShooterMotor.set(-Constants.SHOOTER_SPEED);
-			}
-			else {
-				rightShooterMotor.set(-Constants.SHOOTER_BANG_CEILING);
-			}
-		}
-	}
-	
-	/**
-	 * Stops the shooter motors
+	 * Stops all shooter-related motors
 	 */
 	public void stopAll() {
 		leftShooterMotor.set(Constants.SPEED_ZERO);

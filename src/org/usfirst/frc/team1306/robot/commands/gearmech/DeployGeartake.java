@@ -2,15 +2,15 @@ package org.usfirst.frc.team1306.robot.commands.gearmech;
 
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
-public class ReverseGear extends CommandBase {
-
-	public ReverseGear() {
+public class DeployGeartake extends CommandBase {
+	
+	public DeployGeartake() {
 		requires(gearmech);
 	}
 	
 	@Override
 	protected void initialize() {
-		gearmech.reverseGear();
+		gearmech.deployGear();
 	}
 
 	@Override
@@ -29,8 +29,7 @@ public class ReverseGear extends CommandBase {
 	}
 
 	@Override
-	protected void interrupted() {
+	protected void interrupted() {	
 		
 	}
-
 }
