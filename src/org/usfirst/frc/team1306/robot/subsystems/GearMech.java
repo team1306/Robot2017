@@ -40,8 +40,8 @@ public class GearMech extends Subsystem {
 		//timer.delay(1);
 	}
 	
-	public void spinMotor() {
-		gearMotor.set(0.4);
+	public void spinMotor(double speed) {
+		gearMotor.set(speed);
 	}
 	
 	public void stopAll() {

@@ -78,6 +78,7 @@ public class OI {
 		//pbuttonRB.whileHeld(new QuickTurn(true));
 		//pbuttonLB.whileHeld(new QuickTurn(false));
 
+		
 		pbuttonLB.whenPressed(new Scan(ScanDirection.LEFT));
 		pbuttonRB.whenPressed(new Scan(ScanDirection.RIGHT));
 		
@@ -89,10 +90,11 @@ public class OI {
 
 		sbuttonA.whenPressed(new SpinShooter());
 		
-		sbuttonY.whenPressed(new SpinGeartake());
+		sbuttonY.whenPressed(new SpinGeartake(0.6));
+		sbuttonB.whenPressed(new SpinGeartake(-0.6));
 		
 		pbuttonA.whenPressed(new TurnTurret(1));//(30/360)*Constants.TURRET_GEAR_CONVERSION));
-		sbuttonB.whenPressed(new ResetTurret());
+		//sbuttonB.whenPressed(new ResetTurret());
 		sbuttonX.whenPressed(new SpinIntake());
 		
 		sbuttonRB.whenPressed(new ManualTurret());
