@@ -12,6 +12,7 @@ import org.usfirst.frc.team1306.robot.commands.turret.ManualTurret;
 import org.usfirst.frc.team1306.robot.commands.turret.ResetTurret;
 import org.usfirst.frc.team1306.robot.commands.turret.Scan;
 import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
+import org.usfirst.frc.team1306.robot.commands.turret.TurnTurret;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
@@ -90,6 +91,7 @@ public class OI {
 		
 		sbuttonY.whenPressed(new SpinGeartake());
 		
+		pbuttonA.whenPressed(new TurnTurret(1));//(30/360)*Constants.TURRET_GEAR_CONVERSION));
 		sbuttonB.whenPressed(new ResetTurret());
 		sbuttonX.whenPressed(new SpinIntake());
 		

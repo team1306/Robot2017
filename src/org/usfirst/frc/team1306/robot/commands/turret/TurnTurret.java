@@ -3,6 +3,8 @@ package org.usfirst.frc.team1306.robot.commands.turret;
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 /**
  * Command that turns turret to a given rotations
  * @author Sam Roquitte and Jackson Goth
@@ -30,6 +32,7 @@ public class TurnTurret extends CommandBase {
 //    		turret.setSpeed(Constants.TURRET_TURN_RIGHT_SPEED); //If Turret rotations is above desired rotations the turret needs to turn right
 //    	}
     	turret.moveRot(rotations);
+    	SmartDashboard.putNumber("rotations",rotations);
     }
 
     protected boolean isFinished() {
