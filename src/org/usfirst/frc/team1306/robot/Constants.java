@@ -37,6 +37,8 @@ public class Constants {
 	public final static int GEARTAKE_BUTTON = XboxController.Y;
 	
 	//Autonomous Constants
+	public final static int AUTO_KPA = 0;
+	public final static int AUTO_BLANK = 1;
 	public final static double AUTO_SPEED = 0.5;
 	public final static double SHOOT_TIME = 10.0;
 	public final static double ROTATE_VEL = 0.2;

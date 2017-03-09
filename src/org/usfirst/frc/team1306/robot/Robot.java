@@ -34,6 +34,22 @@ public class Robot extends IterativeRobot {
     	CommandBase.init(); 								//Initializes all Subsystems
     	CameraServer.getInstance().startAutomaticCapture(); //GearMech Camera
     	
+    	chooser = new SendableChooser<AutonomousCommand>();
+    	
+    	Alliance alliance = DriverStation.getInstance().getAlliance(); //Alliance (Red or Blue)
+        int station = DriverStation.getInstance().getLocation(); //Station on alliance (1-3)
+        
+        if(alliance.equals(Alliance.Red)) {
+        	chooser.addObject("Pathfinder", new AutonomousCommand(Alliance.Red,station));
+        	chooser.addObject("10 Kpa", new AutonomousCommand(Alliance.Red));
+        } else if(alliance.equals(Alliance.Blue)) {
+        	chooser.addObject("Pathfinder", new AutonomousCommand(Alliance.Blue,station));
+        	chooser.addObject("10 Kpa", new AutonomousCommand(Alliance.Blue));
+        }
+
+        chooser.addObject("Blank Auto", new AutonomousCommand());
+        SmartDashboard.putData("Auto mode", chooser);
+    	
     	new SmartDashboardUpdate().start(); 				//Starts Running SmartDashboardUpdate
     }
 	
@@ -55,24 +71,7 @@ public class Robot extends IterativeRobot {
 	 */
     public void autonomousInit() {
     	
-    	Alliance alliance = DriverStation.getInstance().getAlliance();
-        int station = DriverStation.getInstance().getLocation();
-        
-        if(alliance.equals(Alliance.Red)) {
-        	autonomousCommand = new AutonomousCommand(Alliance.Red,station);
-        	//SmartDashboard.putString("Alliance: ","Red");
-        	//SmartDashboard.putBoolean("Error",false);
-        } else if(alliance.equals(Alliance.Blue)) {
-        	autonomousCommand = new AutonomousCommand(Alliance.Blue,station);
-        	//SmartDashboard.putString("Alliance: ","Blue");
-        	//SmartDashboard.putBoolean("Error",false);
-        } else {
-        	autonomousCommand = new AutonomousCommand(Alliance.Invalid,-1);
-        	//SmartDashboard.putBoolean("Error",true);
-        }
-    	//SmartDashboard.putNumber("Station: ",station);
-        
-    	//autonomousCommand = new AutonomousCommand();
+    	autonomousCommand = (Command) chooser.getSelected();
     	
         if (autonomousCommand != null) {
         	autonomousCommand.start();

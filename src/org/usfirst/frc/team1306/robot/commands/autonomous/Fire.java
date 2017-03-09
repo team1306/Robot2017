@@ -30,9 +30,22 @@ public class Fire extends CommandBase {
 	 */
 	@Override
 	protected void execute() {
-		hopper.spinHopper();
-		shooter.spinShooter();
+		
+		//Starts ramping up shooters and indexers
+    	shooter.spinShooter();
 		shooter.spinIndexer();
+		
+		//This timer is to give the shooters and indexers enough time to get up to speed before shooting
+    	if(timer.hasPeriodPassed(Constants.SHOOTER_SPIN_UP_TIME)) {
+    		if (timer.hasPeriodPassed(Constants.SHOOTER_SPIN_UP_TIME+(0.5*Constants.HOPPER_RAMP_I)) && Constants.HOPPER_RAMP_I < 5) {
+    			hopper.spinHopper(Constants.HOPPER_RAMP_I);
+    			intake.spinIntake();
+    		}
+    		else {
+    			hopper.spinHopper();
+    			intake.spinIntake();
+    		}
+    	}
 	}
 
 	/**
