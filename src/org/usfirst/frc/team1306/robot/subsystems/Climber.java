@@ -32,7 +32,7 @@ public class Climber extends Subsystem{
 	 */
 	public void spinClimberBack() {
 		if (Constants.CLIMBER_ENABLED) {
-			climberMotor.set(-Constants.CLIMBER_SPEED);
+			climberMotor.set(Constants.CLIMBER_BACK_SPEED);
 		}
 	}
 	

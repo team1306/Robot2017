@@ -26,6 +26,7 @@ public class ResetTurret extends CommandBase{
 
 	@Override
 	protected boolean isFinished() {
+		//new FindTarget().start();
 		return true;
 	}
 

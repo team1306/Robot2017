@@ -2,9 +2,12 @@ package org.usfirst.frc.team1306.robot.subsystems;
 
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.RobotMap;
+import org.usfirst.frc.team1306.robot.commands.turret.FindTarget;
+
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -85,7 +88,7 @@ public class Turret extends Subsystem {
 		if (Constants.TURRET_ENABLED) {
 			turretMotor.changeControlMode(TalonControlMode.MotionMagic);
 			SmartDashboard.putNumber("Turret Rotation: ",degrees);
-			turretMotor.set(degrees/360);
+			turretMotor.set((degrees/360)*Constants.TURRET_GEAR_CONVERSION);
 		}
 	}
 	
@@ -93,11 +96,11 @@ public class Turret extends Subsystem {
 	 * Stops the turret
 	 */
 	public void stopAll() {
-		turretMotor.set(0);
+		turretMotor.set(Constants.SPEED_ZERO);
 	}
 	
 	@Override
 	protected void initDefaultCommand() {
-		
+		setDefaultCommand(new FindTarget());
 	}
 }

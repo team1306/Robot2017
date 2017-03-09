@@ -2,12 +2,11 @@ package org.usfirst.frc.team1306.robot.commands.turret;
 
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
-
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * Command that scans with vision in given direction until a target is found.
+ * Command that turns the turret in a given direction, and will turn to the turret if it enters line of sight.
  * @author Jackson Goth
  */
 public class Scan extends CommandBase {
@@ -47,7 +46,7 @@ public class Scan extends CommandBase {
 //			} else if(table.getNumber("yaw",0) + 8 > 0) {
 //				turret.setSpeed(Constants.TURRET_TURN_RIGHT_SPEED);
 //			}
-			new TurnTurret((table.getNumber("yaw",0)/360)*Constants.TURRET_GEAR_CONVERSION);
+			new TurnTurret((table.getNumber("yaw",0)/360)*Constants.TURRET_GEAR_CONVERSION).start();
 			end();
 		} else {
 			//turret.setSpeed(turn_speed);
@@ -65,11 +64,7 @@ public class Scan extends CommandBase {
 		} else if(turret.getEncPos() > Constants.TURRET_LEFT_LIMIT && direction.equals("Left")) {
 			turret.stopAll();
 			return true;
-		}/* else if(Math.abs(table.getNumber("yaw",0)) < Constants.VISION_YAW_TOLERANCE) { //Stops turning if target is in tolerance
-			SmartDashboard.putBoolean("Locked-On",true);
-			turret.stopAll();
-			return true;
-		}*/ else {
+		} else {
 			return false;
 		}
 	}
@@ -77,12 +72,6 @@ public class Scan extends CommandBase {
 	@Override
 	protected void end() {
 		turret.stopAll();
-//		if(targetInSight) {
-//			new TurnTarget(direction).start();
-//		} else {
-//			new TurnTurret(Constants.TURRET_RESET_POSITION).start();
-//		}
-		
 	}
 
 	@Override

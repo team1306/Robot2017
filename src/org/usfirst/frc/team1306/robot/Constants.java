@@ -53,7 +53,8 @@ public class Constants {
 	public final static double GEARTAKE_SPEED = 0.6;
 	
 	//Climber Constants
-	public final static double CLIMBER_SPEED = 0.6;
+	public final static double CLIMBER_SPEED = 0.8;
+	public final static double CLIMBER_BACK_SPEED = -0.2;
 	
 	//Intake Constants
 	public final static double INTAKE_SPEED = 0.70;
@@ -90,6 +91,7 @@ public class Constants {
 	public final static double TURRET_RIGHT_LIMIT = 5270;		
 	public final static double TURRET_RESET_POSITION = 0;		
 	public final static double TURRET_TURN_TOLERANCE = 10;
+	public final static double TURRET_RECOVERY_TIME = 0.5;
 	public final static double TURRET_GEAR_CONVERSION = 1; 		//Conversion turret rotations into gear rotations TODO Calculate this value with the gear tooth ratio
 	
 	//Drivetrain Constants
