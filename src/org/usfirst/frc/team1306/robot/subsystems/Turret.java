@@ -71,7 +71,7 @@ public class Turret extends Subsystem {
 	public void moveRot(double rotation) {
 		if (Constants.TURRET_ENABLED) {
 			turretMotor.changeControlMode(TalonControlMode.MotionMagic);
-			SmartDashboard.putNumber("rotations",rotation);
+			SmartDashboard.putNumber("Turret Rotation: ",rotation);
 			turretMotor.set(rotation);
 		}
 	}
@@ -84,6 +84,7 @@ public class Turret extends Subsystem {
 	public void moveDeg(double degrees) {
 		if (Constants.TURRET_ENABLED) {
 			turretMotor.changeControlMode(TalonControlMode.MotionMagic);
+			SmartDashboard.putNumber("Turret Rotation: ",degrees);
 			turretMotor.set(degrees/360);
 		}
 	}

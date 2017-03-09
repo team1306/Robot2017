@@ -159,17 +159,17 @@ public class Drivetrain extends Subsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-		if (Constants.DRIVE_MODE == DriveMode.TANK) {			//If mode is tank, set default command to tankdrive
+		if (Constants.DRIVE_MODE == DriveMode.TANK) {				//If mode is tank, set default command to tankdrive
 			setDefaultCommand(new TankDrive());
 		}
-		else if (Constants.DRIVE_MODE == DriveMode.ARCADE) {	//If mode is arcade, set default command to arcadedrive
+		else if (Constants.DRIVE_MODE == DriveMode.ARCADE) {		//If mode is arcade, set default command to arcadedrive
 			setDefaultCommand(new ArcadeDrive());
 		}
-		else if (Constants.DRIVE_MODE == DriveMode.BENT_ELBOW) {
+		else if (Constants.DRIVE_MODE == DriveMode.BENT_ELBOW) {	//If mode is bent elbow, set default command to bent elbow
 			setDefaultCommand(new BentElbowDrive());
 		}
 		else {
-			setDefaultCommand(new TankDrive()); //Defaults to tankdrive
+			setDefaultCommand(new TankDrive()); 					//Defaults to tankdrive
 		}
 	}
 }

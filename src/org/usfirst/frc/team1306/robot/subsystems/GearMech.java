@@ -1,6 +1,8 @@
 package org.usfirst.frc.team1306.robot.subsystems;
 
 import org.usfirst.frc.team1306.robot.Constants;
+import org.usfirst.frc.team1306.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Timer;
@@ -14,9 +16,9 @@ public class GearMech extends Subsystem {
 	private Spark gearMotor;
 	
 	public GearMech() {
-		gearSolenoid = new Solenoid(4);
+		gearSolenoid = new Solenoid(RobotMap.GEAR_SOLENOID_PORT);
 		timer = new Timer();
-		gearMotor = new Spark(3);
+		gearMotor = new Spark(RobotMap.GEAR_SPARK_PORT);
 	}
 	
 	/**

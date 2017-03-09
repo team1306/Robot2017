@@ -36,4 +36,8 @@ public class RobotMap {
 	
 	//Climber Ports
 	public static final int CLIMBER_TALON_PORT = 2;
+	
+	//Gearmech Ports
+	public static final int GEAR_SPARK_PORT = 3;
+	public static final int GEAR_SOLENOID_PORT = 4;
 }

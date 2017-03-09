@@ -1,7 +1,7 @@
 package org.usfirst.frc.team1306.robot.commands.drivetrain;
 
 /**
- * Enum that stores different drive modes (TANK, ARCADE)
+ * Enum that stores different drive modes (TANK, ARCADE, BENT_ELBOW)
  * @author Sam Roquitte
  */
 public enum DriveMode {
