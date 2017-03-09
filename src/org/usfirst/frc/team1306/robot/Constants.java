@@ -53,7 +53,7 @@ public class Constants {
 	public final static double GEARTAKE_SPEED = 0.6;
 	
 	//Climber Constants
-	public final static double CLIMBER_SPEED = 1.0;
+	public final static double CLIMBER_SPEED = 0.6;
 	
 	//Intake Constants
 	public final static double INTAKE_SPEED = 0.70;
@@ -93,10 +93,8 @@ public class Constants {
 	public final static double TURRET_GEAR_CONVERSION = 1; 		//Conversion turret rotations into gear rotations TODO Calculate this value with the gear tooth ratio
 	
 	//Drivetrain Constants
-	public final static DriveMode DRIVE_MODE = DriveMode.ARCADE;	//Drive modes defined in DriveMode ENUM
-	public final static double SPEED_MODIFIER = 1.0;			//Multiplier of speeds inputed into tankDrive
-	public final static double TURN_SPEED = 0.65;				//Speed at which QuickTurn turns robot
-	public final static double F = 0.7494;						
+	public final static DriveMode DRIVE_MODE = DriveMode.BENT_ELBOW;	//Drive modes defined in DriveMode ENUM
+	public final static double SPEED_MODIFIER = 1.0;			//Multiplier of speeds inputed into tankDrive=
 	public final static double P = 0.77;	
 	public final static double I = 0.0033; 
 	public final static double D = 0.0;

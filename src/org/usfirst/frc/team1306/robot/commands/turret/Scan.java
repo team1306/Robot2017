@@ -50,7 +50,7 @@ public class Scan extends CommandBase {
 			new TurnTurret((table.getNumber("yaw",0)/360)*Constants.TURRET_GEAR_CONVERSION);
 			end();
 		} else {
-			turret.setSpeed(turn_speed);
+			//turret.setSpeed(turn_speed);
 		}
 		SmartDashboard.putBoolean("Target In Sight",targetInSight);
 		SmartDashboard.putNumber("Yaw",table.getNumber("yaw",0));

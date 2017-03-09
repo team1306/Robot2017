@@ -55,20 +55,25 @@ public class Robot extends IterativeRobot {
 	 */
     public void autonomousInit() {
     	
-    	DriverStation.Alliance alliance = DriverStation.getInstance().getAlliance();
+    	Alliance alliance = DriverStation.getInstance().getAlliance();
         int station = DriverStation.getInstance().getLocation();
         
         if(alliance.equals(Alliance.Red)) {
         	autonomousCommand = new AutonomousCommand(Alliance.Red,station);
-        	SmartDashboard.putString("Alliance: ","Red");
+        	//SmartDashboard.putString("Alliance: ","Red");
+        	//SmartDashboard.putBoolean("Error",false);
         } else if(alliance.equals(Alliance.Blue)) {
         	autonomousCommand = new AutonomousCommand(Alliance.Blue,station);
-        	SmartDashboard.putString("Alliance: ","Blue");
+        	//SmartDashboard.putString("Alliance: ","Blue");
+        	//SmartDashboard.putBoolean("Error",false);
         } else {
         	autonomousCommand = new AutonomousCommand(Alliance.Invalid,-1);
+        	//SmartDashboard.putBoolean("Error",true);
         }
-    	SmartDashboard.putNumber("Station: ",station);
+    	//SmartDashboard.putNumber("Station: ",station);
         
+    	//autonomousCommand = new AutonomousCommand();
+    	
         if (autonomousCommand != null) {
         	autonomousCommand.start();
         }

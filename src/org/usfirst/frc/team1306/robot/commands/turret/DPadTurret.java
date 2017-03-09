@@ -76,7 +76,7 @@ public class DPadTurret extends CommandBase {
 
 	@Override
 	protected void end() {
-		
+		turret.stopAll();
 	}
 
 	@Override

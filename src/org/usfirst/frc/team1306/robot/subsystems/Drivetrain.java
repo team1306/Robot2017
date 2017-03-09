@@ -3,6 +3,7 @@ package org.usfirst.frc.team1306.robot.subsystems;
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.RobotMap;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.ArcadeDrive;
+import org.usfirst.frc.team1306.robot.commands.drivetrain.BentElbowDrive;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.DriveMode;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.TankDrive;
 
@@ -164,8 +165,11 @@ public class Drivetrain extends Subsystem {
 		else if (Constants.DRIVE_MODE == DriveMode.ARCADE) {	//If mode is arcade, set default command to arcadedrive
 			setDefaultCommand(new ArcadeDrive());
 		}
-		else {													//Defaults to tankdrive
-			setDefaultCommand(new TankDrive());
+		else if (Constants.DRIVE_MODE == DriveMode.BENT_ELBOW) {
+			setDefaultCommand(new BentElbowDrive());
+		}
+		else {
+			setDefaultCommand(new TankDrive()); //Defaults to tankdrive
 		}
 	}
 }

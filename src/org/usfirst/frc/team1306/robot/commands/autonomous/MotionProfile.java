@@ -18,7 +18,7 @@ import jaci.pathfinder.modifiers.TankModifier;
 public class MotionProfile extends CommandBase {
 
 	public final double max_velocity = 0.3048;
-	public final double max_accel = 0.5;
+	public final double max_accel = 0.15;
 	public double initAngle;
 	EncoderFollower left;
 	EncoderFollower right;
@@ -34,10 +34,13 @@ public class MotionProfile extends CommandBase {
 	
 	@Override
 	protected void initialize() {
+
+		initAngle = ahrs.getAngle();
+		
 		Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH, 0.05, max_velocity, max_accel, 60.0);
 		Waypoint[] points = new Waypoint[]	{
-			new Waypoint(1,0,0),
-			//new Waypoint(2,0,0),
+			new Waypoint(1,0,initAngle),
+			new Waypoint(2,0,initAngle),
 			//new Waypoint(3,0,0)
 		};
 		Trajectory trajectory = Pathfinder.generate(points, config);
@@ -55,7 +58,7 @@ public class MotionProfile extends CommandBase {
 		ahrs.reset();
 		drivetrain.resetEncoders();
 		
-		initAngle = ahrs.getAngle();
+		
 	}
 		
 	@Override

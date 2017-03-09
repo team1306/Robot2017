@@ -81,26 +81,26 @@ public class OI {
 		
 		//Bind commands to buttons
 		
-		pbuttonLB.whenPressed(new Scan(ScanDirection.LEFT));
-		pbuttonRB.whenPressed(new Scan(ScanDirection.RIGHT));
+		//pbuttonLB.whenPressed(new Scan(ScanDirection.LEFT));
+		//pbuttonRB.whenPressed(new Scan(ScanDirection.RIGHT));
 		
 //		sbuttonLB.whenPressed(new Aim(Direction.LEFT));
 //		sbuttonRB.whenPressed(new Aim(Direction.RIGHT));
 		
-		//pbuttonStart.whenPressed(new DeployGeartake());
-		//pbuttonBack.whenPressed(new RetractGeartake());
+		pbuttonStart.whenPressed(new DeployGeartake());
+		pbuttonBack.whenPressed(new RetractGeartake());
 
 		sbuttonA.whenPressed(new SpinShooter());
 		
 		sbuttonY.whenPressed(new SpinGeartake(Constants.GEARTAKE_SPEED));
 		sbuttonB.whenPressed(new SpinGeartake(-Constants.GEARTAKE_SPEED));
 		
-		pbuttonA.whenPressed(new TurnTurret(1));//(30/360)*Constants.TURRET_GEAR_CONVERSION));
-		//sbuttonB.whenPressed(new ResetTurret());
+		//pbuttonA.whenPressed(new TurnTurret(1));//(30/360)*Constants.TURRET_GEAR_CONVERSION));
+		pbuttonB.whenPressed(new ResetTurret());
 		sbuttonX.whenPressed(new SpinIntake());
 		
-		sbuttonLB.whenPressed(new ManualTurret());
-		sbuttonRB.whenPressed(new DPadTurret());
+		//sbuttonLB.whenPressed(new ManualTurret());
+		//sbuttonRB.whenPressed(new DPadTurret());
 		
 		//sbuttonY.whenPressed(new SpinShooterBack());
 		//sbuttonBack.whenPressed(new ClimbBack());

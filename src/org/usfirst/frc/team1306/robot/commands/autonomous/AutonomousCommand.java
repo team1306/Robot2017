@@ -1,5 +1,7 @@
 package org.usfirst.frc.team1306.robot.commands.autonomous;
 
+import org.usfirst.frc.team1306.robot.commands.turret.Scan;
+
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -10,6 +12,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class AutonomousCommand extends CommandGroup {
 
+	public AutonomousCommand() {
+		addSequential(new MotionProfile());
+	}
+	
 	/**
 	 * Method that accomplishes a given autonomous command
 	 * 
@@ -20,19 +26,11 @@ public class AutonomousCommand extends CommandGroup {
 		
 		
 		addSequential(new MotionProfile());
+		//addSequential(new Scan(getLocation(alliance,station).getScanDir()));
 		//addParallel(new DeployIntake());
 		
-//		addSequential(new TimedDrive(AutoConstants.AUTO_SPEED,1));
-//		addSequential(new Scan(getLocation(alliance,station).getScanDir()));
-//		addSequential(new Fire());
-		
-//		addSequential(new Scan(station.getScanDir(0)));
-//		addParallel(new MotionProfile());
-//		addSequential(new Fire());
-//		addSequential(new DeployGear());
-//		addSequential(new Wait(AutoConstants.SCAN_DELAY));
-//		addSequential(new Scan(station.getScanDir(1)));
-//		addSequential(new Fire());
+		//addSequential(new Scan(getLocation(alliance,station).getScanDir()));
+		//addSequential(new Fire());
 	}
 	
 	private Station getLocation(Alliance alliance,int station) {

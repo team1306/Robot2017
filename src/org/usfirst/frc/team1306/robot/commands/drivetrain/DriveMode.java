@@ -6,7 +6,7 @@ package org.usfirst.frc.team1306.robot.commands.drivetrain;
  */
 public enum DriveMode {
 
-	TANK(0),ARCADE(1);
+	TANK(0),ARCADE(1),BENT_ELBOW(2);
 	
 	private final double driveMode;
 	
