@@ -72,36 +72,43 @@ public class OI {
 		sbuttonStart = new JoystickButton(secondaryController, XboxController.START);
 		sbuttonBack = new JoystickButton(secondaryController, XboxController.BACK);
 		
-		//Bind commands to buttons
 		
+		//Primary ABXY buttons
+		pbuttonB.whenPressed(new ResetTurret());
+		pbuttonX.toggleWhenPressed(new SpinIntake());
+		
+		//Primary triggers/bumpers
 		pbuttonLB.whenPressed(new FindTarget(ScanDirection.LEFT));
 		pbuttonRB.whenPressed(new FindTarget(ScanDirection.RIGHT));
 		
-//		sbuttonLB.whenPressed(new Aim(Direction.LEFT));
-//		sbuttonRB.whenPressed(new Aim(Direction.RIGHT));
-		
+		//Primary start back buttons	
 		pbuttonStart.whenPressed(new DeployGeartake());
 		pbuttonBack.whenPressed(new RetractGeartake());
-
+		
+		//Primary testing
+//		sbuttonLB.whenPressed(new Aim(Direction.LEFT));
+//		sbuttonRB.whenPressed(new Aim(Direction.RIGHT));	
+		
+		
+		//Secondary ABXY buttons
 		sbuttonA.whenPressed(new SpinShooter());
-		
-		sbuttonY.whenPressed(new SpinGeartake(Constants.GEARTAKE_SPEED));
 		sbuttonB.whenPressed(new SpinGeartake(-Constants.GEARTAKE_SPEED));
+		sbuttonX.toggleWhenPressed(new SpinIntake());
+		sbuttonY.whenPressed(new SpinGeartake(Constants.GEARTAKE_SPEED));
 		
-		//pbuttonA.whenPressed(new TurnTurret(1));//(30/360)*Constants.TURRET_GEAR_CONVERSION));
-		pbuttonB.whenPressed(new ResetTurret());
-		sbuttonX.whenPressed(new SpinIntake());
+		//Secondary triggers/bumpers
+		sbuttonRB.whenPressed(new ManualTurret());
 		
-		sbuttonLB.whenPressed(new ManualTurret());
-		//sbuttonRB.whenPressed(new DPadTurret());
-		
-		//sbuttonY.whenPressed(new SpinShooterBack());
-		//sbuttonBack.whenPressed(new ClimbBack());
-
+		//Secondary start back buttons
 		sbuttonStart.whenPressed(new Climb());
 		sbuttonBack.whenPressed(new ClimbBack());
-		//sbuttonA.whenPressed(new AdjustHood(HoodAngle.DOWN));
-		//sbuttonY.whenPressed(new AdjustHood(HoodAngle.UP));
+		
+		//Secondary testing
+//		sbuttonRB.whenPressed(new DPadTurret());
+//		sbuttonY.whenPressed(new SpinShooterBack());
+//		pbuttonA.whenPressed(new TurnTurret(1));//(30/360)*Constants.TURRET_GEAR_CONVERSION));
+//		sbuttonA.whenPressed(new AdjustHood(HoodAngle.DOWN));
+//		sbuttonY.whenPressed(new AdjustHood(HoodAngle.UP));
 	}
 	
 	/**
@@ -293,6 +300,24 @@ public class OI {
 					secondaryController.setRumble(GenericHID.RumbleType.kRightRumble, rumbleness);
 				break;
 			}
+			break;
+		}
+	}
+	
+	/**
+	 * Resets the rumble to 0
+	 * @param controller
+	 * 		Which controller to reset/turn off rumble
+	 */
+	public static void resetRumble(controller controller) {
+		switch (controller) {
+			case p:
+				primaryController.setRumble(GenericHID.RumbleType.kLeftRumble, 0);
+				primaryController.setRumble(GenericHID.RumbleType.kRightRumble, 0);
+			break;
+			case s:
+				secondaryController.setRumble(GenericHID.RumbleType.kLeftRumble, 0);
+				secondaryController.setRumble(GenericHID.RumbleType.kRightRumble, 0);
 			break;
 		}
 	}
