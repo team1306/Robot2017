@@ -36,19 +36,21 @@ public class Robot extends IterativeRobot {
     	
     	chooser = new SendableChooser<AutonomousCommand>();
     	
-    	Alliance alliance = DriverStation.getInstance().getAlliance(); //Alliance (Red or Blue)
-        int station = DriverStation.getInstance().getLocation(); //Station on alliance (1-3)
-        
-        if(alliance.equals(Alliance.Red)) {
-        	chooser.addObject("Pathfinder", new AutonomousCommand(Alliance.Red,station));
-        	chooser.addObject("10 Kpa", new AutonomousCommand(Alliance.Red));
-        } else if(alliance.equals(Alliance.Blue)) {
-        	chooser.addObject("Pathfinder", new AutonomousCommand(Alliance.Blue,station));
-        	chooser.addObject("10 Kpa", new AutonomousCommand(Alliance.Blue));
-        }
-
-        chooser.addObject("Blank Auto", new AutonomousCommand());
-        SmartDashboard.putData("Auto mode", chooser);
+//    	Alliance alliance = DriverStation.getInstance().getAlliance(); //Alliance (Red or Blue)
+//        int station = DriverStation.getInstance().getLocation(); //Station on alliance (1-3)
+//        
+//        if(alliance.equals(Alliance.Red)) {
+//        	chooser.addObject("Pathfinder", new AutonomousCommand(Alliance.Red,station));
+//        	chooser.addObject("10 Kpa", new AutonomousCommand(Alliance.Red));
+//        } else if(alliance.equals(Alliance.Blue)) {
+//        	chooser.addObject("Pathfinder", new AutonomousCommand(Alliance.Blue,station));
+//        	chooser.addObject("10 Kpa", new AutonomousCommand(Alliance.Blue));
+//        }
+//
+//        chooser.addObject("Blank Auto", new AutonomousCommand());
+//        SmartDashboard.putData("Auto mode", chooser);
+    	
+    	
     	
     	new SmartDashboardUpdate().start(); 				//Starts Running SmartDashboardUpdate
     }
@@ -71,7 +73,9 @@ public class Robot extends IterativeRobot {
 	 */
     public void autonomousInit() {
     	
-    	autonomousCommand = (Command) chooser.getSelected();
+    	//autonomousCommand = (Command) chooser.getSelected();
+    	
+    	autonomousCommand = new AutonomousCommand(Alliance.Red,1);
     	
         if (autonomousCommand != null) {
         	autonomousCommand.start();

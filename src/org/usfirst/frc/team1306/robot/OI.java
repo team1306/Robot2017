@@ -8,6 +8,7 @@ import org.usfirst.frc.team1306.robot.commands.gearmech.SpinGeartake;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
 import org.usfirst.frc.team1306.robot.commands.turret.FindTarget;
+import org.usfirst.frc.team1306.robot.commands.turret.ManualTurret;
 import org.usfirst.frc.team1306.robot.commands.turret.ResetTurret;
 import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
 
@@ -91,7 +92,7 @@ public class OI {
 		pbuttonB.whenPressed(new ResetTurret());
 		sbuttonX.whenPressed(new SpinIntake());
 		
-		//sbuttonLB.whenPressed(new ManualTurret());
+		sbuttonLB.whenPressed(new ManualTurret());
 		//sbuttonRB.whenPressed(new DPadTurret());
 		
 		//sbuttonY.whenPressed(new SpinShooterBack());

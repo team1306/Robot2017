@@ -54,7 +54,7 @@ public class AutonomousCommand extends CommandGroup {
 		if(getStation(alliance, station).equals(Station.RED_THREE) || getStation(alliance, station).equals(Station.BLUE_THREE)) {
 			
 		} else {
-			addSequential(new SpinGeartake(Constants.GEAR_DEPLOY_TIME));
+			//addSequential(new SpinGeartake(-Constants.GEARTAKE_SPEED,Constants.GEAR_DEPLOY_TIME));
 		}
 		
 		//addSequential(new Scan(getLocation(alliance,station).getScanDir()));

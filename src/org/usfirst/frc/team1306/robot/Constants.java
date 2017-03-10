@@ -35,6 +35,7 @@ public class Constants {
 	public final static int AIM_LEFT_BUTTON = XboxController.LB;
 	public final static int AIM_RIGHT_BUTTON = XboxController.RB;
 	public final static int GEARTAKE_BUTTON = XboxController.Y;
+	public final static int GEARTAKE_BACK_BUTTON = XboxController.B;
 	
 	//Autonomous Constants
 	public final static int AUTO_KPA = 0;
@@ -94,6 +95,7 @@ public class Constants {
 	public final static double TURRET_RESET_POSITION = 0;		
 	public final static double TURRET_TURN_TOLERANCE = 10;
 	public final static double TURRET_RECOVERY_TIME = 0.5;
+	public final static double YAW_DEADBAND = 2.5;
 	public final static double TURRET_GEAR_CONVERSION = 1; 		//Conversion turret rotations into gear rotations TODO Calculate this value with the gear tooth ratio
 	
 	//Drivetrain Constants

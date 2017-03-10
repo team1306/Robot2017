@@ -33,10 +33,14 @@ public class HoldTarget extends CommandBase {
 
 	@Override
 	protected void execute() {
-		if(timer.hasPeriodPassed(Constants.TURRET_RECOVERY_TIME)) {
+//		if(timer.hasPeriodPassed(Constants.TURRET_RECOVERY_TIME)) {
+//			turret.moveDeg(table.getNumber("yaw",0));
+//			timer.reset();
+//			timer.start();
+//		}
+		
+		if(!(table.getNumber("yaw",0) < Constants.YAW_DEADBAND)) {
 			turret.moveDeg(table.getNumber("yaw",0));
-			timer.reset();
-			timer.start();
 		}
 	}
 

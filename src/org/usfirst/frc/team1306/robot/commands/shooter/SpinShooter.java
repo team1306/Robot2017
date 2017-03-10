@@ -11,20 +11,42 @@ import edu.wpi.first.wpilibj.Timer;
  * Command that calls to spin shooter, stops when shooter button is no longer pressed
  * @author Jackson Goth and Sam Roquitte
  */
-public class SpinShooter extends CommandBase{
+public class SpinShooter extends CommandBase {
 
+	private double time;
+	private boolean timedSpin = false;
 	private final Timer timer;
+	private final Timer hopperTimer;
+	
+	public SpinShooter(double time) {
+		requires(shooter);
+		requires(hopper);
+		requires(intake);
+		this.timedSpin = true;
+		this.time = time;
+		
+		timer = new Timer();
+		hopperTimer = new Timer();
+	}
 	
 	public SpinShooter() {
 		requires(shooter);
 		requires(hopper);
 		requires(intake);
+		this.timedSpin = false;
+		
 		timer = new Timer();
+		hopperTimer = new Timer();
 	}
 	
 	protected void initialize() {
-    	timer.reset();
-    	timer.start();
+    	hopperTimer.reset();
+    	hopperTimer.start();
+    	
+    	if(timedSpin) {
+    		timer.reset();
+    		timer.start();
+    	}
     }
 	
 	/**
@@ -37,8 +59,8 @@ public class SpinShooter extends CommandBase{
 		shooter.spinIndexer();
 		
 		//This timer is to give the shooters and indexers enough time to get up to speed before shooting
-    	if(timer.hasPeriodPassed(Constants.SHOOTER_SPIN_UP_TIME)) {
-    		if (timer.hasPeriodPassed(Constants.SHOOTER_SPIN_UP_TIME+(0.5*Constants.HOPPER_RAMP_I)) && Constants.HOPPER_RAMP_I < 5) {
+    	if(hopperTimer.hasPeriodPassed(Constants.SHOOTER_SPIN_UP_TIME)) {
+    		if (hopperTimer.hasPeriodPassed(Constants.SHOOTER_SPIN_UP_TIME+(0.5*Constants.HOPPER_RAMP_I)) && Constants.HOPPER_RAMP_I < 5) {
     			hopper.spinHopper(Constants.HOPPER_RAMP_I);
     			intake.spinIntake();
     		}
@@ -55,9 +77,15 @@ public class SpinShooter extends CommandBase{
     protected boolean isFinished() {
     	if(OI.getButtonVal(controller.s,Constants.SHOOTER_BUTTON)) {
     		return false;
+    	} else if(timedSpin && timer.hasPeriodPassed(time)) {
+    		shooter.stopAll();
+    		hopper.stopAll();
+    		intake.stopAll();
+    		return true;
     	} else {
     		shooter.stopAll();
     		hopper.stopAll();
+    		intake.stopAll();
     		return true;
     	}
     }

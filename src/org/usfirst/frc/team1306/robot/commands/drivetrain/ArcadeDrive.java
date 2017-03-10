@@ -34,11 +34,8 @@ public class ArcadeDrive extends CommandBase {
 			drivetrain.tankDrive(triggerVal+OI.getJoyVal(controller.p, joystick.l, axis.x), triggerVal-OI.getJoyVal(controller.p, joystick.l, axis.x));
 		}
 		else {
-			if (OI.getJoyVal(controller.p, joystick.l, axis.x) > 0) {		//Turn right
+			if (OI.getJoyVal(controller.p, joystick.l, axis.x) != 0) {		//Turn right
 				drivetrain.tankDrive(OI.getJoyVal(controller.p, joystick.l, axis.x), -OI.getJoyVal(controller.p, joystick.l, axis.x));
-			}
-			else if (OI.getJoyVal(controller.p, joystick.l, axis.x) < 0) {	//Turn left
-				drivetrain.tankDrive(-OI.getJoyVal(controller.p, joystick.l, axis.x), OI.getJoyVal(controller.p, joystick.l, axis.x));
 			}
 			else {
 				drivetrain.stopAll();
