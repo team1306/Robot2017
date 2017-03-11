@@ -31,13 +31,13 @@ public class AutonomousCommand extends CommandGroup {
 		if(routine.equals(AutoMode.HOPPER_GEAR)) {
 			
 			placeGear(station);
-			addSequential(new DeployIntake());
+			//addSequential(new DeployIntake());
 			
 			//If in alliance station closest to the boiler it will move to the nearest hopper and empty it
-			if(station.equals(Station.RED_THREE) || station.equals(Station.BLUE_ONE)) {
-				addSequential(new MotionProfile(station.getHopperProfile()));
-				addSequential(new SpinShooter(Constants.SHOOT_TIME));
-			}
+//			if(station.equals(Station.RED_THREE) || station.equals(Station.BLUE_ONE)) {
+//				addSequential(new MotionProfile(station.getHopperProfile()));
+//				addSequential(new SpinShooter(Constants.SHOOT_TIME));
+//			}
 			
 		} else if(routine.equals(AutoMode.GEAR)) {
 			
@@ -66,7 +66,7 @@ public class AutonomousCommand extends CommandGroup {
 	private void placeGear(Station station) {
 		
 		addSequential(new MotionProfile(station.getGearProfile()));
-		addSequential(new SpinGeartake(-Constants.GEARTAKE_SPEED,Constants.GEAR_DEPLOY_TIME));
+//		addSequential(new SpinGeartake(-Constants.GEARTAKE_SPEED,Constants.GEAR_DEPLOY_TIME));
 	}
 	
 	private Station getStation(Alliance alliance, int station) {

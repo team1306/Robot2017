@@ -1,6 +1,9 @@
 package org.usfirst.frc.team1306.robot.commands;
 
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -10,11 +13,18 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class SmartDashboardUpdate extends CommandBase {
 
 	PowerDistributionPanel panel;
+	AHRS ahrs;
 	
 	public SmartDashboardUpdate() {
 		requires(hood);
 		setRunWhenDisabled(true);
 		panel = new PowerDistributionPanel();
+		
+		try {
+			ahrs = new AHRS(SPI.Port.kMXP); //Trying to initialize the gyro
+		} catch(RuntimeException ex) {
+			SmartDashboard.putString("Gyro Failed to Connect","");
+		}
 	}
 	
 	@Override
@@ -30,6 +40,8 @@ public class SmartDashboardUpdate extends CommandBase {
 		//SmartDashboard.putNumber("SD-Turret Position",turret.getEncPos());
 		SmartDashboard.putNumber("SD-DLeftPosition",drivetrain.getLeftPosition());
 		SmartDashboard.putNumber("SD-DRightPosition",drivetrain.getRightPosition());
+		
+		SmartDashboard.putNumber("SD-GyroAngle",ahrs.getAngle());
 		
 		//Subsystem Current Draws
 //		SmartDashboard.putNumber("Hopper Draw",panel.getCurrent(2));

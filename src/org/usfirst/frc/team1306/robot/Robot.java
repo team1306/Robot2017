@@ -42,7 +42,7 @@ public class Robot extends IterativeRobot {
         
         chooser.addObject("Hopper/Gear", new AutonomousCommand(alliance,station,AutoMode.HOPPER_GEAR));
         chooser.addObject("Gear", new AutonomousCommand(alliance,station,AutoMode.GEAR));
-        chooser.addObject("TEN_KPA", new AutonomousCommand(alliance,station,AutoMode.TEN_KPA));
+        chooser.addObject("Ten_Ball", new AutonomousCommand(alliance,station,AutoMode.TEN_KPA));
         chooser.addObject("Do Nothing", new AutonomousCommand(alliance,station,AutoMode.BLANK));
         SmartDashboard.putData("Auto mode", chooser);
     	

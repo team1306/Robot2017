@@ -101,7 +101,7 @@ public class Constants {
 	public final static double TURRET_GEAR_CONVERSION = 1; 		//Conversion turret rotations into gear rotations TODO Calculate this value with the gear tooth ratio
 	
 	//Drivetrain Constants
-	public final static DriveMode DRIVE_MODE = DriveMode.ARCADE;	//Drive modes defined in DriveMode ENUM
+	public final static DriveMode DRIVE_MODE = DriveMode.TANK;	//Drive modes defined in DriveMode ENUM
 	public final static double SPEED_MODIFIER = 1.0;			//Multiplier of speeds inputed into tankDrive=
 	public final static double P = 0.77;	
 	public final static double I = 0.0033; 
