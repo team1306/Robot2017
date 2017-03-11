@@ -4,39 +4,31 @@ import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
 
 /**
- * Enum that contains commands for different alliance stations
+ * Enum that contains what motion profiles should be run for a specified alliance station
  * @author Jackson Goth
  */
 public enum Station {
 	
-	RED_ONE(Constants.MP_ONE,ScanDirection.LEFT,ScanDirection.LEFT),
-	RED_TWO(Constants.MP_TWO,ScanDirection.LEFT,ScanDirection.LEFT),
-	RED_THREE(Constants.MP_THREE,ScanDirection.LEFT,ScanDirection.RIGHT),
-	BLUE_ONE(Constants.MP_FOUR,ScanDirection.RIGHT,ScanDirection.RIGHT),
-	BLUE_TWO(Constants.MP_FIVE,ScanDirection.RIGHT,ScanDirection.RIGHT),
-	BLUE_THREE(Constants.MP_SIX,ScanDirection.RIGHT,ScanDirection.LEFT),
-	UNKNOWN(0,ScanDirection.UNKNOWN,ScanDirection.UNKNOWN);	
+	RED_ONE(Constants.MP_GEAR_RED_ONE,-1),
+	RED_TWO(Constants.MP_GEAR_RED_TWO,-1),
+	RED_THREE(Constants.MP_GEAR_RED_THREE,Constants.MP_HOPPER_RED),
+	BLUE_ONE(Constants.MP_GEAR_BLUE_ONE,Constants.MP_HOPPER_BLUE),
+	BLUE_TWO(Constants.MP_GEAR_BLUE_TWO,-1),
+	BLUE_THREE(Constants.MP_GEAR_BLUE_THREE,-1);
 	
-	private final int motionProfile;
-	private final ScanDirection dir1;
-	private final ScanDirection dir2;
-	private final double speed = Constants.AUTO_SPEED;
+	private final int gearProfile;
+	private final int hopperProfile;
 	
-	private Station(int motionProfile,ScanDirection dir1,ScanDirection dir2) {
-		this.motionProfile = motionProfile;
-		this.dir1 = dir1;
-		this.dir2 = dir2;
+	private Station(int gearProfile,int hopperProfile) {
+		this.gearProfile = gearProfile;
+		this.hopperProfile = hopperProfile;
 	}
 	
-	public ScanDirection getScanDir() {
-		return dir1;
+	public int getGearProfile() {
+		return gearProfile;
 	}
 	
-	public ScanDirection getScanDir(int shot) {
-		if(shot == 0) {
-			return dir1;
-		} else {
-			return dir2;
-		}
+	public int getHopperProfile() {
+		return hopperProfile;
 	}
 }

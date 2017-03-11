@@ -2,66 +2,71 @@ package org.usfirst.frc.team1306.robot.commands.autonomous;
 
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.commands.gearmech.SpinGeartake;
+import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
 import org.usfirst.frc.team1306.robot.commands.turret.FindTarget;
 import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
-
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * The autonomous command station
+ * The autonomous command station containing many different autonomous routines
  * @author Jackson Goth
  */
 public class AutonomousCommand extends CommandGroup {
 	
 	/**
-	 * This autonomous routine will do nothing
-	 */
-	public AutonomousCommand() {
-		
-	}
-	
-	/**
-	 * This autonomous routine will score the 10 kpa in auto
-	 * @param alliance
-	 * 		Which side of the field is the robot on (Red or Blue?)
-	 */
-	public AutonomousCommand(Alliance alliance) {
-		
-		if(alliance.equals(Alliance.Red)) {
-			addSequential(new FindTarget(ScanDirection.RIGHT));
-		} else {
-			addSequential(new FindTarget(ScanDirection.LEFT));
-		}
-		
-		addSequential(new Fire());
-		
-		//TODO Cross Baseline
-	}
-	
-	/**
 	 * This is the advanced autonomous routine that will score gears or shoot a full hopper
 	 * @param Alliance
 	 * 		Which side of the field is the robot on (Red or Blue?)
-	 * @param Station
+	 * @param Position
 	 * 		Which field position is robot located
+	 * @param Routine
+	 * 		Which autonomous routine should the robot run?
 	 */
-	public AutonomousCommand(Alliance alliance, int station) {
+	public AutonomousCommand(Alliance alliance, int position, AutoMode routine) {
 		
-		addSequential(new MotionProfile()); //TODO Give appropriate Station
+		Station station = getStation(alliance,position);
 		
-		if(getStation(alliance, station).equals(Station.RED_THREE) || getStation(alliance, station).equals(Station.BLUE_THREE)) {
+		if(routine.equals(AutoMode.HOPPER_GEAR)) {
 			
-		} else {
-			//addSequential(new SpinGeartake(-Constants.GEARTAKE_SPEED,Constants.GEAR_DEPLOY_TIME));
+			placeGear(station);
+			addSequential(new DeployIntake());
+			
+			//If in alliance station closest to the boiler it will move to the nearest hopper and empty it
+			if(station.equals(Station.RED_THREE) || station.equals(Station.BLUE_ONE)) {
+				addSequential(new MotionProfile(station.getHopperProfile()));
+				addSequential(new SpinShooter(Constants.SHOOT_TIME));
+			}
+			
+		} else if(routine.equals(AutoMode.GEAR)) {
+			
+			placeGear(station);
+			addSequential(new DeployIntake());
+			//TODO Shoot?
+			
+		} else if(routine.equals(AutoMode.TEN_KPA)) {
+			
+			//Vision scanning
+			if(alliance.equals(Alliance.Red)) {
+				addSequential(new FindTarget(ScanDirection.RIGHT));
+			} else if(alliance.equals(Alliance.Blue)) {
+				addSequential(new FindTarget(ScanDirection.LEFT));
+			}
+			
+			addSequential(new SpinShooter(Constants.SHOOT_TIME/2)); //Lower shoot time because less balls
+			addSequential(new TimedDrive(Constants.AUTO_SPEED,2.5)); //Cross baseline TODO test
+			addSequential(new DeployIntake());
+			
+		} else if(routine.equals(AutoMode.BLANK)){
+			
 		}
+	}
+	
+	private void placeGear(Station station) {
 		
-		//addSequential(new Scan(getLocation(alliance,station).getScanDir()));
-		//addParallel(new DeployIntake());
-		
-		//addSequential(new Scan(getLocation(alliance,station).getScanDir()));
-		//addSequential(new Fire());
+		addSequential(new MotionProfile(station.getGearProfile()));
+		addSequential(new SpinGeartake(-Constants.GEARTAKE_SPEED,Constants.GEAR_DEPLOY_TIME));
 	}
 	
 	private Station getStation(Alliance alliance, int station) {
@@ -77,7 +82,7 @@ public class AutonomousCommand extends CommandGroup {
 				SmartDashboard.putString("Station:","RED_THREE");
 				return Station.RED_THREE;
 			}
-		} else if(alliance.equals(Alliance.Blue)) {
+		} else {
 			if(station == 1) {
 				SmartDashboard.putString("Station:","BLUE_ONE");
 				return Station.BLUE_ONE;
@@ -88,8 +93,6 @@ public class AutonomousCommand extends CommandGroup {
 				SmartDashboard.putString("Station:","BLUE_THREE");
 				return Station.BLUE_THREE;
 			}
-		} else {
-			return Station.UNKNOWN;
 		}
 	}
 }

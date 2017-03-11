@@ -20,15 +20,19 @@ public class MotionProfile extends CommandBase {
 	public final double max_velocity = 0.3048;
 	public final double max_accel = 0.15;
 	public double initAngle;
+	public int profile;
 	EncoderFollower left;
 	EncoderFollower right;
 	AHRS ahrs; //Navx Gyro
 	
-	public MotionProfile() {
+	public MotionProfile(int profile) {
 		requires(drivetrain);
+		this.profile = profile;
+		
 		try {
 			ahrs = new AHRS(SPI.Port.kMXP); //Trying to initialize the gyro
 		} catch(RuntimeException ex) {
+			SmartDashboard.putString("Gyro Failed to Connect","");
 		}
 	}
 	
