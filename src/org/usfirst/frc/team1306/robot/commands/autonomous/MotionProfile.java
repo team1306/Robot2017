@@ -17,8 +17,8 @@ import jaci.pathfinder.modifiers.TankModifier;
  */
 public class MotionProfile extends CommandBase {
 
-	public final double max_velocity = 0.05;
-	public final double max_accel = 0.025;
+	public final double max_velocity = 0.30;
+	public final double max_accel = 0.45;
 	public int profile;
 	public double desired_heading, gyro_heading, l, r, angleDifference, turn;
 	EncoderFollower left;
@@ -60,17 +60,29 @@ public class MotionProfile extends CommandBase {
 		left.configureEncoder(drivetrain.getLeftPosition(), 256, 0.1143);
 		right.configureEncoder(drivetrain.getRightPosition(),256, 0.1143);
 		
-		left.configurePIDVA(Constants.P, 0.0, 0.0, 1 / max_velocity, 0);
-		right.configurePIDVA(Constants.P,0.0, 0.0, 1 / max_velocity, 0);
+		left.configurePIDVA(Constants.P, Constants.I, Constants.D, 1 / max_velocity, 0);
+		right.configurePIDVA(Constants.P, Constants.I, Constants.D, 1 / max_velocity, 0);
 
 	}
 	
 	private Waypoint[] getWaypoints(int profile) {
 		
 		Waypoint[] profileWaypoints = new Waypoint[] {
-			new Waypoint(0,0,0),
+			//new Waypoint(0,0,0),
+			//new Waypoint(4,0,0),
 			new Waypoint(1,0,0),
+			new Waypoint(1.5,0,0),
 			new Waypoint(2,0,0),
+			new Waypoint(2.5,0,0),
+			new Waypoint(3,0,0),
+			new Waypoint(3.5,0,0),
+			new Waypoint(4,0,0),
+			new Waypoint(4.5,0,0),
+			new Waypoint(5,0,0),
+			new Waypoint(5.5,0,0),
+			new Waypoint(6,0,0)
+			//new Waypoint(7,0,0),
+			//new Waypoint(8,0,0)//Pathfinder.d2r(-45))
 		};
 		
 		return profileWaypoints;
@@ -80,7 +92,7 @@ public class MotionProfile extends CommandBase {
 	protected void execute() {
 		
 		l = left.calculate(drivetrain.getLeftPosition());
-		r = right.calculate(drivetrain.getRightPosition());
+		r = right.calculate(-drivetrain.getRightPosition());
 		
 		gyro_heading = ahrs.getAngle();
 		desired_heading = Pathfinder.r2d(left.getHeading());
@@ -91,8 +103,8 @@ public class MotionProfile extends CommandBase {
 		double angleDifference = Pathfinder.boundHalfDegrees(desired_heading - gyro_heading);
 		double turn = 0.8 * (-1.0/80.0) * angleDifference;
 
-		SmartDashboard.putNumber("Gyro-X",ahrs.getRawGyroX());
-		SmartDashboard.putNumber("Gyro-Y",ahrs.getRawGyroY());
+//		SmartDashboard.putNumber("Gyro-X",ahrs.getRawGyroX());
+//		SmartDashboard.putNumber("Gyro-Y",ahrs.getRawGyroY());
 		SmartDashboard.putNumber("MP-Left",l);
 		SmartDashboard.putNumber("MP-Right",r);
 		SmartDashboard.putNumber("MP-Turn",turn);

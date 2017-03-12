@@ -30,6 +30,7 @@ public class AutonomousCommand extends CommandGroup {
 		
 		if(routine.equals(AutoMode.HOPPER_GEAR)) {
 			
+			SmartDashboard.putString("Starting auto","yes");
 			placeGear(station);
 			//addSequential(new DeployIntake());
 			
