@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1306.robot.commands;
 
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.hal.HAL;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -39,7 +40,18 @@ public class SmartDashboardUpdate extends CommandBase {
 //		SmartDashboard.putNumber("Intake Draw",panel.getCurrent(1));
 //		SmartDashboard.putNumber("Turret Draw",panel.getCurrent(6));
 //		SmartDashboard.putNumber("Climber Draw",panel.getCurrent(0));
-//		SmartDashboard.putBoolean("Browning Out?: ",HAL.getBrownedOut());
+
+		SmartDashboard.putNumber("Drive Draw8", panel.getCurrent(8));
+		SmartDashboard.putNumber("Drive Draw9", panel.getCurrent(9));
+		SmartDashboard.putNumber("Drive Draw10", panel.getCurrent(10));
+		SmartDashboard.putNumber("Drive Draw11", panel.getCurrent(11));
+
+		SmartDashboard.putNumber("Drive Draw12", panel.getCurrent(12));	//these are drive motors
+		SmartDashboard.putNumber("Drive Draw13", panel.getCurrent(13));
+		SmartDashboard.putNumber("Drive Draw14", panel.getCurrent(14));
+		SmartDashboard.putNumber("Drive Draw15", panel.getCurrent(15));
+		
+		SmartDashboard.putBoolean("Browning Out?: ",HAL.getBrownedOut());
 		
 		//Shooting Velocities
 		SmartDashboard.putNumber("SD-LShooterVel",Math.abs(shooter.getVel(0)));
