@@ -46,6 +46,8 @@ public class FindTarget extends CommandBase {
 	protected void execute() {
 		if(scanning) { 
 			turret.setSpeed(turn_speed);
+		} else {
+			turret.moveRot(0);
 		}
 	}
 

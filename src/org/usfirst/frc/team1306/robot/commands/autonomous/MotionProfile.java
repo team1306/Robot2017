@@ -17,18 +17,23 @@ import jaci.pathfinder.modifiers.TankModifier;
  */
 public class MotionProfile extends CommandBase {
 
-	public final double max_velocity = 0.3048;
-	public final double max_accel = 0.15;
+	public final double max_velocity = 0.05;
+	public final double max_accel = 0.025;
 	public double initAngle;
+	public int profile;
+	public double desired_heading, gyro_heading, l, r, angleDifference, turn;
 	EncoderFollower left;
 	EncoderFollower right;
 	AHRS ahrs; //Navx Gyro
 	
-	public MotionProfile() {
+	public MotionProfile(int profile) {
 		requires(drivetrain);
+		this.profile = profile;
+		
 		try {
 			ahrs = new AHRS(SPI.Port.kMXP); //Trying to initialize the gyro
 		} catch(RuntimeException ex) {
+			SmartDashboard.putString("Gyro Failed to Connect","");
 		}
 	}
 	
@@ -38,13 +43,16 @@ public class MotionProfile extends CommandBase {
 		initAngle = ahrs.getAngle();
 		
 		Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH, 0.05, max_velocity, max_accel, 60.0);
-		Waypoint[] points = new Waypoint[]	{
-			new Waypoint(1,0,initAngle),
-			new Waypoint(2,0,initAngle),
-			//new Waypoint(3,0,0)
-		};
+//		Waypoint[] points = new Waypoint[]	{
+//			new Waypoint(1,0,initAngle),
+//			new Waypoint(2,0,initAngle),
+//			//new Waypoint(3,0,0)
+//		};
+		
+		Waypoint[] points = getWaypoints(profile);
+		
 		Trajectory trajectory = Pathfinder.generate(points, config);
-		TankModifier modifier = new TankModifier(trajectory).modify(0.5);
+		TankModifier modifier = new TankModifier(trajectory).modify(0.05);
 		
 		left = new EncoderFollower(modifier.getLeftTrajectory());
 		right = new EncoderFollower(modifier.getRightTrajectory());
@@ -60,15 +68,26 @@ public class MotionProfile extends CommandBase {
 		
 		
 	}
+	
+	private Waypoint[] getWaypoints(int profile) {
 		
+		Waypoint[] profileWaypoints = new Waypoint[] {
+			new Waypoint(0,0,0),
+			new Waypoint(1,0,0),
+			new Waypoint(2,0,0),
+		};
+		
+		return profileWaypoints;
+	}
+	
 	@Override
 	protected void execute() {
 		
-		double l = left.calculate(drivetrain.getLeftPosition());
-		double r = right.calculate(drivetrain.getRightPosition());
+		l = left.calculate(drivetrain.getLeftPosition());
+		r = right.calculate(drivetrain.getRightPosition());
 		
-		double gyro_heading = ahrs.getAngle();
-		double desired_heading = initAngle;
+		gyro_heading = ahrs.getAngle();
+		desired_heading = Pathfinder.r2d(left.getHeading());
 		
 		SmartDashboard.putNumber("Gyro-Heading",gyro_heading);
 		SmartDashboard.putNumber("Desired-Heading",desired_heading);
@@ -84,7 +103,8 @@ public class MotionProfile extends CommandBase {
 		SmartDashboard.putNumber("Left-Speed",l + turn);
 		SmartDashboard.putNumber("Right-Speed", r - turn);
 		
-		drivetrain.tankDrive(l + turn, r - turn);
+		//drivetrain.tankDrive(l + turn, r - turn);
+		drivetrain.tankDrive(l,r);
 	}
 
 	@Override
