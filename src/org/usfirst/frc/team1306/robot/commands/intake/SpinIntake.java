@@ -12,8 +12,11 @@ import org.usfirst.frc.team1306.robot.commands.CommandBase;
  */
 public class SpinIntake extends CommandBase {
 
-    public SpinIntake() {
+	private boolean toggled;
+	
+    public SpinIntake(boolean toggled) {
         requires(intake);
+        this.toggled = toggled;
     }
     
     protected void initialize() {
@@ -33,13 +36,13 @@ public class SpinIntake extends CommandBase {
      * Stops spinning intake when the intake button (constant) is no longer pressed
      */
     protected boolean isFinished() {
-    	return false;
-//    	if(OI.getButtonVal(controller.s,Constants.INTAKE_BUTTON)) {
-//    		return false;
-//    	} else {
-//    		intake.stopAll();
-//    		return true;
-//    	}
+    	if(toggled) {
+    		return false;
+    	} else if(OI.getButtonVal(controller.p,Constants.INTAKE_BUTTON)) {
+    		return false;
+    	} else {
+    		return true;
+    	}
     }
 
     protected void end() {

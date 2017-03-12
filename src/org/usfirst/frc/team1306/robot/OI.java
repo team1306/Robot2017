@@ -74,30 +74,28 @@ public class OI {
 		
 		
 		//Primary ABXY buttons
-		pbuttonB.whenPressed(new ResetTurret());
-		pbuttonX.toggleWhenPressed(new SpinIntake());
+		pbuttonA.whenPressed(new SpinShooter(false));
+		//pbuttonB.whenPressed(new RetractGeartake());
+		pbuttonX.whenPressed(new SpinIntake(false));
+		//pbuttonY.whenPressed(new DeployGeartake());
 		
 		//Primary triggers/bumpers
 		pbuttonLB.whenPressed(new FindTarget(ScanDirection.LEFT));
 		pbuttonRB.whenPressed(new FindTarget(ScanDirection.RIGHT));
 		
 		//Primary start back buttons	
-		pbuttonStart.whenPressed(new DeployGeartake());
-		pbuttonBack.whenPressed(new RetractGeartake());
 		
 		//Primary testing
 //		sbuttonLB.whenPressed(new Aim(Direction.LEFT));
 //		sbuttonRB.whenPressed(new Aim(Direction.RIGHT));	
 		
-		
 		//Secondary ABXY buttons
-		sbuttonA.whenPressed(new SpinShooter());
-		sbuttonB.whenPressed(new SpinGeartake(-Constants.GEARTAKE_SPEED));
-		sbuttonX.toggleWhenPressed(new SpinIntake());
-		sbuttonY.whenPressed(new SpinGeartake(Constants.GEARTAKE_SPEED));
+		sbuttonA.toggleWhenPressed(new SpinShooter(true));
+		sbuttonX.toggleWhenPressed(new SpinIntake(true));
 		
 		//Secondary triggers/bumpers
-		sbuttonRB.whenPressed(new ManualTurret());
+		sbuttonRB.whenPressed(new SpinGeartake(-Constants.GEARTAKE_SPEED));
+		sbuttonLB.whenPressed(new SpinGeartake(Constants.GEARTAKE_SPEED));
 		
 		//Secondary start back buttons
 		sbuttonStart.whenPressed(new Climb());

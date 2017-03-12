@@ -4,6 +4,7 @@ import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.hal.HAL;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -37,10 +38,9 @@ public class SmartDashboardUpdate extends CommandBase {
 		
 		//Subsystem Positions
 		//SmartDashboard.putString("Hood Position",hood.getPos());
-		//SmartDashboard.putNumber("SD-Turret Position",turret.getEncPos());
+		SmartDashboard.putNumber("SD-Turret Position",turret.getEncPos());
 		SmartDashboard.putNumber("SD-DLeftPosition",drivetrain.getLeftPosition());
 		SmartDashboard.putNumber("SD-DRightPosition",drivetrain.getRightPosition());
-		
 		SmartDashboard.putNumber("SD-GyroAngle",ahrs.getAngle());
 		
 		//Subsystem Current Draws
@@ -51,7 +51,7 @@ public class SmartDashboardUpdate extends CommandBase {
 //		SmartDashboard.putNumber("Intake Draw",panel.getCurrent(1));
 //		SmartDashboard.putNumber("Turret Draw",panel.getCurrent(6));
 //		SmartDashboard.putNumber("Climber Draw",panel.getCurrent(0));
-//		SmartDashboard.putBoolean("Browning Out?: ",HAL.getBrownedOut());
+		SmartDashboard.putBoolean("Browning Out?: ",HAL.getBrownedOut());
 		
 		//Shooting Velocities
 		SmartDashboard.putNumber("SD-LShooterVel",Math.abs(shooter.getVel(0)));

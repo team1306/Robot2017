@@ -15,6 +15,7 @@ public class SpinShooter extends CommandBase {
 
 	private double time;
 	private boolean timedSpin = false;
+	private boolean toggled;
 	private final Timer timer;
 	private final Timer hopperTimer;
 	
@@ -29,11 +30,12 @@ public class SpinShooter extends CommandBase {
 		hopperTimer = new Timer();
 	}
 	
-	public SpinShooter() {
+	public SpinShooter(boolean toggled) {
 		requires(shooter);
 		requires(hopper);
 		requires(intake);
 		this.timedSpin = false;
+		this.toggled = toggled;
 		
 		timer = new Timer();
 		hopperTimer = new Timer();
@@ -77,7 +79,9 @@ public class SpinShooter extends CommandBase {
      * Stops spinning shooter when shooter button is no longer pressed
      */
     protected boolean isFinished() {
-    	if(OI.getButtonVal(controller.s,Constants.SHOOTER_BUTTON)) {
+    	if(toggled) {
+    		return false;
+    	} else if(OI.getButtonVal(controller.p,Constants.SHOOTER_BUTTON)) {
     		return false;
     	} else if(timedSpin && timer.hasPeriodPassed(time)) {
     		shooter.stopAll();

@@ -19,7 +19,6 @@ public class MotionProfile extends CommandBase {
 
 	public final double max_velocity = 0.05;
 	public final double max_accel = 0.025;
-	public double initAngle;
 	public int profile;
 	public double desired_heading, gyro_heading, l, r, angleDifference, turn;
 	EncoderFollower left;
@@ -40,7 +39,8 @@ public class MotionProfile extends CommandBase {
 	@Override
 	protected void initialize() {
 
-		initAngle = ahrs.getAngle();
+		drivetrain.resetEncoders();
+		ahrs.reset();
 		
 		Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH, 0.05, max_velocity, max_accel, 60.0);
 //		Waypoint[] points = new Waypoint[]	{
@@ -52,7 +52,7 @@ public class MotionProfile extends CommandBase {
 		Waypoint[] points = getWaypoints(profile);
 		
 		Trajectory trajectory = Pathfinder.generate(points, config);
-		TankModifier modifier = new TankModifier(trajectory).modify(0.05);
+		TankModifier modifier = new TankModifier(trajectory).modify(0.91); // 0.05
 		
 		left = new EncoderFollower(modifier.getLeftTrajectory());
 		right = new EncoderFollower(modifier.getRightTrajectory());
@@ -62,11 +62,7 @@ public class MotionProfile extends CommandBase {
 		
 		left.configurePIDVA(Constants.P, 0.0, 0.0, 1 / max_velocity, 0);
 		right.configurePIDVA(Constants.P,0.0, 0.0, 1 / max_velocity, 0);
-		
-		ahrs.reset();
-		drivetrain.resetEncoders();
-		
-		
+
 	}
 	
 	private Waypoint[] getWaypoints(int profile) {
