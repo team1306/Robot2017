@@ -11,31 +11,25 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class AngledTurn extends CommandBase {
 
+	private double initDegree;
 	private double degree;
-	private final double tolerance = 2;
-	AHRS ahrs;
+	private final double tolerance = 1;
+
 	
 	public AngledTurn(double degree) {
 		requires(drivetrain);
 		this.degree = degree;
-		try {
-			ahrs = new AHRS(SPI.Port.kMXP); 
-		} catch(RuntimeException ex) {
-			
-		}
 	}
 
 	@Override
 	protected void initialize() {
-		ahrs.reset();
+		initDegree = drivetrain.initAngle;
 	}
 
 	@Override
 	protected void execute() {
 		
-		SmartDashboard.putNumber("Gyro Direction",ahrs.getAngle());
-		
-		if(ahrs.getAngle() < degree) {
+		if(drivetrain.getGyro() < initDegree + degree) {
 			drivetrain.tankDrive(0.2, -0.2);
 		} else {
 			drivetrain.tankDrive(-0.2, 0.2);
@@ -44,7 +38,7 @@ public class AngledTurn extends CommandBase {
 
 	@Override
 	protected boolean isFinished() {
-		if(Math.abs(degree - ahrs.getAngle()) < tolerance) {
+		if(Math.abs(drivetrain.getGyro() - (initDegree + degree)) < tolerance) {
 			return true;
 		} else {
 			return false;

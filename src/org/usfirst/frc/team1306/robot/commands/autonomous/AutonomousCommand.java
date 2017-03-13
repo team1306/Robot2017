@@ -30,7 +30,6 @@ public class AutonomousCommand extends CommandGroup {
 		
 		if(routine.equals(AutoMode.HOPPER_GEAR)) {
 			
-			SmartDashboard.putString("Starting auto","yes");
 			placeGear(station);
 			//addSequential(new DeployIntake());
 			
@@ -66,7 +65,9 @@ public class AutonomousCommand extends CommandGroup {
 	
 	private void placeGear(Station station) {
 		
-		addSequential(new MotionProfile(station.getGearProfile()));
+		addSequential(new MagicDrive(5));
+		//addSequential(new AngledTurn(90));
+		//addSequential(new MotionProfile(station.getGearProfile()));
 //		addSequential(new SpinGeartake(-Constants.GEARTAKE_SPEED,Constants.GEAR_DEPLOY_TIME));
 	}
 	

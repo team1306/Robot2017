@@ -27,6 +27,7 @@ public class Drivetrain extends Subsystem {
 	private final CANTalon rightmotor1;
 	private final CANTalon leftmotor2;
 	private final CANTalon rightmotor2;
+	public double initAngle;
 	AHRS ahrs; //Navx Gyro
 	
 	public Drivetrain() {
@@ -121,11 +122,30 @@ public class Drivetrain extends Subsystem {
 		rightmotor1.changeControlMode(TalonControlMode.Speed);
 		
 		if(Constants.DRIVETRAIN_ENABLED) {
-			leftmotor1.set(-initVel);
-			rightmotor1.set(initVel);
+			leftmotor1.set(initVel);
+			rightmotor1.set(-initVel);
 		}
 	}
 
+	public void driveDistance(double feet) {
+		leftmotor1.changeControlMode(TalonControlMode.MotionMagic);
+		rightmotor1.changeControlMode(TalonControlMode.MotionMagic);
+		
+		if(Constants.DRIVETRAIN_ENABLED) {
+			leftmotor1.set((feet*12)/(4*Math.PI));
+			rightmotor1.set(-((feet*12)/(4*Math.PI)));
+		}
+	}
+	
+	public void resetGyro() {
+		ahrs.reset();
+		initAngle = ahrs.getYaw();
+	}
+	
+	public double getGyro() {
+		return ahrs.getYaw();
+	}
+	
 	/**
 	 * Resets the position of both encoders back to zero
 	 */
