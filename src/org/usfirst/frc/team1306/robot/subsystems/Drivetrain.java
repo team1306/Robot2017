@@ -168,6 +168,14 @@ public class Drivetrain extends Subsystem {
 		return rightmotor1.getEncPosition();
 	}
 	
+	public double getLeftVel() {
+		return leftmotor1.getEncVelocity();
+	}
+	
+	public double getRightVel() {
+		return rightmotor1.getEncVelocity();
+	}
+	
 	/**
 	 * Stops all of the drive motors
 	 */

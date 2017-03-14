@@ -64,6 +64,9 @@ public class SmartDashboardUpdate extends CommandBase {
 
 		SmartDashboard.putBoolean("Browning Out?: ",HAL.getBrownedOut());
 		
+		SmartDashboard.putNumber("Drive Left Speed",drivetrain.getLeftVel());
+		SmartDashboard.putNumber("Drive Right Speed",drivetrain.getRightVel());
+		
 		//Shooting Velocities
 		SmartDashboard.putNumber("SD-LShooterVel",Math.abs(shooter.getVel(0)));
 		SmartDashboard.putNumber("SD-RShooterVel",Math.abs(shooter.getVel(1)));

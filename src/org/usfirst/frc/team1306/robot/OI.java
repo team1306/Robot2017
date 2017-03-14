@@ -2,20 +2,21 @@ package org.usfirst.frc.team1306.robot;
 
 import org.usfirst.frc.team1306.robot.commands.climber.Climb;
 import org.usfirst.frc.team1306.robot.commands.climber.ClimbBack;
-import org.usfirst.frc.team1306.robot.commands.gearmech.DeployGeartake;
-import org.usfirst.frc.team1306.robot.commands.gearmech.RetractGeartake;
 import org.usfirst.frc.team1306.robot.commands.gearmech.SpinGeartake;
+import org.usfirst.frc.team1306.robot.commands.hood.AdjustHood;
+import org.usfirst.frc.team1306.robot.commands.hood.HoodAngle;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
 import org.usfirst.frc.team1306.robot.commands.turret.FindTarget;
-import org.usfirst.frc.team1306.robot.commands.turret.ManualTurret;
-import org.usfirst.frc.team1306.robot.commands.turret.ResetTurret;
 import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
+import org.usfirst.frc.team1306.robot.triggers.DPadDirection;
+import org.usfirst.frc.team1306.robot.triggers.DPadPress;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.buttons.Trigger;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -47,6 +48,11 @@ public class OI {
 	private final Button sbuttonStart;
 	private final Button sbuttonBack;	
 	
+	private final Trigger dPadUp;
+	private final Trigger dPadRight;
+	private final Trigger dPadLeft;
+	private final Trigger dPadDown;
+	
 	public OI() {
 		//Declare ports of xbox controllers
 		primaryController = new XboxController(RobotMap.PRIMARY_PORT);
@@ -72,6 +78,10 @@ public class OI {
 		sbuttonStart = new JoystickButton(secondaryController, XboxController.START);
 		sbuttonBack = new JoystickButton(secondaryController, XboxController.BACK);
 		
+		dPadUp = new DPadPress(secondaryController, DPadDirection.UP);
+		dPadRight = new DPadPress(secondaryController, DPadDirection.RIGHT);
+		dPadLeft = new DPadPress(secondaryController, DPadDirection.LEFT);
+		dPadDown = new DPadPress(secondaryController, DPadDirection.DOWN);
 		
 		//Primary ABXY buttons
 		pbuttonA.whenPressed(new SpinShooter(false));
@@ -100,6 +110,9 @@ public class OI {
 		//Secondary start back buttons
 		sbuttonStart.whenPressed(new Climb());
 		sbuttonBack.whenPressed(new ClimbBack());
+		
+		dPadUp.whenActive(new AdjustHood(HoodAngle.UP));
+		dPadDown.whenActive(new AdjustHood(HoodAngle.DOWN));
 		
 		//Secondary testing
 //		sbuttonRB.whenPressed(new DPadTurret());
