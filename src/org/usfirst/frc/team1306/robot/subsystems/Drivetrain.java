@@ -8,6 +8,7 @@ import org.usfirst.frc.team1306.robot.commands.drivetrain.DriveMode;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.TankDrive;
 
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 import com.kauailabs.navx.frc.AHRS;
 
@@ -66,31 +67,36 @@ public class Drivetrain extends Subsystem {
 		slave.set(master.getDeviceID());
 		slave.enable();
 		
-//		Setting up Encoder for Left Drivetrain
-//		leftmotor1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-//		leftmotor1.reverseSensor(false);
-//		leftmotor1.configEncoderCodesPerRev(256);
-//		leftmotor1.configNominalOutputVoltage(+0.0f, -0.0f);
-//		leftmotor1.configPeakOutputVoltage(+12.0f, -12.0f);
-//		
-//		Setting up Encoder for Right Drivetrain
-//		rightmotor1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-//		rightmotor1.reverseSensor(false);
-//		rightmotor1.configEncoderCodesPerRev(256);
-//		rightmotor1.configNominalOutputVoltage(+0.0f, -0.0f);
-//		rightmotor1.configPeakOutputVoltage(+12.0f, -12.0f);
-//
-//		Setting up PIDF for Left Drivetrain
-//		leftmotor1.setF(Constants.F);	
-//		leftmotor1.setP(Constants.P);	
-//		leftmotor1.setI(Constants.I);	
-//		leftmotor1.setD(Constants.D);
-//		
-//      Setting up PIDF for Right Drivetrain
-//		rightmotor1.setF(Constants.F);	
-//		rightmotor1.setP(Constants.P);	
-//		rightmotor1.setI(Constants.I);	
-//		rightmotor1.setD(Constants.D);
+		//Setting up Encoder for Left Drivetrain
+		leftmotor1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		leftmotor1.reverseSensor(false);
+		leftmotor1.configEncoderCodesPerRev(256);
+		leftmotor1.configNominalOutputVoltage(+0.0f, -0.0f);
+		leftmotor1.configPeakOutputVoltage(+12.0f, -12.0f);
+		
+		//Setting up Encoder for Right Drivetrain
+		rightmotor1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		rightmotor1.reverseSensor(false);
+		rightmotor1.configEncoderCodesPerRev(256);
+		rightmotor1.configNominalOutputVoltage(+0.0f, -0.0f);
+		rightmotor1.configPeakOutputVoltage(+12.0f, -12.0f);
+
+		leftmotor1.setMotionMagicCruiseVelocity(200);
+		leftmotor1.setMotionMagicAcceleration(300);
+		rightmotor1.setMotionMagicCruiseVelocity(200);
+		rightmotor1.setMotionMagicAcceleration(300);
+		
+		//Setting up PIDF for Left Drivetrain
+		leftmotor1.setF(Constants.F);	
+		leftmotor1.setP(Constants.P);	
+		leftmotor1.setI(Constants.I);	
+		leftmotor1.setD(Constants.D);
+		
+      //Setting up PIDF for Right Drivetrain
+		rightmotor1.setF(Constants.F);	
+		rightmotor1.setP(Constants.P);	
+		rightmotor1.setI(Constants.I);	
+		rightmotor1.setD(Constants.D);
 	}
 	
 	/**
@@ -132,8 +138,10 @@ public class Drivetrain extends Subsystem {
 		rightmotor1.changeControlMode(TalonControlMode.MotionMagic);
 		
 		if(Constants.DRIVETRAIN_ENABLED) {
-			leftmotor1.set((feet*12)/(4*Math.PI));
-			rightmotor1.set(-((feet*12)/(4*Math.PI)));
+//			leftmotor1.set((feet*12)/(4*Math.PI));
+//			rightmotor1.set(-((feet*12)/(4*Math.PI)));a
+			leftmotor1.set(1);
+			rightmotor1.set(1);
 		}
 	}
 	

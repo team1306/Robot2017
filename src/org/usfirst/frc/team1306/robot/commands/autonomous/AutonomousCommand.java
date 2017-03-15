@@ -26,44 +26,60 @@ public class AutonomousCommand extends CommandGroup {
 	 */
 	public AutonomousCommand(Alliance alliance, int position, AutoMode routine) {
 		
-		Station station = getStation(alliance,position);
+		addSequential(new MagicDrive(5));
 		
-		if(routine.equals(AutoMode.HOPPER_GEAR)) {
-			
-			placeGear(station);
-			//addSequential(new DeployIntake());
-			
-			//If in alliance station closest to the boiler it will move to the nearest hopper and empty it
-//			if(station.equals(Station.RED_THREE) || station.equals(Station.BLUE_ONE)) {
-//				addSequential(new MotionProfile(station.getHopperProfile()));
-//				addSequential(new SpinShooter(Constants.SHOOT_TIME));
+//		Station station = getStation(alliance,position);
+//		
+//		if(routine.equals(AutoMode.HOPPER_GEAR)) {
+//			
+////			placeGear(station);
+//			//addSequential(new DeployIntake());
+//			
+//			//If in alliance station closest to the boiler it will move to the nearest hopper and empty it
+////			if(station.equals(Station.RED_THREE) || station.equals(Station.BLUE_ONE)) {
+////				addSequential(new MotionProfile(station.getHopperProfile()));
+////				addSequential(new SpinShooter(Constants.SHOOT_TIME));
+////			}
+//			
+//		} else if(routine.equals(AutoMode.GEAR)) {
+//			
+//			placeGear(station);
+//			addSequential(new DeployIntake());
+//			//TODO Shoot?
+//			
+//		} else if(routine.equals(AutoMode.TEN_KPA)) {
+//			
+//			//Vision scanning
+//			if(alliance.equals(Alliance.Red)) {
+//				addSequential(new FindTarget(ScanDirection.RIGHT));
+//			} else if(alliance.equals(Alliance.Blue)) {
+//				addSequential(new FindTarget(ScanDirection.LEFT));
 //			}
-			
-		} else if(routine.equals(AutoMode.GEAR)) {
-			
-			placeGear(station);
-			addSequential(new DeployIntake());
-			//TODO Shoot?
-			
-		} else if(routine.equals(AutoMode.TEN_KPA)) {
-			
-			//Vision scanning
-			if(alliance.equals(Alliance.Red)) {
-				addSequential(new FindTarget(ScanDirection.RIGHT));
-			} else if(alliance.equals(Alliance.Blue)) {
-				addSequential(new FindTarget(ScanDirection.LEFT));
-			}
-			
-			addSequential(new SpinShooter(Constants.SHOOT_TIME/2)); //Lower shoot time because less balls
-			addSequential(new TimedDrive(Constants.AUTO_SPEED,2.5)); //Cross baseline TODO test
-			addSequential(new DeployIntake());
-			
-		} else if(routine.equals(AutoMode.BLANK)){
-			
-		}
+//			
+//			addSequential(new SpinShooter(Constants.SHOOT_TIME/2)); //Lower shoot time because less balls
+//			addSequential(new TimedDrive(Constants.AUTO_SPEED,2.5)); //Cross baseline TODO test
+//			addSequential(new DeployIntake());
+//			
+//		} else if(routine.equals(AutoMode.BLANK)){
+//			
+//		}
 	}
 	
 	private void placeGear(Station station) {
+		
+		if(station.equals(station.RED_ONE) || station.equals(station.BLUE_ONE)) {
+//			addSequential(new MagicDrive(5));
+//			addSequential(new AngledTurn(45));
+//			addSequential(new MagicDrive(5));
+		} else if(station.equals(station.RED_TWO) || station.equals(station.BLUE_TWO)) {
+//			addSequential(new MagicDrive(5));
+//			addSequential(new AngledTurn(45));
+//			addSequential(new MagicDrive(5));
+		} else if(station.equals(Station.RED_THREE) || station.equals(station.RED_THREE)) {
+//			addSequential(new MagicDrive(5));
+//			addSequential(new AngledTurn(45));
+//			addSequential(new MagicDrive(5));
+		}
 		
 		addSequential(new MagicDrive(5));
 		//addSequential(new AngledTurn(90));

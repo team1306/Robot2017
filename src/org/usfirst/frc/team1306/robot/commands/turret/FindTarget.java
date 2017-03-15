@@ -68,7 +68,13 @@ public class FindTarget extends CommandBase {
 //		} else {
 //			return false;
 //		}
-		return false;
+		if(table.getBoolean("seeTarget",false)) {
+			turret.stopAll();
+			new HoldTarget(table.getNumber("yaw",0)).start();
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
