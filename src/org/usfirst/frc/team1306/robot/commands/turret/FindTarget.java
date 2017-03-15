@@ -44,8 +44,12 @@ public class FindTarget extends CommandBase {
 
 	@Override
 	protected void execute() {
-		if(scanning) { 
+		if(scanning && !table.getBoolean("seeTarget",false)) { 
 			turret.setSpeed(turn_speed);
+		} else if(table.getBoolean("seeTarget",false)) {
+			if(!(table.getNumber("yaw",0) < Constants.YAW_DEADBAND)) {
+				turret.moveDeg(table.getNumber("yaw",0));
+			}
 		} else {
 			turret.moveRot(0);
 		}
@@ -54,27 +58,30 @@ public class FindTarget extends CommandBase {
 	@Override
 	protected boolean isFinished() {
 		
-//		if(turret.getEncPos() < Constants.TURRET_RIGHT_LIMIT && direction.equals("Right")) {
-//			turret.stopAll();
-//			new ResetTurret().start();
-//			return true;
-//		} else if(turret.getEncPos() > Constants.TURRET_LEFT_LIMIT && direction.equals("Left")) {
-//			turret.stopAll();
-//			new ResetTurret().start();
-//			return true;
+		if(turret.getEncPos() < Constants.TURRET_RIGHT_LIMIT && direction.equals(ScanDirection.RIGHT)) {
+			turret.stopAll();
+			new ResetTurret().start();
+			return true;
+		} else if(turret.getEncPos() > Constants.TURRET_LEFT_LIMIT && direction.equals(ScanDirection.LEFT)) {
+			turret.stopAll();
+			new ResetTurret().start();
+			return true;
+		} else {
+			return false;
+		}
 //		} else if(table.getBoolean("seeTarget",false)) {
 //			new HoldTarget(table.getNumber("yaw",0)).start();
 //			return true;
 //		} else {
 //			return false;
 //		}
-		if(table.getBoolean("seeTarget",false)) {
-			turret.stopAll();
-			new HoldTarget(table.getNumber("yaw",0)).start();
-			return true;
-		} else {
-			return false;
-		}
+//		if(table.getBoolean("seeTarget",false)) {
+//			turret.stopAll();
+//			new HoldTarget(table.getNumber("yaw",0)).start();
+//			return true;
+//		} else {
+//			return false;
+//		}
 	}
 
 	@Override
