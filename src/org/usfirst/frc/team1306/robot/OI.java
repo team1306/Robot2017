@@ -111,8 +111,11 @@ public class OI {
 		sbuttonStart.whenPressed(new Climb());
 		sbuttonBack.whenPressed(new ClimbBack());
 		
-		dPadUp.whenActive(new AdjustHood(HoodAngle.UP));
-		dPadDown.whenActive(new AdjustHood(HoodAngle.DOWN));
+		sbuttonY.whenPressed(new AdjustHood(HoodAngle.UP));
+		sbuttonB.whenPressed(new AdjustHood(HoodAngle.DOWN));
+//		dPadUp.whenActive(new AdjustHood(HoodAngle.UP));
+//		dPadDown.whenActive(new AdjustHood(HoodAngle.DOWN));
+		
 		
 		//Secondary testing
 //		sbuttonRB.whenPressed(new DPadTurret());

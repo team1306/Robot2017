@@ -26,6 +26,7 @@ public class AutonomousCommand extends CommandGroup {
 	 */
 	public AutonomousCommand(Alliance alliance, int position, AutoMode routine) {
 		
+		SmartDashboard.putString("starting auto","true");
 		addSequential(new MagicDrive(5));
 		
 //		Station station = getStation(alliance,position);

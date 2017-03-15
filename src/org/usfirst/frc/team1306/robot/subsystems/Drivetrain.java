@@ -140,8 +140,10 @@ public class Drivetrain extends Subsystem {
 		if(Constants.DRIVETRAIN_ENABLED) {
 //			leftmotor1.set((feet*12)/(4*Math.PI));
 //			rightmotor1.set(-((feet*12)/(4*Math.PI)));a
+			resetEncoders();
+			SmartDashboard.putString("moving robot", "teset");
 			leftmotor1.set(1);
-			rightmotor1.set(1);
+			rightmotor1.set(-1);
 		}
 	}
 	
