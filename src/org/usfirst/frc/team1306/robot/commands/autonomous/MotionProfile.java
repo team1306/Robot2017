@@ -17,7 +17,7 @@ import jaci.pathfinder.modifiers.TankModifier;
  */
 public class MotionProfile extends CommandBase {
 
-	public final double max_velocity = 0.30;
+	public final double max_velocity = 300;//0.30;
 	public final double max_accel = 0.45;
 	public int profile;
 	public double desired_heading, gyro_heading, l, r, angleDifference, turn;
@@ -42,7 +42,7 @@ public class MotionProfile extends CommandBase {
 		drivetrain.resetEncoders();
 		ahrs.reset();
 		
-		Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH, 0.05, max_velocity, max_accel, 60.0);
+		Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_LOW, 0.05, max_velocity, max_accel, 60.0);
 //		Waypoint[] points = new Waypoint[]	{
 //			new Waypoint(1,0,initAngle),
 //			new Waypoint(2,0,initAngle),
@@ -52,13 +52,13 @@ public class MotionProfile extends CommandBase {
 		Waypoint[] points = getWaypoints(profile);
 		
 		Trajectory trajectory = Pathfinder.generate(points, config);
-		TankModifier modifier = new TankModifier(trajectory).modify(0.91); // 0.05
+		TankModifier modifier = new TankModifier(trajectory).modify(0.6096); // 0.05
 		
 		left = new EncoderFollower(modifier.getLeftTrajectory());
 		right = new EncoderFollower(modifier.getRightTrajectory());
 		
-		left.configureEncoder(drivetrain.getLeftPosition(), 256, 0.1143);
-		right.configureEncoder(drivetrain.getRightPosition(),256, 0.1143);
+		left.configureEncoder(drivetrain.getLeftPosition(), 256, 0.1016);
+		right.configureEncoder(drivetrain.getRightPosition(),256, 0.1016);
 		
 		left.configurePIDVA(Constants.P, Constants.I, Constants.D, 1 / max_velocity, 0);
 		right.configurePIDVA(Constants.P, Constants.I, Constants.D, 1 / max_velocity, 0);
@@ -70,17 +70,12 @@ public class MotionProfile extends CommandBase {
 		Waypoint[] profileWaypoints = new Waypoint[] {
 			//new Waypoint(0,0,0),
 			//new Waypoint(4,0,0),
-			new Waypoint(1,0,0),
-			new Waypoint(1.5,0,0),
-			new Waypoint(2,0,0),
-			new Waypoint(2.5,0,0),
-			new Waypoint(3,0,0),
-			new Waypoint(3.5,0,0),
-			new Waypoint(4,0,0),
-			new Waypoint(4.5,0,0),
-			new Waypoint(5,0,0),
-			new Waypoint(5.5,0,0),
-			new Waypoint(6,0,0)
+			new Waypoint(1,0,Pathfinder.d2r(180)),
+			new Waypoint(2,0,Pathfinder.d2r(180)),
+			new Waypoint(3,0,Pathfinder.d2r(180)),
+			new Waypoint(4,0,Pathfinder.d2r(180)),
+			new Waypoint(5,0,Pathfinder.d2r(180)),
+			new Waypoint(6,0,Pathfinder.d2r(180))
 			//new Waypoint(7,0,0),
 			//new Waypoint(8,0,0)//Pathfinder.d2r(-45))
 		};
@@ -111,8 +106,8 @@ public class MotionProfile extends CommandBase {
 		SmartDashboard.putNumber("Left-Speed",l + turn);
 		SmartDashboard.putNumber("Right-Speed", r - turn);
 		
-		//drivetrain.tankDrive(l + turn, r - turn);
-		drivetrain.tankDrive(l,r);
+		drivetrain.tankDrive(l + turn, r - turn);
+//		drivetrain.tankDrive(l,r);
 	}
 
 	@Override

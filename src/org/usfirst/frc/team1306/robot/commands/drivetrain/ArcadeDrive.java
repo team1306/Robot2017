@@ -60,6 +60,6 @@ public class ArcadeDrive extends CommandBase {
 
 	@Override
 	protected void interrupted() {
-		end();
+		
 	}
 }

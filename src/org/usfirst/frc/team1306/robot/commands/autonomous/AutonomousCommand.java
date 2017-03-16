@@ -27,43 +27,43 @@ public class AutonomousCommand extends CommandGroup {
 	public AutonomousCommand(Alliance alliance, int position, AutoMode routine) {
 		
 		SmartDashboard.putString("starting auto","true");
-		addSequential(new MagicDrive(5));
+		//addSequential(new MagicDrive(5));
 		
-//		Station station = getStation(alliance,position);
-//		
-//		if(routine.equals(AutoMode.HOPPER_GEAR)) {
-//			
-////			placeGear(station);
-//			//addSequential(new DeployIntake());
-//			
-//			//If in alliance station closest to the boiler it will move to the nearest hopper and empty it
-////			if(station.equals(Station.RED_THREE) || station.equals(Station.BLUE_ONE)) {
-////				addSequential(new MotionProfile(station.getHopperProfile()));
-////				addSequential(new SpinShooter(Constants.SHOOT_TIME));
-////			}
-//			
-//		} else if(routine.equals(AutoMode.GEAR)) {
-//			
-//			placeGear(station);
-//			addSequential(new DeployIntake());
-//			//TODO Shoot?
-//			
-//		} else if(routine.equals(AutoMode.TEN_KPA)) {
-//			
-//			//Vision scanning
-//			if(alliance.equals(Alliance.Red)) {
-//				addSequential(new FindTarget(ScanDirection.RIGHT));
-//			} else if(alliance.equals(Alliance.Blue)) {
-//				addSequential(new FindTarget(ScanDirection.LEFT));
+		Station station = getStation(alliance,position);
+		
+		if(routine.equals(AutoMode.HOPPER_GEAR)) {
+			
+			placeGear(station);
+			//addSequential(new DeployIntake());
+			
+			//If in alliance station closest to the boiler it will move to the nearest hopper and empty it
+//			if(station.equals(Station.RED_THREE) || station.equals(Station.BLUE_ONE)) {
+//				addSequential(new MotionProfile(station.getHopperProfile()));
+//				addSequential(new SpinShooter(Constants.SHOOT_TIME));
 //			}
-//			
-//			addSequential(new SpinShooter(Constants.SHOOT_TIME/2)); //Lower shoot time because less balls
-//			addSequential(new TimedDrive(Constants.AUTO_SPEED,2.5)); //Cross baseline TODO test
-//			addSequential(new DeployIntake());
-//			
-//		} else if(routine.equals(AutoMode.BLANK)){
-//			
-//		}
+			
+		} else if(routine.equals(AutoMode.GEAR)) {
+			
+			placeGear(station);
+			addSequential(new DeployIntake());
+			//TODO Shoot?
+			
+		} else if(routine.equals(AutoMode.TEN_KPA)) {
+			
+			//Vision scanning
+			if(alliance.equals(Alliance.Red)) {
+				addSequential(new FindTarget(ScanDirection.RIGHT));
+			} else if(alliance.equals(Alliance.Blue)) {
+				addSequential(new FindTarget(ScanDirection.LEFT));
+			}
+			
+			addSequential(new SpinShooter(Constants.SHOOT_TIME/2)); //Lower shoot time because less balls
+			addSequential(new TimedDrive(Constants.AUTO_SPEED,2.5)); //Cross baseline TODO test
+			addSequential(new DeployIntake());
+			
+		} else if(routine.equals(AutoMode.BLANK)){
+			
+		}
 	}
 	
 	private void placeGear(Station station) {
@@ -82,9 +82,9 @@ public class AutonomousCommand extends CommandGroup {
 //			addSequential(new MagicDrive(5));
 		}
 		
-		addSequential(new MagicDrive(5));
-		//addSequential(new AngledTurn(90));
-		//addSequential(new MotionProfile(station.getGearProfile()));
+//		addSequential(new MagicDrive(1));
+//		addSequential(new AngledTurn(90));
+		addSequential(new MotionProfile(station.getGearProfile()));
 //		addSequential(new SpinGeartake(-Constants.GEARTAKE_SPEED,Constants.GEAR_DEPLOY_TIME));
 	}
 	

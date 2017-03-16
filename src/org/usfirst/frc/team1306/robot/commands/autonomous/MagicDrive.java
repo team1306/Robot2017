@@ -24,7 +24,7 @@ public class MagicDrive extends CommandBase {
 
 	@Override
 	protected boolean isFinished() {
-		return true;
+		return false;
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class MagicDrive extends CommandBase {
 
 	@Override
 	protected void interrupted() {
-		end();
+		
 	}
 
 }
