@@ -36,7 +36,7 @@ public class SmartDashboardUpdate extends CommandBase {
 	protected void execute() {
 		
 		//Subsystem Positions
-		//SmartDashboard.putString("Hood Position",hood.getPos());
+		SmartDashboard.putString("Hood Position",hood.getName());
 		SmartDashboard.putNumber("SD-Turret Position",turret.getEncPos());
 		SmartDashboard.putNumber("SD-DLeftPosition",drivetrain.getLeftPosition());
 		SmartDashboard.putNumber("SD-DRightPosition",drivetrain.getRightPosition());
@@ -50,12 +50,7 @@ public class SmartDashboardUpdate extends CommandBase {
 //		SmartDashboard.putNumber("Shooter R Draw",panel.getCurrent(5));
 //		SmartDashboard.putNumber("Intake Draw",panel.getCurrent(1));
 //		SmartDashboard.putNumber("Turret Draw",panel.getCurrent(6));
-//		SmartDashboard.putNumber("Climber Draw",panel.getCurrent(0));
-
-//		SmartDashboard.putNumber("Drive Draw8", panel.getCurrent(8));
-//		SmartDashboard.putNumber("Drive Draw9", panel.getCurrent(9));
-//		SmartDashboard.putNumber("Drive Draw10", panel.getCurrent(10));
-//		SmartDashboard.putNumber("Drive Draw11", panel.getCurrent(11));
+//		SmartDashboard.putNumber("Climber Draw",panel.getCurrent(0));6s
 
 		SmartDashboard.putNumber("Drive Draw12", panel.getCurrent(12));	//these are drive motors
 		SmartDashboard.putNumber("Drive Draw13", panel.getCurrent(13));

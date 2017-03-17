@@ -29,14 +29,15 @@ public class Hood extends Subsystem {
 	 * 		HoodAngle enum (UP or DOWN)
 	 */
 	public void setPos(HoodAngle angle) {
-		pos = angle.getDir();
-		name = angle.getName();
-		if(pos == 0) {
+		
+		if(angle.equals(HoodAngle.UP)) {
 			leftHoodShifter.set(DoubleSolenoid.Value.kForward);
 			rightHoodShifter.set(DoubleSolenoid.Value.kForward);
+			name = "Up";
 		} else {
 			leftHoodShifter.set(DoubleSolenoid.Value.kReverse);
 			rightHoodShifter.set(DoubleSolenoid.Value.kReverse);
+			name = "Down";
 		}
 	}
 	

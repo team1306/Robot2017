@@ -68,16 +68,18 @@ public class MotionProfile extends CommandBase {
 	private Waypoint[] getWaypoints(int profile) {
 		
 		Waypoint[] profileWaypoints = new Waypoint[] {
-			//new Waypoint(0,0,0),
-			//new Waypoint(4,0,0),
 			new Waypoint(1,0,Pathfinder.d2r(180)),
 			new Waypoint(2,0,Pathfinder.d2r(180)),
 			new Waypoint(3,0,Pathfinder.d2r(180)),
 			new Waypoint(4,0,Pathfinder.d2r(180)),
 			new Waypoint(5,0,Pathfinder.d2r(180)),
 			new Waypoint(6,0,Pathfinder.d2r(180))
-			//new Waypoint(7,0,0),
-			//new Waypoint(8,0,0)//Pathfinder.d2r(-45))
+			
+//			new Waypoint(1,0,Pathfinder.d2r(180)),
+//			new Waypoint(6,0,Pathfinder.d2r(180)),
+//			new Waypoint(8,-2,Pathfinder.d2r(-90)),
+//			new Waypoint(10,-4,Pathfinder.d2r(180)),
+//			new Waypoint(16,-4,Pathfinder.d2r(180))
 		};
 		
 		return profileWaypoints;
