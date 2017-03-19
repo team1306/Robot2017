@@ -19,7 +19,7 @@ public class Geartake extends Subsystem {
 		timer = new Timer();
 		gearMotor = new Spark(RobotMap.GEAR_SPARK_PORT);
 		
-		reverseGear();
+		//reverseGear();
 	}
 	
 	/**

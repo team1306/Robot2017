@@ -53,6 +53,7 @@ public class Constants {
 	public final static int MP_GEAR_BLUE_THREE = 6;
 	public final static int MP_HOPPER_RED = 7;
 	public final static int MP_HOPPER_BLUE = 8;
+	public final static int MP_FORWARD = 9;
 	
 	//GearMech Constants
 	public final static int GEAR_DEPLOY_TIME = 1;
@@ -105,7 +106,7 @@ public class Constants {
 	public final static DriveMode DRIVE_MODE = DriveMode.ARCADE;	//Drive modes defined in DriveMode ENUM
 	public final static double SPEED_MODIFIER = 1.0;			//Multiplier of speeds inputed into tankDrive=
 	public final static double F = 0.7494;
-	public final static double P = 0.6;	//0.1  46.5 46 46 45.5 46
+	public final static double P = 0.65;	//0.1  46.5 46 46 45.5 46
 	public final static double I = 0.0; 
 	public final static double D = 0.0;
 	

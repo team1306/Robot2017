@@ -1,10 +1,12 @@
 package org.usfirst.frc.team1306.robot.commands.autonomous;
 
 import org.usfirst.frc.team1306.robot.Constants;
+import org.usfirst.frc.team1306.robot.commands.geartake.RetractGeartake;
 import org.usfirst.frc.team1306.robot.commands.geartake.SpinGeartake;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
 import org.usfirst.frc.team1306.robot.commands.turret.FindTarget;
 import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
+
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -33,7 +35,9 @@ public class AutonomousCommand extends CommandGroup {
 		
 		if(routine.equals(AutoMode.HOPPER_GEAR)) {
 			
-			placeGear(station);
+			
+			
+//			placeGear(station);
 			//addSequential(new DeployIntake());
 			
 			//If in alliance station closest to the boiler it will move to the nearest hopper and empty it
@@ -44,7 +48,12 @@ public class AutonomousCommand extends CommandGroup {
 			
 		} else if(routine.equals(AutoMode.GEAR)) {
 			
-			placeGear(station);
+			//placeGear(station);
+			
+			addSequential(new MotionProfile(station.getGearProfile()));
+			addSequential(new RetractGeartake());
+			addSequential(new MotionProfile(Constants.MP_FORWARD));
+			//addSequential(new SpinGeartake(-Constants.GEAR_DEPLOY_TIME));
 			
 			//addSequential(new DeployIntake());
 			//TODO Shoot?
@@ -90,7 +99,7 @@ public class AutonomousCommand extends CommandGroup {
 //		addSequential(new MagicDrive(1));
 //		addSequential(new AngledTurn(90));
 		SmartDashboard.putNumber("gearProfile",station.getGearProfile());
-		addSequential(new MotionProfile(station.getGearProfile()));
+		
 //		addSequential(new SpinGeartake(-Constants.GEARTAKE_SPEED,Constants.GEAR_DEPLOY_TIME));
 		
 	}

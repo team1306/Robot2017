@@ -94,7 +94,13 @@ public class MotionProfile extends CommandBase {
 		} else if(profile == 2 || profile == 5) {
 			profileWaypoints = new Waypoint[] {
 				new Waypoint(1,0,0),
-				new Waypoint(9.5,0,0)
+				new Waypoint(9.4,0,0) //9.5
+			};
+			return profileWaypoints;
+		} else if(profile == Constants.MP_FORWARD) {
+			profileWaypoints = new Waypoint[] {
+				new Waypoint(1,0,0),
+				new Waypoint(2,0,0)
 			};
 			return profileWaypoints;
 		} else {
@@ -114,7 +120,7 @@ public class MotionProfile extends CommandBase {
 	@Override
 	protected void execute() {
 		
-		if(profile == 0 || profile == 5 || profile == 1 || profile == 4) {
+		if(profile == 2 || profile == 5 || profile == 1 || profile == 4) {
 			l = left.calculate(-drivetrain.getLeftPosition());
 			r = right.calculate(drivetrain.getRightPosition());
 		} else {
@@ -129,14 +135,15 @@ public class MotionProfile extends CommandBase {
 		SmartDashboard.putNumber("Desired-Heading",desired_heading);
 		
 		double angleDifference = Pathfinder.boundHalfDegrees(desired_heading - gyro_heading);
-		double turn = 0;
+		double turn = .75 * (-1/80.0) * angleDifference;
 		
 		
-		if(l + r < 0.20) {
-			turn = 0.15 * (-1/80.0) * angleDifference;
-		} else {
-			turn = 0.65 * (-1/80.0) * angleDifference;
-		}
+		
+//		if(l + r < 0.20) {
+//			turn = 0.15 * (-1/80.0) * angleDifference;
+//		} else {
+//			turn = 0.70 * (-1/80.0) * angleDifference;
+//		}
 		
 		//double turn = 0.8 * (-1.0/80.0) * angleDifference; //0.8
 
@@ -161,8 +168,10 @@ public class MotionProfile extends CommandBase {
 	@Override
 	protected boolean isFinished() {
 		if(l + r + turn < 0.15 && timer.hasPeriodPassed(4)) {
+			SmartDashboard.putBoolean("profile ending",true);
 			return true;
 		} else {
+			SmartDashboard.putBoolean("profile ending",false);
 			return false;
 		}
 //		return false;
