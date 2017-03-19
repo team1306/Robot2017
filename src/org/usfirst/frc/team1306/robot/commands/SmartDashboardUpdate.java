@@ -50,7 +50,7 @@ public class SmartDashboardUpdate extends CommandBase {
 //		SmartDashboard.putNumber("Shooter R Draw",panel.getCurrent(5));
 //		SmartDashboard.putNumber("Intake Draw",panel.getCurrent(1));
 //		SmartDashboard.putNumber("Turret Draw",panel.getCurrent(6));
-//		SmartDashboard.putNumber("Climber Draw",panel.getCurrent(0));6s
+		SmartDashboard.putNumber("Climber Draw",panel.getCurrent(0) + panel.getCurrent(3));
 
 		SmartDashboard.putNumber("Drive Draw12", panel.getCurrent(12));	//these are drive motors
 		SmartDashboard.putNumber("Drive Draw13", panel.getCurrent(13));

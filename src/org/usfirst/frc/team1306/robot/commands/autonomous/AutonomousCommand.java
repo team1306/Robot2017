@@ -1,7 +1,7 @@
 package org.usfirst.frc.team1306.robot.commands.autonomous;
 
 import org.usfirst.frc.team1306.robot.Constants;
-import org.usfirst.frc.team1306.robot.commands.gearmech.SpinGeartake;
+import org.usfirst.frc.team1306.robot.commands.geartake.SpinGeartake;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
 import org.usfirst.frc.team1306.robot.commands.turret.FindTarget;
 import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
@@ -45,7 +45,8 @@ public class AutonomousCommand extends CommandGroup {
 		} else if(routine.equals(AutoMode.GEAR)) {
 			
 			placeGear(station);
-			addSequential(new DeployIntake());
+			
+			//addSequential(new DeployIntake());
 			//TODO Shoot?
 			
 		} else if(routine.equals(AutoMode.TEN_KPA)) {
@@ -61,7 +62,11 @@ public class AutonomousCommand extends CommandGroup {
 			addSequential(new TimedDrive(Constants.AUTO_SPEED,2.5)); //Cross baseline TODO test
 			addSequential(new DeployIntake());
 			
-		} else if(routine.equals(AutoMode.BLANK)){
+		} else if(routine.equals(AutoMode.BASELINE)) {
+			addSequential(new MotionProfile(Constants.MP_BASELINE));
+		}
+		
+		else if(routine.equals(AutoMode.BLANK)){
 			
 		}
 	}
@@ -84,8 +89,10 @@ public class AutonomousCommand extends CommandGroup {
 		
 //		addSequential(new MagicDrive(1));
 //		addSequential(new AngledTurn(90));
+		SmartDashboard.putNumber("gearProfile",station.getGearProfile());
 		addSequential(new MotionProfile(station.getGearProfile()));
 //		addSequential(new SpinGeartake(-Constants.GEARTAKE_SPEED,Constants.GEAR_DEPLOY_TIME));
+		
 	}
 	
 	private Station getStation(Alliance alliance, int station) {

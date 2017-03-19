@@ -3,20 +3,19 @@ package org.usfirst.frc.team1306.robot.subsystems;
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class GearMech extends Subsystem {
+public class Geartake extends Subsystem {
 	
-	private final Solenoid gearSolenoid;
+	private final DoubleSolenoid gearSolenoid;
 	private final Timer timer;
 	private Spark gearMotor;
 	
-	public GearMech() {
-		gearSolenoid = new Solenoid(RobotMap.GEAR_SOLENOID_PORT);
+	public Geartake() {
+		gearSolenoid = new DoubleSolenoid(2,3);
 		timer = new Timer();
 		gearMotor = new Spark(RobotMap.GEAR_SPARK_PORT);
 	}
@@ -25,7 +24,7 @@ public class GearMech extends Subsystem {
 	 * Sets the solenoid to true and pushes out the gear
 	 */
 	public void deployGear() {
-		gearSolenoid.set(true);
+		//gearSolenoid.set(true);
 		//timer.delay(1);
 //		timer.reset();
 //		timer.start();
@@ -38,7 +37,7 @@ public class GearMech extends Subsystem {
 	 * Sets the solenoid to false and pulls gear back
 	 */
 	public void reverseGear() {
-		gearSolenoid.set(false);
+		//gearSolenoid.set(false);
 		//timer.delay(1);
 	}
 	

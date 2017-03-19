@@ -12,10 +12,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Climber extends Subsystem{
 
-	private final Talon climberMotor;
+	private final Talon climberMotor1;
+	private final Talon climberMotor2;
 	
 	public Climber() {
-		climberMotor = new Talon(RobotMap.CLIMBER_TALON_PORT);
+		climberMotor1 = new Talon(RobotMap.CLIMBER_TALON_1_PORT);
+		climberMotor2 = new Talon(RobotMap.CLIMBER_TALON_2_PORT);
 	}
 	
 	/**
@@ -23,7 +25,8 @@ public class Climber extends Subsystem{
 	 */
 	public void spinClimber() {
 		if(Constants.CLIMBER_ENABLED) {
-			climberMotor.set(Constants.CLIMBER_SPEED);	
+			climberMotor1.set(Constants.CLIMBER_SPEED);
+			climberMotor2.set(Constants.CLIMBER_SPEED);
 		}
 	}
 	
@@ -32,7 +35,8 @@ public class Climber extends Subsystem{
 	 */
 	public void spinClimberBack() {
 		if (Constants.CLIMBER_ENABLED) {
-			climberMotor.set(Constants.CLIMBER_BACK_SPEED);
+			climberMotor1.set(-Constants.CLIMBER_BACK_SPEED);
+			climberMotor2.set(-Constants.CLIMBER_BACK_SPEED);
 		}
 	}
 	
@@ -40,7 +44,8 @@ public class Climber extends Subsystem{
 	 * Stops the climber
 	 */
 	public void stopAll() {
-		climberMotor.set(Constants.SPEED_ZERO);
+		climberMotor1.set(Constants.SPEED_ZERO);
+		climberMotor2.set(Constants.SPEED_ZERO);
 	}
 	
 	@Override

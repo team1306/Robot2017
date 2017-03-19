@@ -1,4 +1,4 @@
-package org.usfirst.frc.team1306.robot.commands.gearmech;
+package org.usfirst.frc.team1306.robot.commands.geartake;
 
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.OI;

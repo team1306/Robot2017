@@ -14,11 +14,11 @@ public class Hood extends Subsystem {
 	private static String name = "Up";
 	
 	private final DoubleSolenoid leftHoodShifter;
-	private final DoubleSolenoid rightHoodShifter;
+	//private final DoubleSolenoid rightHoodShifter;
 	
 	public Hood() {
 		leftHoodShifter = new DoubleSolenoid(0,1);
-		rightHoodShifter = new DoubleSolenoid(2,3);
+		//rightHoodShifter = new DoubleSolenoid(2,3);
 		
 		setPos(HoodAngle.UP);
 	}
@@ -32,11 +32,11 @@ public class Hood extends Subsystem {
 		
 		if(angle.equals(HoodAngle.UP)) {
 			leftHoodShifter.set(DoubleSolenoid.Value.kForward);
-			rightHoodShifter.set(DoubleSolenoid.Value.kForward);
+			//rightHoodShifter.set(DoubleSolenoid.Value.kForward);
 			name = "Up";
 		} else {
 			leftHoodShifter.set(DoubleSolenoid.Value.kReverse);
-			rightHoodShifter.set(DoubleSolenoid.Value.kReverse);
+			//rightHoodShifter.set(DoubleSolenoid.Value.kReverse);
 			name = "Down";
 		}
 	}

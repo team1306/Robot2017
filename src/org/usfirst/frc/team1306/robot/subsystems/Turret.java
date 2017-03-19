@@ -46,6 +46,13 @@ public class Turret extends Subsystem {
 		return turretMotor.getPulseWidthPosition();
 	}
 	
+	public double getPosition() {
+		
+		double pos = 0.0;
+		
+		return pos;
+	}
+	
 	/**
 	 * Resets the encoder
 	 */

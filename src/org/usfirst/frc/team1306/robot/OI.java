@@ -1,8 +1,9 @@
 package org.usfirst.frc.team1306.robot;
 
 import org.usfirst.frc.team1306.robot.commands.climber.Climb;
-import org.usfirst.frc.team1306.robot.commands.climber.ClimbBack;
-import org.usfirst.frc.team1306.robot.commands.gearmech.SpinGeartake;
+import org.usfirst.frc.team1306.robot.commands.geartake.DeployGeartake;
+import org.usfirst.frc.team1306.robot.commands.geartake.RetractGeartake;
+import org.usfirst.frc.team1306.robot.commands.geartake.SpinGeartake;
 import org.usfirst.frc.team1306.robot.commands.hood.AdjustHood;
 import org.usfirst.frc.team1306.robot.commands.hood.HoodAngle;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
@@ -85,9 +86,9 @@ public class OI {
 		
 		//Primary ABXY buttons
 		pbuttonA.whenPressed(new SpinShooter(false));
-		//pbuttonB.whenPressed(new RetractGeartake());
+		sbuttonB.whenPressed(new RetractGeartake());
 		pbuttonX.whenPressed(new SpinIntake(false));
-		//pbuttonY.whenPressed(new DeployGeartake());
+		sbuttonY.whenPressed(new DeployGeartake());
 		
 		//Primary triggers/bumpers
 		pbuttonLB.whenPressed(new FindTarget(ScanDirection.LEFT));
@@ -109,12 +110,12 @@ public class OI {
 		
 		//Secondary start back buttons
 		sbuttonStart.whenPressed(new Climb());
-		sbuttonBack.whenPressed(new ClimbBack());
+		//sbuttonBack.whenPressed(new ClimbBack());
 		
-		sbuttonY.whenPressed(new AdjustHood(HoodAngle.UP));
-		sbuttonB.whenPressed(new AdjustHood(HoodAngle.DOWN));
-//		dPadUp.whenActive(new AdjustHood(HoodAngle.UP));
-//		dPadDown.whenActive(new AdjustHood(HoodAngle.DOWN));
+//		sbuttonY.whenPressed(new AdjustHood(HoodAngle.UP));
+//		sbuttonB.whenPressed(new AdjustHood(HoodAngle.DOWN));
+		dPadUp.whenActive(new AdjustHood(HoodAngle.UP));
+		dPadDown.whenActive(new AdjustHood(HoodAngle.DOWN));
 		
 		
 		//Secondary testing

@@ -44,6 +44,7 @@ public class Constants {
 	public final static double SHOOT_TIME = 10.0;
 	public final static double ROTATE_VEL = 0.2;
 	public final static double SCAN_DELAY = 1.0;
+	public final static int MP_BASELINE = 0;
 	public final static int MP_GEAR_RED_ONE = 1;
 	public final static int MP_GEAR_RED_TWO= 2;
 	public final static int MP_GEAR_RED_THREE = 3;
@@ -58,7 +59,7 @@ public class Constants {
 	public final static double GEARTAKE_SPEED = 0.6;
 	
 	//Climber Constants
-	public final static double CLIMBER_SPEED = 0.8;
+	public final static double CLIMBER_SPEED = 1.0;
 	public final static double CLIMBER_BACK_SPEED = -0.2;
 	
 	//Intake Constants
@@ -92,8 +93,8 @@ public class Constants {
 	public final static double DPAD_TURRET_STEP = 0.2;
 	public final static double TURRET_TURN_LEFT_SPEED = 0.13;	
 	public final static double TURRET_TURN_RIGHT_SPEED = -0.13;	
-	public final static double TURRET_LEFT_LIMIT = 9020;		
-	public final static double TURRET_RIGHT_LIMIT = 5270;		
+	public final static double TURRET_LEFT_LIMIT = 2750;		
+	public final static double TURRET_RIGHT_LIMIT = -1120;		
 	public final static double TURRET_RESET_POSITION = 0;		
 	public final static double TURRET_TURN_TOLERANCE = 10;
 	public final static double TURRET_RECOVERY_TIME = 0.5;
@@ -104,7 +105,7 @@ public class Constants {
 	public final static DriveMode DRIVE_MODE = DriveMode.ARCADE;	//Drive modes defined in DriveMode ENUM
 	public final static double SPEED_MODIFIER = 1.0;			//Multiplier of speeds inputed into tankDrive=
 	public final static double F = 0.7494;
-	public final static double P = 0.1;	//0.1
+	public final static double P = 0.6;	//0.1  46.5 46 46 45.5 46
 	public final static double I = 0.0; 
 	public final static double D = 0.0;
 	
