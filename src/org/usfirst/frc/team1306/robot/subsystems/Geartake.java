@@ -18,12 +18,15 @@ public class Geartake extends Subsystem {
 		gearSolenoid = new DoubleSolenoid(2,3);
 		timer = new Timer();
 		gearMotor = new Spark(RobotMap.GEAR_SPARK_PORT);
+		
+		reverseGear();
 	}
 	
 	/**
 	 * Sets the solenoid to true and pushes out the gear
 	 */
 	public void deployGear() {
+		gearSolenoid.set(DoubleSolenoid.Value.kForward);
 		//gearSolenoid.set(true);
 		//timer.delay(1);
 //		timer.reset();
@@ -37,6 +40,7 @@ public class Geartake extends Subsystem {
 	 * Sets the solenoid to false and pulls gear back
 	 */
 	public void reverseGear() {
+		gearSolenoid.set(DoubleSolenoid.Value.kReverse);
 		//gearSolenoid.set(false);
 		//timer.delay(1);
 	}
