@@ -3,6 +3,7 @@ package org.usfirst.frc.team1306.robot.commands.turret;
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class FindTarget extends CommandBase {
 
@@ -44,31 +45,36 @@ public class FindTarget extends CommandBase {
 
 	@Override
 	protected void execute() {
-		if(scanning && !table.getBoolean("seeTarget",false)) { 
+		SmartDashboard.putBoolean("Turret Scanning", scanning);
+		SmartDashboard.putBoolean("See Target", table.getBoolean("seeTarget",false));
+		/*if(scanning && !table.getBoolean("seeTarget",false)) { 
+			SmartDashboard.putBoolean("Move Turret Find Target", false);
 			turret.setSpeed(turn_speed);
-		} else if(table.getBoolean("seeTarget",false)) {
-			if(!(table.getNumber("yaw",0) < Constants.YAW_DEADBAND)) {
-				turret.moveDeg(/*turret.getPosition() +*/ table.getNumber("yaw",0));
+		} else */if(table.getBoolean("seeTarget",false)) {
+			if(!(Math.abs(table.getNumber("yaw",0)) < Constants.YAW_DEADBAND)) {
+				SmartDashboard.putBoolean("Move Turret Find Target", true);
+				turret.moveDeg(-(turret.getPosition() + table.getNumber("yaw",0)));
 			}
 		} else {
+			SmartDashboard.putBoolean("Move Turret Find Target", false);
 			//turret.moveRot(0);
 		}
 	}
 
 	@Override
 	protected boolean isFinished() {
-		
-		if(turret.getEncPos() < Constants.TURRET_RIGHT_LIMIT && direction.equals(ScanDirection.RIGHT)) {
-			turret.stopAll();
-			//new ResetTurret().start();
-			return true;
-		} else if(turret.getEncPos() > Constants.TURRET_LEFT_LIMIT && direction.equals(ScanDirection.LEFT)) {
-			turret.stopAll();
-			//new ResetTurret().start();
-			return true;
-		} else {
-			return false;
-		}
+		return false;
+//		if(turret.getEncPos() < Constants.TURRET_RIGHT_LIMIT && direction.equals(ScanDirection.RIGHT)) {
+//			turret.stopAll();
+//			//new ResetTurret().start();
+//			return true;
+//		} else if(turret.getEncPos() > Constants.TURRET_LEFT_LIMIT && direction.equals(ScanDirection.LEFT)) {
+//			turret.stopAll();
+//			//new ResetTurret().start();
+//			return true;
+//		} else {
+//			return false;
+//		}
 		
 //		return false;
 //		} else if(table.getBoolean("seeTarget",false)) {

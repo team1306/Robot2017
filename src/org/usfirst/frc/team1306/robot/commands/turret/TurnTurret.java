@@ -19,7 +19,6 @@ public class TurnTurret extends CommandBase {
 	}
 	
 	protected void initialize() {
-    	
     }
     
     /**
@@ -31,8 +30,9 @@ public class TurnTurret extends CommandBase {
 //    	} else if(turret.getEncPos() > rotations) {
 //    		turret.setSpeed(Constants.TURRET_TURN_RIGHT_SPEED); //If Turret rotations is above desired rotations the turret needs to turn right
 //    	}
-    	turret.moveRot(rotations);
-    	SmartDashboard.putNumber("rotations",rotations);
+    	//turret.moveRot(rotations);
+    	//SmartDashboard.putNumber("rotations",rotations);
+    	turret.moveDeg(rotations);
     }
 
     protected boolean isFinished() {
@@ -46,7 +46,7 @@ public class TurnTurret extends CommandBase {
 //    		return false;
 //    	}
     	
-    	return true;
+    	return false;
     }
     
     protected void end() {

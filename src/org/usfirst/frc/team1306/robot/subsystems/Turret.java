@@ -46,11 +46,22 @@ public class Turret extends Subsystem {
 		return turretMotor.getPulseWidthPosition();
 	}
 	
-	public double getPosition() {
-		
-		double pos = 0.0;
-		
-		return pos;
+	/**
+	 * Returns the degree position
+	 * @return
+	 * 		Degree measurement
+	 */
+	public double getPosition() {		
+		return Constants.TURRET_START_POS-(getEncPos()/*/(4096/360)*/);
+	}
+	
+	/**
+	 * Returns the degree position of the turret
+	 * @return
+	 * 		Non motor, actual thingamabob that you want probably dood
+	 */
+	public double getDegPosition() {
+		return (getPosition()*(0.08789))/Constants.TURRET_GEAR_CONVERSION;	// 360/4096
 	}
 	
 	/**
@@ -94,7 +105,7 @@ public class Turret extends Subsystem {
 	public void moveDeg(double degrees) {
 		if (Constants.TURRET_ENABLED) {
 			turretMotor.changeControlMode(TalonControlMode.MotionMagic);
-			SmartDashboard.putNumber("Turret Rotation: ",degrees);
+			SmartDashboard.putNumber("Turret Rotation: ",((degrees/360)*Constants.TURRET_GEAR_CONVERSION));
 			turretMotor.set((degrees/360)*Constants.TURRET_GEAR_CONVERSION);
 		}
 	}

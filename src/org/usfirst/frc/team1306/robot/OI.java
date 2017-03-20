@@ -10,6 +10,7 @@ import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
 import org.usfirst.frc.team1306.robot.commands.turret.FindTarget;
 import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
+import org.usfirst.frc.team1306.robot.commands.turret.TurnTurret;
 import org.usfirst.frc.team1306.robot.triggers.DPadDirection;
 import org.usfirst.frc.team1306.robot.triggers.DPadPress;
 
@@ -86,9 +87,8 @@ public class OI {
 		
 		//Primary ABXY buttons
 		pbuttonA.whenPressed(new SpinShooter(false));
-		sbuttonB.whenPressed(new RetractGeartake());
 		pbuttonX.whenPressed(new SpinIntake(false));
-		sbuttonY.whenPressed(new DeployGeartake());
+		pbuttonB.whenPressed(new TurnTurret(90));
 		
 		//Primary triggers/bumpers
 		pbuttonLB.whenPressed(new FindTarget(ScanDirection.LEFT));
@@ -102,7 +102,9 @@ public class OI {
 		
 		//Secondary ABXY buttons
 		sbuttonA.toggleWhenPressed(new SpinShooter(true));
+		sbuttonB.whenPressed(new RetractGeartake());
 		sbuttonX.toggleWhenPressed(new SpinIntake(true));
+		sbuttonY.whenPressed(new DeployGeartake());
 		
 		//Secondary triggers/bumpers
 		sbuttonRB.whenPressed(new SpinGeartake(-Constants.GEARTAKE_SPEED));

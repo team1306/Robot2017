@@ -100,7 +100,8 @@ public class Constants {
 	public final static double TURRET_TURN_TOLERANCE = 10;
 	public final static double TURRET_RECOVERY_TIME = 0.5;
 	public final static double YAW_DEADBAND = 2.5;
-	public final static double TURRET_GEAR_CONVERSION = 1; 		//Conversion turret rotations into gear rotations TODO Calculate this value with the gear tooth ratio
+	public final static double TURRET_GEAR_CONVERSION = 1.88888889; 		//72, 136 (136/72) Conversion turret rotations into gear rotations TODO Calculate this value with the gear tooth ratio
+	public final static double TURRET_START_POS = 780;
 	
 	//Drivetrain Constants
 	public final static DriveMode DRIVE_MODE = DriveMode.ARCADE;	//Drive modes defined in DriveMode ENUM

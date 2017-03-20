@@ -37,7 +37,7 @@ public class SmartDashboardUpdate extends CommandBase {
 		
 		//Subsystem Positions
 		SmartDashboard.putString("Hood Position",hood.getName());
-		SmartDashboard.putNumber("SD-Turret Position",turret.getEncPos());
+		SmartDashboard.putNumber("SD-Turret Position",turret.getDegPosition());
 		SmartDashboard.putNumber("SD-DLeftPosition",drivetrain.getLeftPosition());
 		SmartDashboard.putNumber("SD-DRightPosition",drivetrain.getRightPosition());
 		SmartDashboard.putNumber("SD-GyroAngle",ahrs.getAngle());
