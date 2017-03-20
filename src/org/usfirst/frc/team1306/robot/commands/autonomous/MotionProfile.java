@@ -88,7 +88,7 @@ public class MotionProfile extends CommandBase {
 		} else if(profile == 1 || profile == 4) {
 			profileWaypoints = new Waypoint[] {
 				new Waypoint(1,0,0),
-				new Waypoint(16.888,4.6177,Pathfinder.d2r(30))
+				new Waypoint(16.888,4.6177,Pathfinder.d2r(60))
 			};
 			return profileWaypoints;
 		} else if(profile == 2 || profile == 5) {
