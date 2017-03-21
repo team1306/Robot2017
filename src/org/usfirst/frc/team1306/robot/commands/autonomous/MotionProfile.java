@@ -26,8 +26,9 @@ public class MotionProfile extends CommandBase {
 	public double desired_heading, gyro_heading, l, r, angleDifference, turn;
 	EncoderFollower left;
 	EncoderFollower right;
-	AHRS ahrs; //Navx Gyro
+//	AHRS ahrs; //Navx Gyro
 	Timer timer;
+	ADIS16448_IMU imu;
 	
 	public MotionProfile(int profile) {
 		requires(drivetrain);
@@ -35,11 +36,13 @@ public class MotionProfile extends CommandBase {
 		
 		timer = new Timer();
 		
-		try {
-			ahrs = new AHRS(SPI.Port.kMXP); //Trying to initialize the gyro
-		} catch(RuntimeException ex) {
-			SmartDashboard.putString("Gyro Failed to Connect","");
-		}
+		imu = new ADIS16448_IMU();
+		
+//		try {
+//			ahrs = new AHRS(SPI.Port.kMXP); //Trying to initialize the gyro
+//		} catch(RuntimeException ex) {
+//			SmartDashboard.putString("Gyro Failed to Connect","");
+//		}
 	}
 	
 	@Override
@@ -49,7 +52,9 @@ public class MotionProfile extends CommandBase {
 		timer.start();
 		
 		drivetrain.resetEncoders();
-		ahrs.reset();
+		//ahrs.reset();
+//		ahrs.zeroYaw();
+		//imu.reset();
 		
 		Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_LOW, 0.05, max_velocity, max_accel, 60.0);
 //		Waypoint[] points = new Waypoint[]	{
@@ -88,7 +93,7 @@ public class MotionProfile extends CommandBase {
 		} else if(profile == 1 || profile == 4) {
 			profileWaypoints = new Waypoint[] {
 				new Waypoint(1,0,0),
-				new Waypoint(16.888,4.6177,Pathfinder.d2r(60))
+				new Waypoint(24,3,Pathfinder.d2r(-60)) //4.6 16.888
 			};
 			return profileWaypoints;
 		} else if(profile == 2 || profile == 5) {
@@ -128,14 +133,14 @@ public class MotionProfile extends CommandBase {
 			r = right.calculate(-drivetrain.getRightPosition());
 		}
 		
-		gyro_heading = ahrs.getAngle();
+		gyro_heading = imu.getAngle();
 		desired_heading = Pathfinder.r2d(left.getHeading());
 		
 		SmartDashboard.putNumber("Gyro-Heading",gyro_heading);
 		SmartDashboard.putNumber("Desired-Heading",desired_heading);
 		
 		double angleDifference = Pathfinder.boundHalfDegrees(desired_heading - gyro_heading);
-		double turn = .75 * (-1/80.0) * angleDifference;
+		double turn = .55 * (-1/80.0) * angleDifference;
 		
 		
 		
@@ -167,7 +172,7 @@ public class MotionProfile extends CommandBase {
 
 	@Override
 	protected boolean isFinished() {
-		if(l + r + turn < 0.15 && timer.hasPeriodPassed(4)) {
+		if(l + r + turn < 0.15 && timer.hasPeriodPassed(6)) {
 			SmartDashboard.putBoolean("profile ending",true);
 			return true;
 		} else {

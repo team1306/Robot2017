@@ -29,7 +29,7 @@ public class Drivetrain extends Subsystem {
 	private final CANTalon leftmotor2;
 	private final CANTalon rightmotor2;
 	public double initAngle;
-	AHRS ahrs; //Navx Gyro
+//	AHRS ahrs; //Navx Gyro
 	
 	public Drivetrain() {
 		leftmotor1 = new CANTalon(RobotMap.LEFT_TALON_1_PORT);
@@ -41,16 +41,16 @@ public class Drivetrain extends Subsystem {
 		setupMotors(leftmotor1,leftmotor2);
 		setupMotors(rightmotor1,rightmotor2);
 		
-		try {
-			ahrs = new AHRS(SPI.Port.kMXP); //Attempting to Initialize Gyro
-			SmartDashboard.putBoolean("Gyro Connected",true);
-		} catch(RuntimeException ex) {
-			SmartDashboard.putBoolean("Gyro Connected",false);
-		}
-		
-		ahrs.reset();
+//		try {
+//			ahrs = new AHRS(SPI.Port.kMXP); //Attempting to Initialize Gyro
+//			SmartDashboard.putBoolean("Gyro Connected",true);
+//		} catch(RuntimeException ex) {
+//			SmartDashboard.putBoolean("Gyro Connected",false);
+//		}
+//		
+//		ahrs.reset();
+//	}
 	}
-	
 	/**
 	 * Sets up the motors, master in pvb mode and sets the slave motor to a follower
 	 * @param master
@@ -116,7 +116,7 @@ public class Drivetrain extends Subsystem {
 			rightmotor1.set(-rightVal*Constants.SPEED_MODIFIER);
 			SmartDashboard.putNumber("leftval",leftVal);
 			SmartDashboard.putNumber("rightvel",rightVal);
-			SmartDashboard.putNumber("Gyro Angle",ahrs.getAngle());
+//			SmartDashboard.putNumber("Gyro Angle",ahrs.getAngle());
 		}
 	}
 	
@@ -150,12 +150,12 @@ public class Drivetrain extends Subsystem {
 	}
 	
 	public void resetGyro() {
-		ahrs.reset();
-		initAngle = ahrs.getYaw();
+		//ahrs.reset();
+		//initAngle = ahrs.getYaw();
 	}
 	
 	public double getGyro() {
-		return ahrs.getYaw();
+		return 0;//ahrs.getYaw();
 	}
 	
 	/**

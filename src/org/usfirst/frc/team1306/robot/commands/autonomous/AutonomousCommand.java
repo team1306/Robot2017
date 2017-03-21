@@ -2,11 +2,10 @@ package org.usfirst.frc.team1306.robot.commands.autonomous;
 
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.commands.geartake.RetractGeartake;
-import org.usfirst.frc.team1306.robot.commands.geartake.SpinGeartake;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
 import org.usfirst.frc.team1306.robot.commands.turret.FindTarget;
 import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
-
+import org.usfirst.frc.team1306.robot.commands.turret.TurnTurret;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -28,80 +27,78 @@ public class AutonomousCommand extends CommandGroup {
 	 */
 	public AutonomousCommand(Alliance alliance, int position, AutoMode routine) {
 		
-		SmartDashboard.putString("starting auto","true");
-		//addSequential(new MagicDrive(5));
-		
 		Station station = getStation(alliance,position);
 		
 		if(routine.equals(AutoMode.HOPPER_GEAR)) {
 			
-			
-			
-//			placeGear(station);
-			//addSequential(new DeployIntake());
-			
-			//If in alliance station closest to the boiler it will move to the nearest hopper and empty it
-//			if(station.equals(Station.RED_THREE) || station.equals(Station.BLUE_ONE)) {
-//				addSequential(new MotionProfile(station.getHopperProfile()));
-//				addSequential(new SpinShooter(Constants.SHOOT_TIME));
-//			}
+			if(station.equals(Station.RED_THREE)) {
+				addSequential(new MotionProfile(Constants.MP_HOPPER_RED));
+				
+				//Vision Works
+				addSequential(new FindTarget(ScanDirection.RIGHT));
+				
+				//Vision Doesn't Work
+				addSequential(new TurnTurret(Constants.RED_HOPPER_SETPOINT));
+				
+				addSequential(new SpinShooter(Constants.SHOOT_TIME));
+			} else if(station.equals(Station.BLUE_ONE)) {
+				addSequential(new MotionProfile(Constants.MP_HOPPER_RED));
+				
+				//Vision Works
+				addSequential(new FindTarget(ScanDirection.LEFT));
+				
+				//Vision Doesn't Work
+				addSequential(new TurnTurret(Constants.BLUE_HOPPER_SETPOINT));
+				
+				addSequential(new SpinShooter(Constants.SHOOT_TIME));
+			} else {
+				addSequential(new MotionProfile(station.getGearProfile()));
+				addSequential(new RetractGeartake());
+				addSequential(new MotionProfile(Constants.MP_FORWARD));
+			}
 			
 		} else if(routine.equals(AutoMode.GEAR)) {
 			
-			//placeGear(station);
-			
 			addSequential(new MotionProfile(station.getGearProfile()));
-			addSequential(new RetractGeartake());
-			addSequential(new MotionProfile(Constants.MP_FORWARD));
-			//addSequential(new SpinGeartake(-Constants.GEAR_DEPLOY_TIME));
-			
-			//addSequential(new DeployIntake());
-			//TODO Shoot?
-			
+			//addSequential(new RetractGeartake());
+			//addSequential(new MotionProfile(Constants.MP_FORWARD));
+
+			//Vision Works
+//			if(position == 2) {
+//				if(alliance.equals(Alliance.Red)) {
+//					addSequential(new FindTarget(ScanDirection.RIGHT));
+//				} else {
+//					addSequential(new FindTarget(ScanDirection.LEFT));
+//				}
+//				addSequential(new SpinShooter(Constants.SHOOT_TIME));
+//			}
+		
+			//Vision Doesn't Work     
+//			if(position == 2) {
+//				if(alliance.equals(Alliance.Red)) {
+//					addSequential(new TurnTurret(Constants.RED_TWO_SETPOINT));
+//				} else {
+//					addSequential(new TurnTurret(Constants.BLUE_TWO_SETPOINT));
+//				}
+//				addSequential(new SpinShooter(Constants.SHOOT_TIME));
+//			}		
 		} else if(routine.equals(AutoMode.TEN_KPA)) {
 			
-			//Vision scanning
+			//Vision Works
 			if(alliance.equals(Alliance.Red)) {
 				addSequential(new FindTarget(ScanDirection.RIGHT));
 			} else if(alliance.equals(Alliance.Blue)) {
 				addSequential(new FindTarget(ScanDirection.LEFT));
 			}
 			
-			addSequential(new SpinShooter(Constants.SHOOT_TIME/2)); //Lower shoot time because less balls
-			addSequential(new TimedDrive(Constants.AUTO_SPEED,2.5)); //Cross baseline TODO test
-			addSequential(new DeployIntake());
+			addSequential(new SpinShooter(Constants.SHOOT_TIME));
+			addSequential(new MotionProfile(Constants.MP_BASELINE));
 			
 		} else if(routine.equals(AutoMode.BASELINE)) {
 			addSequential(new MotionProfile(Constants.MP_BASELINE));
-		}
-		
-		else if(routine.equals(AutoMode.BLANK)){
+		} else if(routine.equals(AutoMode.BLANK)){
 			
 		}
-	}
-	
-	private void placeGear(Station station) {
-		
-		if(station.equals(station.RED_ONE) || station.equals(station.BLUE_ONE)) {
-//			addSequential(new MagicDrive(5));
-//			addSequential(new AngledTurn(45));
-//			addSequential(new MagicDrive(5));
-		} else if(station.equals(station.RED_TWO) || station.equals(station.BLUE_TWO)) {
-//			addSequential(new MagicDrive(5));
-//			addSequential(new AngledTurn(45));
-//			addSequential(new MagicDrive(5));
-		} else if(station.equals(Station.RED_THREE) || station.equals(station.RED_THREE)) {
-//			addSequential(new MagicDrive(5));
-//			addSequential(new AngledTurn(45));
-//			addSequential(new MagicDrive(5));
-		}
-		
-//		addSequential(new MagicDrive(1));
-//		addSequential(new AngledTurn(90));
-		SmartDashboard.putNumber("gearProfile",station.getGearProfile());
-		
-//		addSequential(new SpinGeartake(-Constants.GEARTAKE_SPEED,Constants.GEAR_DEPLOY_TIME));
-		
 	}
 	
 	private Station getStation(Alliance alliance, int station) {
@@ -113,6 +110,7 @@ public class AutonomousCommand extends CommandGroup {
 			} else if(station == 2) {
 				SmartDashboard.putString("Station:","RED_TWO");
 				return Station.RED_TWO;
+				
 			} else {
 				SmartDashboard.putString("Station:","RED_THREE");
 				return Station.RED_THREE;
