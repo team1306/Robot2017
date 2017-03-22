@@ -1,7 +1,9 @@
 package org.usfirst.frc.team1306.robot.commands.turret;
 
-import org.usfirst.frc.team1306.robot.Constants;
+import java.util.Queue;
+
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
+
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -11,6 +13,9 @@ public class FindTarget extends CommandBase {
 	private boolean scanning = false;
 	private double turn_speed;
 	private ScanDirection direction;
+	private int counter;
+	private double accumulator;
+	Queue<Double> queue;
 	
 	public FindTarget(ScanDirection direction) {
 		requires(turret);
@@ -41,24 +46,65 @@ public class FindTarget extends CommandBase {
 		if(!scanning) {
 			//new ResetTurret().start();
 		}
+		counter = 0;
+		accumulator = 0;
 	}
 
 	@Override
 	protected void execute() {
-		SmartDashboard.putBoolean("Turret Scanning", scanning);
-		SmartDashboard.putBoolean("See Target", table.getBoolean("seeTarget",false));
-		/*if(scanning && !table.getBoolean("seeTarget",false)) { 
-			SmartDashboard.putBoolean("Move Turret Find Target", false);
-			turret.setSpeed(turn_speed);
-		} else */if(table.getBoolean("seeTarget",false)) {
-			if(!(Math.abs(table.getNumber("yaw",0)) < Constants.YAW_DEADBAND)) {
-				SmartDashboard.putBoolean("Move Turret Find Target", true);
-				turret.moveDeg(-(turret.getPosition() + table.getNumber("yaw",0)));
+//		SmartDashboard.putBoolean("Turret Scanning", scanning);
+//		SmartDashboard.putBoolean("See Target", table.getBoolean("seeTarget",false));
+//		/*if(scanning && !table.getBoolean("seeTarget",false)) { 
+//			SmartDashboard.putBoolean("Move Turret Find Target", false);
+//			turret.setSpeed(turn_speed);
+//		} else */if(table.getBoolean("seeTarget",false)) {
+////			if(!(Math.abs(table.getNumber("yaw",0)) < Constants.YAW_DEADBAND)) {
+////				SmartDashboard.putBoolean("Move Turret Find Target", true);
+////				turret.moveRot((turret.getPosition() + (table.getNumber("yaw",0)/360)));
+////				SmartDashboard.putNumber("Turret vision",turret.getPosition() + (table.getNumber("yaw",0)/360));
+////			}
+////		} else {
+//			SmartDashboard.putBoolean("Move Turret Find Target", false);
+//			//turret.moveRot(0);
+//		}
+		
+		if(table.getBoolean("seeTarget",false)) {
+//			turret.moveRot((turret.getPosition() + (table.getNumber("yaw",0)/360)));
+			
+			double newYaw = 0;
+			
+			if(queue.size() < 10) {
+				queue.add(table.getNumber("yaw",0) / 360);
+				accumulator = 0;
+			} else {
+				queue.poll();
+				queue.add(table.getNumber("yaw",0) / 360);
+				for(Double elem : queue) {
+					accumulator += queue.peek();
+				}
+				accumulator = accumulator / 10;
+				
+				if(Math.abs(queue.peek() - table.getNumber("yaw",0)) < 5) {
+					newYaw = table.getNumber("yaw",0);
+				} else {
+					newYaw = accumulator;
+				}
 			}
-		} else {
-			SmartDashboard.putBoolean("Move Turret Find Target", false);
-			//turret.moveRot(0);
+			
+			turret.moveRot(turret.getPosition() + newYaw);
+			
+//			if(table.getNumber("yaw",0) < 5 && table.getNumber("yaw",0) > -5) {
+//				
+//			} else {
+//				//turret.moveRot(turret.getPosition() + (table.getNumber("yaw",0)/360));
+//			}
+			
+		//	turret.moveRot()
+			
+			SmartDashboard.putNumber("Turret vision",turret.getPosition() - (table.getNumber("yaw",0)/360));
+			SmartDashboard.putNumber("yaw",table.getNumber("yaw",0));
 		}
+		
 	}
 
 	@Override

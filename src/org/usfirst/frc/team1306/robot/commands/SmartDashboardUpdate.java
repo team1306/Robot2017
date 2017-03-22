@@ -1,10 +1,6 @@
 package org.usfirst.frc.team1306.robot.commands;
 
-import org.usfirst.frc.team1306.robot.commands.autonomous.ADIS16448_IMU;
-
-import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
-import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.hal.HAL;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -15,27 +11,19 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class SmartDashboardUpdate extends CommandBase {
 
 	PowerDistributionPanel panel;
-//	AHRS ahrs;
-//	ADIS16448_IMU imu;
 	
 	public SmartDashboardUpdate() {
 		requires(hood);
+		requires(gyro);
+		
 		setRunWhenDisabled(true);
+		
 		panel = new PowerDistributionPanel();
-		
-//		imu = new ADIS16448_IMU();
-		
-//		try {
-//			ahrs = new AHRS(SPI.Port.kMXP); //Trying to initialize the gyro
-//		} catch(RuntimeException ex) {
-//			SmartDashboard.putString("Gyro Failed to Connect","");
-//		}
 	}
 	
 	@Override
 	protected void initialize() {
-		//ahrs.reset();
-		//imu.
+		
 	}
 
 	@Override
@@ -43,14 +31,12 @@ public class SmartDashboardUpdate extends CommandBase {
 		
 		//Subsystem Positions
 		SmartDashboard.putString("Hood Position",hood.getName());
-		SmartDashboard.putNumber("SD-Turret Position",turret.getDegPosition());
+		SmartDashboard.putNumber("SD-Turret Position",turret.getEncPos());
 		SmartDashboard.putNumber("SD-DLeftPosition",drivetrain.getLeftPosition());
 		SmartDashboard.putNumber("SD-DRightPosition",drivetrain.getRightPosition());
-//		SmartDashboard.putNumber("SD-GyroAngle",imu.getAngle());
-//		SmartDashboard.putNumber("SD-GyroYaw",imu.getYaw());
-//		SmartDashboard.putNumber("SD-GyroAngleY",imu.getAngleY());
-//		SmartDashboard.putNumber("SD-temp",imu.getTemperature());
-//		SmartDashboard.putNumber("SD-sampleTime",imu.getLastSampleTime());
+		SmartDashboard.putNumber("SD-GyroAngle",gyro.getAngle());
+		SmartDashboard.putNumber("SD-temp",gyro.getTemp());
+		SmartDashboard.putNumber("SD-sampleTime",gyro.getLastSampleTime());
 
 		
 		//Subsystem Current Draws

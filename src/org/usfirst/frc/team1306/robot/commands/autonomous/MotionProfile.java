@@ -26,23 +26,14 @@ public class MotionProfile extends CommandBase {
 	public double desired_heading, gyro_heading, l, r, angleDifference, turn;
 	EncoderFollower left;
 	EncoderFollower right;
-//	AHRS ahrs; //Navx Gyro
 	Timer timer;
-	ADIS16448_IMU imu;
 	
 	public MotionProfile(int profile) {
 		requires(drivetrain);
+		requires(gyro);
 		this.profile = profile;
 		
 		timer = new Timer();
-		
-		imu = new ADIS16448_IMU();
-		
-//		try {
-//			ahrs = new AHRS(SPI.Port.kMXP); //Trying to initialize the gyro
-//		} catch(RuntimeException ex) {
-//			SmartDashboard.putString("Gyro Failed to Connect","");
-//		}
 	}
 	
 	@Override
@@ -52,9 +43,7 @@ public class MotionProfile extends CommandBase {
 		timer.start();
 		
 		drivetrain.resetEncoders();
-		//ahrs.reset();
-//		ahrs.zeroYaw();
-		//imu.reset();
+		//gyro.reset();
 		
 		Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_LOW, 0.05, max_velocity, max_accel, 60.0);
 //		Waypoint[] points = new Waypoint[]	{
@@ -93,7 +82,7 @@ public class MotionProfile extends CommandBase {
 		} else if(profile == 1 || profile == 4) {
 			profileWaypoints = new Waypoint[] {
 				new Waypoint(1,0,0),
-				new Waypoint(24,3,Pathfinder.d2r(-60)) //4.6 16.888
+				new Waypoint(10,2.5,Pathfinder.d2r(gyro.getAngle() - 60)) //4.6 16.888
 			};
 			return profileWaypoints;
 		} else if(profile == 2 || profile == 5) {
@@ -133,14 +122,15 @@ public class MotionProfile extends CommandBase {
 			r = right.calculate(-drivetrain.getRightPosition());
 		}
 		
-		gyro_heading = imu.getAngle();
+		gyro_heading = gyro.getAngle();
+		SmartDashboard.putNumber("Gyro Angle",gyro_heading);
 		desired_heading = Pathfinder.r2d(left.getHeading());
 		
 		SmartDashboard.putNumber("Gyro-Heading",gyro_heading);
 		SmartDashboard.putNumber("Desired-Heading",desired_heading);
 		
 		double angleDifference = Pathfinder.boundHalfDegrees(desired_heading - gyro_heading);
-		double turn = .55 * (-1/80.0) * angleDifference;
+		double turn = .0075 * (-1/80.0) * angleDifference;
 		
 		
 		
