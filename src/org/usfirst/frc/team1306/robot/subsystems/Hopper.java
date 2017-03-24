@@ -25,7 +25,7 @@ public class Hopper extends Subsystem {
 	 */
 	public void spinHopper() {
 		if(Constants.HOPPER_ENABLED) {
-			hopperMotor.set(hopperSpeed);
+			hopperMotor.set(-hopperSpeed);
 		}
 	}
 	

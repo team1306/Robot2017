@@ -4,6 +4,8 @@ import java.util.Queue;
 
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
+import edu.wpi.first.wpilibj.DigitalOutput;
+import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -16,6 +18,8 @@ public class FindTarget extends CommandBase {
 	private int counter;
 	private double accumulator;
 	Queue<Double> queue;
+//	PWM leds;
+	DigitalOutput leds;
 	
 	public FindTarget(ScanDirection direction) {
 		requires(turret);
@@ -23,6 +27,8 @@ public class FindTarget extends CommandBase {
 		this.turn_speed = direction.getTurnSpeed();
 		
 		scanning = true;
+		
+		leds = new DigitalOutput(0);
 		
 		NetworkTable.setServerMode();
 		NetworkTable.setTeam(1306);
@@ -34,6 +40,8 @@ public class FindTarget extends CommandBase {
 		requires(turret);
 		
 		scanning = false;
+		
+		leds = new DigitalOutput(0);
 		
 		NetworkTable.setServerMode();
 		NetworkTable.setTeam(1306);
@@ -65,8 +73,9 @@ public class FindTarget extends CommandBase {
 ////			}
 ////		} else {
 //			SmartDashboard.putBoolean("Move Turret Find Target", false);
-//			//turret.moveRot(0);
+//			//turret.moveRot(0);s
 //		}
+		leds.set(true);
 		
 		if(table.getBoolean("seeTarget",false)) {
 //			turret.moveRot((turret.getPosition() + (table.getNumber("yaw",0)/360)));
@@ -91,7 +100,10 @@ public class FindTarget extends CommandBase {
 				}
 			}
 			
-			turret.moveRot(turret.getPosition() + newYaw);
+			SmartDashboard.putNumber("Yaw",table.getNumber("yaw",0));
+			SmartDashboard.putNumber("Averaged Yaw",newYaw);
+			
+//			turret.moveRot(turret.getPosition() + newYaw);
 			
 //			if(table.getNumber("yaw",0) < 5 && table.getNumber("yaw",0) > -5) {
 //				
@@ -141,6 +153,7 @@ public class FindTarget extends CommandBase {
 	@Override
 	protected void end() {
 		turret.stopAll();
+		leds.set(false);
 	}
 
 	@Override

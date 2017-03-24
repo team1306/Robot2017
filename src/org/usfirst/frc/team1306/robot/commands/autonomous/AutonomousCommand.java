@@ -1,11 +1,13 @@
 package org.usfirst.frc.team1306.robot.commands.autonomous;
 
 import org.usfirst.frc.team1306.robot.Constants;
+import org.usfirst.frc.team1306.robot.commands.geartake.DeployGeartake;
 import org.usfirst.frc.team1306.robot.commands.geartake.RetractGeartake;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
 import org.usfirst.frc.team1306.robot.commands.turret.FindTarget;
 import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
 import org.usfirst.frc.team1306.robot.commands.turret.TurnTurret;
+
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -60,8 +62,9 @@ public class AutonomousCommand extends CommandGroup {
 		} else if(routine.equals(AutoMode.GEAR)) {
 			
 			addSequential(new MotionProfile(station.getGearProfile()));
-			//addSequential(new RetractGeartake());
-			//addSequential(new MotionProfile(Constants.MP_FORWARD));
+			addSequential(new DeployGeartake());
+			addSequential(new MotionProfile(Constants.MP_FORWARD));
+			addSequential(new DeployIntake());
 
 			//Vision Works
 //			if(position == 2) {

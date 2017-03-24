@@ -29,7 +29,7 @@ public class DeployIntake extends CommandBase {
 	 */
 	@Override
 	protected void execute() {
-		climber.spinClimberBack();
+		climber.spinClimber();
 	}
 
 	/**

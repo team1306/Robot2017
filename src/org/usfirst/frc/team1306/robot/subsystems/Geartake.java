@@ -15,7 +15,7 @@ public class Geartake extends Subsystem {
 	private Spark gearMotor;
 	
 	public Geartake() {
-		gearSolenoid = new DoubleSolenoid(2,3);
+		gearSolenoid = new DoubleSolenoid(1,2);
 		timer = new Timer();
 		gearMotor = new Spark(RobotMap.GEAR_SPARK_PORT);
 		

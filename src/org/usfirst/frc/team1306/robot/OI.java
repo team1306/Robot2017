@@ -88,11 +88,11 @@ public class OI {
 		//Primary ABXY buttons
 		pbuttonA.whenPressed(new SpinShooter(false));
 		pbuttonX.whenPressed(new SpinIntake(false));
-		pbuttonB.whenPressed(new TurnTurret(90));
+//		pbuttonB.whenPressed(new TurnTurret(90));
 		
 		//Primary triggers/bumpers
-		pbuttonLB.whenPressed(new FindTarget(ScanDirection.LEFT));
-		pbuttonRB.whenPressed(new FindTarget(ScanDirection.RIGHT));
+//		pbuttonLB.whenPressed(new FindTarget(ScanDirection.LEFT));
+//		pbuttonRB.whenPressed(new FindTarget(ScanDirection.RIGHT));
 		
 		//Primary start back buttons	
 		
@@ -102,9 +102,9 @@ public class OI {
 		
 		//Secondary ABXY buttons
 		sbuttonA.toggleWhenPressed(new SpinShooter(true));
-		sbuttonB.whenPressed(new RetractGeartake());
+		sbuttonY.whenPressed(new RetractGeartake());
 		sbuttonX.toggleWhenPressed(new SpinIntake(true));
-		sbuttonY.whenPressed(new DeployGeartake());
+		sbuttonB.whenPressed(new DeployGeartake());
 		
 		//Secondary triggers/bumpers
 		sbuttonRB.whenPressed(new SpinGeartake(-Constants.GEARTAKE_SPEED));

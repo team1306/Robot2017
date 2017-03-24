@@ -77,6 +77,7 @@ public class Shooter extends Subsystem {
 			
 			leftShooterMotor.changeControlMode(TalonControlMode.Speed);
 			rightShooterMotor.changeControlMode(TalonControlMode.Speed);
+			
 			leftShooterMotor.set(Constants.SHOOTER_RPM_SPEED);
 			rightShooterMotor.set(Constants.SHOOTER_RPM_SPEED);
 		}
@@ -106,7 +107,7 @@ public class Shooter extends Subsystem {
 //			indexerMotor.changeControlMode(TalonControlMode.PercentVbus);
 //			indexerMotor.set(-Constants.INDEXER_SPEED);
 			indexerMotor.changeControlMode(TalonControlMode.Speed);
-			indexerMotor.set(-Constants.INDEXER_RPM_SPEED * (24/18));	//*(24/18)
+			indexerMotor.set(Constants.INDEXER_RPM_SPEED * (24/18));	//*(24/18)
 		}
 	}
 	

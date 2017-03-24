@@ -75,7 +75,7 @@ public class Constants {
 	
 	//Shooter Constants
 	public final static double SHOOTER_SPEED = 0.72;			//0.84
-	public final static double SHOOTER_RPM_SPEED = 3800;		//Shooter speed in RPM (default:3000) 3600 2750 3200
+	public final static double SHOOTER_RPM_SPEED = 2700;		//Shooter speed in RPM (default:3000) 3800
 	public final static double INDEXER_RPM_SPEED = 2700;		//Shooter speed in RPM (default:2000) 4500 2700 2700
 	public final static int SHOOTER_SPIN_UP_TIME = 1;			//Time to let shooters spin up before turning on hopper and indexers
 	public final static int SHOOTER_BANG_RANGE = 240;			//If shooter speed is below this number, bang bang will kick in
