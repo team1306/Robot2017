@@ -35,7 +35,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	
     	CommandBase.init(); //Initializes all Subsystems
-    	CameraServer.getInstance().startAutomaticCapture(); //GearMech Camera
+    	CameraServer.getInstance().startAutomaticCapture("usb",0); //GearMech Camera
     	
     	chooser = new SendableChooser<AutonomousCommand>();
     	
@@ -82,7 +82,7 @@ public class Robot extends IterativeRobot {
     	
     	autonomousCommand = (Command) chooser.getSelected();
     	
-//    	autonomousCommand = new AutonomousCommand(Alliance.Red,3,AutoMode.BASELINE);
+//    	autonomousCommand = new AutonomousCommand(Alliance.Red,2,AutoMode.GEAR);
     	
         if (autonomousCommand != null) {
         	autonomousCommand.start();

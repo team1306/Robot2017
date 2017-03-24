@@ -70,7 +70,7 @@ public class SmartDashboardUpdate extends CommandBase {
 		SmartDashboard.putNumber("SD-LShooterVel",Math.abs(shooter.getVel(0)));
 		SmartDashboard.putNumber("SD-RShooterVel",Math.abs(shooter.getVel(1)));
 		SmartDashboard.putNumber("SD-IndexerVel",Math.abs(shooter.getVel(2)));
-		SmartDashboard.putNumber("Index error",Math.abs(shooter.getIndexError()));
+//		SmartDashboard.putNumber("Index error",Math.abs(shooter.getIndexError()));
 	}
 
 	@Override

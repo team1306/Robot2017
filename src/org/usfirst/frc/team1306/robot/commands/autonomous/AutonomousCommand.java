@@ -3,6 +3,7 @@ package org.usfirst.frc.team1306.robot.commands.autonomous;
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.commands.geartake.DeployGeartake;
 import org.usfirst.frc.team1306.robot.commands.geartake.RetractGeartake;
+import org.usfirst.frc.team1306.robot.commands.geartake.SpinGeartake;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
 import org.usfirst.frc.team1306.robot.commands.turret.FindTarget;
 import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
@@ -63,6 +64,7 @@ public class AutonomousCommand extends CommandGroup {
 			
 			addSequential(new MotionProfile(station.getGearProfile()));
 			addSequential(new DeployGeartake());
+			addSequential(new SpinGeartake(-Constants.GEARTAKE_SPEED,1));
 			addSequential(new MotionProfile(Constants.MP_FORWARD));
 			addSequential(new DeployIntake());
 

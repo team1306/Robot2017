@@ -49,6 +49,8 @@ public class SpinGeartake extends CommandBase {
     	} else if(timedSpin && timer.hasPeriodPassed(time)) {
     		gearmech.stopAll();
     		return true;
+    	} else if(timedSpin){
+    		return false;
     	} else {
     		gearmech.stopAll();
     		return true;

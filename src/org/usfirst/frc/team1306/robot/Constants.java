@@ -36,6 +36,7 @@ public class Constants {
 	public final static int AIM_RIGHT_BUTTON = XboxController.RB;
 	public final static int GEARTAKE_BUTTON = XboxController.RB;
 	public final static int GEARTAKE_BACK_BUTTON = XboxController.LB;
+	public final static int SHOOTER_BUTTON_BACK = XboxController.BACK;
 	
 	//Autonomous Constants
 	public final static int AUTO_KPA = 0;
@@ -57,7 +58,7 @@ public class Constants {
 	
 	//GearMech Constants
 	public final static int GEAR_DEPLOY_TIME = 1;
-	public final static double GEARTAKE_SPEED = 0.6;
+	public final static double GEARTAKE_SPEED = 1.0;
 	
 	//Climber Constants
 	public final static double CLIMBER_SPEED = 1.0;
@@ -75,8 +76,9 @@ public class Constants {
 	
 	//Shooter Constants
 	public final static double SHOOTER_SPEED = 0.72;			//0.84
-	public final static double SHOOTER_RPM_SPEED = 2700;		//Shooter speed in RPM (default:3000) 3800
-	public final static double INDEXER_RPM_SPEED = 2700;		//Shooter speed in RPM (default:2000) 4500 2700 2700
+	public final static double SHOOTER_RPM_SPEED = 100;		//Shooter speed in RPM (default:3000) 3800
+	public final static double SHOOTER_RPM_SPEED_ALT = 2700;
+	public final static double INDEXER_RPM_SPEED = 2300;		//Shooter speed in RPM (default:2000) 4500 2700 2700
 	public final static int SHOOTER_SPIN_UP_TIME = 1;			//Time to let shooters spin up before turning on hopper and indexers
 	public final static int SHOOTER_BANG_RANGE = 240;			//If shooter speed is below this number, bang bang will kick in
 	public final static double SHOOTER_BANG_CEILING = 1.0;		//Speed bang bang uses when below desired speed

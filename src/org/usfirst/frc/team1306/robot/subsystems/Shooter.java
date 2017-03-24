@@ -31,7 +31,7 @@ public class Shooter extends Subsystem {
 		
 		leftShooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		leftShooterMotor.configEncoderCodesPerRev(12);
-		leftShooterMotor.reverseSensor(false);
+		leftShooterMotor.reverseSensor(true);
 		leftShooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
 		leftShooterMotor.configPeakOutputVoltage(+12.0f, 0.0f);
 		leftShooterMotor.SetVelocityMeasurementPeriod(VelocityMeasurementPeriod.Period_10Ms);
@@ -43,7 +43,7 @@ public class Shooter extends Subsystem {
 		
 		rightShooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		rightShooterMotor.configEncoderCodesPerRev(12);
-		rightShooterMotor.reverseSensor(true);
+		rightShooterMotor.reverseSensor(false);
 		rightShooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
 		rightShooterMotor.configPeakOutputVoltage(+12.0f, 0.0f);
 		rightShooterMotor.SetVelocityMeasurementPeriod(VelocityMeasurementPeriod.Period_10Ms);
@@ -56,7 +56,7 @@ public class Shooter extends Subsystem {
 		indexerMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		indexerMotor.reverseSensor(false);
 		indexerMotor.configNominalOutputVoltage(+0.0f, -0.0f);
-		indexerMotor.configPeakOutputVoltage(0.0f, -12.0f);
+		indexerMotor.configPeakOutputVoltage(+12.0f, -12.0f);
 		rightShooterMotor.SetVelocityMeasurementPeriod(VelocityMeasurementPeriod.Period_10Ms);
 		rightShooterMotor.SetVelocityMeasurementWindow(20);
 		indexerMotor.setF(Constants.INDEXER_F);
@@ -82,8 +82,23 @@ public class Shooter extends Subsystem {
 			rightShooterMotor.set(Constants.SHOOTER_RPM_SPEED);
 		}
 	}
+
+	public void spinShooterAlt() {
+		if(Constants.SHOOTER_ENABLED) {
+//			leftShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
+//			rightShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
+//			leftShooterMotor.set(shooterSpeed);
+//			rightShooterMotor.set(shooterSpeed);
+			
+			leftShooterMotor.changeControlMode(TalonControlMode.Speed);
+			rightShooterMotor.changeControlMode(TalonControlMode.Speed);
+			
+			leftShooterMotor.set(Constants.SHOOTER_RPM_SPEED_ALT);
+			rightShooterMotor.set(Constants.SHOOTER_RPM_SPEED_ALT);
+		}
+	}
 	
-	public double getIndexError() {
+	double getIndexError() {
 		return indexerMotor.getError();
 	}
 	

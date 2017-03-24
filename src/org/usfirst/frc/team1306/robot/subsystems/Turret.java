@@ -120,6 +120,6 @@ public class Turret extends Subsystem {
 	
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new FindTarget());
+		//setDefaultCommand(new FindTarget());
 	}
 }

@@ -1,11 +1,11 @@
 package org.usfirst.frc.team1306.robot.commands.turret;
 
+import java.util.ArrayDeque;
 import java.util.Queue;
 
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
 import edu.wpi.first.wpilibj.DigitalOutput;
-import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -29,6 +29,7 @@ public class FindTarget extends CommandBase {
 		scanning = true;
 		
 		leds = new DigitalOutput(0);
+		queue = new ArrayDeque<Double>();
 		
 		NetworkTable.setServerMode();
 		NetworkTable.setTeam(1306);
@@ -42,6 +43,7 @@ public class FindTarget extends CommandBase {
 		scanning = false;
 		
 		leds = new DigitalOutput(0);
+		queue = new ArrayDeque<Double>();
 		
 		NetworkTable.setServerMode();
 		NetworkTable.setTeam(1306);
@@ -77,12 +79,14 @@ public class FindTarget extends CommandBase {
 //		}
 		leds.set(true);
 		
+		turret.moveRot(0);
+		
 		if(table.getBoolean("seeTarget",false)) {
 //			turret.moveRot((turret.getPosition() + (table.getNumber("yaw",0)/360)));
 			
 			double newYaw = 0;
 			
-			if(queue.size() < 10) {
+			if( queue.size() < 10) {
 				queue.add(table.getNumber("yaw",0) / 360);
 				accumulator = 0;
 			} else {

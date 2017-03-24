@@ -5,33 +5,29 @@ import org.usfirst.frc.team1306.robot.OI;
 import org.usfirst.frc.team1306.robot.OI.controller;
 import org.usfirst.frc.team1306.robot.OI.side;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
+
 import edu.wpi.first.wpilibj.Timer;
 
-/**
- * Command that calls to spin shooter, stops when shooter button is no longer pressed
- * @author Jackson Goth and Sam Roquitte
- */
-public class SpinShooter extends CommandBase {
-
+public class SpinShooterAlt extends CommandBase {
+	
 	private double time;
 	private boolean timedSpin = false;
 	private boolean toggled;
 	private final Timer timer;
 	private final Timer hopperTimer;
 	
-	public SpinShooter(double time) {
+	public SpinShooterAlt(double time) {
 		requires(shooter);
 		requires(hopper);
 		requires(intake);
 		this.timedSpin = true;
 		this.time = time;
-		this.toggled = false;
 		
 		timer = new Timer();
 		hopperTimer = new Timer();
 	}
 	
-	public SpinShooter(boolean toggled) {
+	public SpinShooterAlt(boolean toggled) {
 		requires(shooter);
 		requires(hopper);
 		requires(intake);
@@ -60,7 +56,7 @@ public class SpinShooter extends CommandBase {
     protected void execute() {
     	
     	//Starts ramping up shooters and indexers
-    	shooter.spinShooter();
+    	shooter.spinShooterAlt();
 		shooter.spinIndexer();
 		
 		//This timer is to give the shooters and indexers enough time to get up to speed before shooting
@@ -82,15 +78,11 @@ public class SpinShooter extends CommandBase {
     protected boolean isFinished() {
     	if(toggled) {
     		return false;
-    	} else if(OI.getButtonVal(controller.p,Constants.SHOOTER_BUTTON)) {
-    		return false;
     	} else if(timedSpin && timer.hasPeriodPassed(time)) {
     		shooter.stopAll();
     		hopper.stopAll();
     		intake.stopAll();
     		return true;
-    	} else if(timedSpin) {
-    		return false;
     	} else {
     		shooter.stopAll();
     		hopper.stopAll();

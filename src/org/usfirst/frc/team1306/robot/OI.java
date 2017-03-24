@@ -8,9 +8,7 @@ import org.usfirst.frc.team1306.robot.commands.hood.AdjustHood;
 import org.usfirst.frc.team1306.robot.commands.hood.HoodAngle;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
-import org.usfirst.frc.team1306.robot.commands.turret.FindTarget;
-import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
-import org.usfirst.frc.team1306.robot.commands.turret.TurnTurret;
+import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooterAlt;
 import org.usfirst.frc.team1306.robot.triggers.DPadDirection;
 import org.usfirst.frc.team1306.robot.triggers.DPadPress;
 
@@ -86,7 +84,7 @@ public class OI {
 		dPadDown = new DPadPress(secondaryController, DPadDirection.DOWN);
 		
 		//Primary ABXY buttons
-		pbuttonA.whenPressed(new SpinShooter(false));
+		//pbuttonA.whenPressed(new SpinShooter(false));
 		pbuttonX.whenPressed(new SpinIntake(false));
 //		pbuttonB.whenPressed(new TurnTurret(90));
 		
@@ -102,6 +100,7 @@ public class OI {
 		
 		//Secondary ABXY buttons
 		sbuttonA.toggleWhenPressed(new SpinShooter(true));
+		sbuttonBack.toggleWhenPressed(new SpinShooterAlt(true));
 		sbuttonY.whenPressed(new RetractGeartake());
 		sbuttonX.toggleWhenPressed(new SpinIntake(true));
 		sbuttonB.whenPressed(new DeployGeartake());
