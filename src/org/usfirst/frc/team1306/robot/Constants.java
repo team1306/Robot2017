@@ -65,17 +65,17 @@ public class Constants {
 	public final static double CLIMBER_BACK_SPEED = -0.2;
 	
 	//Intake Constants
-	public final static double INTAKE_SPEED = 0.70;
+	public final static double INTAKE_SPEED = 0.75;
 	
 	//Hopper Constants
 	public final static double HOPPER_SPEED = 1.0;	
 	public final static int HOPPER_RAMP_I = 1;
 	
 	//Indexer Constants
-	public final static double INDEXER_SPEED = 1.0;
+	public final static double INDEXER_SPEED = 0.72; //1.0
 	
 	//Shooter Constants
-	public final static double SHOOTER_SPEED = 0.72;			//0.84
+	public final static double SHOOTER_SPEED = 0.78;			//0.84
 	public final static double SHOOTER_RPM_SPEED = 100;		//Shooter speed in RPM (default:3000) 3800
 	public final static double SHOOTER_RPM_SPEED_ALT = 2700;
 	public final static double INDEXER_RPM_SPEED = 2300;		//Shooter speed in RPM (default:2000) 4500 2700 2700

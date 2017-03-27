@@ -29,40 +29,40 @@ public class Shooter extends Subsystem {
 		indexerMotor = new CANTalon(RobotMap.INDEXER_TALON_PORT);
 		indexerMotor.enable();
 		
-		leftShooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		leftShooterMotor.configEncoderCodesPerRev(12);
-		leftShooterMotor.reverseSensor(true);
-		leftShooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
-		leftShooterMotor.configPeakOutputVoltage(+12.0f, 0.0f);
-		leftShooterMotor.SetVelocityMeasurementPeriod(VelocityMeasurementPeriod.Period_10Ms);
-		leftShooterMotor.SetVelocityMeasurementWindow(20);
-		leftShooterMotor.setF(Constants.SHOOTER_F);
-		leftShooterMotor.setP(Constants.SHOOTER_P);
-		leftShooterMotor.setI(Constants.SHOOTER_I);
-		leftShooterMotor.setD(Constants.SHOOTER_D);
-		
-		rightShooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		rightShooterMotor.configEncoderCodesPerRev(12);
-		rightShooterMotor.reverseSensor(false);
-		rightShooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
-		rightShooterMotor.configPeakOutputVoltage(+12.0f, 0.0f);
-		rightShooterMotor.SetVelocityMeasurementPeriod(VelocityMeasurementPeriod.Period_10Ms);
-		rightShooterMotor.SetVelocityMeasurementWindow(20);
-		rightShooterMotor.setF(Constants.SHOOTER_F);
-		rightShooterMotor.setP(Constants.SHOOTER_P);
-		rightShooterMotor.setI(Constants.SHOOTER_I);
-		rightShooterMotor.setD(Constants.SHOOTER_D);
-		
-		indexerMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
-		indexerMotor.reverseSensor(false);
-		indexerMotor.configNominalOutputVoltage(+0.0f, -0.0f);
-		indexerMotor.configPeakOutputVoltage(+12.0f, -12.0f);
-		rightShooterMotor.SetVelocityMeasurementPeriod(VelocityMeasurementPeriod.Period_10Ms);
-		rightShooterMotor.SetVelocityMeasurementWindow(20);
-		indexerMotor.setF(Constants.INDEXER_F);
-		indexerMotor.setP(Constants.INDEXER_P);
-		indexerMotor.setI(Constants.INDEXER_I);
-		indexerMotor.setD(Constants.INDEXER_D);
+//		leftShooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+//		leftShooterMotor.configEncoderCodesPerRev(12);
+//		leftShooterMotor.reverseSensor(true);
+//		leftShooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
+//		leftShooterMotor.configPeakOutputVoltage(+12.0f, 0.0f);
+//		leftShooterMotor.SetVelocityMeasurementPeriod(VelocityMeasurementPeriod.Period_10Ms);
+//		leftShooterMotor.SetVelocityMeasurementWindow(20);
+//		leftShooterMotor.setF(Constants.SHOOTER_F);
+//		leftShooterMotor.setP(Constants.SHOOTER_P);
+//		leftShooterMotor.setI(Constants.SHOOTER_I);
+//		leftShooterMotor.setD(Constants.SHOOTER_D);
+//		
+//		rightShooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+//		rightShooterMotor.configEncoderCodesPerRev(12);
+//		rightShooterMotor.reverseSensor(false);
+//		rightShooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
+//		rightShooterMotor.configPeakOutputVoltage(+12.0f, 0.0f);
+//		rightShooterMotor.SetVelocityMeasurementPeriod(VelocityMeasurementPeriod.Period_10Ms);
+//		rightShooterMotor.SetVelocityMeasurementWindow(20);
+//		rightShooterMotor.setF(Constants.SHOOTER_F);
+//		rightShooterMotor.setP(Constants.SHOOTER_P);
+//		rightShooterMotor.setI(Constants.SHOOTER_I);
+//		rightShooterMotor.setD(Constants.SHOOTER_D);
+//		
+//		indexerMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+//		indexerMotor.reverseSensor(false);
+//		indexerMotor.configNominalOutputVoltage(+0.0f, -0.0f);
+//		indexerMotor.configPeakOutputVoltage(+12.0f, -12.0f);
+//		rightShooterMotor.SetVelocityMeasurementPeriod(VelocityMeasurementPeriod.Period_10Ms);
+//		rightShooterMotor.SetVelocityMeasurementWindow(20);
+//		indexerMotor.setF(Constants.INDEXER_F);
+//		indexerMotor.setP(Constants.INDEXER_P);
+//		indexerMotor.setI(Constants.INDEXER_I);
+//		indexerMotor.setD(Constants.INDEXER_D);
 	}
 	
 	/**
@@ -70,16 +70,18 @@ public class Shooter extends Subsystem {
 	 */
 	public void spinShooter() {
 		if(Constants.SHOOTER_ENABLED) {
-//			leftShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
-//			rightShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
-//			leftShooterMotor.set(shooterSpeed);
-//			rightShooterMotor.set(shooterSpeed);
+			leftShooterMotor.changeControlMode(TalonControlMode.Voltage);
+			rightShooterMotor.changeControlMode(TalonControlMode.Voltage);
+			leftShooterMotor.setVoltageCompensationRampRate(24);
+			rightShooterMotor.setVoltageCompensationRampRate(24);
+			leftShooterMotor.set(8.00); //0.78
+			rightShooterMotor.set(8.00); //0.78
 			
-			leftShooterMotor.changeControlMode(TalonControlMode.Speed);
-			rightShooterMotor.changeControlMode(TalonControlMode.Speed);
-			
-			leftShooterMotor.set(Constants.SHOOTER_RPM_SPEED);
-			rightShooterMotor.set(Constants.SHOOTER_RPM_SPEED);
+//			leftShooterMotor.changeControlMode(TalonControlMode.Speed);
+//			rightShooterMotor.changeControlMode(TalonControlMode.Speed);
+//			
+//			leftShooterMotor.set(Constants.SHOOTER_RPM_SPEED);
+//			rightShooterMotor.set(Constants.SHOOTER_RPM_SPEED);
 		}
 	}
 
@@ -119,10 +121,10 @@ public class Shooter extends Subsystem {
 	 */
 	public void spinIndexer() {
 		if(Constants.INDEXER_ENABLED) {
-//			indexerMotor.changeControlMode(TalonControlMode.PercentVbus);
-//			indexerMotor.set(-Constants.INDEXER_SPEED);
-			indexerMotor.changeControlMode(TalonControlMode.Speed);
-			indexerMotor.set(Constants.INDEXER_RPM_SPEED * (24/18));	//*(24/18)
+			indexerMotor.changeControlMode(TalonControlMode.PercentVbus);
+			indexerMotor.set(Constants.INDEXER_SPEED);
+//			indexerMotor.changeControlMode(TalonControlMode.Speed);
+//			indexerMotor.set(Constants.INDEXER_RPM_SPEED * (24/18));	//*(24/18)
 		}
 	}
 	
