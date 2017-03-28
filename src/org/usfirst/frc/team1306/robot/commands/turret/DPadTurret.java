@@ -23,37 +23,37 @@ public class DPadTurret extends CommandBase {
 
 	@Override
 	protected void execute() {
-		dpaddirection dpadDirection = OI.getDPad(controller.s);
-		double currentRot = 0;
-		switch (dpadDirection) {
-			case u:		//Dpad up
-				//hood up
-			break;
-			case ur:	//Dpad upper right
-				
-			break;
-			case r:		//Dpad right
-				turret.moveRot(currentRot+Constants.DPAD_TURRET_STEP);
-			break;
-			case dr:	//Dpad down right
-				
-			break;
-			case d:		//Dpad down
-				//hood down
-			break;
-			case dl:	//Dpad down left
-				
-			break;
-			case l:		//Dpad left
-				turret.moveRot(currentRot-Constants.DPAD_TURRET_STEP);
-			break;
-			case ul:	//Dpad uppper left
-				
-			break;
-			case no:
-				
-			break;
-		}
+//		dpaddirection dpadDirection = OI.getDPad(controller.s);
+//		double currentRot = 0;
+//		switch (dpadDirection) {
+//			case u:		//Dpad up
+//				//hood up
+//			break;
+//			case ur:	//Dpad upper right
+//				
+//			break;
+//			case r:		//Dpad right
+//				turret.moveRot(currentRot+Constants.DPAD_TURRET_STEP);
+//			break;
+//			case dr:	//Dpad down right
+//				
+//			break;
+//			case d:		//Dpad down
+//				//hood down
+//			break;
+//			case dl:	//Dpad down left
+//				
+//			break;
+//			case l:		//Dpad left
+//				turret.moveRot(currentRot-Constants.DPAD_TURRET_STEP);
+//			break;
+//			case ul:	//Dpad uppper left
+//				
+//			break;
+//			case no:
+//				
+//			break;
+//		}
 //		int dpadval = 0;
 //		int step = (int) (4/Constants.MANUAL_TURRET_ROT);
 //		if (OI.getDPad(controller.s) <= 3) {
@@ -67,11 +67,12 @@ public class DPadTurret extends CommandBase {
 
 	@Override
 	protected boolean isFinished() {
-		if(OI.getButtonVal(controller.s,Constants.DPAD_TURRET_BUTTON)) {
-    		return false;
-    	} else {
-    		return true;
-    	}
+//		if(OI.getButtonVal(controller.s,Constants.DPAD_TURRET_BUTTON)) {
+//    		return false;
+//    	} else {
+//    		return true;
+//    	}
+		return false;
 	}
 
 	@Override

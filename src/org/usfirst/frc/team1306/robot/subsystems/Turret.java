@@ -112,7 +112,7 @@ public class Turret extends Subsystem {
 	 * Stops the turret
 	 */
 	public void stopAll() {
-		turretMotor.set(Constants.SPEED_ZERO);
+		turretMotor.set(0.0);
 	}
 	
 	@Override

@@ -159,9 +159,9 @@ public class Shooter extends Subsystem {
 	 * Stops all shooter-related motors
 	 */
 	public void stopAll() {
-		leftShooterMotor.set(Constants.SPEED_ZERO);
-		rightShooterMotor.set(Constants.SPEED_ZERO);
-		indexerMotor.set(Constants.SPEED_ZERO);
+		leftShooterMotor.set(0.0);
+		rightShooterMotor.set(0.0);
+		indexerMotor.set(0.0);
 	}
 	
 	@Override

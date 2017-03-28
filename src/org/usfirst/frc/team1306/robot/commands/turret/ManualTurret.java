@@ -29,11 +29,12 @@ public class ManualTurret extends CommandBase {
 
 	@Override
 	protected boolean isFinished() {
-		if(OI.getButtonVal(controller.s,Constants.MANUAL_TURRET_BUTTON)) {
-    		return false;
-    	} else {
-    		return true;
-    	}
+//		if(OI.getButtonVal(controller.s,Constants.MANUAL_TURRET_BUTTON)) {
+//    		return false;
+//    	} else {
+//    		return true;
+//    	}
+		return false;
 	}
 
 	@Override

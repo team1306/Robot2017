@@ -18,39 +18,34 @@ public class Geartake extends Subsystem {
 		gearSolenoid = new DoubleSolenoid(1,2);
 		timer = new Timer();
 		gearMotor = new Spark(RobotMap.GEAR_SPARK_PORT);
-		
-		//reverseGear();
 	}
 	
 	/**
 	 * Sets the solenoid to true and pushes out the gear
 	 */
 	public void deployGear() {
-		gearSolenoid.set(DoubleSolenoid.Value.kForward);
-		//gearSolenoid.set(true);
-		//timer.delay(1);
-//		timer.reset();
-//		timer.start();
-//		while(!timer.hasPeriodPassed(Constants.GEAR_DEPLOY_TIME)) {
-//		}
-		//gearSolenoid.set(false);
+		if(Constants.GEARTAKE_ENABLED) {
+			gearSolenoid.set(DoubleSolenoid.Value.kForward);
+		}
 	}
 	
 	/**
 	 * Sets the solenoid to false and pulls gear back
 	 */
 	public void reverseGear() {
-		gearSolenoid.set(DoubleSolenoid.Value.kReverse);
-		//gearSolenoid.set(false);
-		//timer.delay(1);
+		if(Constants.GEARTAKE_ENABLED) {
+			gearSolenoid.set(DoubleSolenoid.Value.kReverse);
+		}
 	}
 	
 	public void spinMotor(double speed) {
-		gearMotor.set(speed);
+		if(Constants.GEARTAKE_ENABLED) {
+			gearMotor.set(speed);
+		}
 	}
 	
 	public void stopAll() {
-		gearMotor.set(Constants.SPEED_ZERO);
+		gearMotor.set(0.0);
 	}
 	
 	@Override

@@ -31,19 +31,10 @@ public class Intake extends Subsystem {
 	}
 	
 	/**
-	 * Stops the intake
-	 * @deprecated
-	 * 		Use stopAll()
-	 */
-	public void stopMotor() {
-		intakeMotor.set(Constants.SPEED_ZERO);
-	}
-	
-	/**
 	 * Stops the intake motor
 	 */
 	public void stopAll() {
-		intakeMotor.set(Constants.SPEED_ZERO);
+		intakeMotor.set(0.0);
 	}
 
 	@Override

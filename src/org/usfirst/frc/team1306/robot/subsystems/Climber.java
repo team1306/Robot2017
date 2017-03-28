@@ -44,8 +44,8 @@ public class Climber extends Subsystem{
 	 * Stops the climber
 	 */
 	public void stopAll() {
-		climberMotor1.set(Constants.SPEED_ZERO);
-		climberMotor2.set(Constants.SPEED_ZERO);
+		climberMotor1.set(0.0);
+		climberMotor2.set(0.0);
 	}
 	
 	@Override

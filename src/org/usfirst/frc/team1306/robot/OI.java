@@ -8,12 +8,10 @@ import org.usfirst.frc.team1306.robot.commands.hood.AdjustHood;
 import org.usfirst.frc.team1306.robot.commands.hood.HoodAngle;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
-import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooterAlt;
 import org.usfirst.frc.team1306.robot.commands.turret.FindTarget;
 import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
 import org.usfirst.frc.team1306.robot.triggers.DPadDirection;
 import org.usfirst.frc.team1306.robot.triggers.DPadPress;
-
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -102,7 +100,6 @@ public class OI {
 		
 		//Secondary ABXY buttons
 		sbuttonA.toggleWhenPressed(new SpinShooter(true));
-		sbuttonBack.toggleWhenPressed(new SpinShooterAlt(true));
 		sbuttonY.whenPressed(new RetractGeartake());
 		sbuttonX.toggleWhenPressed(new SpinIntake(true));
 		sbuttonB.whenPressed(new DeployGeartake());
@@ -345,15 +342,15 @@ public class OI {
 	 * @return
 	 * 		-1=not being pressed, 0-7 for pressed button
 	 */
-	public static dpaddirection getDPad(controller controller) {
-		switch (controller) {
-			case p:
-				return primaryController.getDPAD();
-			case s:
-				return primaryController.getDPAD();
-		}
-		return null;
-	}
+//	public static dpaddirection getDPad(controller controller) {
+//		switch (controller) {
+//			case p:
+//				return primaryController.getDPAD();
+//			case s:
+//				return primaryController.getDPAD();
+//		}
+//		return null;
+//	}
 	
 	/**
 	 * Applies deadband to joystick values to prevent false readings when joystick is idle.  It prevents very small changes to 

@@ -32,12 +32,13 @@ public class Aim extends CommandBase {
 
 	@Override
 	protected boolean isFinished() {
-		if(OI.getButtonVal(controller.s,Constants.AIM_LEFT_BUTTON)) {
-    		return false;
-    	} else {
-    		turret.stopAll();
-    		return true;
-    	}
+//		if(OI.getButtonVal(controller.s,Constants.AIM_LEFT_BUTTON)) {
+//    		return false;
+//    	} else {
+//    		turret.stopAll();
+//    		return true;
+//    	}
+		return true;
 	}
 
 	@Override

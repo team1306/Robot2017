@@ -8,43 +8,30 @@ import org.usfirst.frc.team1306.robot.commands.drivetrain.DriveMode;
  */
 public class Constants {
 
-	//Subsystem Constants (Determines if differen't subsystems will run or not)
+	//Subsystem Constants (Determines if different subsystems will run or not)
 	public final static boolean INTAKE_ENABLED = true;			
 	public final static boolean SHOOTER_ENABLED = true;			
 	public final static boolean DRIVETRAIN_ENABLED = true;		
-	public final static boolean HOPPER_ENABLED = true;			
+	public final static boolean HOPPER_ENABLED = true;	
+	public final static boolean HOOD_ENABLED = true;
+	public final static boolean GEARTAKE_ENABLED = true;
 	public final static boolean CLIMBER_ENABLED = true; 		
 	public final static boolean TURRET_ENABLED = true;			
 	public final static boolean INDEXER_ENABLED = true;			
 	
-	//Global Constants
-	public final static double SPEED_ZERO = 0.0;
-	
 	//OI Constants
-	public final static double DEADBAND = 0.15;					//Joystick deadband
-	public final static double TRIGGER_DEADBAND = 0.15;			//Trigger deadband
-	public final static double JOYSTICK_MULTIPLIER = 1.0;		//Multiplier for the joystick inputs  
+	public final static double DEADBAND = 0.15; //Joystick deadband
+	public final static double TRIGGER_DEADBAND = 0.15; //Trigger deadband
+	public final static double JOYSTICK_MULTIPLIER = 1.0; //Multiplier for the joystick inputs  
 	
 	//Button Constants
 	public final static int INTAKE_BUTTON = XboxController.X;
 	public final static int SHOOTER_BUTTON = XboxController.A;
-	public final static int SHOOTER_BACK_BUTTON = XboxController.START;
-	public final static int MANUAL_TURRET_BUTTON = XboxController.LB;
-	public final static int DPAD_TURRET_BUTTON = XboxController.RB;
-	public final static int BANG_SHOOTER_BUTTON = XboxController.B;
-	public final static int AIM_LEFT_BUTTON = XboxController.LB;
-	public final static int AIM_RIGHT_BUTTON = XboxController.RB;
 	public final static int GEARTAKE_BUTTON = XboxController.RB;
 	public final static int GEARTAKE_BACK_BUTTON = XboxController.LB;
-	public final static int SHOOTER_BUTTON_BACK = XboxController.BACK;
 	
 	//Autonomous Constants
-	public final static int AUTO_KPA = 0;
-	public final static int AUTO_BLANK = 1;
-	public final static double AUTO_SPEED = 0.5;
 	public final static double SHOOT_TIME = 10.0;
-	public final static double ROTATE_VEL = 0.2;
-	public final static double SCAN_DELAY = 1.0;
 	public final static int MP_BASELINE = 0;
 	public final static int MP_GEAR_RED_ONE = 1;
 	public final static int MP_GEAR_RED_TWO= 2;
@@ -56,7 +43,7 @@ public class Constants {
 	public final static int MP_HOPPER_BLUE = 8;
 	public final static int MP_FORWARD = 9;
 	
-	//GearMech Constants
+	//Geartake Constants
 	public final static int GEAR_DEPLOY_TIME = 1;
 	public final static double GEARTAKE_SPEED = 1.0;
 	
@@ -72,12 +59,11 @@ public class Constants {
 	public final static int HOPPER_RAMP_I = 1;
 	
 	//Indexer Constants
-	public final static double INDEXER_SPEED = 0.72; //1.0
+	public final static double INDEXER_SPEED = 0.72;
 	
 	//Shooter Constants
-	public final static double SHOOTER_SPEED = 0.78;			//0.84
+	public final static double SHOOTER_SPEED = 0.78;
 	public final static double SHOOTER_RPM_SPEED = 100;		//Shooter speed in RPM (default:3000) 3800
-	public final static double SHOOTER_RPM_SPEED_ALT = 2700;
 	public final static double INDEXER_RPM_SPEED = 2300;		//Shooter speed in RPM (default:2000) 4500 2700 2700
 	public final static int SHOOTER_SPIN_UP_TIME = 1;			//Time to let shooters spin up before turning on hopper and indexers
 	public final static int SHOOTER_BANG_RANGE = 240;			//If shooter speed is below this number, bang bang will kick in

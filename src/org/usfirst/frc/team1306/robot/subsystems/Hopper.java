@@ -53,7 +53,7 @@ public class Hopper extends Subsystem {
 	 * Stops all hopper motors
 	 */
 	public void stopAll() {
-		hopperMotor.set(Constants.SPEED_ZERO);
+		hopperMotor.set(0.0);
 	}
 	
 	@Override

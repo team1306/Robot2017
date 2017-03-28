@@ -1,6 +1,8 @@
 package org.usfirst.frc.team1306.robot.subsystems;
 
+import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.commands.hood.HoodAngle;
+
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -30,15 +32,16 @@ public class Hood extends Subsystem {
 	 */
 	public void setPos(HoodAngle angle) {
 		
-		if(angle.equals(HoodAngle.UP)) {
-			leftHoodShifter.set(DoubleSolenoid.Value.kForward);
-			//rightHoodShifter.set(DoubleSolenoid.Value.kForward);
-			name = "Up";
-		} else {
-			leftHoodShifter.set(DoubleSolenoid.Value.kReverse);
-			//rightHoodShifter.set(DoubleSolenoid.Value.kReverse);
-			name = "Down";
+		if(Constants.HOOD_ENABLED) {
+			if(angle.equals(HoodAngle.UP)) {
+				leftHoodShifter.set(DoubleSolenoid.Value.kForward);
+				name = "Up";
+			} else {
+				leftHoodShifter.set(DoubleSolenoid.Value.kReverse);
+				name = "Down";
+			}
 		}
+		
 	}
 	
 	/**

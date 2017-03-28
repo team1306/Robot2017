@@ -60,7 +60,7 @@ public class Drivetrain extends Subsystem {
 	 */
 	private void setupMotors(CANTalon master, CANTalon slave) {
 		master.changeControlMode(TalonControlMode.PercentVbus);
-		master.set(Constants.SPEED_ZERO);
+		master.set(0.0);
 		master.enable();
 		
 		slave.changeControlMode(TalonControlMode.Follower);
@@ -193,7 +193,7 @@ public class Drivetrain extends Subsystem {
 	 */
 	public void stopAll() {
 		for (int i = 0; i < motors.length; i++) {
-			motors[i].set(Constants.SPEED_ZERO);
+			motors[i].set(0.0);
 		}
 	}
 

@@ -108,16 +108,16 @@ public class XboxController extends Joystick {
 	 * @return
 	 * 		D-Pad button being pressed
 	 */
-	public dpaddirection getDPAD() {
-		if (super.getPOV() == -1) {
-			//return dpaddirection.no;
-			return dpaddirection.no;
-		}
-		else {
-			return dpaddirection.values()[(super.getPOV()/45)];
-			//return (super.getPOV()/45);
-		}
-	}
+//	public dpaddirection getDPAD() {
+//		if (super.getPOV() == -1) {
+//			//return dpaddirection.no;
+//			return dpaddirection.no;
+//		}
+//		else {
+//			return dpaddirection.values()[(super.getPOV()/45)];
+//			//return (super.getPOV()/45);
+//		}
+//	}
 
 	/** The A button index */
 	public final static int A = 1;
