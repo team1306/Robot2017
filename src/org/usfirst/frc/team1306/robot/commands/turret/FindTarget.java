@@ -1,163 +1,121 @@
 package org.usfirst.frc.team1306.robot.commands.turret;
 
-import java.util.ArrayDeque;
-import java.util.Queue;
-
+import java.util.ArrayList;
+import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
-
 import edu.wpi.first.wpilibj.DigitalOutput;
-import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+/**
+ * This command is always looking for the target and will track to it if it's in sight.  It averages the yaw values from the jetson to lessen the effects
+ * of incorrect data and smooth out motions.  It can also scan in either direction if given input via driver controls.  This command also controls the state of
+ * the vision LEDS on the camera.
+ * @author Jackson Goth
+ */
 public class FindTarget extends CommandBase {
 
-	NetworkTable table;
-	private boolean scanning = false;
-	private double turn_speed;
-	private ScanDirection direction;
-	private int counter;
-	private double accumulator;
-	Queue<Double> queue;
-//	PWM leds;
+	private double averagedYaw, accumulator, visionAdjustment;
+	private boolean scanning;
+	private ScanDirection scanDir;
+	private ArrayList<Double> yawList;
 	DigitalOutput leds;
 	
+	/**
+	 * Starts looking for the target, while scanning in a given direction
+	 * @param direction
+	 * 		Direction driver wants the turrets to scan in
+	 */
 	public FindTarget(ScanDirection direction) {
 		requires(turret);
-		this.direction = direction;
-		this.turn_speed = direction.getTurnSpeed();
+		requires(vision);
 		
-		scanning = true;
-		
-		leds = new DigitalOutput(0);
-		queue = new ArrayDeque<Double>();
-		
-		NetworkTable.setServerMode();
-		NetworkTable.setTeam(1306);
-		NetworkTable.initialize();
-		table = NetworkTable.getTable("1306");
+		yawList = new ArrayList<Double>(); //Array used for storing and averaging yaw values from the jetson
+		leds = new DigitalOutput(0); //Vision LEDS
+		scanning = true; //If the turret should scan in initialize()
+		scanDir = direction; //The direction the turret should scan in
 	}
 	
+	/**
+	 * Starts looking for the target without scanning
+	 */
 	public FindTarget() {
 		requires(turret);
+		requires(vision);
 		
-		scanning = false;
-		
-		leds = new DigitalOutput(0);
-		queue = new ArrayDeque<Double>();
-		
-		NetworkTable.setServerMode();
-		NetworkTable.setTeam(1306);
-		NetworkTable.initialize();
-		table = NetworkTable.getTable("1306");
+		yawList = new ArrayList<Double>(); //Array used for storing and averaging yaw values from the jetson
+		leds = new DigitalOutput(0); //Vision LEDS
+		scanning = false; //If the turret should scan in initialize()
 	}
 	
+	/**
+	 * Starts the scan if the command was started via driver controls
+	 */
 	@Override
 	protected void initialize() {
-		if(!scanning) {
-			//new ResetTurret().start();
+		if(scanning) {
+			if(scanDir.equals(ScanDirection.LEFT)) { //If we want to scan left...
+				turret.moveRot(-0.25*Constants.TURRET_GEAR_CONVERSION); //1/4 of a rotation to the left (middle gear) * conversion factor from middle to outer gears
+			} else { //Otherwise we scan right...
+				turret.moveRot(0.25*Constants.TURRET_GEAR_CONVERSION); //1/4 of a rotation to the right (middle gear) * conversion factor from middle to outer gears
+			}
 		}
-		counter = 0;
-		accumulator = 0;
 	}
 
+	/**
+	 * If target is visible it will track it, if scanning it will continue scanning, otherwise reset to middle
+	 */
 	@Override
 	protected void execute() {
-//		SmartDashboard.putBoolean("Turret Scanning", scanning);
-//		SmartDashboard.putBoolean("See Target", table.getBoolean("seeTarget",false));
-//		/*if(scanning && !table.getBoolean("seeTarget",false)) { 
-//			SmartDashboard.putBoolean("Move Turret Find Target", false);
-//			turret.setSpeed(turn_speed);
-//		} else */if(table.getBoolean("seeTarget",false)) {
-////			if(!(Math.abs(table.getNumber("yaw",0)) < Constants.YAW_DEADBAND)) {
-////				SmartDashboard.putBoolean("Move Turret Find Target", true);
-////				turret.moveRot((turret.getPosition() + (table.getNumber("yaw",0)/360)));
-////				SmartDashboard.putNumber("Turret vision",turret.getPosition() + (table.getNumber("yaw",0)/360));
-////			}
-////		} else {
-//			SmartDashboard.putBoolean("Move Turret Find Target", false);
-//			//turret.moveRot(0);s
-//		}
-		leds.set(true);
 		
-		turret.moveRot(0);
-		
-		if(table.getBoolean("seeTarget",false)) {
-//			turret.moveRot((turret.getPosition() + (table.getNumber("yaw",0)/360)));
+		if(vision.seeTarget()) { //If target visible...
 			
-			double newYaw = 0;
-			
-			if( queue.size() < 10) {
-				queue.add(table.getNumber("yaw",0) / 360);
-				accumulator = 0;
+			if(yawList.size() < 10) { //Fills up initial array
+				yawList.add(vision.getYaw());
 			} else {
-				queue.poll();
-				queue.add(table.getNumber("yaw",0) / 360);
-				for(Double elem : queue) {
-					accumulator += queue.peek();
-				}
-				accumulator = accumulator / 10;
-				
-				if(Math.abs(queue.peek() - table.getNumber("yaw",0)) < 5) {
-					newYaw = table.getNumber("yaw",0);
-				} else {
-					newYaw = accumulator;
-				}
+				yawList.remove(0); //Removes oldest data from list
+				yawList.add(vision.getYaw()); //Adds newest data to the top of the list
 			}
 			
-			SmartDashboard.putNumber("Yaw",table.getNumber("yaw",0));
-			SmartDashboard.putNumber("Averaged Yaw",newYaw);
+			//Finds the average of yawList and puts it in averagedYaw
+			accumulator = 0;
+			for(int i = 0; i < yawList.size(); i++) {
+				accumulator += yawList.get(i);
+			}
+			averagedYaw = accumulator / yawList.size();
 			
-//			turret.moveRot(turret.getPosition() + newYaw);
+			//Puts the target yaw in rotations and then multiplies the gear conversion to it
+			double visionAdjustment = (averagedYaw/360) * Constants.TURRET_GEAR_CONVERSION; 
 			
-//			if(table.getNumber("yaw",0) < 5 && table.getNumber("yaw",0) > -5) {
-//				
-//			} else {
-//				//turret.moveRot(turret.getPosition() + (table.getNumber("yaw",0)/360));
-//			}
+			//If the desired rotation is ever above or below 90 degrees it won't track
+			if(!(visionAdjustment + turret.getPosition() > Constants.TURRET_RIGHT_ROT_LIMIT) && !(visionAdjustment + turret.getPosition() < Constants.TURRET_LEFT_ROT_LIMIT)) {
+				turret.moveRot((averagedYaw/360)*Constants.TURRET_GEAR_CONVERSION + turret.getPosition());
+			}
 			
-		//	turret.moveRot()
+		} else if(scanning) { //If scanning, do nothing...
 			
-			SmartDashboard.putNumber("Turret vision",turret.getPosition() - (table.getNumber("yaw",0)/360));
-			SmartDashboard.putNumber("yaw",table.getNumber("yaw",0));
+		} else { //Snapping back to the center.
+			//turret.moveRot(0); TODO: Re-Implement
 		}
 		
+		SmartDashboard.putNumber("Averaged Yaw",averagedYaw);
+		SmartDashboard.putNumber("Vision Adjustment",visionAdjustment);
+		SmartDashboard.putNumber("Turret Position",turret.getPosition());
+		
+		leds.set(true); //Light up Vision LEDS
 	}
 
+	/**
+	 * Always want to be tracking, so doesn't end without interruption
+	 */
 	@Override
 	protected boolean isFinished() {
 		return false;
-//		if(turret.getEncPos() < Constants.TURRET_RIGHT_LIMIT && direction.equals(ScanDirection.RIGHT)) {
-//			turret.stopAll();
-//			//new ResetTurret().start();
-//			return true;
-//		} else if(turret.getEncPos() > Constants.TURRET_LEFT_LIMIT && direction.equals(ScanDirection.LEFT)) {
-//			turret.stopAll();
-//			//new ResetTurret().start();
-//			return true;
-//		} else {
-//			return false;
-//		}
-		
-//		return false;
-//		} else if(table.getBoolean("seeTarget",false)) {
-//			new HoldTarget(table.getNumber("yaw",0)).start();
-//			return true;
-//		} else {
-//			return false;
-//		}
-//		if(table.getBoolean("seeTarget",false)) {
-//			turret.stopAll();
-//			new HoldTarget(table.getNumber("yaw",0)).start();
-//			return true;
-//		} else {
-//			return false;
-//		}
 	}
 
 	@Override
 	protected void end() {
 		turret.stopAll();
-		leds.set(false);
+		leds.set(false); 
 	}
 
 	@Override

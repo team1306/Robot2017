@@ -9,6 +9,8 @@ import org.usfirst.frc.team1306.robot.commands.hood.HoodAngle;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooterAlt;
+import org.usfirst.frc.team1306.robot.commands.turret.FindTarget;
+import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
 import org.usfirst.frc.team1306.robot.triggers.DPadDirection;
 import org.usfirst.frc.team1306.robot.triggers.DPadPress;
 
@@ -89,8 +91,8 @@ public class OI {
 //		pbuttonB.whenPressed(new TurnTurret(90));
 		
 		//Primary triggers/bumpers
-//		pbuttonLB.whenPressed(new FindTarget(ScanDirection.LEFT));
-//		pbuttonRB.whenPressed(new FindTarget(ScanDirection.RIGHT));
+		pbuttonLB.whenPressed(new FindTarget(ScanDirection.LEFT));
+		pbuttonRB.whenPressed(new FindTarget(ScanDirection.RIGHT));
 		
 		//Primary start back buttons	
 		

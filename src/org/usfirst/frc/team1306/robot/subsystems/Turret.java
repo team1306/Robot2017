@@ -3,16 +3,14 @@ package org.usfirst.frc.team1306.robot.subsystems;
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.RobotMap;
 import org.usfirst.frc.team1306.robot.commands.turret.FindTarget;
-
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
-
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * Subsystem that controls the turret and sets it to differen't positions
+ * Subsystem that controls movements of turret with motion magic to rotations or degrees.
  * @author Jackson Goth and Sam Roquitte
  */
 public class Turret extends Subsystem {
@@ -52,8 +50,7 @@ public class Turret extends Subsystem {
 	 * 		Degree measurement
 	 */
 	public double getPosition() {	
-		return ((Constants.TURRET_START_POS - getEncPos()) / 1024) /(Constants.TURRET_GEAR_CONVERSION);
-//		return (Constants.TURRET_START_POS-(getEncPos())) / 4096;//*/(4096/360)*/);
+		return ((Constants.TURRET_START_POS - getEncPos()) / 1024); //TODO Needs Testing
 	}
 	
 	/**
@@ -120,6 +117,6 @@ public class Turret extends Subsystem {
 	
 	@Override
 	protected void initDefaultCommand() {
-		//setDefaultCommand(new FindTarget());
+		setDefaultCommand(new FindTarget());
 	}
 }
