@@ -84,21 +84,6 @@ public class Shooter extends Subsystem {
 //			rightShooterMotor.set(Constants.SHOOTER_RPM_SPEED);
 		}
 	}
-
-	public void spinShooterAlt() {
-		if(Constants.SHOOTER_ENABLED) {
-//			leftShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
-//			rightShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
-//			leftShooterMotor.set(shooterSpeed);
-//			rightShooterMotor.set(shooterSpeed);
-			
-			leftShooterMotor.changeControlMode(TalonControlMode.Speed);
-			rightShooterMotor.changeControlMode(TalonControlMode.Speed);
-			
-			leftShooterMotor.set(Constants.SHOOTER_RPM_SPEED_ALT);
-			rightShooterMotor.set(Constants.SHOOTER_RPM_SPEED_ALT);
-		}
-	}
 	
 	double getIndexError() {
 		return indexerMotor.getError();

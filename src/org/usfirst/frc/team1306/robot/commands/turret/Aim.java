@@ -1,8 +1,6 @@
 package org.usfirst.frc.team1306.robot.commands.turret;
 
 import org.usfirst.frc.team1306.robot.Constants;
-import org.usfirst.frc.team1306.robot.OI;
-import org.usfirst.frc.team1306.robot.OI.controller;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
 /**
@@ -11,11 +9,11 @@ import org.usfirst.frc.team1306.robot.commands.CommandBase;
  */
 public class Aim extends CommandBase {
 	
-	private double turnSpeed;
+	private Direction direction;
 	
 	public Aim(Direction direction) {
 		requires(turret);
-		this.turnSpeed = direction.getSpeed();
+		this.direction = direction;
 	}
 	
 	@Override
@@ -25,19 +23,21 @@ public class Aim extends CommandBase {
 
 	@Override
 	protected void execute() {
-		if(turret.getEncPos() < Constants.TURRET_LEFT_LIMIT && turret.getEncPos() > Constants.TURRET_RIGHT_LIMIT) {
-			turret.setSpeed(turnSpeed);
+		
+		/**
+		 * If the step will stay inside the turret soft limits, it will turn it positive (left) or negative (right) based on driver input
+		 */
+		if(!(Constants.DPAD_TURRET_STEP + turret.getPosition() > Constants.TURRET_RIGHT_ROT_LIMIT) && !(Constants.DPAD_TURRET_STEP + turret.getPosition() < Constants.TURRET_LEFT_ROT_LIMIT)) {
+			if(direction.equals(Direction.LEFT)) {
+				turret.moveRot(Constants.DPAD_TURRET_STEP + turret.getPosition());
+			} else {
+				turret.moveRot(-Constants.DPAD_TURRET_STEP + turret.getPosition());
+			}
 		}
 	}
 
 	@Override
 	protected boolean isFinished() {
-//		if(OI.getButtonVal(controller.s,Constants.AIM_LEFT_BUTTON)) {
-//    		return false;
-//    	} else {
-//    		turret.stopAll();
-//    		return true;
-//    	}
 		return true;
 	}
 

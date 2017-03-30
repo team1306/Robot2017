@@ -20,8 +20,8 @@ import jaci.pathfinder.modifiers.TankModifier;
  */
 public class MotionProfile extends CommandBase {
 
-	public final double max_velocity = 300;//0.30;
-	public final double max_accel = 0.35;
+	public final double max_velocity = 300;//1.0;
+	public final double max_accel = 0.35;//0.75;
 	public int profile;
 	public double desired_heading, gyro_heading, l, r, angleDifference, turn;
 	EncoderFollower left;

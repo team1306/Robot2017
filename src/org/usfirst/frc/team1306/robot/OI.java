@@ -8,10 +8,13 @@ import org.usfirst.frc.team1306.robot.commands.hood.AdjustHood;
 import org.usfirst.frc.team1306.robot.commands.hood.HoodAngle;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
+import org.usfirst.frc.team1306.robot.commands.turret.Aim;
+import org.usfirst.frc.team1306.robot.commands.turret.Direction;
 import org.usfirst.frc.team1306.robot.commands.turret.FindTarget;
 import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
 import org.usfirst.frc.team1306.robot.triggers.DPadDirection;
 import org.usfirst.frc.team1306.robot.triggers.DPadPress;
+
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -86,7 +89,6 @@ public class OI {
 		//Primary ABXY buttons
 		//pbuttonA.whenPressed(new SpinShooter(false));
 		pbuttonX.whenPressed(new SpinIntake(false));
-//		pbuttonB.whenPressed(new TurnTurret(90));
 		
 		//Primary triggers/bumpers
 		pbuttonLB.whenPressed(new FindTarget(ScanDirection.LEFT));
@@ -111,12 +113,11 @@ public class OI {
 		//Secondary start back buttons
 		sbuttonStart.whenPressed(new Climb());
 		//sbuttonBack.whenPressed(new ClimbBack());
-		
-//		sbuttonY.whenPressed(new AdjustHood(HoodAngle.UP));
-//		sbuttonB.whenPressed(new AdjustHood(HoodAngle.DOWN));
+
 		dPadUp.whenActive(new AdjustHood(HoodAngle.UP));
 		dPadDown.whenActive(new AdjustHood(HoodAngle.DOWN));
-		
+		dPadLeft.whenActive(new Aim(Direction.LEFT));
+		dPadRight.whenActive(new Aim(Direction.RIGHT));
 		
 		//Secondary testing
 //		sbuttonRB.whenPressed(new DPadTurret());

@@ -37,15 +37,16 @@ public class SmartDashboardUpdate extends CommandBase {
 	protected void execute() {
 		
 		//Subsystem Positions
-		SmartDashboard.putString("Hood Position",hood.getName());
+//		SmartDashboard.putString("Hood Position",hood.getName());
 		SmartDashboard.putNumber("SD-Turret Position",turret.getEncPos());
+		SmartDashboard.putNumber("SD-Turret Rotations",turret.getPosition());
 		SmartDashboard.putNumber("SD-DLeftPosition",drivetrain.getLeftPosition());
 		SmartDashboard.putNumber("SD-DRightPosition",drivetrain.getRightPosition());
 		SmartDashboard.putNumber("SD-GyroAngle",gyro.getAngle());
-		SmartDashboard.putNumber("SD-temp",gyro.getTemp());
-		SmartDashboard.putNumber("SD-sampleTime",gyro.getLastSampleTime());
+//		SmartDashboard.putNumber("SD-temp",gyro.getTemp());
+//		SmartDashboard.putNumber("SD-sampleTime",gyro.getLastSampleTime());
 		
-		SmartDashboard.putNumber("Yaw",table.getNumber("yaw",0));
+		SmartDashboard.putNumber("SD-Yaw",table.getNumber("yaw",0));
 		
 		//Subsystem Current Draws
 //		SmartDashboard.putNumber("Hopper Draw",panel.getCurrent(2));
@@ -54,12 +55,12 @@ public class SmartDashboardUpdate extends CommandBase {
 //		SmartDashboard.putNumber("Shooter R Draw",panel.getCurrent(5));
 //		SmartDashboard.putNumber("Intake Draw",panel.getCurrent(1));
 //		SmartDashboard.putNumber("Turret Draw",panel.getCurrent(6));
-		SmartDashboard.putNumber("Climber Draw",panel.getCurrent(0) + panel.getCurrent(3));
-
-		SmartDashboard.putNumber("Drive Draw12", panel.getCurrent(12));	//these are drive motors
-		SmartDashboard.putNumber("Drive Draw13", panel.getCurrent(13));
-		SmartDashboard.putNumber("Drive Draw14", panel.getCurrent(14));
-		SmartDashboard.putNumber("Drive Draw15", panel.getCurrent(15));
+//		SmartDashboard.putNumber("Climber Draw",panel.getCurrent(0) + panel.getCurrent(3));
+//
+//		SmartDashboard.putNumber("Drive Draw12", panel.getCurrent(12));	//these are drive motors
+//		SmartDashboard.putNumber("Drive Draw13", panel.getCurrent(13));
+//		SmartDashboard.putNumber("Drive Draw14", panel.getCurrent(14));
+//		SmartDashboard.putNumber("Drive Draw15", panel.getCurrent(15));
 
 		SmartDashboard.putBoolean("Browning Out?: ",HAL.getBrownedOut());
 		

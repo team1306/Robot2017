@@ -88,7 +88,7 @@ public class FindTarget extends CommandBase {
 			
 			//If the desired rotation is ever above or below 90 degrees it won't track
 			if(!(visionAdjustment + turret.getPosition() > Constants.TURRET_RIGHT_ROT_LIMIT) && !(visionAdjustment + turret.getPosition() < Constants.TURRET_LEFT_ROT_LIMIT)) {
-				turret.moveRot((averagedYaw/360)*Constants.TURRET_GEAR_CONVERSION + turret.getPosition());
+				turret.moveRot(visionAdjustment + turret.getPosition());
 			}
 			
 		} else if(scanning) { //If scanning, do nothing...

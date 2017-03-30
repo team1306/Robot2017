@@ -79,7 +79,7 @@ public class Constants {
 	
 	//Turret Constants
 	public final static double MANUAL_TURRET_ROT = 0.5;			//Maxumum rotation value for the turret when in manual mode
-	public final static double DPAD_TURRET_STEP = 0.2;
+	public final static double DPAD_TURRET_STEP = 0.05;
 	public final static double TURRET_TURN_LEFT_SPEED = 0.13;	
 	public final static double TURRET_TURN_RIGHT_SPEED = -0.13;	
 	public final static double TURRET_LEFT_LIMIT = 2750;		
@@ -105,14 +105,5 @@ public class Constants {
 	public final static double I = 0.0; 
 	public final static double D = 0.0;
 	
-	//Vision Constants
-	public final static double LOGITECH_HORIZ_ANGLE = 60; 		//Degrees
-	public final static double LOGITECH_RES_HEIGHT = 600; 		//Pixels
-	public final static double LOGITECH_FOCAL_LENGTH = 0.15748; //Inches (4 mm)
-	public final static double LOGITECH_RES_WIDTH = 800; 		//Pixels
-	public final static double UPPER_TAPE_WIDTH = 4.00; 		//Inches
-	public final static double TOWER_HEIGHT = 88; 				//Inches
-	public final static double DATA_REFRESH_RATE = 0.1;
-	public final static double VISION_YAW_TOLERANCE = 5;
-	public final static String JETSON_IP = "";
+	
 }
