@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class SmartDashboardUpdate extends CommandBase {
 
 	PowerDistributionPanel panel;
-	NetworkTable table;
 	
 	public SmartDashboardUpdate() {
 		requires(hood);
@@ -21,11 +20,6 @@ public class SmartDashboardUpdate extends CommandBase {
 		setRunWhenDisabled(true);
 		
 		panel = new PowerDistributionPanel();
-		
-		NetworkTable.setServerMode();
-		NetworkTable.setTeam(1306);
-		NetworkTable.initialize();
-		table = NetworkTable.getTable("1306");
 	}
 	
 	@Override
@@ -46,7 +40,7 @@ public class SmartDashboardUpdate extends CommandBase {
 //		SmartDashboard.putNumber("SD-temp",gyro.getTemp());
 //		SmartDashboard.putNumber("SD-sampleTime",gyro.getLastSampleTime());
 		
-		SmartDashboard.putNumber("SD-Yaw",table.getNumber("yaw",0));
+		SmartDashboard.putNumber("SD-Yaw",vision.getYaw());
 		
 		//Subsystem Current Draws
 //		SmartDashboard.putNumber("Hopper Draw",panel.getCurrent(2));

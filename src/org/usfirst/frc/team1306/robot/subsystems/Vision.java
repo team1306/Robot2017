@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
  */
 public class Vision extends Subsystem {
 
-	private NetworkTable table;
+	NetworkTable table;
 	
 	public Vision() {
 		

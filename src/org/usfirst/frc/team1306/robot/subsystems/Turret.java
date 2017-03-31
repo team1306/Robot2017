@@ -31,8 +31,8 @@ public class Turret extends Subsystem {
 		turretMotor.setP(5.456);		//0.341 was starting P value, doubled to get to current value
 		turretMotor.setI(0);
 		turretMotor.setD(0);
-		turretMotor.setMotionMagicCruiseVelocity(218.4/4);	// 218 75% of max velocity, may need to be ajusted later
-		turretMotor.setMotionMagicAcceleration(218.4/8);		// 218 1 sec speed up time
+		turretMotor.setMotionMagicCruiseVelocity(218.4);	// 218 75% of max velocity, may need to be ajusted later
+		turretMotor.setMotionMagicAcceleration(218.4);		// 218 1 sec speed up time
 	}
 	
 	/**
@@ -50,7 +50,7 @@ public class Turret extends Subsystem {
 	 * 		Degree measurement
 	 */
 	public double getPosition() {	
-		return ((Constants.TURRET_START_POS - getEncPos()) / 1024); //TODO Needs Testing
+		return ((Constants.TURRET_START_POS - getEncPos()) / 4096); //TODO Needs Testing
 	}
 	
 	/**

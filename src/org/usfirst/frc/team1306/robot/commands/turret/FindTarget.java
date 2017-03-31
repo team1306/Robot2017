@@ -18,7 +18,7 @@ public class FindTarget extends CommandBase {
 	private boolean scanning;
 	private ScanDirection scanDir;
 	private ArrayList<Double> yawList;
-	DigitalOutput leds;
+//	DigitalOutput leds;
 	
 	/**
 	 * Starts looking for the target, while scanning in a given direction
@@ -30,7 +30,7 @@ public class FindTarget extends CommandBase {
 		requires(vision);
 		
 		yawList = new ArrayList<Double>(); //Array used for storing and averaging yaw values from the jetson
-		leds = new DigitalOutput(0); //Vision LEDS
+//		leds = new DigitalOutput(0); //Vision LEDS
 		scanning = true; //If the turret should scan in initialize()
 		scanDir = direction; //The direction the turret should scan in
 	}
@@ -43,7 +43,7 @@ public class FindTarget extends CommandBase {
 		requires(vision);
 		
 		yawList = new ArrayList<Double>(); //Array used for storing and averaging yaw values from the jetson
-		leds = new DigitalOutput(0); //Vision LEDS
+//		leds = new DigitalOutput(0); //Vision LEDS
 		scanning = false; //If the turret should scan in initialize()
 	}
 	
@@ -54,9 +54,9 @@ public class FindTarget extends CommandBase {
 	protected void initialize() {
 		if(scanning) {
 			if(scanDir.equals(ScanDirection.LEFT)) { //If we want to scan left...
-				turret.moveRot(-0.25*Constants.TURRET_GEAR_CONVERSION); //1/4 of a rotation to the left (middle gear) * conversion factor from middle to outer gears
+				turret.moveRot(Constants.TURRET_LEFT_ROT_LIMIT); //1/4 of a rotation to the left (middle gear) * conversion factor from middle to outer gears
 			} else { //Otherwise we scan right...
-				turret.moveRot(0.25*Constants.TURRET_GEAR_CONVERSION); //1/4 of a rotation to the right (middle gear) * conversion factor from middle to outer gears
+				turret.moveRot(Constants.TURRET_RIGHT_ROT_LIMIT); //1/4 of a rotation to the right (middle gear) * conversion factor from middle to outer gears
 			}
 		}
 	}
@@ -84,10 +84,10 @@ public class FindTarget extends CommandBase {
 			averagedYaw = accumulator / yawList.size();
 			
 			//Puts the target yaw in rotations and then multiplies the gear conversion to it
-			double visionAdjustment = (averagedYaw/360) * Constants.TURRET_GEAR_CONVERSION; 
+			visionAdjustment = (averagedYaw/360) * Constants.TURRET_GEAR_CONVERSION; 
 			
 			//If the desired rotation is ever above or below 90 degrees it won't track
-			if(!(visionAdjustment + turret.getPosition() > Constants.TURRET_RIGHT_ROT_LIMIT) && !(visionAdjustment + turret.getPosition() < Constants.TURRET_LEFT_ROT_LIMIT)) {
+			if(visionAdjustment + turret.getPosition() < Constants.TURRET_RIGHT_ROT_LIMIT && visionAdjustment + turret.getPosition() > Constants.TURRET_LEFT_ROT_LIMIT) {
 				turret.moveRot(visionAdjustment + turret.getPosition());
 			}
 			
@@ -101,7 +101,7 @@ public class FindTarget extends CommandBase {
 		SmartDashboard.putNumber("Vision Adjustment",visionAdjustment);
 		SmartDashboard.putNumber("Turret Position",turret.getPosition());
 		
-		leds.set(true); //Light up Vision LEDS
+//		leds.set(true); //Light up Vision LEDS
 	}
 
 	/**
@@ -115,7 +115,7 @@ public class FindTarget extends CommandBase {
 	@Override
 	protected void end() {
 		turret.stopAll();
-		leds.set(false); 
+//		leds.set(false); 
 	}
 
 	@Override
