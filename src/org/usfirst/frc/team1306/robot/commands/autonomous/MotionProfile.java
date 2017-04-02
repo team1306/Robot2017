@@ -19,8 +19,8 @@ import jaci.pathfinder.modifiers.TankModifier;
  */
 public class MotionProfile extends CommandBase {
 
-	public final double max_velocity = 3;//300;
-	public final double max_accel = 0.1;//0.35;
+	public final double max_velocity = 3.57;//300;
+	public final double max_accel = 3;//0.35;
 	public int profile, accumulator;
 	public double desired_heading, gyro_heading, l, r, angleDifference, turn, gyroInit;
 	EncoderFollower left;
@@ -31,7 +31,7 @@ public class MotionProfile extends CommandBase {
 	public MotionProfile(int profile) {
 		requires(drivetrain);
 		requires(gyro);
-		this.profile = profile;
+		this.profile = 1;//profile;
 		angleList = new ArrayList<Double>();
 		timer = new Timer();
 	}
@@ -63,8 +63,8 @@ public class MotionProfile extends CommandBase {
 		left.configureEncoder(drivetrain.getLeftPosition(), 256, 0.1016);
 		right.configureEncoder(-drivetrain.getRightPosition(),256, 0.1016);
 		
-		left.configurePIDVA(Constants.P, Constants.I, Constants.D, 1 / max_velocity, 0);
-		right.configurePIDVA(Constants.P, Constants.I, Constants.D, 1 / max_velocity, 0);
+		left.configurePIDVA(Constants.P, Constants.I, Constants.D, 1 / 4.2, 0);
+		right.configurePIDVA(Constants.P, Constants.I, Constants.D, 1 / 4.2, 0);
 
 	}
 	
@@ -82,7 +82,7 @@ public class MotionProfile extends CommandBase {
 		} else if(profile == 1 || profile == 4) {
 			profileWaypoints = new Waypoint[] {
 				new Waypoint(0,0,0),
-				new Waypoint(13,4.6,Pathfinder.d2r(-60)) //4.6 16.888
+				new Waypoint(1.5,0,Pathfinder.d2r(-60)) //4.6 16.888
 			};
 			return profileWaypoints;
 		} else if(profile == 2 || profile == 5) {
@@ -116,28 +116,30 @@ public class MotionProfile extends CommandBase {
 	@Override
 	protected void execute() {
 		
-		if(profile == 2 || profile == 5 || profile == 1 || profile == 4) {
-			l = left.calculate(-drivetrain.getLeftPosition());
-			r = right.calculate(drivetrain.getRightPosition());
-		} else {
-			l = left.calculate(drivetrain.getLeftPosition());
-			r = right.calculate(-drivetrain.getRightPosition());
-		}
+//		if(profile == 2 || profile == 5 || profile == 1 || profile == 4) {
+//			l = left.calculate(-drivetrain.getLeftPosition());
+//			r = right.calculate(drivetrain.getRightPosition());
+//		} else {
+//			l = left.calculate(drivetrain.getLeftPosition());
+//			r = right.calculate(-drivetrain.getRightPosition());
+//		}
 		
+		l = left.calculate(-drivetrain.getLeftPosition());
+		r = right.calculate(drivetrain.getRightPosition());
 		
-		if(angleList.size() < 10) { //Fills up initial array
-			angleList.add(gyro.getAngle() - gyroInit);
-		} else {
-			angleList.remove(0); //Removes oldest data from list
-			angleList.add(gyro.getAngle() - gyroInit); //Adds newest data to the top of the list
-		}
-		
-		//Finds the average of yawList and puts it in averagedYaw
-		accumulator = 0;
-		for(int i = 0; i < angleList.size(); i++) {
-			accumulator += angleList.get(i);
-		}
-		gyro_heading = accumulator / angleList.size();
+//		if(angleList.size() < 10) { //Fills up initial array
+//			angleList.add(gyro.getAngle() - gyroInit);
+//		} else {
+//			angleList.remove(0); //Removes oldest data from list
+//			angleList.add(gyro.getAngle() - gyroInit); //Adds newest data to the top of the list
+//		}
+//		
+//		//Finds the average of yawList and puts it in averagedYaw
+//		accumulator = 0;
+//		for(int i = 0; i < angleList.size(); i++) {
+//			accumulator += angleList.get(i);
+//		}
+//		gyro_heading = accumulator / angleList.size();
 		
 //		gyro_heading = gyro.getAngle() - gyroInit;
 		SmartDashboard.putNumber("Gyro Angle - non average",gyro.getAngle() - gyroInit);
@@ -149,8 +151,8 @@ public class MotionProfile extends CommandBase {
 		
 		
 		
-		double angleDifference = Pathfinder.boundHalfDegrees(desired_heading - gyro_heading);
-		double turn = .3 * (-1/80.0) * angleDifference;
+//		double angleDifference = Pathfinder.boundHalfDegrees(desired_heading - gyro_heading);
+//		double turn = .3 * (-1/80.0) * angleDifference;
 		
 		
 		
@@ -166,12 +168,15 @@ public class MotionProfile extends CommandBase {
 //		SmartDashboard.putNumber("Left-Speed",l + turn);
 //		SmartDashboard.putNumber("Right-Speed", r - turn);ivetrain.tankDrive(l,r);
 		
-		if(profile == 2 || profile == 5 || profile == 1 || profile == 4) {
-//			drivetrain.tankDrive(-(l + turn),-(r - turn));
-			drivetrain.tankDrive((-l),(-r));
-		} else {
-			drivetrain.tankDrive(l + turn,r - turn);
-		}
+		
+		drivetrain.tankDrive((-l),(-r));
+		
+//		if(profile == 2 || profile == 5 || profile == 1 || profile == 4) {
+////			drivetrain.tankDrive(-(l + turn),-(r - turn));
+//			drivetrain.tankDrive((-l),(-r));
+//		} else {
+//			drivetrain.tankDrive(l + turn,r - turn);
+//		}
 	}
 
 	@Override

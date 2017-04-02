@@ -13,11 +13,13 @@ public class Geartake extends Subsystem {
 	private final DoubleSolenoid gearSolenoid;
 	private final Timer timer;
 	private Spark gearMotor;
+//	private Talon geartalon;
 	
 	public Geartake() {
 		gearSolenoid = new DoubleSolenoid(1,2);
 		timer = new Timer();
 		gearMotor = new Spark(RobotMap.GEAR_SPARK_PORT);
+//		geartalon = new Talon(RobotMap.GEAR_SPARK_PORT);
 	}
 	
 	/**

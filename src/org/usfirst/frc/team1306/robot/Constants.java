@@ -48,7 +48,7 @@ public class Constants {
 	public final static double GEARTAKE_SPEED = 1.0;
 	
 	//Climber Constants
-	public final static double CLIMBER_SPEED = 1.0; //Cart: -0.25 Down, 0.6-0.7 Up
+	public final static double CLIMBER_SPEED = 0.70; //Cart: -0.25 Down, 0.6-0.7 Up
 	public final static double CLIMBER_BACK_SPEED = -0.2;
 	
 	//Intake Constants
@@ -101,7 +101,7 @@ public class Constants {
 	public final static DriveMode DRIVE_MODE = DriveMode.ARCADE;	//Drive modes defined in DriveMode ENUM
 	public final static double SPEED_MODIFIER = 1.0;			//Multiplier of speeds inputed into tankDrive=
 	public final static double F = 0.7494;
-	public final static double P = 0.5;	//0.1  46.5 46 46 45.5 46
+	public final static double P = 0.0;	//0.1  46.5 46 46 45.5 46
 	public final static double I = 0.0; 
 	public final static double D = 0.0;
 	

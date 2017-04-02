@@ -65,7 +65,7 @@ public class AutonomousCommand extends CommandGroup {
 			addSequential(new MotionProfile(station.getGearProfile()));
 			addSequential(new DeployGeartake());
 			addSequential(new SpinGeartake(-Constants.GEARTAKE_SPEED,1));
-			addSequential(new MotionProfile(Constants.MP_FORWARD));
+//			addSequential(new MotionProfile(Constants.MP_FORWARD));
 			addSequential(new DeployIntake());
 
 			//Vision Works
