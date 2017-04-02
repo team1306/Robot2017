@@ -1,10 +1,9 @@
 package org.usfirst.frc.team1306.robot.commands.autonomous;
 
+import java.util.ArrayList;
+
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
-
-import com.kauailabs.navx.frc.AHRS;
-
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -20,19 +19,20 @@ import jaci.pathfinder.modifiers.TankModifier;
  */
 public class MotionProfile extends CommandBase {
 
-	public final double max_velocity = 300;//1.0;
-	public final double max_accel = 0.35;//0.75;
-	public int profile;
-	public double desired_heading, gyro_heading, l, r, angleDifference, turn;
+	public final double max_velocity = 4;//300;
+	public final double max_accel = 1;//0.35;
+	public int profile, accumulator;
+	public double desired_heading, gyro_heading, l, r, angleDifference, turn, gyroInit;
 	EncoderFollower left;
 	EncoderFollower right;
+	private ArrayList<Double> angleList;
 	Timer timer;
 	
 	public MotionProfile(int profile) {
 		requires(drivetrain);
 		requires(gyro);
 		this.profile = profile;
-		
+		angleList = new ArrayList<Double>();
 		timer = new Timer();
 	}
 	
@@ -43,7 +43,7 @@ public class MotionProfile extends CommandBase {
 		timer.start();
 		
 		drivetrain.resetEncoders();
-		//gyro.reset();
+		gyroInit = gyro.getAngle();
 		
 		Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_LOW, 0.05, max_velocity, max_accel, 60.0);
 //		Waypoint[] points = new Waypoint[]	{
@@ -52,7 +52,7 @@ public class MotionProfile extends CommandBase {
 //			//new Waypoint(3,0,0)
 //		};
 		
-		Waypoint[] points = getWaypoints(profile);
+		Waypoint[] points = getWaypoints(1); //TODO profile
 		
 		Trajectory trajectory = Pathfinder.generate(points, config);
 		TankModifier modifier = new TankModifier(trajectory).modify(0.6396); // 0.6096
@@ -82,12 +82,12 @@ public class MotionProfile extends CommandBase {
 		} else if(profile == 1 || profile == 4) {
 			profileWaypoints = new Waypoint[] {
 				new Waypoint(1,0,0),
-				new Waypoint(10,2.5,Pathfinder.d2r(gyro.getAngle() - 60)) //4.6 16.888
+				new Waypoint(13,4.6,Pathfinder.d2r(gyroInit - 60)) //4.6 16.888
 			};
 			return profileWaypoints;
 		} else if(profile == 2 || profile == 5) {
 			profileWaypoints = new Waypoint[] {
-				new Waypoint(1,0,0),
+				new Waypoint(0,0,0),
 				new Waypoint(9.4,0,0) //9.5
 			};
 			return profileWaypoints;
@@ -104,6 +104,8 @@ public class MotionProfile extends CommandBase {
 			};
 			return profileWaypoints;
 		}
+		
+		//15.65
 		
 		/*Waypoint[] profileWaypoints = new Waypoint[] {*/ //7.66666 in per 1 unit  54 to baseline (106 to peg) (robot 31) (75 to 2 gear)
 
@@ -122,15 +124,33 @@ public class MotionProfile extends CommandBase {
 			r = right.calculate(-drivetrain.getRightPosition());
 		}
 		
-		gyro_heading = gyro.getAngle();
+		
+		if(angleList.size() < 10) { //Fills up initial array
+			angleList.add(gyro.getAngle() - gyroInit);
+		} else {
+			angleList.remove(0); //Removes oldest data from list
+			angleList.add(gyro.getAngle() - gyroInit); //Adds newest data to the top of the list
+		}
+		
+		//Finds the average of yawList and puts it in averagedYaw
+		accumulator = 0;
+		for(int i = 0; i < angleList.size(); i++) {
+			accumulator += angleList.get(i);
+		}
+		gyro_heading = accumulator / angleList.size();
+		
+//		gyro_heading = gyro.getAngle() - gyroInit;
+		SmartDashboard.putNumber("Gyro Angle - non average",gyro.getAngle() - gyroInit);
 		SmartDashboard.putNumber("Gyro Angle",gyro_heading);
 		desired_heading = Pathfinder.r2d(left.getHeading());
 		
 		SmartDashboard.putNumber("Gyro-Heading",gyro_heading);
 		SmartDashboard.putNumber("Desired-Heading",desired_heading);
 		
+		
+		
 		double angleDifference = Pathfinder.boundHalfDegrees(desired_heading - gyro_heading);
-		double turn = .0075 * (-1/80.0) * angleDifference;
+		double turn = .3 * (-1/80.0) * angleDifference;
 		
 		
 		
@@ -140,21 +160,15 @@ public class MotionProfile extends CommandBase {
 //			turn = 0.70 * (-1/80.0) * angleDifference;
 //		}
 		
-		//double turn = 0.8 * (-1.0/80.0) * angleDifference; //0.8
-
-//		SmartDashboard.putNumber("Gyro-X",ahrs.getRawGyroX());
-//		SmartDashboard.putNumber("Gyro-Y",ahrs.getRawGyroY());
 		SmartDashboard.putNumber("MP-Left",l);
 		SmartDashboard.putNumber("MP-Right",r);
 		SmartDashboard.putNumber("MP-Turn",turn);
-		SmartDashboard.putNumber("Left-Speed",l + turn);
-		SmartDashboard.putNumber("Right-Speed", r - turn);
-		
-//		drivetrain.tankDrive(l + turn, r - turn);
-//		drivetrain.tankDrive(l,r);
+//		SmartDashboard.putNumber("Left-Speed",l + turn);
+//		SmartDashboard.putNumber("Right-Speed", r - turn);ivetrain.tankDrive(l,r);
 		
 		if(profile == 2 || profile == 5 || profile == 1 || profile == 4) {
-			drivetrain.tankDrive(-(l + turn),-(r - turn));
+//			drivetrain.tankDrive(-(l + turn),-(r - turn));
+			drivetrain.tankDrive((-l),(-r));
 		} else {
 			drivetrain.tankDrive(l + turn,r - turn);
 		}

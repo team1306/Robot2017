@@ -48,7 +48,7 @@ public class Constants {
 	public final static double GEARTAKE_SPEED = 1.0;
 	
 	//Climber Constants
-	public final static double CLIMBER_SPEED = 1.0;
+	public final static double CLIMBER_SPEED = 1.0; //Cart: -0.25 Down, 0.6-0.7 Up
 	public final static double CLIMBER_BACK_SPEED = -0.2;
 	
 	//Intake Constants
@@ -89,8 +89,8 @@ public class Constants {
 	public final static double TURRET_RECOVERY_TIME = 0.5;
 	public final static double YAW_DEADBAND = 2.5;
 	public final static double TURRET_GEAR_CONVERSION = 1.88888889; 		//72, 136 (136/72) Conversion turret rotations into gear rotations TODO Calculate this value with the gear tooth ratio
-	public final static double TURRET_RIGHT_ROT_LIMIT = 0.5;
-	public final static double TURRET_LEFT_ROT_LIMIT = -0.5;
+	public final static double TURRET_RIGHT_ROT_LIMIT = 0.25;
+	public final static double TURRET_LEFT_ROT_LIMIT = -0.25;
 	public final static double TURRET_START_POS = 780;
 	public final static double RED_TWO_SETPOINT = 0.0;
 	public final static double BLUE_TWO_SETPOINT = 0.0;
@@ -101,7 +101,7 @@ public class Constants {
 	public final static DriveMode DRIVE_MODE = DriveMode.ARCADE;	//Drive modes defined in DriveMode ENUM
 	public final static double SPEED_MODIFIER = 1.0;			//Multiplier of speeds inputed into tankDrive=
 	public final static double F = 0.7494;
-	public final static double P = 0.45;	//0.1  46.5 46 46 45.5 46
+	public final static double P = 0.5;	//0.1  46.5 46 46 45.5 46
 	public final static double I = 0.0; 
 	public final static double D = 0.0;
 	

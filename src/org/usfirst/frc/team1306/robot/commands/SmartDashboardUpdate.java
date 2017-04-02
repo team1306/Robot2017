@@ -1,8 +1,10 @@
 package org.usfirst.frc.team1306.robot.commands;
 
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.hal.HAL;
-import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -14,9 +16,6 @@ public class SmartDashboardUpdate extends CommandBase {
 	PowerDistributionPanel panel;
 	
 	public SmartDashboardUpdate() {
-		requires(hood);
-		requires(gyro);
-		
 		setRunWhenDisabled(true);
 		
 		panel = new PowerDistributionPanel();
@@ -24,7 +23,6 @@ public class SmartDashboardUpdate extends CommandBase {
 	
 	@Override
 	protected void initialize() {
-		
 	}
 
 	@Override
@@ -39,8 +37,9 @@ public class SmartDashboardUpdate extends CommandBase {
 		SmartDashboard.putNumber("SD-GyroAngle",gyro.getAngle());
 //		SmartDashboard.putNumber("SD-temp",gyro.getTemp());
 //		SmartDashboard.putNumber("SD-sampleTime",gyro.getLastSampleTime());
-		
 		SmartDashboard.putNumber("SD-Yaw",vision.getYaw());
+		SmartDashboard.putNumber("SD-Dist",vision.getDist());
+		SmartDashboard.putNumber("SD-Angle",vision.getAngle());
 		
 		//Subsystem Current Draws
 //		SmartDashboard.putNumber("Hopper Draw",panel.getCurrent(2));

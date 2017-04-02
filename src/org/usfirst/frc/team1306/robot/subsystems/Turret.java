@@ -50,7 +50,7 @@ public class Turret extends Subsystem {
 	 * 		Degree measurement
 	 */
 	public double getPosition() {	
-		return ((Constants.TURRET_START_POS - getEncPos()) / 4096); //TODO Needs Testing
+		return ((Constants.TURRET_START_POS - getEncPos()) / 4096) / Constants.TURRET_GEAR_CONVERSION; //TODO Needs Testing
 	}
 	
 	/**

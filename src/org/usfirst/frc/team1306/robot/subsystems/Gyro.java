@@ -9,11 +9,11 @@ public class Gyro extends Subsystem {
 	
 	public Gyro() {
 		imu = new ADIS16448_IMU();
-		//imu.reset();
+//		imu.reset();
 	}
 
 	public void reset() {
-		//imu.reset();
+		imu.reset();
 	}
 	
 	public double getAngle() {

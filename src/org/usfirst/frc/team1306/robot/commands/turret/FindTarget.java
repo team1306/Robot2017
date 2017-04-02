@@ -1,9 +1,11 @@
 package org.usfirst.frc.team1306.robot.commands.turret;
 
 import java.util.ArrayList;
+
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
-import edu.wpi.first.wpilibj.DigitalOutput;
+
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -18,6 +20,7 @@ public class FindTarget extends CommandBase {
 	private boolean scanning;
 	private ScanDirection scanDir;
 	private ArrayList<Double> yawList;
+	Timer timer;
 //	DigitalOutput leds;
 	
 	/**
@@ -33,6 +36,7 @@ public class FindTarget extends CommandBase {
 //		leds = new DigitalOutput(0); //Vision LEDS
 		scanning = true; //If the turret should scan in initialize()
 		scanDir = direction; //The direction the turret should scan in
+		timer = new Timer();
 	}
 	
 	/**
@@ -45,6 +49,7 @@ public class FindTarget extends CommandBase {
 		yawList = new ArrayList<Double>(); //Array used for storing and averaging yaw values from the jetson
 //		leds = new DigitalOutput(0); //Vision LEDS
 		scanning = false; //If the turret should scan in initialize()
+		timer = new Timer();
 	}
 	
 	/**
@@ -54,11 +59,14 @@ public class FindTarget extends CommandBase {
 	protected void initialize() {
 		if(scanning) {
 			if(scanDir.equals(ScanDirection.LEFT)) { //If we want to scan left...
-				turret.moveRot(Constants.TURRET_LEFT_ROT_LIMIT); //1/4 of a rotation to the left (middle gear) * conversion factor from middle to outer gears
+				turret.moveRot(Constants.TURRET_LEFT_ROT_LIMIT * Constants.TURRET_GEAR_CONVERSION); //1/4 of a rotation to the left (middle gear) * conversion factor from middle to outer gears
 			} else { //Otherwise we scan right...
-				turret.moveRot(Constants.TURRET_RIGHT_ROT_LIMIT); //1/4 of a rotation to the right (middle gear) * conversion factor from middle to outer gears
+				turret.moveRot(Constants.TURRET_RIGHT_ROT_LIMIT * Constants.TURRET_GEAR_CONVERSION); //1/4 of a rotation to the right (middle gear) * conversion factor from middle to outer gears
 			}
 		}
+		
+		timer.reset();
+		timer.start();
 	}
 
 	/**
@@ -88,6 +96,11 @@ public class FindTarget extends CommandBase {
 			
 			//If the desired rotation is ever above or below 90 degrees it won't track
 			if(visionAdjustment + turret.getPosition() < Constants.TURRET_RIGHT_ROT_LIMIT && visionAdjustment + turret.getPosition() > Constants.TURRET_LEFT_ROT_LIMIT) {
+//				if(timer.hasPeriodPassed(Constants.TURRET_RECOVERY_TIME)) {
+//					timer.reset();
+//					timer.start();
+//					turret.moveRot(visionAdjustment + turret.getPosition());
+//				}
 				turret.moveRot(visionAdjustment + turret.getPosition());
 			}
 			

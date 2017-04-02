@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class TurnTurret extends CommandBase {
 
-	double rotations;
+	private double rotations;
 	
 	public TurnTurret(double rotations) {
 		requires(turret);
@@ -32,7 +32,7 @@ public class TurnTurret extends CommandBase {
 //    	}
     	//turret.moveRot(rotations);
     	//SmartDashboard.putNumber("rotations",rotations);
-    	turret.moveDeg(rotations);
+    	turret.moveRot(rotations);
     }
 
     protected boolean isFinished() {
@@ -46,7 +46,7 @@ public class TurnTurret extends CommandBase {
 //    		return false;
 //    	}
     	
-    	return false;
+    	return true;
     }
     
     protected void end() {
