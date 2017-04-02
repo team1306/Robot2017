@@ -19,8 +19,8 @@ import jaci.pathfinder.modifiers.TankModifier;
  */
 public class MotionProfile extends CommandBase {
 
-	public final double max_velocity = 4;//300;
-	public final double max_accel = 1;//0.35;
+	public final double max_velocity = 3;//300;
+	public final double max_accel = 0.1;//0.35;
 	public int profile, accumulator;
 	public double desired_heading, gyro_heading, l, r, angleDifference, turn, gyroInit;
 	EncoderFollower left;
@@ -42,10 +42,10 @@ public class MotionProfile extends CommandBase {
 		timer.reset();
 		timer.start();
 		
-		drivetrain.resetEncoders();
+//		drivetrain.resetEncoders();
 		gyroInit = gyro.getAngle();
 		
-		Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_LOW, 0.05, max_velocity, max_accel, 60.0);
+		Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_FAST, 0.05, max_velocity, max_accel, 60.0);
 //		Waypoint[] points = new Waypoint[]	{
 //			new Waypoint(1,0,initAngle),
 //			new Waypoint(2,0,initAngle),
@@ -81,8 +81,8 @@ public class MotionProfile extends CommandBase {
 			return profileWaypoints;
 		} else if(profile == 1 || profile == 4) {
 			profileWaypoints = new Waypoint[] {
-				new Waypoint(1,0,0),
-				new Waypoint(13,4.6,Pathfinder.d2r(gyroInit - 60)) //4.6 16.888
+				new Waypoint(0,0,0),
+				new Waypoint(13,4.6,Pathfinder.d2r(-60)) //4.6 16.888
 			};
 			return profileWaypoints;
 		} else if(profile == 2 || profile == 5) {
