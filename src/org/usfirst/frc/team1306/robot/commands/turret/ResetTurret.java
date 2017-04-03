@@ -21,12 +21,10 @@ public class ResetTurret extends CommandBase{
 	@Override
 	protected void execute() {
 		turret.moveRot(Constants.TURRET_RESET_POSITION);
-		//new TurnTurret(Constants.TURRET_RESET_POSITION).start();
 	}
 
 	@Override
 	protected boolean isFinished() {
-		//new FindTarget().start();
 		return true;
 	}
 

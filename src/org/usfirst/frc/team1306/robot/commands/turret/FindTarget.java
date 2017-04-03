@@ -1,10 +1,8 @@
 package org.usfirst.frc.team1306.robot.commands.turret;
 
 import java.util.ArrayList;
-
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
-
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -107,7 +105,7 @@ public class FindTarget extends CommandBase {
 		} else if(scanning) { //If scanning, do nothing...
 			
 		} else { //Snapping back to the center.
-			//turret.moveRot(0); TODO: Re-Implement
+			//turret.moveRot(0); TODO: Decide if useful or not
 		}
 		
 		SmartDashboard.putNumber("Averaged Yaw",averagedYaw);
