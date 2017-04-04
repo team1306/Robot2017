@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1306.robot;
 
+import org.usfirst.frc.team1306.robot.commands.autonomous.TimedDrive;
 import org.usfirst.frc.team1306.robot.commands.climber.Climb;
 import org.usfirst.frc.team1306.robot.commands.geartake.DeployGeartake;
 import org.usfirst.frc.team1306.robot.commands.geartake.RetractGeartake;
@@ -91,6 +92,7 @@ public class OI {
 		pbuttonA.whenPressed(new SpinShooter(true));
 		pbuttonX.whenPressed(new SpinIntake(false));
 		pbuttonB.whenPressed(new ResetTurret());
+		pbuttonY.whenPressed(new TimedDrive(-0.3,2.5));
 		
 		//Primary triggers/bumpers
 		pbuttonLB.whenPressed(new FindTarget(ScanDirection.LEFT));
