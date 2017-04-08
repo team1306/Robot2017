@@ -14,6 +14,7 @@ import org.usfirst.frc.team1306.robot.commands.turret.Direction;
 import org.usfirst.frc.team1306.robot.commands.turret.FindTarget;
 import org.usfirst.frc.team1306.robot.commands.turret.ResetTurret;
 import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
+import org.usfirst.frc.team1306.robot.commands.turret.TurnTurretPID;
 import org.usfirst.frc.team1306.robot.triggers.DPadDirection;
 import org.usfirst.frc.team1306.robot.triggers.DPadPress;
 
@@ -92,7 +93,8 @@ public class OI {
 		pbuttonA.whenPressed(new SpinShooter(true));
 		pbuttonX.whenPressed(new SpinIntake(false));
 		pbuttonB.whenPressed(new ResetTurret());
-		pbuttonY.whenPressed(new TimedDrive(-0.3,2.5));
+		pbuttonY.whenPressed(new TurnTurretPID());
+//		pbuttonY.whenPressed(new TimedDrive(-0.3,2.85));
 		
 		//Primary triggers/bumpers
 		pbuttonLB.whenPressed(new FindTarget(ScanDirection.LEFT));
@@ -270,7 +272,7 @@ public class OI {
 		return returnVal;
 	}
 	
-	/**
+	/**.
 	 * Returns the value of a specified button on a controller
 	 * @param controller
 	 * 		The controller that you would like to read from (p or s)

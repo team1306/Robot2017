@@ -8,9 +8,10 @@ public enum AutoMode {
 	
 	HOPPER_GEAR(0), //Places a gear, and then if close to the boiler it will empty the nearest hopper into it
 	GEAR(1), //Will place a gear in all six positions
-	TEN_KPA(2), //Will only shoot the 10 balls
-	BASELINE(3),
-	BLANK(4); //Will do nothing
+	HOPPER(2),
+	TEN_KPA(3), //Will only shoot the 10 balls
+	BASELINE(4),
+	BLANK(5); //Will do nothing
 	
 	
 	private final int routine;

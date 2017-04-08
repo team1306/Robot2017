@@ -52,10 +52,15 @@ public class Robot extends IterativeRobot {
 //        chooser.addObject("Do Nothing", new AutonomousCommand(alliance,station,AutoMode.BLANK));
         
         chooser.addObject("Baseline", new AutonomousCommand(Alliance.Red,1,AutoMode.BASELINE));
-        chooser.addObject("Red Middle",new AutonomousCommand(Alliance.Red,2,AutoMode.GEAR));
-        chooser.addObject("Blue Middle", new AutonomousCommand(Alliance.Blue,2,AutoMode.GEAR));
+        chooser.addObject("Middle", new AutonomousCommand(Alliance.Red,2,AutoMode.GEAR));
+        chooser.addObject("Left Gear - Blue", new AutonomousCommand(Alliance.Blue,1,AutoMode.GEAR));
+        chooser.addObject("Left Gear - Red", new AutonomousCommand(Alliance.Red,1,AutoMode.GEAR));
+        chooser.addObject("Right Gear - Blue", new AutonomousCommand(Alliance.Blue,3,AutoMode.GEAR));
+        chooser.addObject("Right Gear - Red", new AutonomousCommand(Alliance.Red,3,AutoMode.GEAR));
+        chooser.addObject("Hopper - Blue", new AutonomousCommand(Alliance.Blue,1,AutoMode.HOPPER));
+        chooser.addObject("Hopper - Red", new AutonomousCommand(Alliance.Red,3,AutoMode.HOPPER));
         chooser.addObject("Do Nothing", new AutonomousCommand(Alliance.Red,1,AutoMode.BLANK));
-        chooser.addDefault("default", new AutonomousCommand(Alliance.Red,1,AutoMode.BLANK));
+        chooser.addDefault("Default - Blank", new AutonomousCommand(Alliance.Red,1,AutoMode.BLANK));
         SmartDashboard.putData("Auto mode", chooser);
     	
     	new SmartDashboardUpdate().start(); //Starts Running SmartDashboardUpdate
@@ -80,9 +85,9 @@ public class Robot extends IterativeRobot {
 	 */
     public void autonomousInit() {
     	
-    	autonomousCommand = (Command) chooser.getSelected();
+//    	autonomousCommand = (Command) chooser.getSelected();
     	
-//    	autonomousCommand = new AutonomousCommand(Alliance.Red,2,AutoMode.GEAR);
+    	autonomousCommand = new AutonomousCommand(Alliance.Red,2,AutoMode.GEAR);
     	
         if (autonomousCommand != null) {
         	autonomousCommand.start();

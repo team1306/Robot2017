@@ -69,13 +69,15 @@ public class TimedDrive extends CommandBase {
 		for(int i = 0; i < angleList.size(); i++) {
 			accumulator += angleList.get(i);
 		}
+		
+//		gyroDeviation = gyro.getAngle() - gyroInit;
 		gyroDeviation = accumulator / angleList.size();
-		double turn = .2 * (-1/80.0) * gyroDeviation;
+		double turn = 0;//-0.005 * gyroDeviation;
 		
 		SmartDashboard.putNumber("Gyro-Deviation",gyroDeviation);
 		SmartDashboard.putNumber("Timed-Turn",turn);
 		
-		drivetrain.tankDrive(throttle + turn, throttle - turn);
+		drivetrain.tankDrive(throttle - turn, throttle + turn);
 	}
 
 	/**

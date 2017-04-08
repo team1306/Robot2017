@@ -32,39 +32,16 @@ public class AutonomousCommand extends CommandGroup {
 		
 		Station station = getStation(alliance,position);
 		
-		if(routine.equals(AutoMode.HOPPER_GEAR)) {
-			
-			if(station.equals(Station.RED_THREE)) {
-				addSequential(new MotionProfile(Constants.MP_HOPPER_RED));
-				
-				//Vision Works
-				addSequential(new FindTarget(ScanDirection.RIGHT));
-				
-				//Vision Doesn't Work
-				addSequential(new TurnTurret(Constants.RED_HOPPER_SETPOINT));
-				
-				addSequential(new SpinShooter(Constants.SHOOT_TIME));
-			} else if(station.equals(Station.BLUE_ONE)) {
-				addSequential(new MotionProfile(Constants.MP_HOPPER_RED));
-				
-				//Vision Works
-				addSequential(new FindTarget(ScanDirection.LEFT));
-				
-				//Vision Doesn't Work
-				addSequential(new TurnTurret(Constants.BLUE_HOPPER_SETPOINT));
-				
-				addSequential(new SpinShooter(Constants.SHOOT_TIME));
-			} else {
-				addSequential(new MotionProfile(station.getGearProfile()));
-				addSequential(new RetractGeartake());
-				addSequential(new MotionProfile(Constants.MP_FORWARD));
-			}
-			
+		if(routine.equals(AutoMode.HOPPER_GEAR)) {			
+			//TODO Possible auto routine for later
 		} else if(routine.equals(AutoMode.GEAR)) {
 			
-			addSequential(new MotionProfile(station.getGearProfile()));
+//			addSequential(new MotionProfile(station.getGearProfile()));
+			
+			addSequential(new TimedDrive(-0.3,2.50));
 			addSequential(new DeployGeartake());
 			addSequential(new SpinGeartake(-Constants.GEARTAKE_SPEED,1));
+			addSequential(new TimedDrive(0.3,1));
 //			addSequential(new MotionProfile(Constants.MP_FORWARD));
 			addSequential(new DeployIntake());
 

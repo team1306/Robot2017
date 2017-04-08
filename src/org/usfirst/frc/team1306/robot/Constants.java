@@ -91,7 +91,7 @@ public class Constants {
 	public final static double TURRET_GEAR_CONVERSION = 1.88888889; 		//72, 136 (136/72) Conversion turret rotations into gear rotations TODO Calculate this value with the gear tooth ratio
 	public final static double TURRET_RIGHT_ROT_LIMIT = 0.25;
 	public final static double TURRET_LEFT_ROT_LIMIT = -0.25;
-	public final static double TURRET_START_POS = 780;
+	public final static double TURRET_START_POS = 1655;
 	public final static double RED_TWO_SETPOINT = 0.0;
 	public final static double BLUE_TWO_SETPOINT = 0.0;
 	public final static double RED_HOPPER_SETPOINT = 0.0;
