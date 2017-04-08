@@ -65,6 +65,10 @@ public class SmartDashboardUpdate extends CommandBase {
 		SmartDashboard.putNumber("SD-RShooterVel",Math.abs(shooter.getVel(1)));
 		SmartDashboard.putNumber("SD-IndexerVel",Math.abs(shooter.getVel(2)));
 //		SmartDashboard.putNumber("Index error",Math.abs(shooter.getIndexError()));
+		
+		SmartDashboard.putNumber("PID Tune Turret", turret.getEncVel());
+		SmartDashboard.putNumber("PID Tune Turret Voltage", turret.getOutputVoltage());
+		SmartDashboard.putNumber("PID Tune Turret Error", turret.getError());		
 	}
 
 	@Override

@@ -29,11 +29,12 @@ public class TurnTurretPID extends CommandBase {
     }
 
     protected boolean isFinished() {
-		if (OI.getButtonVal(controller.p,XboxController.Y)) {
-			return false;
-		} else {
-			return true;
-		}
+//		if (OI.getButtonVal(controller.p,XboxController.Y)) {
+//			return false;
+//		} else {
+//			return true;
+//		}
+    	return true;
     }
     
     protected void end() {
