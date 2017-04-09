@@ -28,7 +28,7 @@ public class Turret extends Subsystem {
 		//turretMotor.reverseSensor(false);
 		turretMotor.setProfile(0);
 		turretMotor.setF(0.494);		//Max velocity=291.2RPM 1023/1988 (1988 mag encoder native units in web interface), new is 2071
-		turretMotor.setP(0.420);		//0.341 was starting P value, doubled to get to current value  5.456
+		turretMotor.setP(0.210);		//0.341 was starting P value, doubled to get to current value  5.456
 		turretMotor.setI(0);
 		turretMotor.setD(0);
 		turretMotor.setMotionMagicCruiseVelocity(303*0.75);	// 218 75% of max velocity, may need to be ajusted later
@@ -126,7 +126,7 @@ public class Turret extends Subsystem {
 	public void movePIDTune() {
 		if (Constants.TURRET_ENABLED) {
 			turretMotor.changeControlMode(TalonControlMode.MotionMagic);
-			turretMotor.set(0.5);
+			turretMotor.set(0.016*(Constants.TURRET_GEAR_CONVERSION));
 		}
 	}
 	
@@ -134,11 +134,11 @@ public class Turret extends Subsystem {
 	 * Stops the turret
 	 */
 	public void stopAll() {
-		//turretMotor.set(0.0);
+		turretMotor.set(0.0);
 	}
 	
 	@Override
 	protected void initDefaultCommand() {
-		//setDefaultCommand(new FindTarget());
+		setDefaultCommand(new FindTarget());
 	}
 }
