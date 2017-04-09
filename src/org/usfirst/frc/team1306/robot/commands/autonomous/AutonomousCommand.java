@@ -29,7 +29,7 @@ public class AutonomousCommand extends CommandGroup {
 	 * 		Which autonomous routine should the robot run?
 	 */
 	public AutonomousCommand(Alliance alliance, int position, AutoMode routine) {
-		
+	
 		Station station = getStation(alliance,position);
 		
 		if(routine.equals(AutoMode.HOPPER_GEAR)) {			
@@ -67,14 +67,14 @@ public class AutonomousCommand extends CommandGroup {
 		} else if(routine.equals(AutoMode.TEN_KPA)) {
 			
 			//Vision Works
-			if(alliance.equals(Alliance.Red)) {
-				addSequential(new FindTarget(ScanDirection.RIGHT));
-			} else if(alliance.equals(Alliance.Blue)) {
-				addSequential(new FindTarget(ScanDirection.LEFT));
-			}
-			
-			addSequential(new SpinShooter(Constants.SHOOT_TIME));
-			addSequential(new MotionProfile(Constants.MP_BASELINE));
+//			if(alliance.equals(Alliance.Red)) {
+//				addSequential(new FindTarget(ScanDirection.RIGHT));
+//			} else if(alliance.equals(Alliance.Blue)) {
+//				addSequential(new FindTarget(ScanDirection.LEFT));
+//			}
+			addSequential(new TurnTurret(getRot(station)));
+			addSequential(new SpinShooter(Constants.SHOOT_TIME,Constants.SHOOTER_RPM_SPEED));
+			addSequential(new TimedDrive(-0.3,2.1));
 			
 		} else if(routine.equals(AutoMode.BASELINE)) {
 			addSequential(new MotionProfile(Constants.MP_BASELINE));
@@ -108,6 +108,20 @@ public class AutonomousCommand extends CommandGroup {
 				SmartDashboard.putString("Station:","BLUE_THREE");
 				return Station.BLUE_THREE;
 			}
+		}
+	}
+
+	private double getRot(Station station) {
+		if(station.equals(Station.BLUE_ONE)) {
+			return Constants.BLUE_ONE_ROT;
+		} else if(station.equals(Station.BLUE_THREE)) {
+			return Constants.BLUE_THREE_ROT;
+		} else if(station.equals(Station.RED_ONE)) {
+			return Constants.RED_ONE_ROT;
+		} else if(station.equals(Station.RED_THREE)) {
+			return Constants.RED_THREE_ROT;
+		} else {
+			return 0;
 		}
 	}
 }

@@ -32,6 +32,10 @@ public class Constants {
 	
 	//Autonomous Constants
 	public final static double SHOOT_TIME = 10.0;
+	public final static double RED_ONE_ROT = 0;
+	public final static double RED_THREE_ROT= 0;
+	public final static double BLUE_ONE_ROT = 0;
+	public final static double BLUE_THREE_ROT = 0;
 	public final static int MP_BASELINE = 0;
 	public final static int MP_GEAR_RED_ONE = 1;
 	public final static int MP_GEAR_RED_TWO= 2;
@@ -63,8 +67,9 @@ public class Constants {
 	
 	//Shooter Constants
 	public final static double SHOOTER_SPEED = 0.78;
-	public final static double SHOOTER_RPM_SPEED = 100;		//Shooter speed in RPM (default:3000) 3800
-	public final static double INDEXER_RPM_SPEED = 2300;		//Shooter speed in RPM (default:2000) 4500 2700 2700
+	//Bump Up
+	public final static double SHOOTER_RPM_SPEED = 2600;		//Shooter speed in RPM (default:3000) Bump-Up: 2800 Peg: 3350 Close-Hopper: 2770
+	public final static double INDEXER_RPM_SPEED = 2525;		//Shooter speed in RPM (default:2000) Bump-Up: 2650 Peg: 3200 Close-Hopper: 2640
 	public final static int SHOOTER_SPIN_UP_TIME = 1;			//Time to let shooters spin up before turning on hopper and indexers
 	public final static int SHOOTER_BANG_RANGE = 240;			//If shooter speed is below this number, bang bang will kick in
 	public final static double SHOOTER_BANG_CEILING = 1.0;		//Speed bang bang uses when below desired speed

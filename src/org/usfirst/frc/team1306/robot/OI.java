@@ -1,6 +1,5 @@
 package org.usfirst.frc.team1306.robot;
 
-import org.usfirst.frc.team1306.robot.commands.autonomous.TimedDrive;
 import org.usfirst.frc.team1306.robot.commands.climber.Climb;
 import org.usfirst.frc.team1306.robot.commands.geartake.DeployGeartake;
 import org.usfirst.frc.team1306.robot.commands.geartake.RetractGeartake;
@@ -14,7 +13,7 @@ import org.usfirst.frc.team1306.robot.commands.turret.Direction;
 import org.usfirst.frc.team1306.robot.commands.turret.FindTarget;
 import org.usfirst.frc.team1306.robot.commands.turret.ResetTurret;
 import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
-import org.usfirst.frc.team1306.robot.commands.turret.TurnTurretPID;
+import org.usfirst.frc.team1306.robot.commands.turret.TurnTurret;
 import org.usfirst.frc.team1306.robot.triggers.DPadDirection;
 import org.usfirst.frc.team1306.robot.triggers.DPadPress;
 
@@ -90,10 +89,11 @@ public class OI {
 		dPadDown = new DPadPress(secondaryController, DPadDirection.DOWN);
 		
 		//Primary ABXY buttons
-		pbuttonA.whenPressed(new SpinShooter(true));
+		pbuttonA.toggleWhenPressed(new SpinShooter(true,Constants.SHOOTER_RPM_SPEED));
 		pbuttonX.whenPressed(new SpinIntake(false));
 		pbuttonB.whenPressed(new ResetTurret());
-		pbuttonY.whenPressed(new TurnTurretPID());
+		pbuttonY.whenPressed(new TurnTurret(0));
+//		pbuttonY.whenPressed(new TurnTurretPID());
 //		pbuttonY.whenPressed(new TimedDrive(-0.3,2.85));
 		
 		//Primary triggers/bumpers
@@ -107,7 +107,7 @@ public class OI {
 //		sbuttonRB.whenPressed(new Aim(Direction.RIGHT));	
 		
 		//Secondary ABXY buttons
-		sbuttonA.toggleWhenPressed(new SpinShooter(false));
+		sbuttonA.whenPressed(new SpinShooter(false,Constants.SHOOTER_RPM_SPEED));
 		sbuttonY.whenPressed(new RetractGeartake());
 		sbuttonX.toggleWhenPressed(new SpinIntake(true));
 		sbuttonB.whenPressed(new DeployGeartake());

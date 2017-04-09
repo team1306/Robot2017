@@ -8,6 +8,7 @@ import com.ctre.CANTalon.TalonControlMode;
 import com.ctre.CANTalon.VelocityMeasurementPeriod;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This controls the shooter and rate at which balls are shot
@@ -29,59 +30,60 @@ public class Shooter extends Subsystem {
 		indexerMotor = new CANTalon(RobotMap.INDEXER_TALON_PORT);
 		indexerMotor.enable();
 		
-//		leftShooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-//		leftShooterMotor.configEncoderCodesPerRev(12);
-//		leftShooterMotor.reverseSensor(true);
-//		leftShooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
-//		leftShooterMotor.configPeakOutputVoltage(+12.0f, 0.0f);
-//		leftShooterMotor.SetVelocityMeasurementPeriod(VelocityMeasurementPeriod.Period_10Ms);
-//		leftShooterMotor.SetVelocityMeasurementWindow(20);
-//		leftShooterMotor.setF(Constants.SHOOTER_F);
-//		leftShooterMotor.setP(Constants.SHOOTER_P);
-//		leftShooterMotor.setI(Constants.SHOOTER_I);
-//		leftShooterMotor.setD(Constants.SHOOTER_D);
-//		
-//		rightShooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-//		rightShooterMotor.configEncoderCodesPerRev(12);
-//		rightShooterMotor.reverseSensor(false);
-//		rightShooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
-//		rightShooterMotor.configPeakOutputVoltage(+12.0f, 0.0f);
-//		rightShooterMotor.SetVelocityMeasurementPeriod(VelocityMeasurementPeriod.Period_10Ms);
-//		rightShooterMotor.SetVelocityMeasurementWindow(20);
-//		rightShooterMotor.setF(Constants.SHOOTER_F);
-//		rightShooterMotor.setP(Constants.SHOOTER_P);
-//		rightShooterMotor.setI(Constants.SHOOTER_I);
-//		rightShooterMotor.setD(Constants.SHOOTER_D);
-//		
-//		indexerMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
-//		indexerMotor.reverseSensor(false);
-//		indexerMotor.configNominalOutputVoltage(+0.0f, -0.0f);
-//		indexerMotor.configPeakOutputVoltage(+12.0f, -12.0f);
-//		rightShooterMotor.SetVelocityMeasurementPeriod(VelocityMeasurementPeriod.Period_10Ms);
-//		rightShooterMotor.SetVelocityMeasurementWindow(20);
-//		indexerMotor.setF(Constants.INDEXER_F);
-//		indexerMotor.setP(Constants.INDEXER_P);
-//		indexerMotor.setI(Constants.INDEXER_I);
-//		indexerMotor.setD(Constants.INDEXER_D);
+		leftShooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		leftShooterMotor.configEncoderCodesPerRev(12);
+		leftShooterMotor.reverseSensor(false);
+		leftShooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
+		leftShooterMotor.configPeakOutputVoltage(+12.0f, 0.0f);
+		leftShooterMotor.SetVelocityMeasurementPeriod(VelocityMeasurementPeriod.Period_10Ms);
+		leftShooterMotor.SetVelocityMeasurementWindow(20);
+		leftShooterMotor.setF(Constants.SHOOTER_F);
+		leftShooterMotor.setP(Constants.SHOOTER_P);
+		leftShooterMotor.setI(Constants.SHOOTER_I);
+		leftShooterMotor.setD(Constants.SHOOTER_D);
+		
+		rightShooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		rightShooterMotor.configEncoderCodesPerRev(12);
+		rightShooterMotor.reverseSensor(true);
+		rightShooterMotor.configNominalOutputVoltage(+0.0f, -0.0f);
+		rightShooterMotor.configPeakOutputVoltage(+12.0f, 0.0f);
+		rightShooterMotor.SetVelocityMeasurementPeriod(VelocityMeasurementPeriod.Period_10Ms);
+		rightShooterMotor.SetVelocityMeasurementWindow(20);
+		rightShooterMotor.setF(Constants.SHOOTER_F);
+		rightShooterMotor.setP(Constants.SHOOTER_P);
+		rightShooterMotor.setI(Constants.SHOOTER_I);
+		rightShooterMotor.setD(Constants.SHOOTER_D);
+		
+		indexerMotor.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		indexerMotor.reverseSensor(true);
+		indexerMotor.configNominalOutputVoltage(+0.0f, -0.0f);
+		indexerMotor.configPeakOutputVoltage(+12.0f, -12.0f);
+		rightShooterMotor.SetVelocityMeasurementPeriod(VelocityMeasurementPeriod.Period_10Ms);
+		rightShooterMotor.SetVelocityMeasurementWindow(20);
+		indexerMotor.setF(Constants.INDEXER_F);
+		indexerMotor.setP(Constants.INDEXER_P);
+		indexerMotor.setI(Constants.INDEXER_I);
+		indexerMotor.setD(Constants.INDEXER_D);
 	}
 	
 	/**
 	 * Spins shooter forward (shooting fuel out)
 	 */
-	public void spinShooter() {
+	public void spinShooter(double rpm) {
+		SmartDashboard.putNumber("Shooter Set Speed", rpm);
 		if(Constants.SHOOTER_ENABLED) {
-			leftShooterMotor.changeControlMode(TalonControlMode.Voltage);
-			rightShooterMotor.changeControlMode(TalonControlMode.Voltage);
-			leftShooterMotor.setVoltageCompensationRampRate(24);
-			rightShooterMotor.setVoltageCompensationRampRate(24);
-			leftShooterMotor.set(8.00); //0.78
-			rightShooterMotor.set(8.00); //0.78
+//			leftShooterMotor.changeControlMode(TalonControlMode.Voltage);
+//			rightShooterMotor.changeControlMode(TalonControlMode.Voltage);
+//			leftShooterMotor.setVoltageCompensationRampRate(24);
+//			rightShooterMotor.setVoltageCompensationRampRate(24);
+//			leftShooterMotor.set(8.00); //0.78
+//			rightShooterMotor.set(8.00); //0.78
 			
-//			leftShooterMotor.changeControlMode(TalonControlMode.Speed);
-//			rightShooterMotor.changeControlMode(TalonControlMode.Speed);
-//			
-//			leftShooterMotor.set(Constants.SHOOTER_RPM_SPEED);
-//			rightShooterMotor.set(Constants.SHOOTER_RPM_SPEED);
+			leftShooterMotor.changeControlMode(TalonControlMode.Speed);
+			rightShooterMotor.changeControlMode(TalonControlMode.Speed);
+			
+			leftShooterMotor.set(rpm);
+			rightShooterMotor.set(rpm);
 		}
 	}
 	
@@ -144,6 +146,9 @@ public class Shooter extends Subsystem {
 	 * Stops all shooter-related motors
 	 */
 	public void stopAll() {
+		leftShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
+		rightShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
+		indexerMotor.changeControlMode(TalonControlMode.PercentVbus);
 		leftShooterMotor.set(0.0);
 		rightShooterMotor.set(0.0);
 		indexerMotor.set(0.0);

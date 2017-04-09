@@ -13,30 +13,32 @@ import edu.wpi.first.wpilibj.Timer;
  */
 public class SpinShooter extends CommandBase {
 
-	private double time, hopperRamp;
+	private double time, hopperRamp, speed;
 	private boolean timedSpin = false;
 	private boolean toggled;
 	private final Timer timer;
 	private final Timer hopperTimer;
 	
-	public SpinShooter(double time) {
+	public SpinShooter(double time, double speed) {
 		requires(shooter);
 		requires(hopper);
 		requires(intake);
 		this.timedSpin = true;
 		this.time = time;
 		this.toggled = false;
+		this.speed = speed;
 		
 		timer = new Timer();
 		hopperTimer = new Timer();
 	}
 	
-	public SpinShooter(boolean toggled) {
+	public SpinShooter(boolean toggled, double speed) {
 		requires(shooter);
 		requires(hopper);
 		requires(intake);
 		this.timedSpin = false;
 		this.toggled = toggled;
+		this.speed = speed;
 		
 		timer = new Timer();
 		hopperTimer = new Timer();
@@ -62,7 +64,7 @@ public class SpinShooter extends CommandBase {
     protected void execute() {
     	
     	//Starts ramping up shooters and indexers
-    	shooter.spinShooter();
+    	shooter.spinShooter(speed);
 		shooter.spinIndexer();
 		
 		//This timer is to give the shooters and indexers enough time to get up to speed before shooting
