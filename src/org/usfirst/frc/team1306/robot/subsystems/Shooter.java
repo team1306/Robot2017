@@ -21,6 +21,8 @@ public class Shooter extends Subsystem {
 	private final CANTalon indexerMotor;
 	
 	public final static double shooterSpeed = Constants.SHOOTER_SPEED;
+	public double shooterRPM = Constants.SHOOTER_BOILER_RPM;
+	public double indexerRPM = Constants.INDEXER_BOILER_RPM;
 	
 	public Shooter() {
 		leftShooterMotor = new CANTalon(RobotMap.LEFT_SHOOTER_PORT);
@@ -82,8 +84,9 @@ public class Shooter extends Subsystem {
 			leftShooterMotor.changeControlMode(TalonControlMode.Speed);
 			rightShooterMotor.changeControlMode(TalonControlMode.Speed);
 			
-			leftShooterMotor.set(rpm);
-			rightShooterMotor.set(rpm);
+			leftShooterMotor.set(shooterRPM);
+			rightShooterMotor.set(shooterRPM);
+			SmartDashboard.putNumber("shooter rpm",shooterRPM);
 		}
 	}
 	
@@ -108,13 +111,18 @@ public class Shooter extends Subsystem {
 	 */
 	public void spinIndexer() {
 		if(Constants.INDEXER_ENABLED) {
-			indexerMotor.changeControlMode(TalonControlMode.PercentVbus);
-			indexerMotor.set(Constants.INDEXER_SPEED);
-//			indexerMotor.changeControlMode(TalonControlMode.Speed);
-//			indexerMotor.set(Constants.INDEXER_RPM_SPEED * (24/18));	//*(24/18)
+//			indexerMotor.changeControlMode(TalonControlMode.PercentVbus);
+//			indexerMotor.set(Constants.INDEXER_SPEED);
+			indexerMotor.changeControlMode(TalonControlMode.Speed);
+			indexerMotor.set(indexerRPM * (24/18));
+			SmartDashboard.putNumber("indexer rpm",indexerRPM);
 		}
 	}
 	
+	public void setRPM(double shooterSpeed, double indexerSpeed) {
+		shooterRPM = shooterSpeed;
+		indexerRPM = indexerSpeed;
+	}
 	/**
 	 * Spins indexer backward (pull fuel away from shooters)
 	 */

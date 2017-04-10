@@ -1,5 +1,7 @@
 package org.usfirst.frc.team1306.robot;
 
+import org.usfirst.frc.team1306.robot.commands.SetSetpoint;
+import org.usfirst.frc.team1306.robot.commands.Setpoint;
 import org.usfirst.frc.team1306.robot.commands.climber.Climb;
 import org.usfirst.frc.team1306.robot.commands.geartake.DeployGeartake;
 import org.usfirst.frc.team1306.robot.commands.geartake.RetractGeartake;
@@ -114,7 +116,7 @@ public class OI {
 		
 		dPadUp.whenActive(new SetSetpoint(Setpoint.BOILER));
 		dPadRight.whenActive(new SetSetpoint(Setpoint.PEG));
-		dPadLeft.whenActive(new SetSetpoint(Setpoint.HOPPER))
+		dPadLeft.whenActive(new SetSetpoint(Setpoint.HOPPER));
 		
 		//Primary testing
 //		sbuttonLB.whenPressed(new Aim(Direction.LEFT));

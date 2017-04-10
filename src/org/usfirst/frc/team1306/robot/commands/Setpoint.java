@@ -21,4 +21,19 @@ public enum Setpoint {
 		this.angle = angle;
 	}
 	
+	public double getShooterRPM() {
+		return shooterSpeed;
+	}
+	
+	public double getIndexerRPM() {
+		return indexerSpeed;
+	}
+	
+	public double getTurretPos() {
+		return turretPosition;
+	}
+	
+	public HoodAngle getHoodAngle() {
+		return angle;
+	}
 }
