@@ -65,6 +65,17 @@ public class Constants {
 	//Indexer Constants
 	public final static double INDEXER_SPEED = 0.72;
 	
+	//Setpoint Constants
+	public final static double SHOOTER_BOILER_RPM = 2800;
+	public final static double SHOOTER_PEG_RPM = 3350;
+	public final static double SHOOTER_HOPPER_RPM = 2770;
+	public final static double INDEXER_BOILER_RPM = 2650;
+	public final static double INDEXER_PEG_RPM = 3200;
+	public final static double INDEXER_HOPPER_RPM = 2640;
+	public final static double TURRET_BOILER_POS = 0.0;
+	public final static double TURRET_PEG_POS = 0.0;
+	public final static double TURRET_HOPPER_POS = 0.0;
+	
 	//Shooter Constants
 	public final static double SHOOTER_SPEED = 0.78;
 	//Bump Up
@@ -84,7 +95,7 @@ public class Constants {
 	
 	//Turret Constants
 	public final static double MANUAL_TURRET_ROT = 0.5;			//Maxumum rotation value for the turret when in manual mode
-	public final static double DPAD_TURRET_STEP = 0.20;
+	
 	public final static double TURRET_TURN_LEFT_SPEED = 0.13;	
 	public final static double TURRET_TURN_RIGHT_SPEED = -0.13;	
 	public final static double TURRET_LEFT_LIMIT = 2750;		
@@ -94,6 +105,7 @@ public class Constants {
 	public final static double TURRET_RECOVERY_TIME = 0.5;
 	public final static double YAW_DEADBAND = 2.5;
 	public final static double TURRET_GEAR_CONVERSION = 1.88888889; 		//72, 136 (136/72) Conversion turret rotations into gear rotations TODO Calculate this value with the gear tooth ratio
+	public final static double DPAD_TURRET_STEP = 0.05 * TURRET_GEAR_CONVERSION;
 	public final static double TURRET_RIGHT_ROT_LIMIT = 0.25;
 	public final static double TURRET_LEFT_ROT_LIMIT = -0.25;
 	public final static double TURRET_START_POS = 1655;

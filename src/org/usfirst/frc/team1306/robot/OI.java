@@ -53,6 +53,11 @@ public class OI {
 	private final Button sbuttonStart;
 	private final Button sbuttonBack;	
 	
+	private final Trigger primaryDPadUp;
+	private final Trigger primaryDPadRight;
+	private final Trigger primaryDPadLeft;
+	private final Trigger primaryDPadDown;
+	
 	private final Trigger dPadUp;
 	private final Trigger dPadRight;
 	private final Trigger dPadLeft;
@@ -83,6 +88,11 @@ public class OI {
 		sbuttonStart = new JoystickButton(secondaryController, XboxController.START);
 		sbuttonBack = new JoystickButton(secondaryController, XboxController.BACK);
 		
+		primaryDPadUp = new DPadPress(primaryController, DPadDirection.UP);
+		primaryDPadRight = new DPadPress(primaryController, DPadDirection.RIGHT);
+		primaryDPadLeft = new DPadPress(primaryController, DPadDirection.LEFT);
+		primaryDPadDown = new DPadPress(primaryController, DPadDirection.DOWN);
+		
 		dPadUp = new DPadPress(secondaryController, DPadDirection.UP);
 		dPadRight = new DPadPress(secondaryController, DPadDirection.RIGHT);
 		dPadLeft = new DPadPress(secondaryController, DPadDirection.LEFT);
@@ -102,6 +112,10 @@ public class OI {
 		
 		//Primary start back buttons	
 		
+		dPadUp.whenActive(new SetSetpoint(Setpoint.BOILER));
+		dPadRight.whenActive(new SetSetpoint(Setpoint.PEG));
+		dPadLeft.whenActive(new SetSetpoint(Setpoint.HOPPER))
+		
 		//Primary testing
 //		sbuttonLB.whenPressed(new Aim(Direction.LEFT));
 //		sbuttonRB.whenPressed(new Aim(Direction.RIGHT));	
@@ -120,10 +134,10 @@ public class OI {
 		sbuttonStart.whenPressed(new Climb());
 		//sbuttonBack.whenPressed(new ClimbBack());
 
-		dPadUp.whenActive(new AdjustHood(HoodAngle.UP));
-		dPadDown.whenActive(new AdjustHood(HoodAngle.DOWN));
-		dPadLeft.whenActive(new Aim(Direction.LEFT));
-		dPadRight.whenActive(new Aim(Direction.RIGHT));
+		primaryDPadUp.whenActive(new AdjustHood(HoodAngle.UP));
+		primaryDPadDown.whenActive(new AdjustHood(HoodAngle.DOWN));
+		primaryDPadLeft.whenActive(new Aim(Direction.LEFT));
+		primaryDPadRight.whenActive(new Aim(Direction.RIGHT));
 		
 		//Secondary testing
 //		sbuttonRB.whenPressed(new DPadTurret());
