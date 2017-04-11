@@ -16,7 +16,7 @@ public enum Setpoint {
 	
 	private Setpoint(double shooterSpeed, double indexerSpeed, double turretPosition, HoodAngle angle) {
 		this.shooterSpeed = shooterSpeed;
-		this.indexerSpeed = shooterSpeed;
+		this.indexerSpeed = indexerSpeed;
 		this.turretPosition = shooterSpeed;
 		this.angle = angle;
 	}
