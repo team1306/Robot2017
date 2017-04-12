@@ -66,16 +66,23 @@ public class Constants {
 	public final static double INDEXER_SPEED = 0.72;
 	
 	//Setpoint Constants
-	public final static double SHOOTER_BOILER_RPM = 2700;
+	public final static double SHOOTER_BOILER_RPM = 2800;
 	public final static double SHOOTER_PEG_RPM = 3350;
-	public final static double SHOOTER_HOPPER_RPM = 2740;
-	public final static double INDEXER_BOILER_RPM = 2300;
+	public final static double SHOOTER_HOPPER_RPM = 2850; 
+	public final static double INDEXER_BOILER_RPM = 2650;
 	public final static double INDEXER_PEG_RPM = 3200;
-	public final static double INDEXER_HOPPER_RPM = 2580; //2640
+	public final static double INDEXER_HOPPER_RPM = 2640; 
 	public final static double TURRET_BOILER_POS = 0.0;
-	public final static double TURRET_PEG_POS = -0.22;
-	public final static double TURRET_HOPPER_POS = 0.0;
+	public final static double TURRET_PEG_POS = 0.0;
+	public final static double TURRET_HOPPER_POS = -0.210;
 	
+	public final static double SHOOTER_AUTO_CLOSE_RPM = 2849;
+	public final static double INDEXER_AUTO_CLOSE_RPM = 2640;
+	public final static double TURRET_AUTO_CLOSE_POS = 0.20;
+	
+	public final static double SHOOTER_AUTO_FAR_RPM = 3500;
+	public final static double INDEXER_AUTO_FAR_RPM = 2640;
+	public final static double TURRET_AUTO_FAR_POS = 0.18;
 	//Shooter Constants
 	public final static double SHOOTER_SPEED = 0.78;
 	//Bump Up
@@ -108,7 +115,7 @@ public class Constants {
 	public final static double DPAD_TURRET_STEP = 0.05 * TURRET_GEAR_CONVERSION;
 	public final static double TURRET_RIGHT_ROT_LIMIT = 0.25;
 	public final static double TURRET_LEFT_ROT_LIMIT = -0.25;
-	public final static double TURRET_START_POS = 3840;
+	public final static double TURRET_START_POS = 3480;
 	public final static double RED_TWO_SETPOINT = 0.0;
 	public final static double BLUE_TWO_SETPOINT = 0.0;
 	public final static double RED_HOPPER_SETPOINT = 0.0;

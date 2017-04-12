@@ -87,7 +87,7 @@ public class Robot extends IterativeRobot {
     	
 //    	autonomousCommand = (Command) chooser.getSelected();
     	
-    	autonomousCommand = new AutonomousCommand(Alliance.Red,2,AutoMode.GEAR);
+    	autonomousCommand = new AutonomousCommand(Alliance.Red,3,AutoMode.GEAR);
     	
         if (autonomousCommand != null) {
         	autonomousCommand.start();

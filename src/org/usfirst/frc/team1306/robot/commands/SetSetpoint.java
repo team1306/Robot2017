@@ -1,5 +1,8 @@
 package org.usfirst.frc.team1306.robot.commands;
 
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
+
 public class SetSetpoint extends CommandBase {
 
 	Setpoint setpoint;
@@ -19,8 +22,14 @@ public class SetSetpoint extends CommandBase {
 	@Override
 	protected void execute() {
 		shooter.setRPM(setpoint.getShooterRPM(),setpoint.getIndexerRPM());
-		turret.moveRot(setpoint.getTurretPos() + turret.getPosition());
 		hood.setPos(setpoint.getHoodAngle());
+		
+		DriverStation.Alliance alliance = DriverStation.getInstance().getAlliance();
+		if(alliance.equals(Alliance.Blue)) {
+			turret.moveRot(-setpoint.getTurretPos() + turret.getPosition());
+		} else {
+		turret.moveRot(setpoint.getTurretPos() + turret.getPosition());
+		}
 	}
 
 	@Override

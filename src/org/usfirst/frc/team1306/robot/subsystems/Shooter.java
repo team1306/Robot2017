@@ -111,11 +111,11 @@ public class Shooter extends Subsystem {
 	 */
 	public void spinIndexer() {
 		if(Constants.INDEXER_ENABLED) {
-//			indexerMotor.changeControlMode(TalonControlMode.PercentVbus);
-//			indexerMotor.set(Constants.INDEXER_SPEED);
-			indexerMotor.changeControlMode(TalonControlMode.Speed);
-			indexerMotor.set(indexerRPM * (24/18));
-			SmartDashboard.putNumber("indexer rpm",indexerRPM);
+			indexerMotor.changeControlMode(TalonControlMode.PercentVbus);
+			indexerMotor.set(Constants.INDEXER_SPEED);
+//			indexerMotor.changeControlMode(TalonControlMode.Speed);
+//			indexerMotor.set(indexerRPM * (24/18));
+//			SmartDashboard.putNumber("indexer rpm",indexerRPM);
 		}
 	}
 	

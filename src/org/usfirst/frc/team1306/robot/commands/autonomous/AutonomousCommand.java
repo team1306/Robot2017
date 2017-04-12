@@ -1,13 +1,11 @@
 package org.usfirst.frc.team1306.robot.commands.autonomous;
 
 import org.usfirst.frc.team1306.robot.Constants;
+import org.usfirst.frc.team1306.robot.commands.SetSetpoint;
+import org.usfirst.frc.team1306.robot.commands.Setpoint;
 import org.usfirst.frc.team1306.robot.commands.geartake.DeployGeartake;
-import org.usfirst.frc.team1306.robot.commands.geartake.RetractGeartake;
 import org.usfirst.frc.team1306.robot.commands.geartake.SpinGeartake;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
-import org.usfirst.frc.team1306.robot.commands.turret.FindTarget;
-import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
-import org.usfirst.frc.team1306.robot.commands.turret.TurnTurret;
 
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -72,9 +70,10 @@ public class AutonomousCommand extends CommandGroup {
 //			} else if(alliance.equals(Alliance.Blue)) {
 //				addSequential(new FindTarget(ScanDirection.LEFT));
 //			}
-			addSequential(new TurnTurret(getRot(station)));
+			addSequential(new SetSetpoint(Setpoint.AUTO_CLOSE));
 			addSequential(new SpinShooter(Constants.SHOOT_TIME,Constants.SHOOTER_RPM_SPEED));
-			addSequential(new TimedDrive(-0.3,2.1));
+			addSequential(new TimedDrive(-0.3,2.7));
+			addSequential(new DeployIntake());
 			
 		} else if(routine.equals(AutoMode.BASELINE)) {
 			addSequential(new MotionProfile(Constants.MP_BASELINE));

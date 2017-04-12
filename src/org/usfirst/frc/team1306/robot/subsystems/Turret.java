@@ -89,8 +89,9 @@ public class Turret extends Subsystem {
 	 */
 	public void moveRot(double rotation) {
 		if (Constants.TURRET_ENABLED) {
+			SmartDashboard.putNumber("Turret Set: ", rotation);
 			turretMotor.changeControlMode(TalonControlMode.MotionMagic);
-			SmartDashboard.putNumber("Turret Rotation: ",rotation);
+			SmartDashboard.putNumber("Turret Rotation: ", rotation);
 			turretMotor.set(rotation);
 		}
 	}
@@ -110,8 +111,8 @@ public class Turret extends Subsystem {
 	
 	public void movePIDTune() {
 		if (Constants.TURRET_ENABLED) {
-			turretMotor.changeControlMode(TalonControlMode.PercentVbus);
-			turretMotor.set(1);
+			turretMotor.changeControlMode(TalonControlMode.MotionMagic);
+			turretMotor.set(0.2);
 		}
 	}
 	
@@ -124,6 +125,6 @@ public class Turret extends Subsystem {
 	
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new FindTarget());
+//		setDefaultCommand(new FindTarget());
 	}
 }

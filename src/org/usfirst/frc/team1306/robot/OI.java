@@ -16,6 +16,7 @@ import org.usfirst.frc.team1306.robot.commands.turret.FindTarget;
 import org.usfirst.frc.team1306.robot.commands.turret.ResetTurret;
 import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
 import org.usfirst.frc.team1306.robot.commands.turret.TurnTurret;
+import org.usfirst.frc.team1306.robot.commands.turret.TurnTurretPID;
 import org.usfirst.frc.team1306.robot.triggers.DPadDirection;
 import org.usfirst.frc.team1306.robot.triggers.DPadPress;
 
@@ -105,7 +106,7 @@ public class OI {
 		pbuttonX.whenPressed(new SpinIntake(false));
 		pbuttonB.whenPressed(new ResetTurret());
 		pbuttonY.whenPressed(new TurnTurret(0));
-//		pbuttonY.whenPressed(new TurnTurretPID());
+		pbuttonY.whenPressed(new Aim(Direction.LEFT));
 //		pbuttonY.whenPressed(new TimedDrive(-0.3,2.85));
 		
 		//Primary triggers/bumpers
@@ -117,6 +118,7 @@ public class OI {
 		dPadUp.whenActive(new SetSetpoint(Setpoint.BOILER));
 		dPadRight.whenActive(new SetSetpoint(Setpoint.PEG));
 		dPadLeft.whenActive(new SetSetpoint(Setpoint.HOPPER));
+		dPadDown.whenActive(new SetSetpoint(Setpoint.AUTO_FAR));
 		
 		//Primary testing
 //		sbuttonLB.whenPressed(new Aim(Direction.LEFT));
