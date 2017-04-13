@@ -76,7 +76,9 @@ public class AutonomousCommand extends CommandGroup {
 			addSequential(new DeployIntake());
 			
 		} else if(routine.equals(AutoMode.BASELINE)) {
-			addSequential(new MotionProfile(Constants.MP_BASELINE));
+
+			addSequential(new TimedDrive(-0.3,2.7));
+			addSequential(new DeployIntake());
 		} else if(routine.equals(AutoMode.BLANK)){
 			
 		}

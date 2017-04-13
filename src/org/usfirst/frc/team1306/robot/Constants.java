@@ -52,7 +52,7 @@ public class Constants {
 	public final static double GEARTAKE_SPEED = 1.0;
 	
 	//Climber Constants
-	public final static double CLIMBER_SPEED = 0.70; //Cart: -0.25 Down, 0.6-0.7 Up
+	public final static double CLIMBER_SPEED = 1.0; //Cart: -0.25 Down, 0.6-0.7 Up
 	public final static double CLIMBER_BACK_SPEED = -0.2;
 	
 	//Intake Constants
@@ -78,7 +78,7 @@ public class Constants {
 	
 	public final static double SHOOTER_AUTO_CLOSE_RPM = 2849;
 	public final static double INDEXER_AUTO_CLOSE_RPM = 2640;
-	public final static double TURRET_AUTO_CLOSE_POS = 0.20;
+	public final static double TURRET_AUTO_CLOSE_POS = 0.22;
 	
 	public final static double SHOOTER_AUTO_FAR_RPM = 3500;
 	public final static double INDEXER_AUTO_FAR_RPM = 2640;

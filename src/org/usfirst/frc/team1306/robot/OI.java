@@ -105,8 +105,8 @@ public class OI {
 		pbuttonA.toggleWhenPressed(new SpinShooter(true,Constants.SHOOTER_RPM_SPEED));
 		pbuttonX.whenPressed(new SpinIntake(false));
 		pbuttonB.whenPressed(new ResetTurret());
-		pbuttonY.whenPressed(new TurnTurret(0));
-		pbuttonY.whenPressed(new Aim(Direction.LEFT));
+//		pbuttonY.whenPressed(new TurnTurret(0));
+//		pbuttonY.whenPressed(new Aim(Direction.LEFT));
 //		pbuttonY.whenPressed(new TimedDrive(-0.3,2.85));
 		
 		//Primary triggers/bumpers
@@ -140,8 +140,8 @@ public class OI {
 
 		primaryDPadUp.whenActive(new AdjustHood(HoodAngle.UP));
 		primaryDPadDown.whenActive(new AdjustHood(HoodAngle.DOWN));
-		primaryDPadLeft.whenActive(new Aim(Direction.LEFT));
-		primaryDPadRight.whenActive(new Aim(Direction.RIGHT));
+//		primaryDPadLeft.whenActive(new Aim(Direction.LEFT));
+//		primaryDPadRight.whenActive(new Aim(Direction.RIGHT));
 		
 		//Secondary testing
 //		sbuttonRB.whenPressed(new DPadTurret());
