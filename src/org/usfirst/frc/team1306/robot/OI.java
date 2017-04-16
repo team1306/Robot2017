@@ -3,6 +3,7 @@ package org.usfirst.frc.team1306.robot;
 import org.usfirst.frc.team1306.robot.commands.SetSetpoint;
 import org.usfirst.frc.team1306.robot.commands.Setpoint;
 import org.usfirst.frc.team1306.robot.commands.climber.Climb;
+import org.usfirst.frc.team1306.robot.commands.geartake.AdvancedDeployGeartake;
 import org.usfirst.frc.team1306.robot.commands.geartake.DeployGeartake;
 import org.usfirst.frc.team1306.robot.commands.geartake.RetractGeartake;
 import org.usfirst.frc.team1306.robot.commands.geartake.SpinGeartake;
@@ -10,13 +11,9 @@ import org.usfirst.frc.team1306.robot.commands.hood.AdjustHood;
 import org.usfirst.frc.team1306.robot.commands.hood.HoodAngle;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
-import org.usfirst.frc.team1306.robot.commands.turret.Aim;
-import org.usfirst.frc.team1306.robot.commands.turret.Direction;
 import org.usfirst.frc.team1306.robot.commands.turret.FindTarget;
 import org.usfirst.frc.team1306.robot.commands.turret.ResetTurret;
 import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
-import org.usfirst.frc.team1306.robot.commands.turret.TurnTurret;
-import org.usfirst.frc.team1306.robot.commands.turret.TurnTurretPID;
 import org.usfirst.frc.team1306.robot.triggers.DPadDirection;
 import org.usfirst.frc.team1306.robot.triggers.DPadPress;
 
@@ -118,7 +115,8 @@ public class OI {
 		dPadUp.whenActive(new SetSetpoint(Setpoint.BOILER));
 		dPadRight.whenActive(new SetSetpoint(Setpoint.PEG));
 		dPadLeft.whenActive(new SetSetpoint(Setpoint.HOPPER));
-		dPadDown.whenActive(new SetSetpoint(Setpoint.AUTO_FAR));
+//		dPadDown.whenActive(new SetSetpoint(Setpoint.AUTO_CLOSE));
+		dPadDown.whenActive(new ResetTurret());
 		
 		//Primary testing
 //		sbuttonLB.whenPressed(new Aim(Direction.LEFT));
@@ -129,9 +127,11 @@ public class OI {
 		sbuttonY.whenPressed(new RetractGeartake());
 		sbuttonX.toggleWhenPressed(new SpinIntake(true));
 		sbuttonB.whenPressed(new DeployGeartake());
+//		sbuttonB.whenPressed(new AdvancedDeployGeartake());
 		
 		//Secondary triggers/bumpers
-		sbuttonRB.whenPressed(new SpinGeartake(-Constants.GEARTAKE_SPEED));
+		sbuttonRB.whenPressed(new AdvancedDeployGeartake());
+//		sbuttonRB.whenPressed(new SpinGeartake(-Constants.GEARTAKE_SPEED));
 		sbuttonLB.whenPressed(new SpinGeartake(Constants.GEARTAKE_SPEED));
 		
 		//Secondary start back buttons

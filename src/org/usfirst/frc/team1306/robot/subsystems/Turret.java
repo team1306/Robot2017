@@ -2,10 +2,12 @@ package org.usfirst.frc.team1306.robot.subsystems;
 
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.RobotMap;
-import org.usfirst.frc.team1306.robot.commands.turret.FindTarget;
+import org.usfirst.frc.team1306.robot.commands.turret.ManualTurret;
+
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -120,11 +122,13 @@ public class Turret extends Subsystem {
 	 * Stops the turret
 	 */
 	public void stopAll() {
+		turretMotor.changeControlMode(TalonControlMode.PercentVbus);
 		turretMotor.set(0.0);
 	}
 	
 	@Override
 	protected void initDefaultCommand() {
+		setDefaultCommand(new ManualTurret());
 //		setDefaultCommand(new FindTarget());
 	}
 }
