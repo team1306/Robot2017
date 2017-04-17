@@ -6,7 +6,6 @@ import org.usfirst.frc.team1306.robot.commands.Setpoint;
 import org.usfirst.frc.team1306.robot.commands.geartake.DeployGeartake;
 import org.usfirst.frc.team1306.robot.commands.geartake.SpinGeartake;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
-
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -34,7 +33,6 @@ public class AutonomousCommand extends CommandGroup {
 			//TODO Possible auto routine for later
 		} else if(routine.equals(AutoMode.GEAR)) {
 			
-//			addSequential(new MotionProfile(station.getGearProfile()));
 			
 			addSequential(new TimedDrive(-0.3,2.50));
 			addSequential(new DeployGeartake());
@@ -88,41 +86,21 @@ public class AutonomousCommand extends CommandGroup {
 		
 		if(alliance.equals(Alliance.Red)) {
 			if(station == 1) {
-				SmartDashboard.putString("Station:","RED_ONE");
 				return Station.RED_ONE;
 			} else if(station == 2) {
-				SmartDashboard.putString("Station:","RED_TWO");
 				return Station.RED_TWO;
-				
 			} else {
-				SmartDashboard.putString("Station:","RED_THREE");
 				return Station.RED_THREE;
 			}
 		} else {
 			if(station == 1) {
-				SmartDashboard.putString("Station:","BLUE_ONE");
 				return Station.BLUE_ONE;
 			} else if(station == 2) {
-				SmartDashboard.putString("Station:","BLUE_TWO");
 				return Station.BLUE_TWO;
 			} else {
-				SmartDashboard.putString("Station:","BLUE_THREE");
 				return Station.BLUE_THREE;
 			}
 		}
 	}
-
-	private double getRot(Station station) {
-		if(station.equals(Station.BLUE_ONE)) {
-			return Constants.BLUE_ONE_ROT;
-		} else if(station.equals(Station.BLUE_THREE)) {
-			return Constants.BLUE_THREE_ROT;
-		} else if(station.equals(Station.RED_ONE)) {
-			return Constants.RED_ONE_ROT;
-		} else if(station.equals(Station.RED_THREE)) {
-			return Constants.RED_THREE_ROT;
-		} else {
-			return 0;
-		}
-	}
+	
 }

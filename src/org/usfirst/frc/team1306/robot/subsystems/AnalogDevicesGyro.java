@@ -1,4 +1,5 @@
-package org.usfirst.frc.team1306.robot.commands.autonomous;
+package org.usfirst.frc.team1306.robot.subsystems;
+
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) FIRST 2016. All Rights Reserved.                             */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
@@ -12,10 +13,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-
-//import edu.wpi.first.wpilibj.communication.FRCNetworkCommunicationsLibrary.tInstances;
-//import edu.wpi.first.wpilibj.communication.FRCNetworkCommunicationsLibrary.tResourceType;
-//import edu.wpi.first.wpilibj.communication.UsageReporting;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.livewindow.LiveWindowSendable;
@@ -32,7 +29,7 @@ import edu.wpi.first.wpilibj.Timer;
 /**
  * This class is for the ADIS16448 IMU that connects to the RoboRIO MXP port.
  */
-public class ADIS16448_IMU extends GyroBase implements Gyro, PIDSource, LiveWindowSendable {
+public class AnalogDevicesGyro extends GyroBase implements Gyro, PIDSource, LiveWindowSendable {
   private static final double kTimeout = 0.1;
   private static final double kCalibrationSampleTime = 5.0;
   private static final double kDegreePerSecondPerLSB = 1.0/25.0;
@@ -191,8 +188,8 @@ public class ADIS16448_IMU extends GyroBase implements Gyro, PIDSource, LiveWind
   private boolean m_calculate_started = false;
 
   private static class AcquireTask implements Runnable {
-    private ADIS16448_IMU imu;
-    public AcquireTask(ADIS16448_IMU imu) {
+    private AnalogDevicesGyro imu;
+    public AcquireTask(AnalogDevicesGyro imu) {
       this.imu = imu;
     }
 
@@ -202,8 +199,8 @@ public class ADIS16448_IMU extends GyroBase implements Gyro, PIDSource, LiveWind
     }
   }
   private static class CalculateTask implements Runnable {
-    private ADIS16448_IMU imu;
-    public CalculateTask(ADIS16448_IMU imu) {
+    private AnalogDevicesGyro imu;
+    public CalculateTask(AnalogDevicesGyro imu) {
       this.imu = imu;
     }
 
@@ -218,7 +215,7 @@ public class ADIS16448_IMU extends GyroBase implements Gyro, PIDSource, LiveWind
   /**
    * Constructor.
    */
-  public ADIS16448_IMU(Axis yaw_axis, AHRSAlgorithm algorithm) {
+  public AnalogDevicesGyro(Axis yaw_axis, AHRSAlgorithm algorithm) {
     m_yaw_axis = yaw_axis;
     m_algorithm = algorithm;
 
@@ -298,14 +295,14 @@ public class ADIS16448_IMU extends GyroBase implements Gyro, PIDSource, LiveWind
   /*
    * Constructor assuming Complementary AHRS algorithm.
    */
-  public ADIS16448_IMU(Axis yaw_axis) {
+  public AnalogDevicesGyro(Axis yaw_axis) {
     this(yaw_axis, AHRSAlgorithm.kComplementary);
   }
 
   /*
    * Constructor assuming yaw axis is "Z" and Complementary AHRS algorithm.
    */
-  public ADIS16448_IMU() {
+  public AnalogDevicesGyro() {
     this(Axis.kZ, AHRSAlgorithm.kComplementary);
   }
 

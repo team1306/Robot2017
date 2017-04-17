@@ -24,7 +24,7 @@ public class Constants {
 	public final static double TRIGGER_DEADBAND = 0.15; //Trigger deadband
 	public final static double JOYSTICK_MULTIPLIER = 1.0; //Multiplier for the joystick inputs  
 	
-	//Button Constants
+	//Button ConstantsGEAR
 	public final static int INTAKE_BUTTON = XboxController.X;
 	public final static int SHOOTER_BUTTON = XboxController.A;
 	public final static int GEARTAKE_BUTTON = XboxController.RB;
@@ -32,20 +32,21 @@ public class Constants {
 	
 	//Autonomous Constants
 	public final static double SHOOT_TIME = 10.0;
-	public final static double RED_ONE_ROT = 0;
-	public final static double RED_THREE_ROT= 0;
-	public final static double BLUE_ONE_ROT = 0;
-	public final static double BLUE_THREE_ROT = 0;
-	public final static int MP_BASELINE = 0;
-	public final static int MP_GEAR_RED_ONE = 1;
-	public final static int MP_GEAR_RED_TWO= 2;
-	public final static int MP_GEAR_RED_THREE = 3;
-	public final static int MP_GEAR_BLUE_ONE = 4;
-	public final static int MP_GEAR_BLUE_TWO = 5;;
-	public final static int MP_GEAR_BLUE_THREE = 6;
-	public final static int MP_HOPPER_RED = 7;
-	public final static int MP_HOPPER_BLUE = 8;
-	public final static int MP_FORWARD = 9;
+	
+	public final static double HOPPER_INIT_SPEED = 0.0;
+	public final static double HOPPER_END_SPEED = 0.0;
+	public final static double HOPPER_INIT_TIME = 0.0;
+	public final static double HOPPER_END_TIME = 0.0;
+	public final static double GEAR_BOILERSIDE_INIT_SPEED = 0.0;
+	public final static double GEAR_BOILERSIDE_END_SPEED = 0.0;
+	public final static double GEAR_BOILERSIDE_INIT_TIME = 0.0;
+	public final static double GEAR_BOILERSIDE_END_TIME = 0.0;
+	public final static double GEAR_LOADINGSIDE_INIT_SPEED = 0.0;
+	public final static double GEAR_LOADINGSIDE_END_SPEED = 0.0;
+	public final static double GEAR_LOADINGSIDE_INIT_TIME = 0.0;
+	public final static double GEAR_LOADINGSIDE_END_TIME = 0.0;
+	public final static double GEAR_CENTER_SPEED = -0.3;
+	public final static double GEAR_CENTER_TIME = 2.50;
 	
 	//Geartake Constants
 	public final static int GEAR_DEPLOY_TIME = 1;

@@ -16,7 +16,6 @@ import org.usfirst.frc.team1306.robot.commands.turret.ResetTurret;
 import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
 import org.usfirst.frc.team1306.robot.triggers.DPadDirection;
 import org.usfirst.frc.team1306.robot.triggers.DPadPress;
-
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -37,11 +36,15 @@ public class OI {
 	private final Button pbuttonA;
 	private final Button pbuttonB;
 	private final Button pbuttonX;
-	private final Button pbuttonY;
+	//private final Button pbuttonY;
 	private final Button pbuttonRB;
 	private final Button pbuttonLB;
-	private final Button pbuttonStart;
-	private final Button pbuttonBack;
+	//private final Button pbuttonStart;
+	//private final Button pbuttonBack;
+	private final Trigger primaryDPadUp;
+	//private final Trigger primaryDPadRight;
+	//private final Trigger primaryDPadLeft;
+	private final Trigger primaryDPadDown;
 	
 	//Declare buttons on secondary controller
 	private final Button sbuttonA;
@@ -51,19 +54,14 @@ public class OI {
 	private final Button sbuttonRB;
 	private final Button sbuttonLB;
 	private final Button sbuttonStart;
-	private final Button sbuttonBack;	
-	
-	private final Trigger primaryDPadUp;
-	private final Trigger primaryDPadRight;
-	private final Trigger primaryDPadLeft;
-	private final Trigger primaryDPadDown;
-	
-	private final Trigger dPadUp;
-	private final Trigger dPadRight;
-	private final Trigger dPadLeft;
-	private final Trigger dPadDown;
+	//private final Button sbuttonBack;	
+	private final Trigger secondaryDPadUp;
+	private final Trigger secondaryDPadRight;
+	private final Trigger secondaryDPadLeft;
+	private final Trigger secondaryDPadDown;
 	
 	public OI() {
+		
 		//Declare ports of xbox controllers
 		primaryController = new XboxController(RobotMap.PRIMARY_PORT);
 		secondaryController = new XboxController(RobotMap.SECONDARY_PORT);
@@ -72,11 +70,15 @@ public class OI {
 		pbuttonA = new JoystickButton(primaryController, XboxController.A);
 		pbuttonB = new JoystickButton(primaryController, XboxController.B);
 		pbuttonX = new JoystickButton(primaryController, XboxController.X);
-		pbuttonY = new JoystickButton(primaryController, XboxController.Y);
+		//pbuttonY = new JoystickButton(primaryController, XboxController.Y);
 		pbuttonRB = new JoystickButton(primaryController, XboxController.RB);
 		pbuttonLB = new JoystickButton(primaryController, XboxController.LB); 
-		pbuttonStart = new JoystickButton(primaryController, XboxController.START);
-		pbuttonBack = new JoystickButton(primaryController, XboxController.BACK);
+		//pbuttonStart = new JoystickButton(primaryController, XboxController.START);
+		//pbuttonBack = new JoystickButton(primaryController, XboxController.BACK);
+		primaryDPadUp = new DPadPress(primaryController, DPadDirection.UP);
+		//primaryDPadRight = new DPadPress(primaryController, DPadDirection.RIGHT);
+		//primaryDPadLeft = new DPadPress(primaryController, DPadDirection.LEFT);
+		primaryDPadDown = new DPadPress(primaryController, DPadDirection.DOWN);
 		
 		//Map buttons to xbox controller buttons for secondary controller
 		sbuttonA = new JoystickButton(secondaryController, XboxController.A);
@@ -86,69 +88,43 @@ public class OI {
 		sbuttonRB = new JoystickButton(secondaryController, XboxController.RB);
 		sbuttonLB = new JoystickButton(secondaryController, XboxController.LB);
 		sbuttonStart = new JoystickButton(secondaryController, XboxController.START);
-		sbuttonBack = new JoystickButton(secondaryController, XboxController.BACK);
+		//sbuttonBack = new JoystickButton(secondaryController, XboxController.BACK);
+		secondaryDPadUp = new DPadPress(secondaryController, DPadDirection.UP);
+		secondaryDPadRight = new DPadPress(secondaryController, DPadDirection.RIGHT);
+		secondaryDPadLeft = new DPadPress(secondaryController, DPadDirection.LEFT);
+		secondaryDPadDown = new DPadPress(secondaryController, DPadDirection.DOWN);
 		
-		primaryDPadUp = new DPadPress(primaryController, DPadDirection.UP);
-		primaryDPadRight = new DPadPress(primaryController, DPadDirection.RIGHT);
-		primaryDPadLeft = new DPadPress(primaryController, DPadDirection.LEFT);
-		primaryDPadDown = new DPadPress(primaryController, DPadDirection.DOWN);
 		
-		dPadUp = new DPadPress(secondaryController, DPadDirection.UP);
-		dPadRight = new DPadPress(secondaryController, DPadDirection.RIGHT);
-		dPadLeft = new DPadPress(secondaryController, DPadDirection.LEFT);
-		dPadDown = new DPadPress(secondaryController, DPadDirection.DOWN);
 		
-		//Primary ABXY buttons
+		//Primary Controller Mapping
 		pbuttonA.toggleWhenPressed(new SpinShooter(true,Constants.SHOOTER_RPM_SPEED));
-		pbuttonX.whenPressed(new SpinIntake(false));
 		pbuttonB.whenPressed(new ResetTurret());
-//		pbuttonY.whenPressed(new TurnTurret(0));
-//		pbuttonY.whenPressed(new Aim(Direction.LEFT));
-//		pbuttonY.whenPressed(new TimedDrive(-0.3,2.85));
+		pbuttonX.whenPressed(new SpinIntake(false));
 		
-		//Primary triggers/bumpers
 		pbuttonLB.whenPressed(new FindTarget(ScanDirection.LEFT));
 		pbuttonRB.whenPressed(new FindTarget(ScanDirection.RIGHT));
 		
-		//Primary start back buttons	
-		
-		dPadUp.whenActive(new SetSetpoint(Setpoint.BOILER));
-		dPadRight.whenActive(new SetSetpoint(Setpoint.PEG));
-		dPadLeft.whenActive(new SetSetpoint(Setpoint.HOPPER));
-//		dPadDown.whenActive(new SetSetpoint(Setpoint.AUTO_CLOSE));
-		dPadDown.whenActive(new ResetTurret());
-		
-		//Primary testing
-//		sbuttonLB.whenPressed(new Aim(Direction.LEFT));
-//		sbuttonRB.whenPressed(new Aim(Direction.RIGHT));	
-		
-		//Secondary ABXY buttons
-		sbuttonA.whenPressed(new SpinShooter(false,Constants.SHOOTER_RPM_SPEED));
-		sbuttonY.whenPressed(new RetractGeartake());
-		sbuttonX.toggleWhenPressed(new SpinIntake(true));
-		sbuttonB.whenPressed(new DeployGeartake());
-//		sbuttonB.whenPressed(new AdvancedDeployGeartake());
-		
-		//Secondary triggers/bumpers
-		sbuttonRB.whenPressed(new AdvancedDeployGeartake());
-//		sbuttonRB.whenPressed(new SpinGeartake(-Constants.GEARTAKE_SPEED));
-		sbuttonLB.whenPressed(new SpinGeartake(Constants.GEARTAKE_SPEED));
-		
-		//Secondary start back buttons
-		sbuttonStart.whenPressed(new Climb());
-		//sbuttonBack.whenPressed(new ClimbBack());
-
 		primaryDPadUp.whenActive(new AdjustHood(HoodAngle.UP));
 		primaryDPadDown.whenActive(new AdjustHood(HoodAngle.DOWN));
-//		primaryDPadLeft.whenActive(new Aim(Direction.LEFT));
-//		primaryDPadRight.whenActive(new Aim(Direction.RIGHT));
 		
-		//Secondary testing
-//		sbuttonRB.whenPressed(new DPadTurret());
-//		sbuttonY.whenPressed(new SpinShooterBack());
-//		pbuttonA.whenPressed(new TurnTurret(1));//(30/360)*Constants.TURRET_GEAR_CONVERSION));
-//		sbuttonA.whenPressed(new AdjustHood(HoodAngle.DOWN));
-//		sbuttonY.whenPressed(new AdjustHood(HoodAngle.UP));
+		
+		
+		//Secondary Controller Mapping
+		sbuttonA.whenPressed(new SpinShooter(false,Constants.SHOOTER_RPM_SPEED));
+		sbuttonB.whenPressed(new DeployGeartake());
+		sbuttonX.toggleWhenPressed(new SpinIntake(true));
+		sbuttonY.whenPressed(new RetractGeartake());
+		
+		sbuttonLB.whenPressed(new SpinGeartake(Constants.GEARTAKE_SPEED));
+		sbuttonRB.whenPressed(new AdvancedDeployGeartake());
+		
+		sbuttonStart.whenPressed(new Climb());
+		
+		secondaryDPadUp.whenActive(new SetSetpoint(Setpoint.BOILER));
+		secondaryDPadRight.whenActive(new SetSetpoint(Setpoint.PEG));
+		secondaryDPadLeft.whenActive(new SetSetpoint(Setpoint.HOPPER));
+		secondaryDPadDown.whenActive(new ResetTurret());
+		
 	}
 	
 	/**
@@ -180,13 +156,6 @@ public class OI {
 	 * @author Sam Roquitte
 	 */
 	public enum side {l, r};
-	
-	/**
-	 * Direction of the dpad, similar to cardinal directions but instead of north east south west, up right down left (u, r, d, l).  Up/down first, followed by left.
-	 * no=not pressed
-	 * @author Sam Roquitte
-	 */
-	public enum dpaddirection {no, u, ur, r, dr, d, dl, l, ul};
 	
 	/**
 	 * Returns the joystick value (from -1.0 to 1.0) for the specified controller's joystick's axis (uses deadband)
@@ -361,21 +330,6 @@ public class OI {
 			break;
 		}
 	}
-	
-	/**
-	 * Returns the D-Pad button being pressed
-	 * @return
-	 * 		-1=not being pressed, 0-7 for pressed button
-	 */
-//	public static dpaddirection getDPad(controller controller) {
-//		switch (controller) {
-//			case p:
-//				return primaryController.getDPAD();
-//			case s:
-//				return primaryController.getDPAD();
-//		}
-//		return null;
-//	}
 	
 	/**
 	 * Applies deadband to joystick values to prevent false readings when joystick is idle.  It prevents very small changes to 

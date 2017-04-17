@@ -1,83 +1,64 @@
 package org.usfirst.frc.team1306.robot.commands.autonomous;
 
-import java.util.ArrayList;
-
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
-
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * A command that drives the robot straight forward for a certain amount of
- * time.
- * 
- * @author Finn Voichick
+ * Command that drives the robot for a certain amount of time, started by either inputing a throttle for a time 
+ * or by giving the robot position during autonomous.
+ * @author Jackson Goth
  */
 public class TimedDrive extends CommandBase {
 
-	/** The power for the motors, on a scale from -1.0 to 1.0. */
-	private final double throttle;
-	/** The amount of time to drive before stopping, in seconds. */
-	private final double time;
-	/** The timer that controls how long the robot drives before stopping */
-	private final Timer timer;
-
-	private double gyroInit, accumulator, gyroDeviation;
+	private double throttle; //Speed that the motors will run at.
+	private double time; //Time the motors will run for.
+	private Timer timer; //Timer used to track time passed.
 	
-	private ArrayList<Double> angleList;
+	private Station station; //Alliance station the robot is located at.
+	private AutoMode autoMode; //Autonomous routine being run.
+	private boolean runNext; //Running second TimedDrive?
+	private boolean autonomous; //If the robot is driving automously.
 	
 	/**
-	 * Constructs a new TimedDrive command. Initializes the timer and requires
-	 * the drivetrain.
+	 * Runs the command with a specified throttle for a specified time
 	 */
 	public TimedDrive(double throttle, double time) {
+		requires(drivetrain);
 		this.throttle = throttle;
 		this.time = time;
+		this.autonomous = false;
+		
 		timer = new Timer();
-		angleList = new ArrayList<Double>();
-		requires(drivetrain);
-		requires(gyro);
 	}
 
 	/**
-	 * Called just before this Command runs the first time. Here, the timer is
-	 * started.
+	 * Runs the command using a specified robot position
+	 * @param station
 	 */
+	public TimedDrive(Station station, AutoMode mode, boolean runNext ) {
+		requires(drivetrain);
+		this.station = station;
+		this.autoMode = mode;
+		this.runNext = runNext;
+		this.autonomous = true;
+		
+		timer = new Timer();
+	}
+	
 	@Override
 	protected void initialize() {
-		timer.reset();
-		timer.start();
-		gyroInit = gyro.getAngle();
+		timer.reset(); //Resets the timer to clear old data.
+		timer.start(); //Starts the timer again to begin comparing.
+		
+		if(autonomous) {
+			throttle = station.getThrottle(runNext);
+			time = station.getTime(runNext);
+		}
 	}
 
-	/**
-	 * Called repeatedly when this Command is scheduled to run. It runs both
-	 * motors at the designated throttle.
-	 */
 	@Override
 	protected void execute() {
-		
-		if(angleList.size() < 6) { //Fills up initial array
-			angleList.add(gyro.getAngle() - gyroInit);
-		} else {
-			angleList.remove(0); //Removes oldest data from list
-			angleList.add(gyro.getAngle() - gyroInit); //Adds newest data to the top of the list
-		}
-		
-		//Finds the average of yawList and puts it in averagedYaw
-		accumulator = 0;
-		for(int i = 0; i < angleList.size(); i++) {
-			accumulator += angleList.get(i);
-		}
-		
-//		gyroDeviation = gyro.getAngle() - gyroInit;
-		gyroDeviation = accumulator / angleList.size();
-		double turn = 0;//-0.005 * gyroDeviation;
-		
-		SmartDashboard.putNumber("Gyro-Deviation",gyroDeviation);
-		SmartDashboard.putNumber("Timed-Turn",turn);
-		
-		drivetrain.tankDrive(throttle - turn, throttle + turn);
+		drivetrain.tankDrive(throttle, throttle); //Drives the motors at the specified speed.
 	}
 
 	/**

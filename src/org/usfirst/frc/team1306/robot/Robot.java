@@ -4,9 +4,7 @@ import org.usfirst.frc.team1306.robot.commands.CommandBase;
 import org.usfirst.frc.team1306.robot.commands.SmartDashboardUpdate;
 import org.usfirst.frc.team1306.robot.commands.autonomous.AutoMode;
 import org.usfirst.frc.team1306.robot.commands.autonomous.AutonomousCommand;
-
 import edu.wpi.first.wpilibj.CameraServer;
-import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -26,7 +24,6 @@ public class Robot extends IterativeRobot {
 
     Command autonomousCommand;
     SendableChooser<AutonomousCommand> chooser;
-//    DigitalOutput leds;
     
     /**
      * This function is run when the robot is first started up and should be
@@ -36,22 +33,10 @@ public class Robot extends IterativeRobot {
     	
     	CommandBase.init(); //Initializes all Subsystems
     	CameraServer.getInstance().startAutomaticCapture("usb",0); //GearMech Camera
-    	CameraServer.getInstance().startAutomaticCapture("usb2",1);
+    	CameraServer.getInstance().startAutomaticCapture("usb2",1); //Shooter Camera
     	
-    	chooser = new SendableChooser<AutonomousCommand>();
+    	chooser = new SendableChooser<AutonomousCommand>(); //Autonomous Selector
     	
-//    	leds = new DigitalOutput(0);
-//    	leds.set(true);
-    	
-//    	Alliance alliance = DriverStation.getInstance().getAlliance(); //Alliance (Red or Blue)
-//        int station = DriverStation.getInstance().getLocation(); //Station on alliance (1-3) km
-        
-//        chooser.addObject("Hopper/Gear", new AutonomousCommand(alliance,station,AutoMode.HOPPER_GEAR));
-//        chooser.addObject("Gear", new AutonomousCommand(alliance,station,AutoMode.GEAR));
-//        chooser.addObject("Ten_Ball", new AutonomousCommand(alliance,station,AutoMode.TEN_KPA));
-//        chooser.addObject("Baseline", new AutonomousCommand(alliance,station,AutoMode.BASELINE));
-//        chooser.addObject("Do Nothing", new AutonomousCommand(alliance,station,AutoMode.BLANK));
-        
         chooser.addObject("Baseline", new AutonomousCommand(Alliance.Red,1,AutoMode.BASELINE));
         chooser.addObject("Middle", new AutonomousCommand(Alliance.Red,2,AutoMode.GEAR));
         chooser.addObject("Left Gear - Blue", new AutonomousCommand(Alliance.Blue,1,AutoMode.GEAR));
@@ -78,7 +63,6 @@ public class Robot extends IterativeRobot {
 	
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
-//		leds.set(true);
 	}
 
 	/**

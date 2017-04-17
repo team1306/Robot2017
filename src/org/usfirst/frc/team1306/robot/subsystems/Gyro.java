@@ -1,14 +1,13 @@
 package org.usfirst.frc.team1306.robot.subsystems;
 
-import org.usfirst.frc.team1306.robot.commands.autonomous.ADIS16448_IMU;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Gyro extends Subsystem {
 
-	ADIS16448_IMU imu;
+	AnalogDevicesGyro imu;
 	
 	public Gyro() {
-		imu = new ADIS16448_IMU();
+		imu = new AnalogDevicesGyro();
 //		imu.reset();
 	}
 

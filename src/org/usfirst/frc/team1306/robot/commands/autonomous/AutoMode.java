@@ -8,19 +8,18 @@ public enum AutoMode {
 	
 	HOPPER_GEAR(0), //Places a gear, and then if close to the boiler it will empty the nearest hopper into it
 	GEAR(1), //Will place a gear in all six positions
-	HOPPER(2),
+	HOPPER(2), //Will hit the hopper and start shooting balls
 	TEN_KPA(3), //Will only shoot the 10 balls
-	BASELINE(4),
+	BASELINE(4), //Will cross the baseline
 	BLANK(5); //Will do nothing
-	
 	
 	private final int routine;
 	
 	private AutoMode(int routine) {
-		this.routine = routine;
+		this.routine = routine; //Initializes the selected autonomous routine
 	}
 	
 	public int getRoutine() {
-		return routine;
+		return routine; //Returns the selected routine
 	}
 }

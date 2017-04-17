@@ -1,15 +1,11 @@
 package org.usfirst.frc.team1306.robot;
 
-import org.usfirst.frc.team1306.robot.OI.dpaddirection;
-import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 
 /**
  * An Xbox controller. This is a relatively minor extension of Joystick that
  * adds methods specific to the Xbox controller.
- * 
  * @author Finn Voichick
- *
  */
 public class XboxController extends Joystick {
 
@@ -103,22 +99,6 @@ public class XboxController extends Joystick {
 		return super.getPOV();
 	}
 	
-	/**
-	 * Get the value of D-Pad button.  Uses dpaddirection enum
-	 * @return
-	 * 		D-Pad button being pressed
-	 */
-//	public dpaddirection getDPAD() {
-//		if (super.getPOV() == -1) {
-//			//return dpaddirection.no;
-//			return dpaddirection.no;
-//		}
-//		else {
-//			return dpaddirection.values()[(super.getPOV()/45)];
-//			//return (super.getPOV()/45);
-//		}
-//	}
-
 	/** The A button index */
 	public final static int A = 1;
 	/** The B button index */

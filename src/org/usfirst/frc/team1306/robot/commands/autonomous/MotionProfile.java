@@ -91,7 +91,7 @@ public class MotionProfile extends CommandBase {
 				new Waypoint(9.4,0,0) //9.5
 			};
 			return profileWaypoints;
-		} else if(profile == Constants.MP_FORWARD) {
+		} else if(profile == -1) {
 			profileWaypoints = new Waypoint[] {
 				new Waypoint(1,0,0),
 				new Waypoint(2,0,0)

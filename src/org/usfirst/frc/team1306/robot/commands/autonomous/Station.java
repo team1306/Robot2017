@@ -1,34 +1,59 @@
 package org.usfirst.frc.team1306.robot.commands.autonomous;
 
 import org.usfirst.frc.team1306.robot.Constants;
-import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
 
 /**
- * Enum that contains what motion profiles should be run for a specified alliance station
+ * Enum that contains each robot position and their associated autonomous constants.
  * @author Jackson Goth
  */
 public enum Station {
 	
-	RED_ONE(Constants.MP_GEAR_RED_ONE,-1),
-	RED_TWO(Constants.MP_GEAR_RED_TWO,-1),
-	RED_THREE(Constants.MP_GEAR_RED_THREE,Constants.MP_HOPPER_RED),
-	BLUE_ONE(Constants.MP_GEAR_BLUE_ONE,Constants.MP_HOPPER_BLUE),
-	BLUE_TWO(Constants.MP_GEAR_BLUE_TWO,-1),
-	BLUE_THREE(Constants.MP_GEAR_BLUE_THREE,-1);
+	RED_ONE(Constants.GEAR_LOADINGSIDE_INIT_SPEED,Constants.GEAR_LOADINGSIDE_INIT_TIME,Constants.GEAR_LOADINGSIDE_END_SPEED,Constants.GEAR_LOADINGSIDE_END_TIME), //Red - Far from boiler
+	RED_TWO(Constants.GEAR_CENTER_SPEED,Constants.GEAR_CENTER_TIME,0,0), //Red - Center position
+	RED_THREE(Constants.GEAR_BOILERSIDE_INIT_SPEED,Constants.GEAR_BOILERSIDE_INIT_TIME,Constants.GEAR_BOILERSIDE_END_SPEED,Constants.GEAR_BOILERSIDE_END_TIME), //Red - Close to boiler
+	BLUE_ONE(Constants.GEAR_BOILERSIDE_INIT_SPEED,Constants.GEAR_BOILERSIDE_INIT_TIME,Constants.GEAR_BOILERSIDE_END_SPEED,Constants.GEAR_BOILERSIDE_END_TIME), //Blue - Close to boiler
+	BLUE_TWO(Constants.GEAR_CENTER_SPEED,Constants.GEAR_CENTER_TIME,0,0), //Blue - Center position
+	BLUE_THREE(Constants.GEAR_LOADINGSIDE_INIT_SPEED,Constants.GEAR_LOADINGSIDE_INIT_TIME,Constants.GEAR_LOADINGSIDE_END_SPEED,Constants.GEAR_LOADINGSIDE_END_TIME); //Blue - Far from boiler
 	
-	private final int gearProfile;
-	private final int hopperProfile;
+	private final double initSpeed;
+	private final double initTime;
+	private final double endSpeed;
+	private final double endTime;
 	
-	private Station(int gearProfile,int hopperProfile) {
-		this.gearProfile = gearProfile;
-		this.hopperProfile = hopperProfile;
+	private Station(double initSpeed, double initTime, double endSpeed, double endTime) {
+		this.initSpeed = initSpeed; //Initial auto speed
+		this.initTime = initTime; //Initial auto time
+		this.endSpeed = endSpeed; //End auto speed
+		this.endTime = endTime; //End auto time
 	}
 	
-	public int getGearProfile() {
-		return gearProfile;
+	/**
+	 * Method that returns a throttle based on where the robot is in it's autonomous routine.
+	 * @param runNext
+	 * 		If the robot is running it's second TimedDrive
+	 * @return
+	 * 		The throttle at the required point in the autonomous routine.
+	 */
+	public double getThrottle(boolean runNext) {
+		if(runNext) {
+			return endSpeed;
+		} else {
+			return initSpeed;
+		}
 	}
 	
-	public int getHopperProfile() {
-		return hopperProfile;
+	/**
+	 * Method that returns a time based on where the robot is in it's autonomous routine.
+	 * @param runNext
+	 * 		If the robot is running it's second TimedDrive
+	 * @return
+	 * 		The time at the required point in the autonomous routine.
+	 */
+	public double getTime(boolean runNext) {
+		if(runNext) {
+			return endTime;
+		} else {
+			return initTime;
+		}
 	}
 }
