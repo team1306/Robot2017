@@ -3,12 +3,13 @@ package org.usfirst.frc.team1306.robot.commands.autonomous;
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.commands.SetSetpoint;
 import org.usfirst.frc.team1306.robot.commands.Setpoint;
-import org.usfirst.frc.team1306.robot.commands.geartake.DeployGeartake;
-import org.usfirst.frc.team1306.robot.commands.geartake.SpinGeartake;
+import org.usfirst.frc.team1306.robot.commands.drivetrain.DriveDistance;
+import org.usfirst.frc.team1306.robot.commands.geartake.AdvancedDeployGeartake;
+import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
+
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The autonomous command station containing many different autonomous routines
@@ -31,35 +32,35 @@ public class AutonomousCommand extends CommandGroup {
 		
 		if(routine.equals(AutoMode.HOPPER_GEAR)) {			
 			//TODO Possible auto routine for later
+			
+			addParallel(new DeployIntake());
+			addParallel(new SpinIntake(true));
+			addSequential(new DriveDistance(8.8,1.9));
+			addSequential(new DriveDistance(3,1));
+			addSequential(new DriveDistance(4,1.6));
+			addSequential(new SetSetpoint(Setpoint.AUTO_HOPPER));
+			addSequential(new DriveDistance(0.4,0.4));
+			addSequential(new SpinShooter(Constants.SHOOT_TIME,Constants.SHOOTER_RPM_SPEED));
+			
 		} else if(routine.equals(AutoMode.GEAR)) {
 			
-			
-			addSequential(new TimedDrive(-0.3,2.50));
-			addSequential(new DeployGeartake());
-			addSequential(new SpinGeartake(-Constants.GEARTAKE_SPEED,1));
-			addSequential(new TimedDrive(0.3,1));
-//			addSequential(new MotionProfile(Constants.MP_FORWARD));
-			addSequential(new DeployIntake());
-
-			//Vision Works
-//			if(position == 2) {
-//				if(alliance.equals(Alliance.Red)) {
-//					addSequential(new FindTarget(ScanDirection.RIGHT));
-//				} else {
-//					addSequential(new FindTarget(ScanDirection.LEFT));
-//				}
-//				addSequential(new SpinShooter(Constants.SHOOT_TIME));
+//			addSequential(new TimedDrive(station,routine,false));
+//			if(!station.equals(Station.RED_TWO) && !station.equals(Station.BLUE_TWO)) {
+////				addSequential(new AngledTurn(station));
+//				addSequential(new TimedDrive(station,routine,true));
 //			}
 		
-			//Vision Doesn't Work     
-//			if(position == 2) {
-//				if(alliance.equals(Alliance.Red)) {
-//					addSequential(new TurnTurret(Constants.RED_TWO_SETPOINT));
-//				} else {
-//					addSequential(new TurnTurret(Constants.BLUE_TWO_SETPOINT));
-//				}
-//				addSequential(new SpinShooter(Constants.SHOOT_TIME));
-//			}		
+			
+			
+//			addSequential(new TimedDrive(-0.3,2.50));
+			
+			addParallel(new DeployIntake());
+			addParallel(new AdvancedDeployGeartake(true));
+			addSequential(new DriveDistance(-5.7,3.5)); //-8.9
+			
+			addSequential(new TimedDrive(0.3,1));
+//			addSequential(new DeployIntake());
+	
 		} else if(routine.equals(AutoMode.TEN_KPA)) {
 			
 			//Vision Works

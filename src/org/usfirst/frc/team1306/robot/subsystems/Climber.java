@@ -25,8 +25,8 @@ public class Climber extends Subsystem{
 	 */
 	public void spinClimber() {
 		if(Constants.CLIMBER_ENABLED) {
-			climberMotor1.set(Constants.CLIMBER_SPEED);
-			climberMotor2.set(Constants.CLIMBER_SPEED);
+			climberMotor1.set(-Constants.CLIMBER_SPEED);
+			climberMotor2.set(-Constants.CLIMBER_SPEED);
 		}
 	}
 	

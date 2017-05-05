@@ -13,7 +13,7 @@ public enum Setpoint {
 	PEG(Constants.SHOOTER_PEG_RPM,Constants.INDEXER_PEG_RPM,Constants.TURRET_PEG_POS,HoodAngle.DOWN), //Right in front of the closest peg
 	HOPPER(Constants.SHOOTER_HOPPER_RPM,Constants.INDEXER_HOPPER_RPM,Constants.TURRET_HOPPER_POS,HoodAngle.DOWN), //Pushed up against the close hopper
 	AUTO_CLOSE(Constants.SHOOTER_AUTO_CLOSE_RPM,Constants.INDEXER_AUTO_CLOSE_RPM,Constants.TURRET_AUTO_CLOSE_POS,HoodAngle.DOWN), //Auto from boiler tape line
-	AUTO_FAR(Constants.SHOOTER_AUTO_FAR_RPM,Constants.INDEXER_AUTO_FAR_RPM,Constants.TURRET_AUTO_FAR_POS,HoodAngle.DOWN); //Auto from in front of center peg
+	AUTO_HOPPER(Constants.SHOOTER_AUTO_HOPPER_RPM,Constants.INDEXER_AUTO_HOPPER_RPM,Constants.TURRET_AUTO_HOPPER_POS,HoodAngle.DOWN); //Auto from in front of center peg
 	
 	private final double shooterSpeed;
 	private final double indexerSpeed;

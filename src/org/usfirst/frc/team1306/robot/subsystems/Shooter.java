@@ -2,11 +2,14 @@ package org.usfirst.frc.team1306.robot.subsystems;
 
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.RobotMap;
+
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 import com.ctre.CANTalon.VelocityMeasurementPeriod;
 
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -23,6 +26,8 @@ public class Shooter extends Subsystem {
 	public final static double shooterSpeed = Constants.SHOOTER_SPEED;
 	public double shooterRPM = Constants.SHOOTER_BOILER_RPM;
 	public double indexerRPM = Constants.INDEXER_BOILER_RPM;
+	
+	Alliance alliance;
 	
 	public Shooter() {
 		leftShooterMotor = new CANTalon(RobotMap.LEFT_SHOOTER_PORT);
@@ -66,6 +71,8 @@ public class Shooter extends Subsystem {
 		indexerMotor.setP(Constants.INDEXER_P);
 		indexerMotor.setI(Constants.INDEXER_I);
 		indexerMotor.setD(Constants.INDEXER_D);
+		
+		alliance = DriverStation.getInstance().getAlliance();
 	}
 	
 	/**
@@ -84,8 +91,23 @@ public class Shooter extends Subsystem {
 			leftShooterMotor.changeControlMode(TalonControlMode.Speed);
 			rightShooterMotor.changeControlMode(TalonControlMode.Speed);
 			
-			leftShooterMotor.set(shooterRPM);
-			rightShooterMotor.set(shooterRPM);
+			if(rpm == Constants.SHOOTER_AUTO_HOPPER_RPM) {
+				if(alliance.equals(Alliance.Red)) {
+					leftShooterMotor.set(shooterRPM + 78);
+					rightShooterMotor.set(shooterRPM);
+				} else {
+					leftShooterMotor.set(shooterRPM);
+					rightShooterMotor.set(shooterRPM + 78);
+				}
+			} else if(rpm == Constants.SHOOTER_PEG_RPM) {
+				leftShooterMotor.set(rpm + 10);
+				rightShooterMotor.set(rpm);
+			} else {
+				leftShooterMotor.set(shooterRPM + 3);
+				rightShooterMotor.set(shooterRPM);
+			}
+			
+			
 			SmartDashboard.putNumber("shooter rpm",shooterRPM);
 		}
 	}
@@ -111,11 +133,15 @@ public class Shooter extends Subsystem {
 	 */
 	public void spinIndexer() {
 		if(Constants.INDEXER_ENABLED) {
-			indexerMotor.changeControlMode(TalonControlMode.PercentVbus);
-			indexerMotor.set(Constants.INDEXER_SPEED);
-//			indexerMotor.changeControlMode(TalonControlMode.Speed);
-//			indexerMotor.set(indexerRPM * (24/18));
-//			SmartDashboard.putNumber("indexer rpm",indexerRPM);
+//			indexerMotor.changeControlMode(TalonControlMode.PercentVbus);
+////			indexerMotor.set(Constants.INDEXER_SPEED);
+//			indexerMotor.set(1.0);
+			indexerMotor.changeControlMode(TalonControlMode.Speed);
+			
+			
+			
+			indexerMotor.set(indexerRPM * (24/18));
+			SmartDashboard.putNumber("indexer rpm",indexerRPM);
 		}
 	}
 	

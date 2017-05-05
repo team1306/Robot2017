@@ -32,7 +32,6 @@ public class Constants {
 	
 	//Autonomous Constants
 	public final static double SHOOT_TIME = 10.0;
-	
 	public final static double HOPPER_INIT_SPEED = 0.0;
 	public final static double HOPPER_END_SPEED = 0.0;
 	public final static double HOPPER_INIT_TIME = 0.0;
@@ -64,11 +63,11 @@ public class Constants {
 	public final static int HOPPER_RAMP_I = 1;
 	
 	//Indexer Constants
-	public final static double INDEXER_SPEED = 0.72;
+	public final static double INDEXER_SPEED = 1.0;
 	
 	//Setpoint Constants
-	public final static double SHOOTER_BOILER_RPM = 2800;
-	public final static double SHOOTER_PEG_RPM = 3350;
+	public final static double SHOOTER_BOILER_RPM = 2720;
+	public final static double SHOOTER_PEG_RPM = 3210;
 	public final static double SHOOTER_HOPPER_RPM = 2850; 
 	public final static double INDEXER_BOILER_RPM = 2650;
 	public final static double INDEXER_PEG_RPM = 3200;
@@ -79,17 +78,17 @@ public class Constants {
 	
 	public final static double SHOOTER_AUTO_CLOSE_RPM = 2849;
 	public final static double INDEXER_AUTO_CLOSE_RPM = 2640;
-	public final static double TURRET_AUTO_CLOSE_POS = 0.22;
+	public final static double TURRET_AUTO_CLOSE_POS = 0.217;
 	
-	public final static double SHOOTER_AUTO_FAR_RPM = 3500;
-	public final static double INDEXER_AUTO_FAR_RPM = 2640;
-	public final static double TURRET_AUTO_FAR_POS = 0.18;
+	public final static double SHOOTER_AUTO_HOPPER_RPM = 3255; //3115
+	public final static double INDEXER_AUTO_HOPPER_RPM = 3040;
+	public final static double TURRET_AUTO_HOPPER_POS = -0.2228; //-0.2119
 	//Shooter Constants
 	public final static double SHOOTER_SPEED = 0.78;
 	//Bump Up
 	public final static double SHOOTER_RPM_SPEED = 2600;		//Shooter speed in RPM (default:3000) Bump-Up: 2800 Peg: 3350 Close-Hopper: 2770
 	public final static double INDEXER_RPM_SPEED = 2525;		//Shooter speed in RPM (default:2000) Bump-Up: 2650 Peg: 3200 Close-Hopper: 2640
-	public final static int SHOOTER_SPIN_UP_TIME = 1;			//Time to let shooters spin up before turning on hopper and indexers
+	public final static double SHOOTER_SPIN_UP_TIME = 0.5;			//Time to let shooters spin up before turning on hopper and indexers
 	public final static int SHOOTER_BANG_RANGE = 240;			//If shooter speed is below this number, bang bang will kick in
 	public final static double SHOOTER_BANG_CEILING = 1.0;		//Speed bang bang uses when below desired speed
 	public final static double SHOOTER_F = 13.28;				//13.28
@@ -125,8 +124,8 @@ public class Constants {
 	//Drivetrain Constants
 	public final static DriveMode DRIVE_MODE = DriveMode.ARCADE;	//Drive modes defined in DriveMode ENUM
 	public final static double SPEED_MODIFIER = 1.0;			//Multiplier of speeds inputed into tankDrive=
-	public final static double F = 0.7494;
-	public final static double P = 0.0;	//0.1  46.5 46 46 45.5 46
+	public final static double F = 1.4; //1.4
+	public final static double P = 0.0;	
 	public final static double I = 0.0; 
 	public final static double D = 0.0;
 	

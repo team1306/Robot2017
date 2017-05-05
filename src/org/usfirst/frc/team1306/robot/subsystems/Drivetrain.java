@@ -12,7 +12,9 @@ import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -29,6 +31,7 @@ public class Drivetrain extends Subsystem {
 	private final CANTalon leftmotor2;
 	private final CANTalon rightmotor2;
 	public double initAngle;
+	Alliance alliance;
 //	AHRS ahrs; //Navx Gyro
 	
 	public Drivetrain() {
@@ -40,6 +43,8 @@ public class Drivetrain extends Subsystem {
 		motors = new CANTalon[] {leftmotor1, rightmotor1};
 		setupMotors(leftmotor1,leftmotor2);
 		setupMotors(rightmotor1,rightmotor2);
+		
+		alliance = DriverStation.getInstance().getAlliance();
 		
 //		try {
 //			ahrs = new AHRS(SPI.Port.kMXP); //Attempting to Initialize Gyro
@@ -68,35 +73,37 @@ public class Drivetrain extends Subsystem {
 		slave.enable();
 		
 		//Setting up Encoder for Left Drivetrain
-//		leftmotor1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-//		leftmotor1.reverseSensor(false);
-//		leftmotor1.configEncoderCodesPerRev(256);
-//		leftmotor1.configNominalOutputVoltage(+0.0f, -0.0f);
-//		leftmotor1.configPeakOutputVoltage(+12.0f, -12.0f);
-//		
-//		//Setting up Encoder for Right Drivetrain
-//		rightmotor1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-//		rightmotor1.reverseSensor(true);
-//		rightmotor1.configEncoderCodesPerRev(256);
-//		rightmotor1.configNominalOutputVoltage(+0.0f, -0.0f);
-//		rightmotor1.configPeakOutputVoltage(+12.0f, -12.0f);
-//
-//		leftmotor1.setMotionMagicCruiseVelocity(200);
-//		leftmotor1.setMotionMagicAcceleration(300);
-//		rightmotor1.setMotionMagicCruiseVelocity(200);
-//		rightmotor1.setMotionMagicAcceleration(300);
-//		
-//		//Setting up PIDF for Left Drivetrain
-//		leftmotor1.setF(Constants.F);	
-//		leftmotor1.setP(Constants.P);	
-//		leftmotor1.setI(Constants.I);	
-//		leftmotor1.setD(Constants.D);
-//		
-//      //Setting up PIDF for Right Drivetrain
-//		rightmotor1.setF(Constants.F);	
-//		rightmotor1.setP(Constants.P);	
-//		rightmotor1.setI(Constants.I);	
-//		rightmotor1.setD(Constants.D);
+		leftmotor1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		leftmotor1.reverseSensor(false);
+		leftmotor1.reverseOutput(false);
+		leftmotor1.configEncoderCodesPerRev(256);
+		leftmotor1.configNominalOutputVoltage(+0.0f, -0.0f);
+		leftmotor1.configPeakOutputVoltage(+12.0f, -12.0f);
+		
+		//Setting up Encoder for Right Drivetrain
+		rightmotor1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		rightmotor1.reverseSensor(true);
+		rightmotor1.reverseOutput(true);
+		rightmotor1.configEncoderCodesPerRev(256);
+		rightmotor1.configNominalOutputVoltage(+0.0f, -0.0f);
+		rightmotor1.configPeakOutputVoltage(+12.0f, -12.0f);
+
+		leftmotor1.setMotionMagicCruiseVelocity(730*0.75);
+		leftmotor1.setMotionMagicAcceleration(730*0.75);
+		rightmotor1.setMotionMagicCruiseVelocity(730*0.75);
+		rightmotor1.setMotionMagicAcceleration(730*0.75);
+		
+		//Setting up PIDF for Left Drivetrain
+		leftmotor1.setF(Constants.F);	
+		leftmotor1.setP(0.85); //0.11	
+		leftmotor1.setI(Constants.I);	
+		leftmotor1.setD(0);
+		
+      //Setting up PIDF for Right Drivetrain
+		rightmotor1.setF(Constants.F);	
+		rightmotor1.setP(0.85);	
+		rightmotor1.setI(Constants.I);	
+		rightmotor1.setD(0);
 	}
 	
 	/**
@@ -144,9 +151,35 @@ public class Drivetrain extends Subsystem {
 //			rightmotor1.set(-((feet*12)/(4*Math.PI)));a
 			resetEncoders();
 			SmartDashboard.putString("moving robot", "teset");
-			leftmotor1.set(5);
-			rightmotor1.set(-5);
+			
+			if(feet == 3) {
+//				if(alliance.equals(Alliance.Red)) {
+//					leftmotor1.set(1.58); //1.68
+//					rightmotor1.set(-1.58); //1.68
+//				} else {
+//					leftmotor1.set(-1.6); //1.68
+//					rightmotor1.set(1.6); //1.68
+//				}
+				
+				
+				leftmotor1.set(1.58);
+				rightmotor1.set(-1.58);
+				
+//				leftmotor1.set(-1.58);
+//				rightmotor1.set(1.58);
+				
+			} else if(feet == 4) {
+				leftmotor1.set(5.5);
+				rightmotor1.set(5.5);
+			} else {
+				leftmotor1.set(feet);
+				rightmotor1.set(feet);
+			}
 		}
+	}
+	
+	public double inError() {
+		return leftmotor1.getClosedLoopError();
 	}
 	
 	public void resetGyro() {
@@ -191,12 +224,19 @@ public class Drivetrain extends Subsystem {
 	/**
 	 * Stops all of the drive motors
 	 */
-	public void stopAll() {
-		for (int i = 0; i < motors.length; i++) {
-			motors[i].set(0.0);
-		}
-	}
+//	public void stopAll() {
+//		for (int i = 0; i < motors.length; i++) {
+//			motors[i].set(0.0);
+//		}
+//	}
 
+	public void stopAll() {
+		leftmotor1.changeControlMode(TalonControlMode.PercentVbus);
+		rightmotor1.changeControlMode(TalonControlMode.PercentVbus);
+		leftmotor1.set(0.0);
+		rightmotor1.set(0.0);
+	}
+	
 	@Override
 	protected void initDefaultCommand() {
 		if (Constants.DRIVE_MODE == DriveMode.TANK) {				//If mode is tank, set default command to tankdrive

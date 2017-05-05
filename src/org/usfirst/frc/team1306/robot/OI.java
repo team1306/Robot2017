@@ -3,6 +3,7 @@ package org.usfirst.frc.team1306.robot;
 import org.usfirst.frc.team1306.robot.commands.SetSetpoint;
 import org.usfirst.frc.team1306.robot.commands.Setpoint;
 import org.usfirst.frc.team1306.robot.commands.climber.Climb;
+import org.usfirst.frc.team1306.robot.commands.drivetrain.DriveDistance;
 import org.usfirst.frc.team1306.robot.commands.geartake.AdvancedDeployGeartake;
 import org.usfirst.frc.team1306.robot.commands.geartake.DeployGeartake;
 import org.usfirst.frc.team1306.robot.commands.geartake.RetractGeartake;
@@ -16,6 +17,7 @@ import org.usfirst.frc.team1306.robot.commands.turret.ResetTurret;
 import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
 import org.usfirst.frc.team1306.robot.triggers.DPadDirection;
 import org.usfirst.frc.team1306.robot.triggers.DPadPress;
+
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -36,7 +38,7 @@ public class OI {
 	private final Button pbuttonA;
 	private final Button pbuttonB;
 	private final Button pbuttonX;
-	//private final Button pbuttonY;
+	private final Button pbuttonY;
 	private final Button pbuttonRB;
 	private final Button pbuttonLB;
 	//private final Button pbuttonStart;
@@ -70,7 +72,7 @@ public class OI {
 		pbuttonA = new JoystickButton(primaryController, XboxController.A);
 		pbuttonB = new JoystickButton(primaryController, XboxController.B);
 		pbuttonX = new JoystickButton(primaryController, XboxController.X);
-		//pbuttonY = new JoystickButton(primaryController, XboxController.Y);
+		pbuttonY = new JoystickButton(primaryController, XboxController.Y);
 		pbuttonRB = new JoystickButton(primaryController, XboxController.RB);
 		pbuttonLB = new JoystickButton(primaryController, XboxController.LB); 
 		//pbuttonStart = new JoystickButton(primaryController, XboxController.START);
@@ -94,15 +96,17 @@ public class OI {
 		secondaryDPadLeft = new DPadPress(secondaryController, DPadDirection.LEFT);
 		secondaryDPadDown = new DPadPress(secondaryController, DPadDirection.DOWN);
 		
-		
+//		pbuttonY.whenPressed(new DriveDistance(10.6,3.9));
+//		pbuttonRB.whenPressed(new DriveDistance(5,1));
+//		pbuttonLB.whenPressed(new DriveDistance(4,3));
 		
 		//Primary Controller Mapping
 		pbuttonA.toggleWhenPressed(new SpinShooter(true,Constants.SHOOTER_RPM_SPEED));
 		pbuttonB.whenPressed(new ResetTurret());
 		pbuttonX.whenPressed(new SpinIntake(false));
 		
-		pbuttonLB.whenPressed(new FindTarget(ScanDirection.LEFT));
-		pbuttonRB.whenPressed(new FindTarget(ScanDirection.RIGHT));
+//		pbuttonLB.whenPressed(new FindTarget(ScanDirection.LEFT));
+//		pbuttonRB.whenPressed(new FindTarget(ScanDirection.RIGHT));
 		
 		primaryDPadUp.whenActive(new AdjustHood(HoodAngle.UP));
 		primaryDPadDown.whenActive(new AdjustHood(HoodAngle.DOWN));
@@ -116,14 +120,16 @@ public class OI {
 		sbuttonY.whenPressed(new RetractGeartake());
 		
 		sbuttonLB.whenPressed(new SpinGeartake(Constants.GEARTAKE_SPEED));
-		sbuttonRB.whenPressed(new AdvancedDeployGeartake());
+		sbuttonRB.whenPressed(new AdvancedDeployGeartake(false));
 		
 		sbuttonStart.whenPressed(new Climb());
 		
 		secondaryDPadUp.whenActive(new SetSetpoint(Setpoint.BOILER));
-		secondaryDPadRight.whenActive(new SetSetpoint(Setpoint.PEG));
-		secondaryDPadLeft.whenActive(new SetSetpoint(Setpoint.HOPPER));
+		secondaryDPadLeft.whenActive(new SetSetpoint(Setpoint.PEG));
+//		secondaryDPadLeft.whenActive(new SetSetpoint(Setpoint.HOPPER));
 		secondaryDPadDown.whenActive(new ResetTurret());
+//		secondaryDPadDown.whenActive(new SetSetpoint(Setpoint.AUTO_HOPPER));
+//		secondaryDPadDown.whenActive(new ResetTurret());
 		
 	}
 	

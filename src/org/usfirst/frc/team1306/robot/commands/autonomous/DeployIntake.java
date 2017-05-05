@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.Timer;
  */
 public class DeployIntake extends CommandBase {
 
-	private final double deployTime = 1.0;
+	private final double deployTime = 2.0;
 	private final Timer timer;
 	
 	public DeployIntake() {
