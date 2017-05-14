@@ -8,7 +8,7 @@ import org.usfirst.frc.team1306.robot.commands.drivetrain.DriveMode;
  */
 public class Constants {
 
-	//Subsystem Constants (Determines if different subsystems will run or not)
+	//Subsystem Control (Switching to false will disable all output for that subsystem)
 	public final static boolean INTAKE_ENABLED = true;			
 	public final static boolean SHOOTER_ENABLED = true;			
 	public final static boolean DRIVETRAIN_ENABLED = true;		
@@ -19,18 +19,25 @@ public class Constants {
 	public final static boolean TURRET_ENABLED = true;			
 	public final static boolean INDEXER_ENABLED = true;			
 	
-	//OI Constants
-	public final static double DEADBAND = 0.15; //Joystick deadband
-	public final static double TRIGGER_DEADBAND = 0.15; //Trigger deadband
-	public final static double JOYSTICK_MULTIPLIER = 1.0; //Multiplier for the joystick inputs  
+	//SmartDashboard Debug Modes
+	public final static boolean DEBUG_SUBSYSTEMS = false; //Enables debug smartdashboard outputs for all subsystems (excluding voltage)
+	public final static boolean DEBUG_DRIVETRAIN = false; //Speed and Position of Encoders TODO Add Gyro?
+	public final static boolean DEBUG_SHOOTER = false; //Speed and Position of both encoders
+	public final static boolean DEBUG_TURRET = false; //Position of turret in encoder units and rotations
 	
-	//Button ConstantsGEAR
+	public final static boolean DEBUG_VOLTAGE = false; //Current draw of each PDP slot
+	
+	//OI Constants
+	public final static double DEADBAND = 0.15; //Joystick and trigger deadband
+	public final static double JOYSTICK_MULTIPLIER = 1.0; //Joystick inputs raised to this power
+	
+	//Button Constants (Used in some commands for detecting if a button is still pressed)
 	public final static int INTAKE_BUTTON = XboxController.X;
 	public final static int SHOOTER_BUTTON = XboxController.A;
-	public final static int GEARTAKE_BUTTON = XboxController.RB;
-	public final static int GEARTAKE_BACK_BUTTON = XboxController.LB;
+	public final static int GEARTAKE_FORWARD_BUTTON = XboxController.RB;
+	public final static int GEARTAKE_REVERSE_BUTTON = XboxController.LB;
 	
-	//Autonomous Constants
+	//Autonomous Constants //TODO Write usage
 	public final static double SHOOT_TIME = 10.0;
 	public final static double HOPPER_INIT_SPEED = 0.0;
 	public final static double HOPPER_END_SPEED = 0.0;
@@ -52,15 +59,14 @@ public class Constants {
 	public final static double GEARTAKE_SPEED = 1.0;
 	
 	//Climber Constants
-	public final static double CLIMBER_SPEED = 1.0; //Cart: -0.25 Down, 0.6-0.7 Up
+	public final static double CLIMBER_SPEED = 1.0;
 	public final static double CLIMBER_BACK_SPEED = -0.2;
 	
 	//Intake Constants
 	public final static double INTAKE_SPEED = 0.75;
 	
 	//Hopper Constants
-	public final static double HOPPER_SPEED = 1.0;	
-	public final static int HOPPER_RAMP_I = 1;
+	public final static double HOPPER_SPEED = 1.0;
 	
 	//Indexer Constants
 	public final static double INDEXER_SPEED = 1.0;
@@ -75,59 +81,43 @@ public class Constants {
 	public final static double TURRET_BOILER_POS = 0.0;
 	public final static double TURRET_PEG_POS = 0.0;
 	public final static double TURRET_HOPPER_POS = -0.210;
-	
 	public final static double SHOOTER_AUTO_CLOSE_RPM = 2849;
 	public final static double INDEXER_AUTO_CLOSE_RPM = 2640;
 	public final static double TURRET_AUTO_CLOSE_POS = 0.217;
-	
-	public final static double SHOOTER_AUTO_HOPPER_RPM = 3255; //3115
+	public final static double SHOOTER_AUTO_HOPPER_RPM = 3255; 
 	public final static double INDEXER_AUTO_HOPPER_RPM = 3040;
-	public final static double TURRET_AUTO_HOPPER_POS = -0.2228; //-0.2119
+	public final static double TURRET_AUTO_HOPPER_POS = -0.2228;
+	
 	//Shooter Constants
 	public final static double SHOOTER_SPEED = 0.78;
-	//Bump Up
-	public final static double SHOOTER_RPM_SPEED = 2600;		//Shooter speed in RPM (default:3000) Bump-Up: 2800 Peg: 3350 Close-Hopper: 2770
-	public final static double INDEXER_RPM_SPEED = 2525;		//Shooter speed in RPM (default:2000) Bump-Up: 2650 Peg: 3200 Close-Hopper: 2640
+	public final static double SHOOTER_RPM_SPEED = 2600;		
+	public final static double INDEXER_RPM_SPEED = 2525;		
 	public final static double SHOOTER_SPIN_UP_TIME = 0.5;			//Time to let shooters spin up before turning on hopper and indexers
-	public final static int SHOOTER_BANG_RANGE = 240;			//If shooter speed is below this number, bang bang will kick in
-	public final static double SHOOTER_BANG_CEILING = 1.0;		//Speed bang bang uses when below desired speed
-	public final static double SHOOTER_F = 13.28;				//13.28
+	public final static double SHOOTER_F = 13.28;				
 	public final static double SHOOTER_P = Double.MAX_VALUE;
 	public final static double SHOOTER_I = 0.0;
 	public final static double SHOOTER_D = 0.0;
-	public final static double INDEXER_F = 0.02886; 			//0.1162 0.1249
-	public final static double INDEXER_P = 0.04092; 			//0.04092
-	public final static double INDEXER_I = 0.0;					//TODO Calculate indexer I
-	public final static double INDEXER_D = 0.0;					//TODO Calculate indexer D
+	public final static double INDEXER_F = 0.02886; 			
+	public final static double INDEXER_P = 0.04092; 			
+	public final static double INDEXER_I = 0.0;					
+	public final static double INDEXER_D = 0.0;					
 	
 	//Turret Constants
-	public final static double MANUAL_TURRET_ROT = 0.5;			//Maxumum rotation value for the turret when in manual mode
-	
 	public final static double TURRET_TURN_LEFT_SPEED = 0.13;	
-	public final static double TURRET_TURN_RIGHT_SPEED = -0.13;	
-	public final static double TURRET_LEFT_LIMIT = 2750;		
-	public final static double TURRET_RIGHT_LIMIT = -1120;		
-	public final static double TURRET_RESET_POSITION = 0;		
-	public final static double TURRET_TURN_TOLERANCE = 10;
-	public final static double TURRET_RECOVERY_TIME = 0.5;
-	public final static double YAW_DEADBAND = 2.5;
-	public final static double TURRET_GEAR_CONVERSION = 1.88888889; 		//72, 136 (136/72) Conversion turret rotations into gear rotations TODO Calculate this value with the gear tooth ratio
-	public final static double DPAD_TURRET_STEP = 0.05 * TURRET_GEAR_CONVERSION;
+	public final static double TURRET_TURN_RIGHT_SPEED = -0.13;		
+	public final static double TURRET_RESET_POSITION = 0;
+	public final static double TURRET_GEAR_CONVERSION = 1.88888889; //(136/72) Amount of gear rotations that make up one full turret rotation
 	public final static double TURRET_RIGHT_ROT_LIMIT = 0.25;
 	public final static double TURRET_LEFT_ROT_LIMIT = -0.25;
 	public final static double TURRET_START_POS = 3480;
-	public final static double RED_TWO_SETPOINT = 0.0;
-	public final static double BLUE_TWO_SETPOINT = 0.0;
-	public final static double RED_HOPPER_SETPOINT = 0.0;
-	public final static double BLUE_HOPPER_SETPOINT = 0.0;
 	
 	//Drivetrain Constants
-	public final static DriveMode DRIVE_MODE = DriveMode.ARCADE;	//Drive modes defined in DriveMode ENUM
-	public final static double SPEED_MODIFIER = 1.0;			//Multiplier of speeds inputed into tankDrive=
-	public final static double F = 1.4; //1.4
-	public final static double P = 0.0;	
-	public final static double I = 0.0; 
-	public final static double D = 0.0;
+	public final static DriveMode DRIVE_MODE = DriveMode.ARCADE; //What driving controls the robot will use (Arcade or Tank)
+	public final static double SPEED_MODIFIER = 1.0; //Speed multiplier (only really used with percentvbus driving)
+	public final static double F = 1.4; //TODO Re-Tune
+	public final static double P = 0.0;	//TODO Re-Tune
+	public final static double I = 0.0; //TODO Re-Tune
+	public final static double D = 0.0; //TODO Re-Tune
 	
 	
 }

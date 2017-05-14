@@ -3,7 +3,6 @@ package org.usfirst.frc.team1306.robot;
 import org.usfirst.frc.team1306.robot.commands.SetSetpoint;
 import org.usfirst.frc.team1306.robot.commands.Setpoint;
 import org.usfirst.frc.team1306.robot.commands.climber.Climb;
-import org.usfirst.frc.team1306.robot.commands.drivetrain.DriveDistance;
 import org.usfirst.frc.team1306.robot.commands.geartake.AdvancedDeployGeartake;
 import org.usfirst.frc.team1306.robot.commands.geartake.DeployGeartake;
 import org.usfirst.frc.team1306.robot.commands.geartake.RetractGeartake;
@@ -12,12 +11,9 @@ import org.usfirst.frc.team1306.robot.commands.hood.AdjustHood;
 import org.usfirst.frc.team1306.robot.commands.hood.HoodAngle;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
-import org.usfirst.frc.team1306.robot.commands.turret.FindTarget;
 import org.usfirst.frc.team1306.robot.commands.turret.ResetTurret;
-import org.usfirst.frc.team1306.robot.commands.turret.ScanDirection;
 import org.usfirst.frc.team1306.robot.triggers.DPadDirection;
 import org.usfirst.frc.team1306.robot.triggers.DPadPress;
-
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -95,10 +91,6 @@ public class OI {
 		secondaryDPadRight = new DPadPress(secondaryController, DPadDirection.RIGHT);
 		secondaryDPadLeft = new DPadPress(secondaryController, DPadDirection.LEFT);
 		secondaryDPadDown = new DPadPress(secondaryController, DPadDirection.DOWN);
-		
-//		pbuttonY.whenPressed(new DriveDistance(10.6,3.9));
-//		pbuttonRB.whenPressed(new DriveDistance(5,1));
-//		pbuttonLB.whenPressed(new DriveDistance(4,3));
 		
 		//Primary Controller Mapping
 		pbuttonA.toggleWhenPressed(new SpinShooter(true,Constants.SHOOTER_RPM_SPEED));

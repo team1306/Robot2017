@@ -28,7 +28,7 @@ public class ArcadeDrive extends CommandBase {
 	@Override
 	protected void execute() {
 		
-		if (OI.getTriggerVal(controller.p, trigger.r) >= Constants.TRIGGER_DEADBAND || OI.getTriggerVal(controller.p, trigger.l) >= Constants.TRIGGER_DEADBAND) {
+		if (OI.getTriggerVal(controller.p, trigger.r) >= Constants.DEADBAND || OI.getTriggerVal(controller.p, trigger.l) >= Constants.DEADBAND) {
 			double triggerVal = OI.getTriggerVal(controller.p, trigger.r) - OI.getTriggerVal(controller.p, trigger.l);
 			SmartDashboard.putNumber("Trigger Val", triggerVal);
 			drivetrain.tankDrive(triggerVal+OI.getJoyVal(controller.p, joystick.l, axis.x), triggerVal-OI.getJoyVal(controller.p, joystick.l, axis.x));

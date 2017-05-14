@@ -3,17 +3,12 @@ package org.usfirst.frc.team1306.robot.subsystems;
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.RobotMap;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.ArcadeDrive;
-import org.usfirst.frc.team1306.robot.commands.drivetrain.BentElbowDrive;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.DriveMode;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.TankDrive;
-
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
-import com.kauailabs.navx.frc.AHRS;
-
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -25,7 +20,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Drivetrain extends Subsystem {
 	
-	private final CANTalon[] motors;	
 	private final CANTalon leftmotor1;
 	private final CANTalon rightmotor1;
 	private final CANTalon leftmotor2;
@@ -40,7 +34,6 @@ public class Drivetrain extends Subsystem {
 		leftmotor2 = new CANTalon(RobotMap.LEFT_TALON_2_PORT);
 		rightmotor2 = new CANTalon(RobotMap.RIGHT_TALON_2_PORT);
 		
-		motors = new CANTalon[] {leftmotor1, rightmotor1};
 		setupMotors(leftmotor1,leftmotor2);
 		setupMotors(rightmotor1,rightmotor2);
 		
@@ -121,9 +114,6 @@ public class Drivetrain extends Subsystem {
 		if(Constants.DRIVETRAIN_ENABLED) {
 			leftmotor1.set(leftVal*Constants.SPEED_MODIFIER);
 			rightmotor1.set(-rightVal*Constants.SPEED_MODIFIER);
-			SmartDashboard.putNumber("leftval",leftVal);
-			SmartDashboard.putNumber("rightvel",rightVal);
-//			SmartDashboard.putNumber("Gyro Angle",ahrs.getAngle());
 		}
 	}
 	
@@ -241,14 +231,9 @@ public class Drivetrain extends Subsystem {
 	protected void initDefaultCommand() {
 		if (Constants.DRIVE_MODE == DriveMode.TANK) {				//If mode is tank, set default command to tankdrive
 			setDefaultCommand(new TankDrive());
-		}
-		else if (Constants.DRIVE_MODE == DriveMode.ARCADE) {		//If mode is arcade, set default command to arcadedrive
+		} else if (Constants.DRIVE_MODE == DriveMode.ARCADE) {		//If mode is arcade, set default command to arcadedrive
 			setDefaultCommand(new ArcadeDrive());
-		}
-		else if (Constants.DRIVE_MODE == DriveMode.BENT_ELBOW) {	//If mode is bent elbow, set default command to bent elbow
-			setDefaultCommand(new BentElbowDrive());
-		}
-		else {
+		} else {
 			setDefaultCommand(new TankDrive()); 					//Defaults to tankdrive
 		}
 	}

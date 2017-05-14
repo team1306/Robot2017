@@ -44,7 +44,7 @@ public class SpinGeartake extends CommandBase {
 
 	@Override
 	protected boolean isFinished() {
-		if(OI.getButtonVal(controller.s,Constants.GEARTAKE_BUTTON) || OI.getButtonVal(controller.s,Constants.GEARTAKE_BACK_BUTTON)) {
+		if(OI.getButtonVal(controller.s,Constants.GEARTAKE_FORWARD_BUTTON) || OI.getButtonVal(controller.s,Constants.GEARTAKE_REVERSE_BUTTON)) {
     		return false;
     	} else if(timedSpin && timer.hasPeriodPassed(time)) {
     		gearmech.stopAll();

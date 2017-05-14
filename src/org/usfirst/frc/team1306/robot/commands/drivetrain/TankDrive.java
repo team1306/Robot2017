@@ -34,10 +34,10 @@ public class TankDrive extends CommandBase {
 		* 
 		*/
 		
-		if(OI.getTriggerVal(controller.p, trigger.l) >= Constants.TRIGGER_DEADBAND || OI.getTriggerVal(controller.p, trigger.r) >= Constants.TRIGGER_DEADBAND) {
-			if(OI.getTriggerVal(controller.p, trigger.r) >= Constants.TRIGGER_DEADBAND) {
+		if(OI.getTriggerVal(controller.p, trigger.l) >= Constants.DEADBAND || OI.getTriggerVal(controller.p, trigger.r) >= Constants.DEADBAND) {
+			if(OI.getTriggerVal(controller.p, trigger.r) >= Constants.DEADBAND) {
 				drivetrain.tankDrive(OI.getTriggerVal(controller.p, trigger.r), OI.getTriggerVal(controller.p, trigger.r));
-			} else if(OI.getTriggerVal(controller.p, trigger.l) >= Constants.TRIGGER_DEADBAND) {
+			} else if(OI.getTriggerVal(controller.p, trigger.l) >= Constants.DEADBAND) {
 				drivetrain.tankDrive(-OI.getTriggerVal(controller.p, trigger.l), -OI.getTriggerVal(controller.p, trigger.l));
 			}
 		} else {

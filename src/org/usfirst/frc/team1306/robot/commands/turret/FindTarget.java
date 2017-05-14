@@ -102,7 +102,7 @@ public class FindTarget extends CommandBase {
 //				turret.moveRot(visionAdjustment + turret.getPosition());
 //			}
 			SmartDashboard.putNumber("Turning",1);
-			if(Math.abs(vision.getYaw()) < 4) {
+			if(Math.abs(vision.getYaw()) < 4) { //TODO use deadband
 				
 			} else {
 				turret.moveRot(visionAdjustment + turret.getPosition());
