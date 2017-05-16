@@ -1,15 +1,24 @@
 package org.usfirst.frc.team1306.robot.commands.drivetrain;
 
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
-
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class DriveDistance extends CommandBase {
+/**
+ * Command that takes the distance in feet the robot should travel and the allowed time-frame in which it must do it.
+ * @author Jackson Goth
+ */
+public class DriveDistance extends CommandBase { //TODO Make constructor without time-frame
 
 	private double distance, time;
-	Timer timer;
+	private Timer timer;
 	
+	/**
+	 * Sets up the command with the desired distance/allowed time and initializes the timer.
+	 * @param distance
+	 * 		Distance the robot should travel in feet
+	 * @param time
+	 * 		Time before command will end
+	 */
 	public DriveDistance(double distance, double time) {
 		requires(drivetrain);
 		this.distance = distance;
@@ -18,22 +27,15 @@ public class DriveDistance extends CommandBase {
 		timer = new Timer();
 	}
 	
+	/**
+	 * This resets the timer, starts the timer, and tells the drivetrain how far to drive.
+	 */
 	@Override
 	protected void initialize() {
 		timer.reset();
 		timer.start();
-		
-		SmartDashboard.putNumber("distance",distance);
-		
+	
 		drivetrain.driveDistance(distance);
-		
-//		if(distance == 5) {
-//			drivetrain.driveDistance(3);
-//		} else if(distance == 4) {
-//			drivetrain.driveDistance(4);
-//		} else {
-//			drivetrain.driveDistance(distance);
-//		}
 	}
 
 	@Override
@@ -41,6 +43,9 @@ public class DriveDistance extends CommandBase {
 		
 	}
 
+	/**
+	 * This checks to see if the allowed time has passed and if so resets the encoders and stops the drivetrain.
+	 */
 	@Override
 	protected boolean isFinished() {
 		if(timer.hasPeriodPassed(time)) {

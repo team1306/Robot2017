@@ -115,7 +115,7 @@ public class Constants {
 	public final static DriveMode DRIVE_MODE = DriveMode.ARCADE; //What driving controls the robot will use (Arcade or Tank)
 	public final static double SPEED_MODIFIER = 1.0; //Speed multiplier (only really used with percentvbus driving)
 	public final static double F = 1.4; //TODO Re-Tune
-	public final static double P = 0.0;	//TODO Re-Tune
+	public final static double P = 0.85;	//TODO Re-Tune
 	public final static double I = 0.0; //TODO Re-Tune
 	public final static double D = 0.0; //TODO Re-Tune
 	

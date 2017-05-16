@@ -11,13 +11,14 @@ import com.ctre.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * Controls drivetrain motors with the joysticks from OI.java, and can limit intake speed
+ * This is the drivetrain subsystem that controls two motors on each side of the robot. One of which
+ * is in a follower mode that mimics the adjacent motor. This subsytem also gets information from an encoder
+ * on each side of the robot as well as a gyro to allow for more complex manuevers.
+ * 
  * @author Jackson Goth and Sam Roquitte
  */
-
 public class Drivetrain extends Subsystem {
 	
 	private final CANTalon leftmotor1;
@@ -29,6 +30,7 @@ public class Drivetrain extends Subsystem {
 //	AHRS ahrs; //Navx Gyro
 	
 	public Drivetrain() {
+		
 		leftmotor1 = new CANTalon(RobotMap.LEFT_TALON_1_PORT);
 		rightmotor1 = new CANTalon(RobotMap.RIGHT_TALON_1_PORT);
 		leftmotor2 = new CANTalon(RobotMap.LEFT_TALON_2_PORT);
@@ -47,16 +49,16 @@ public class Drivetrain extends Subsystem {
 //		}
 //		
 //		ahrs.reset();
-//	}
 	}
 	/**
-	 * Sets up the motors, master in pvb mode and sets the slave motor to a follower
+	 * Sets up the motors, master in pvb mode and sets the slave motor as a follower
 	 * @param master
-	 * 		The talon that will be the master, folower will follow this talon
+	 * 		The talon that will be the master, follower will mimic this talon
 	 * @param slave
-	 * 		The follower talon
+	 * 		The talon that will be the follower
 	 */
 	private void setupMotors(CANTalon master, CANTalon slave) {
+		
 		master.changeControlMode(TalonControlMode.PercentVbus);
 		master.set(0.0);
 		master.enable();
@@ -65,43 +67,42 @@ public class Drivetrain extends Subsystem {
 		slave.set(master.getDeviceID());
 		slave.enable();
 		
-		//Setting up Encoder for Left Drivetrain
+		//Sets up the encoder for the left side of the drivetrain with the correct settings
 		leftmotor1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		leftmotor1.reverseSensor(false);
-		leftmotor1.reverseOutput(false);
+		leftmotor1.reverseSensor(false); //Encoder output doesn't need to be reversed
+		leftmotor1.reverseOutput(false); //Throttle output doesn't need to be reversed
 		leftmotor1.configEncoderCodesPerRev(256);
 		leftmotor1.configNominalOutputVoltage(+0.0f, -0.0f);
 		leftmotor1.configPeakOutputVoltage(+12.0f, -12.0f);
 		
-		//Setting up Encoder for Right Drivetrain
+		//Sets up the encoder for the right side of the drivetrain with the correct settings
 		rightmotor1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		rightmotor1.reverseSensor(true);
-		rightmotor1.reverseOutput(true);
+		rightmotor1.reverseSensor(true); //Reverses output of encoder signals going into talon
+		rightmotor1.reverseOutput(true); //Reverses throttle output getting sent to the talon
 		rightmotor1.configEncoderCodesPerRev(256);
 		rightmotor1.configNominalOutputVoltage(+0.0f, -0.0f);
 		rightmotor1.configPeakOutputVoltage(+12.0f, -12.0f);
 
-		leftmotor1.setMotionMagicCruiseVelocity(730*0.75);
+		leftmotor1.setMotionMagicCruiseVelocity(730*0.75); //TODO Re-tune all of these
 		leftmotor1.setMotionMagicAcceleration(730*0.75);
 		rightmotor1.setMotionMagicCruiseVelocity(730*0.75);
 		rightmotor1.setMotionMagicAcceleration(730*0.75);
 		
-		//Setting up PIDF for Left Drivetrain
+		//Giving the left talons the PIDF parameters to use for the control loop
 		leftmotor1.setF(Constants.F);	
-		leftmotor1.setP(0.85); //0.11	
+		leftmotor1.setP(Constants.P);
 		leftmotor1.setI(Constants.I);	
-		leftmotor1.setD(0);
+		leftmotor1.setD(Constants.D);
 		
-      //Setting up PIDF for Right Drivetrain
+		//Giving the right talons the PIDF parameters to use for the control loop
 		rightmotor1.setF(Constants.F);	
-		rightmotor1.setP(0.85);	
+		rightmotor1.setP(Constants.P);	
 		rightmotor1.setI(Constants.I);	
-		rightmotor1.setD(0);
+		rightmotor1.setD(Constants.D);
 	}
 	
 	/**
-	 * Takes 2 desired speeds to run the drive motors at
-	 * 
+	 * General driving command that takes an input of -1 to 1 for each side of the drivetrain.
 	 * @param leftVal
 	 * 		Speed for the left side (from -1 to 1)
 	 * @param rightVal
@@ -113,51 +114,27 @@ public class Drivetrain extends Subsystem {
 
 		if(Constants.DRIVETRAIN_ENABLED) {
 			leftmotor1.set(leftVal*Constants.SPEED_MODIFIER);
-			rightmotor1.set(-rightVal*Constants.SPEED_MODIFIER);
+			rightmotor1.set(-rightVal*Constants.SPEED_MODIFIER); 
 		}
 	}
 	
 	/**
-	 * Takes a desired speed to run both drive motors at and tries to maintain that with PID
-	 * @param initVel
-	 * 		Speed for both sides to match
+	 * Autonomous driving command that takes an input in feet,
+	 * and drives the robot to that distance using motion profiles.
+	 * @param feet
+	 * 		Distance to which the robot should travel
 	 */
-	public void drivePID(double leftVel, double rightVel) {
-		leftmotor1.changeControlMode(TalonControlMode.Speed);
-		rightmotor1.changeControlMode(TalonControlMode.Speed);
-		
-		if(Constants.DRIVETRAIN_ENABLED) {
-			leftmotor1.set(leftVel);
-			rightmotor1.set(-rightVel);
-		}
-	}
-
 	public void driveDistance(double feet) {
 		leftmotor1.changeControlMode(TalonControlMode.MotionMagic);
 		rightmotor1.changeControlMode(TalonControlMode.MotionMagic);
 		
 		if(Constants.DRIVETRAIN_ENABLED) {
-//			leftmotor1.set((feet*12)/(4*Math.PI));
-//			rightmotor1.set(-((feet*12)/(4*Math.PI)));a
 			resetEncoders();
-			SmartDashboard.putString("moving robot", "teset");
 			
-			if(feet == 3) {
-//				if(alliance.equals(Alliance.Red)) {
-//					leftmotor1.set(1.58); //1.68
-//					rightmotor1.set(-1.58); //1.68
-//				} else {
-//					leftmotor1.set(-1.6); //1.68
-//					rightmotor1.set(1.6); //1.68
-//				}
-				
-				
+			//TODO Write this command so it works correctly
+			if(feet == 3) {	
 				leftmotor1.set(1.58);
-				rightmotor1.set(-1.58);
-				
-//				leftmotor1.set(-1.58);
-//				rightmotor1.set(1.58);
-				
+				rightmotor1.set(-1.58);	
 			} else if(feet == 4) {
 				leftmotor1.set(5.5);
 				rightmotor1.set(5.5);
@@ -168,21 +145,22 @@ public class Drivetrain extends Subsystem {
 		}
 	}
 	
-	public double inError() {
-		return leftmotor1.getClosedLoopError();
-	}
-	
+	/**
+	 * Function that resets the gyro.
+	 */
 	public void resetGyro() {
-		//ahrs.reset();
-		//initAngle = ahrs.getYaw();
-	}
-	
-	public double getGyro() {
-		return 0;//ahrs.getYaw();
+		//TODO Write this for new gyro
 	}
 	
 	/**
-	 * Resets the position of both encoders back to zero
+	 * Function that returns the current heading value of gyro.
+	 */
+	public double getHeading() {
+		return 0; //TODO Make this return actual values from new Gyro
+	}
+	
+	/**
+	 * Resets the position of both drivetrain encoders.
 	 */
 	public void resetEncoders() {
 		leftmotor1.setPosition(0);
@@ -190,23 +168,29 @@ public class Drivetrain extends Subsystem {
 	}
 	
 	/**
-	 * Returns the position of the left encoder
+	 * Returns the position of the left encoder.
 	 */
 	public int getLeftPosition() {
 		return leftmotor1.getEncPosition();
 	}
 	
 	/**
-	 * Returns the position of the right encoder
+	 * Returns the position of the right encoder.
 	 */
 	public int getRightPosition() {
 		return rightmotor1.getEncPosition();
 	}
 	
+	/**
+	 * Returns the velocity being read by the left encoder.
+	 */
 	public double getLeftVel() {
 		return leftmotor1.getEncVelocity();
 	}
 	
+	/**
+	 * Returns the velocity being read by the right encoder.
+	 */
 	public double getRightVel() {
 		return rightmotor1.getEncVelocity();
 	}
@@ -214,12 +198,6 @@ public class Drivetrain extends Subsystem {
 	/**
 	 * Stops all of the drive motors
 	 */
-//	public void stopAll() {
-//		for (int i = 0; i < motors.length; i++) {
-//			motors[i].set(0.0);
-//		}
-//	}
-
 	public void stopAll() {
 		leftmotor1.changeControlMode(TalonControlMode.PercentVbus);
 		rightmotor1.changeControlMode(TalonControlMode.PercentVbus);
@@ -227,14 +205,15 @@ public class Drivetrain extends Subsystem {
 		rightmotor1.set(0.0);
 	}
 	
+	/**
+	 * Starts a command that looks for control input based on a given controls mode (tank or arcade).
+	 */
 	@Override
 	protected void initDefaultCommand() {
-		if (Constants.DRIVE_MODE == DriveMode.TANK) {				//If mode is tank, set default command to tankdrive
-			setDefaultCommand(new TankDrive());
-		} else if (Constants.DRIVE_MODE == DriveMode.ARCADE) {		//If mode is arcade, set default command to arcadedrive
+		if(Constants.DRIVE_MODE == DriveMode.ARCADE) {
 			setDefaultCommand(new ArcadeDrive());
 		} else {
-			setDefaultCommand(new TankDrive()); 					//Defaults to tankdrive
+			setDefaultCommand(new TankDrive());
 		}
 	}
 }

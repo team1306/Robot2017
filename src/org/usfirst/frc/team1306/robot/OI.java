@@ -34,9 +34,9 @@ public class OI {
 	private final Button pbuttonA;
 	private final Button pbuttonB;
 	private final Button pbuttonX;
-	private final Button pbuttonY;
-	private final Button pbuttonRB;
-	private final Button pbuttonLB;
+//	private final Button pbuttonY;
+//	private final Button pbuttonRB;
+//	private final Button pbuttonLB;
 	//private final Button pbuttonStart;
 	//private final Button pbuttonBack;
 	private final Trigger primaryDPadUp;
@@ -54,7 +54,7 @@ public class OI {
 	private final Button sbuttonStart;
 	//private final Button sbuttonBack;	
 	private final Trigger secondaryDPadUp;
-	private final Trigger secondaryDPadRight;
+//	private final Trigger secondaryDPadRight;
 	private final Trigger secondaryDPadLeft;
 	private final Trigger secondaryDPadDown;
 	
@@ -68,9 +68,9 @@ public class OI {
 		pbuttonA = new JoystickButton(primaryController, XboxController.A);
 		pbuttonB = new JoystickButton(primaryController, XboxController.B);
 		pbuttonX = new JoystickButton(primaryController, XboxController.X);
-		pbuttonY = new JoystickButton(primaryController, XboxController.Y);
-		pbuttonRB = new JoystickButton(primaryController, XboxController.RB);
-		pbuttonLB = new JoystickButton(primaryController, XboxController.LB); 
+//		pbuttonY = new JoystickButton(primaryController, XboxController.Y);
+//		pbuttonRB = new JoystickButton(primaryController, XboxController.RB);
+//		pbuttonLB = new JoystickButton(primaryController, XboxController.LB); 
 		//pbuttonStart = new JoystickButton(primaryController, XboxController.START);
 		//pbuttonBack = new JoystickButton(primaryController, XboxController.BACK);
 		primaryDPadUp = new DPadPress(primaryController, DPadDirection.UP);
@@ -88,7 +88,7 @@ public class OI {
 		sbuttonStart = new JoystickButton(secondaryController, XboxController.START);
 		//sbuttonBack = new JoystickButton(secondaryController, XboxController.BACK);
 		secondaryDPadUp = new DPadPress(secondaryController, DPadDirection.UP);
-		secondaryDPadRight = new DPadPress(secondaryController, DPadDirection.RIGHT);
+//		secondaryDPadRight = new DPadPress(secondaryController, DPadDirection.RIGHT);
 		secondaryDPadLeft = new DPadPress(secondaryController, DPadDirection.LEFT);
 		secondaryDPadDown = new DPadPress(secondaryController, DPadDirection.DOWN);
 		
@@ -102,8 +102,6 @@ public class OI {
 		
 		primaryDPadUp.whenActive(new AdjustHood(HoodAngle.UP));
 		primaryDPadDown.whenActive(new AdjustHood(HoodAngle.DOWN));
-		
-		
 		
 		//Secondary Controller Mapping
 		sbuttonA.whenPressed(new SpinShooter(false,Constants.SHOOTER_RPM_SPEED));
@@ -120,8 +118,6 @@ public class OI {
 		secondaryDPadLeft.whenActive(new SetSetpoint(Setpoint.PEG));
 //		secondaryDPadLeft.whenActive(new SetSetpoint(Setpoint.HOPPER));
 		secondaryDPadDown.whenActive(new ResetTurret());
-//		secondaryDPadDown.whenActive(new SetSetpoint(Setpoint.AUTO_HOPPER));
-//		secondaryDPadDown.whenActive(new ResetTurret());
 		
 	}
 	

@@ -16,14 +16,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
- * documentation. If you change the name of this class or the package after
- * creating this project, you must also update the manifest file in the resource
- * directory.
+ * documentation.
+ * 
+ * @author Jackson Goth, Sam Roquitte
  */
 public class Robot extends IterativeRobot {
 
-    Command autonomousCommand;
-    SendableChooser<AutonomousCommand> chooser;
+    Command autonomousCommand; //Command that gets run for auto
+    SendableChooser<AutonomousCommand> chooser; //SmartDashboard selector of autonomous modes
     
     /**
      * This function is run when the robot is first started up and should be
@@ -32,11 +32,12 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	
     	CommandBase.init(); //Initializes all Subsystems
-    	CameraServer.getInstance().startAutomaticCapture("usb",0); //GearMech Camera
+    	CameraServer.getInstance().startAutomaticCapture("usb",0); //Geartake Camera
     	CameraServer.getInstance().startAutomaticCapture("usb2",1); //Shooter Camera
     	
-    	chooser = new SendableChooser<AutonomousCommand>(); //Autonomous Selector
+    	chooser = new SendableChooser<AutonomousCommand>();
     	
+    	/* Adding all our autonomous modes to the selector */
         chooser.addObject("Baseline", new AutonomousCommand(Alliance.Red,1,AutoMode.BASELINE));
         chooser.addObject("Middle", new AutonomousCommand(Alliance.Red,2,AutoMode.GEAR));
         chooser.addObject("Left Gear - Blue", new AutonomousCommand(Alliance.Blue,1,AutoMode.GEAR));
@@ -47,62 +48,59 @@ public class Robot extends IterativeRobot {
         chooser.addObject("Hopper - Red", new AutonomousCommand(Alliance.Red,3,AutoMode.HOPPER));
         chooser.addObject("Do Nothing", new AutonomousCommand(Alliance.Red,1,AutoMode.BLANK));
         chooser.addDefault("Default - Blank", new AutonomousCommand(Alliance.Red,1,AutoMode.BLANK));
-        SmartDashboard.putData("Auto mode", chooser);
+        
+        SmartDashboard.putData("Auto mode", chooser); //Pushing the selector to the SmartDashboard
     	
-    	new SmartDashboardUpdate().start(); //Starts Running SmartDashboardUpdate
+    	new SmartDashboardUpdate().start(); //Starts a command that pushes sensor data to the SmartDashboard even when disabled
     }
 	
 	/**
-     * This function is called once each time the robot enters Disabled mode.
-     * You can use it to reset any subsystem information you want to clear when
-	 * the robot is disabled.
+     * This function is called once each time the robot becomes disabled.
      */
     public void disabledInit() {
-
+    
     }
 	
+    /**
+     * This function is called continuously while the robot is disabled.
+     */
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 	}
 
 	/**
-	 * Gets chosen autonomous mode from SmartDashboard and starts it
+	 * This function is called once each time the robot enters autonomous.
 	 */
     public void autonomousInit() {
     	
-//    	autonomousCommand = (Command) chooser.getSelected();
-    	
-    	autonomousCommand = new AutonomousCommand(Alliance.Blue,3,AutoMode.HOPPER_GEAR);
-    	
+    	autonomousCommand = (Command) chooser.getSelected();
+
         if (autonomousCommand != null) {
         	autonomousCommand.start();
         }
     }
 
     /**
-     * This function is called periodically during autonomous
+     * This function is called continously while the robot is in autonomous.
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
     }
 
     public void teleopInit() {
-		// This makes sure that the autonomous stops running when
-        // teleop starts running. If you want the autonomous to 
-        // continue until interrupted by another command, remove
-        // this line or comment it out.
-        if (autonomousCommand != null) autonomousCommand.cancel();
+    	
+        if (autonomousCommand != null) autonomousCommand.cancel(); //Forces the autonomous command to end once the robot enters tele-op.
     }
 
     /**
-     * This function is called periodically during operator control
+     * This function is called continously while the robot is in tele-op.
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
     }
     
     /**
-     * This function is called periodically during test mode
+     * This function is called continously in test mode.
      */
     public void testPeriodic() {
         LiveWindow.run();

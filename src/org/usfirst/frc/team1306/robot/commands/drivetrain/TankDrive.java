@@ -9,7 +9,7 @@ import org.usfirst.frc.team1306.robot.OI.trigger;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
 /**
- * Allows the robot drivetrain to be controlled with tank drive
+ * Drives the robot in "tank-drive" mode with each trigger and joystick controlling it's respective half of the drivetrain.
  * @author Sam Roquitte and Jackson Goth
  */
 public class TankDrive extends CommandBase {
@@ -25,15 +25,11 @@ public class TankDrive extends CommandBase {
 
 	@Override
 	protected void execute() {
-		
+
 		/**
-		* Basic drive commands called from here,
-		* 
-		* 	If trigger pressed it will figure out which one and either go forward or backward based on that
-		* 	Otherwise it assumes it is being controlled by joysticks and will drive robot based on their respective inputs
-		* 
-		*/
-		
+		 * If trigger pressed it will figure out which one and either go forward or backward based on the values from them.
+		 * Otherwise it assumes it is being controlled by joysticks and will drive robot based on their respective inputs.
+		 */
 		if(OI.getTriggerVal(controller.p, trigger.l) >= Constants.DEADBAND || OI.getTriggerVal(controller.p, trigger.r) >= Constants.DEADBAND) {
 			if(OI.getTriggerVal(controller.p, trigger.r) >= Constants.DEADBAND) {
 				drivetrain.tankDrive(OI.getTriggerVal(controller.p, trigger.r), OI.getTriggerVal(controller.p, trigger.r));
@@ -41,23 +37,8 @@ public class TankDrive extends CommandBase {
 				drivetrain.tankDrive(-OI.getTriggerVal(controller.p, trigger.l), -OI.getTriggerVal(controller.p, trigger.l));
 			}
 		} else {
-			drivetrain.tankDrive(oi.getJoyVal(controller.p, joystick.l, axis.y), oi.getJoyVal(controller.p, joystick.r, axis.y));
+			drivetrain.tankDrive(OI.getJoyVal(controller.p, joystick.l, axis.y), OI.getJoyVal(controller.p, joystick.r, axis.y));
 		}
-		
-		/**
-		 * The following is driver input code for PID testing
-		 */
-		
-//		if(oi.getTriggerVal(controller.p, trigger.l) >= Constants.TRIGGER_DEADBAND || oi.getTriggerVal(controller.p, trigger.r) >= Constants.TRIGGER_DEADBAND) {
-//			if(oi.getTriggerVal(controller.p, trigger.r) >= Constants.TRIGGER_DEADBAND) {
-//				drivetrain.drivePID(Constants.PID_SPEED);
-//			} else if(oi.getTriggerVal(controller.p, trigger.l) >= Constants.TRIGGER_DEADBAND) {
-//				drivetrain.drivePID(-Constants.PID_SPEED);
-//			}
-//		} else {
-//			drivetrain.tankDrive(oi.getJoyVal(controller.p, joystick.l, axis.y), oi.getJoyVal(controller.p, joystick.r, axis.y));
-//		}
-
 	}
 
 	@Override
