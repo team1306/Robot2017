@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1306.robot.subsystems;
 
 import org.usfirst.frc.team1306.robot.Constants;
+import org.usfirst.frc.team1306.robot.Constants.ControlMode;
 import org.usfirst.frc.team1306.robot.RobotMap;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.ArcadeDrive;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.DriveMode;
@@ -113,8 +114,14 @@ public class Drivetrain extends Subsystem {
 		rightmotor1.changeControlMode(TalonControlMode.PercentVbus);
 
 		if(Constants.DRIVETRAIN_ENABLED) {
-			leftmotor1.set(leftVal*Constants.SPEED_MODIFIER);
-			rightmotor1.set(-rightVal*Constants.SPEED_MODIFIER); 
+			if(!(Constants.CONTROL_MODE.equals(ControlMode.OUTREACH))) {
+				leftmotor1.set(leftVal*Constants.SPEED_MODIFIER);
+				rightmotor1.set(-rightVal*Constants.SPEED_MODIFIER); 
+			} else {
+				leftmotor1.set(leftVal*Constants.SPEED_MODIFIER*Constants.OUTREACH_MODIFIER);
+				rightmotor1.set(-rightVal*Constants.SPEED_MODIFIER*Constants.OUTREACH_MODIFIER);
+			}
+			
 		}
 	}
 	

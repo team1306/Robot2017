@@ -1,9 +1,10 @@
 package org.usfirst.frc.team1306.robot;
 
+import org.usfirst.frc.team1306.robot.Constants.ControlMode;
 import org.usfirst.frc.team1306.robot.commands.SetSetpoint;
 import org.usfirst.frc.team1306.robot.commands.Setpoint;
 import org.usfirst.frc.team1306.robot.commands.climber.Climb;
-import org.usfirst.frc.team1306.robot.commands.geartake.AdvancedDeployGeartake;
+import org.usfirst.frc.team1306.robot.commands.geartake.PlaceGear;
 import org.usfirst.frc.team1306.robot.commands.geartake.DeployGeartake;
 import org.usfirst.frc.team1306.robot.commands.geartake.RetractGeartake;
 import org.usfirst.frc.team1306.robot.commands.geartake.SpinGeartake;
@@ -29,96 +30,126 @@ public class OI {
 	//Declare primary and secondary xbox controllers
 	private static XboxController primaryController = null;
 	private static XboxController secondaryController = null;
+	private static XboxController outreachController = null;
 	
 	//Declare buttons on primary controller
-	private final Button pbuttonA;
-	private final Button pbuttonB;
-	private final Button pbuttonX;
-//	private final Button pbuttonY;
-//	private final Button pbuttonRB;
-//	private final Button pbuttonLB;
-	//private final Button pbuttonStart;
-	//private final Button pbuttonBack;
-	private final Trigger primaryDPadUp;
-	//private final Trigger primaryDPadRight;
-	//private final Trigger primaryDPadLeft;
-	private final Trigger primaryDPadDown;
+	private Button pbuttonA = null;
+	private Button pbuttonX = null;
+	private Trigger primaryDPadUp = null;
+	private Trigger primaryDPadDown = null;
 	
 	//Declare buttons on secondary controller
-	private final Button sbuttonA;
-	private final Button sbuttonB;
-	private final Button sbuttonX;
-	private final Button sbuttonY;
-	private final Button sbuttonRB;
-	private final Button sbuttonLB;
-	private final Button sbuttonStart;
-	//private final Button sbuttonBack;	
-	private final Trigger secondaryDPadUp;
-//	private final Trigger secondaryDPadRight;
-	private final Trigger secondaryDPadLeft;
-	private final Trigger secondaryDPadDown;
+	private Button sbuttonA = null;
+	private Button sbuttonB = null;
+	private Button sbuttonX = null;
+	private Button sbuttonY = null;
+	private Button sbuttonRB = null;
+	private Button sbuttonLB = null;
+	private Button sbuttonStart = null;	
+	private Trigger secondaryDPadUp = null;
+	private Trigger secondaryDPadLeft = null;
+	private Trigger secondaryDPadDown = null;
+	
+	//Declare buttons on outreach controller
+	private Button obuttonA = null;
+	private Button obuttonB = null;
+	private Button obuttonX = null;
+	private Button obuttonLB = null;
+	private Button obuttonStart = null;
+	private Button obuttonBack = null;	
+	private Trigger outreachDPadUp = null;
+	private Trigger outreachDPadRight = null;
+	private Trigger outreachDPadLeft = null;
+	private Trigger outreachDPadDown = null;
 	
 	public OI() {
 		
 		//Declare ports of xbox controllers
-		primaryController = new XboxController(RobotMap.PRIMARY_PORT);
-		secondaryController = new XboxController(RobotMap.SECONDARY_PORT);
+		if(Constants.CONTROL_MODE.equals(ControlMode.NORMAL)) {
+			primaryController = new XboxController(RobotMap.PRIMARY_PORT);
+			secondaryController = new XboxController(RobotMap.SECONDARY_PORT);
+		} else if(Constants.CONTROL_MODE.equals(ControlMode.OUTREACH)) {
+			outreachController = new XboxController(RobotMap.PRIMARY_PORT);
+		}
+		
 		
 		//Map buttons to xbox controller buttons for primary controller
-		pbuttonA = new JoystickButton(primaryController, XboxController.A);
-		pbuttonB = new JoystickButton(primaryController, XboxController.B);
-		pbuttonX = new JoystickButton(primaryController, XboxController.X);
-//		pbuttonY = new JoystickButton(primaryController, XboxController.Y);
-//		pbuttonRB = new JoystickButton(primaryController, XboxController.RB);
-//		pbuttonLB = new JoystickButton(primaryController, XboxController.LB); 
-		//pbuttonStart = new JoystickButton(primaryController, XboxController.START);
-		//pbuttonBack = new JoystickButton(primaryController, XboxController.BACK);
-		primaryDPadUp = new DPadPress(primaryController, DPadDirection.UP);
-		//primaryDPadRight = new DPadPress(primaryController, DPadDirection.RIGHT);
-		//primaryDPadLeft = new DPadPress(primaryController, DPadDirection.LEFT);
-		primaryDPadDown = new DPadPress(primaryController, DPadDirection.DOWN);
-		
+		if(primaryController != null) {
+	 		pbuttonA = new JoystickButton(primaryController, XboxController.A);
+			pbuttonX = new JoystickButton(primaryController, XboxController.X);
+			primaryDPadUp = new DPadPress(primaryController, DPadDirection.UP);
+			primaryDPadDown = new DPadPress(primaryController, DPadDirection.DOWN);
+		}
+			
 		//Map buttons to xbox controller buttons for secondary controller
-		sbuttonA = new JoystickButton(secondaryController, XboxController.A);
-		sbuttonB = new JoystickButton(secondaryController, XboxController.B);
-		sbuttonX = new JoystickButton(secondaryController, XboxController.X);
-		sbuttonY = new JoystickButton(secondaryController, XboxController.Y);
-		sbuttonRB = new JoystickButton(secondaryController, XboxController.RB);
-		sbuttonLB = new JoystickButton(secondaryController, XboxController.LB);
-		sbuttonStart = new JoystickButton(secondaryController, XboxController.START);
-		//sbuttonBack = new JoystickButton(secondaryController, XboxController.BACK);
-		secondaryDPadUp = new DPadPress(secondaryController, DPadDirection.UP);
-//		secondaryDPadRight = new DPadPress(secondaryController, DPadDirection.RIGHT);
-		secondaryDPadLeft = new DPadPress(secondaryController, DPadDirection.LEFT);
-		secondaryDPadDown = new DPadPress(secondaryController, DPadDirection.DOWN);
+		if(secondaryController != null) {
+			sbuttonA = new JoystickButton(secondaryController, XboxController.A);
+			sbuttonB = new JoystickButton(secondaryController, XboxController.B);
+			sbuttonX = new JoystickButton(secondaryController, XboxController.X);
+			sbuttonY = new JoystickButton(secondaryController, XboxController.Y);
+			sbuttonRB = new JoystickButton(secondaryController, XboxController.RB);
+			sbuttonLB = new JoystickButton(secondaryController, XboxController.LB);
+			sbuttonStart = new JoystickButton(secondaryController, XboxController.START);
+			secondaryDPadUp = new DPadPress(secondaryController, DPadDirection.UP);
+			secondaryDPadLeft = new DPadPress(secondaryController, DPadDirection.LEFT);
+			secondaryDPadDown = new DPadPress(secondaryController, DPadDirection.DOWN);
+		}
+		
+		if(outreachController != null) {
+			obuttonA = new JoystickButton(secondaryController, XboxController.A);
+			obuttonB = new JoystickButton(secondaryController, XboxController.B);
+			obuttonX = new JoystickButton(secondaryController, XboxController.X);
+			obuttonLB = new JoystickButton(secondaryController, XboxController.LB);
+			obuttonStart = new JoystickButton(secondaryController, XboxController.START);
+			obuttonBack = new JoystickButton(secondaryController, XboxController.BACK);
+			outreachDPadUp = new DPadPress(secondaryController, DPadDirection.UP);
+			outreachDPadRight = new DPadPress(secondaryController, DPadDirection.RIGHT);
+			outreachDPadLeft = new DPadPress(secondaryController, DPadDirection.LEFT);
+			outreachDPadDown = new DPadPress(secondaryController, DPadDirection.DOWN);
+		}
 		
 		//Primary Controller Mapping
-		pbuttonA.toggleWhenPressed(new SpinShooter(true,Constants.SHOOTER_RPM_SPEED));
-		pbuttonB.whenPressed(new ResetTurret());
-		pbuttonX.whenPressed(new SpinIntake(false));
+		if(primaryController != null) {
+			pbuttonA.toggleWhenPressed(new SpinShooter(true,Constants.SHOOTER_RPM_SPEED));
+			pbuttonX.whenPressed(new SpinIntake(false));
 		
-//		pbuttonLB.whenPressed(new FindTarget(ScanDirection.LEFT));
-//		pbuttonRB.whenPressed(new FindTarget(ScanDirection.RIGHT));
-		
-		primaryDPadUp.whenActive(new AdjustHood(HoodAngle.UP));
-		primaryDPadDown.whenActive(new AdjustHood(HoodAngle.DOWN));
+			primaryDPadUp.whenActive(new AdjustHood(HoodAngle.UP));
+			primaryDPadDown.whenActive(new AdjustHood(HoodAngle.DOWN));
+		}
 		
 		//Secondary Controller Mapping
-		sbuttonA.whenPressed(new SpinShooter(false,Constants.SHOOTER_RPM_SPEED));
-		sbuttonB.whenPressed(new DeployGeartake());
-		sbuttonX.toggleWhenPressed(new SpinIntake(true));
-		sbuttonY.whenPressed(new RetractGeartake());
+		if(secondaryController != null) {
+			sbuttonA.whenPressed(new SpinShooter(false,Constants.SHOOTER_RPM_SPEED));
+			sbuttonB.whenPressed(new DeployGeartake());
+			sbuttonX.toggleWhenPressed(new SpinIntake(true));
+			sbuttonY.whenPressed(new RetractGeartake());
+			
+			sbuttonLB.whenPressed(new SpinGeartake(Constants.GEARTAKE_SPEED));
+			sbuttonRB.whenPressed(new PlaceGear(false));
+			
+			sbuttonStart.whenPressed(new Climb());
+			
+			secondaryDPadUp.whenActive(new SetSetpoint(Setpoint.BOILER));
+			secondaryDPadLeft.whenActive(new SetSetpoint(Setpoint.PEG));
+			secondaryDPadDown.whenActive(new ResetTurret());
+		}
 		
-		sbuttonLB.whenPressed(new SpinGeartake(Constants.GEARTAKE_SPEED));
-		sbuttonRB.whenPressed(new AdvancedDeployGeartake(false));
-		
-		sbuttonStart.whenPressed(new Climb());
-		
-		secondaryDPadUp.whenActive(new SetSetpoint(Setpoint.BOILER));
-		secondaryDPadLeft.whenActive(new SetSetpoint(Setpoint.PEG));
-//		secondaryDPadLeft.whenActive(new SetSetpoint(Setpoint.HOPPER));
-		secondaryDPadDown.whenActive(new ResetTurret());
-		
+		//Outreach Controller Mapping
+		if(outreachController != null) {
+			obuttonA.whenPressed(new SpinShooter(true,Constants.SHOOTER_RPM_SPEED));
+			obuttonB.whenPressed(new ResetTurret());
+			obuttonX.toggleWhenPressed(new SpinIntake(true));
+			
+			obuttonLB.whenPressed(new SpinGeartake(Constants.GEARTAKE_SPEED));
+			
+			obuttonStart.whenPressed(new AdjustHood(HoodAngle.UP));
+			obuttonBack.whenPressed(new AdjustHood(HoodAngle.DOWN));
+			
+			outreachDPadUp.whenActive(new RetractGeartake());
+			outreachDPadLeft.whenActive(new PlaceGear(false));
+			outreachDPadDown.whenActive(new DeployGeartake());
+			outreachDPadRight.whenActive(new PlaceGear(false));
+		}
 	}
 	
 	/**

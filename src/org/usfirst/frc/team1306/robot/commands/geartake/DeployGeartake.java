@@ -2,6 +2,10 @@ package org.usfirst.frc.team1306.robot.commands.geartake;
 
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
+/**
+ * This command pushes down the geartake using the pneumatic cylinders.
+ * @author Jackson Goth
+ */
 public class DeployGeartake extends CommandBase {
 	
 	public DeployGeartake() {

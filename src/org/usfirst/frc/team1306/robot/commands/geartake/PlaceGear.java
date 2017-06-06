@@ -5,9 +5,9 @@ import org.usfirst.frc.team1306.robot.commands.autonomous.Wait;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class AdvancedDeployGeartake extends CommandGroup {
+public class PlaceGear extends CommandGroup {
 	
-	public AdvancedDeployGeartake(boolean wait) {
+	public PlaceGear(boolean wait) {
 		
 //		addSequential(new SpinGeartake(-Constants.GEARTAKE_SPEED,0.50));
 		if(wait) {

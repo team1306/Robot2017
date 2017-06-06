@@ -28,6 +28,8 @@ public class Constants {
 	public final static boolean DEBUG_VOLTAGE = false; //Current draw of each PDP slot
 	
 	//OI Constants
+	public enum ControlMode {NORMAL, OUTREACH};
+	public final static ControlMode CONTROL_MODE = ControlMode.NORMAL;
 	public final static double DEADBAND = 0.15; //Joystick and trigger deadband
 	public final static double JOYSTICK_MULTIPLIER = 1.0; //Joystick inputs raised to this power
 	
@@ -114,6 +116,7 @@ public class Constants {
 	//Drivetrain Constants
 	public final static DriveMode DRIVE_MODE = DriveMode.ARCADE; //What driving controls the robot will use (Arcade or Tank)
 	public final static double SPEED_MODIFIER = 1.0; //Speed multiplier (only really used with percentvbus driving)
+	public final static double OUTREACH_MODIFIER = 0.2;
 	public final static double F = 1.4; //TODO Re-Tune
 	public final static double P = 0.85;	//TODO Re-Tune
 	public final static double I = 0.0; //TODO Re-Tune

@@ -4,7 +4,7 @@ import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.commands.SetSetpoint;
 import org.usfirst.frc.team1306.robot.commands.Setpoint;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.DriveDistance;
-import org.usfirst.frc.team1306.robot.commands.geartake.AdvancedDeployGeartake;
+import org.usfirst.frc.team1306.robot.commands.geartake.PlaceGear;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
 import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
 
@@ -55,7 +55,7 @@ public class AutonomousCommand extends CommandGroup {
 //			addSequential(new TimedDrive(-0.3,2.50));
 			
 			addParallel(new DeployIntake());
-			addParallel(new AdvancedDeployGeartake(true));
+			addParallel(new PlaceGear(true));
 			addSequential(new DriveDistance(-5.7,3.5)); //-8.9
 			
 			addSequential(new TimedDrive(0.3,1));
