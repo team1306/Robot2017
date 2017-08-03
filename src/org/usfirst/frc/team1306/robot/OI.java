@@ -125,7 +125,7 @@ public class OI {
 			sbuttonY.whenPressed(new RetractGeartake());
 			
 			sbuttonLB.whenPressed(new SpinGeartake(Constants.GEARTAKE_SPEED));
-			sbuttonRB.whenPressed(new PlaceGear(false));
+			sbuttonRB.whenPressed(new PlaceGear());
 			
 			sbuttonStart.whenPressed(new Climb());
 			
@@ -146,9 +146,9 @@ public class OI {
 			obuttonBack.whenPressed(new AdjustHood(HoodAngle.DOWN));
 			
 			outreachDPadUp.whenActive(new RetractGeartake());
-			outreachDPadLeft.whenActive(new PlaceGear(false));
+			outreachDPadLeft.whenActive(new PlaceGear());
 			outreachDPadDown.whenActive(new DeployGeartake());
-			outreachDPadRight.whenActive(new PlaceGear(false));
+			outreachDPadRight.whenActive(new PlaceGear());
 		}
 	}
 	

@@ -2,8 +2,8 @@ package org.usfirst.frc.team1306.robot;
 
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 import org.usfirst.frc.team1306.robot.commands.SmartDashboardUpdate;
-import org.usfirst.frc.team1306.robot.commands.autonomous.AutoMode;
 import org.usfirst.frc.team1306.robot.commands.autonomous.AutonomousCommand;
+import org.usfirst.frc.team1306.robot.commands.autonomous.AutonomousCommand.AutoMode;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -38,16 +38,16 @@ public class Robot extends IterativeRobot {
     	chooser = new SendableChooser<AutonomousCommand>();
     	
     	/* Adding all our autonomous modes to the selector */
-        chooser.addObject("Baseline", new AutonomousCommand(Alliance.Red,1,AutoMode.BASELINE));
-        chooser.addObject("Middle", new AutonomousCommand(Alliance.Red,2,AutoMode.GEAR));
-        chooser.addObject("Left Gear - Blue", new AutonomousCommand(Alliance.Blue,1,AutoMode.GEAR));
-        chooser.addObject("Left Gear - Red", new AutonomousCommand(Alliance.Red,1,AutoMode.GEAR));
-        chooser.addObject("Right Gear - Blue", new AutonomousCommand(Alliance.Blue,3,AutoMode.GEAR));
-        chooser.addObject("Right Gear - Red", new AutonomousCommand(Alliance.Red,3,AutoMode.GEAR));
-        chooser.addObject("Hopper - Blue", new AutonomousCommand(Alliance.Blue,1,AutoMode.HOPPER));
-        chooser.addObject("Hopper - Red", new AutonomousCommand(Alliance.Red,3,AutoMode.HOPPER));
-        chooser.addObject("Do Nothing", new AutonomousCommand(Alliance.Red,1,AutoMode.BLANK));
-        chooser.addDefault("Default - Blank", new AutonomousCommand(Alliance.Red,1,AutoMode.BLANK));
+        chooser.addObject("Baseline", new AutonomousCommand(Alliance.Red,AutoMode.BASELINE));
+        chooser.addObject("Middle", new AutonomousCommand(Alliance.Red,AutoMode.MIDDLE_GEAR));
+        chooser.addObject("Left Gear - Blue", new AutonomousCommand(Alliance.Blue,AutoMode.LEFT_GEAR));
+        chooser.addObject("Left Gear - Red", new AutonomousCommand(Alliance.Red,AutoMode.LEFT_GEAR));
+        chooser.addObject("Right Gear - Blue", new AutonomousCommand(Alliance.Blue,AutoMode.RIGHT_GEAR));
+        chooser.addObject("Right Gear - Red", new AutonomousCommand(Alliance.Red,AutoMode.RIGHT_GEAR));
+        chooser.addObject("Hopper - Blue", new AutonomousCommand(Alliance.Blue,AutoMode.HOPPER));
+        chooser.addObject("Hopper - Red", new AutonomousCommand(Alliance.Red,AutoMode.HOPPER));
+        chooser.addObject("Do Nothing", new AutonomousCommand(Alliance.Red,AutoMode.BLANK));
+        chooser.addDefault("Default - Blank", new AutonomousCommand(Alliance.Red,AutoMode.BLANK));
         
         SmartDashboard.putData("Auto mode", chooser); //Pushing the selector to the SmartDashboard
     	

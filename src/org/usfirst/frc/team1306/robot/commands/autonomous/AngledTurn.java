@@ -20,7 +20,6 @@ public class AngledTurn extends CommandBase {
 	
 	public AngledTurn(double degree) {
 		requires(drivetrain);
-		requires(gyro);
 		this.degree = degree;
 		
 		angleList = new ArrayList<Double>();
@@ -66,7 +65,7 @@ public class AngledTurn extends CommandBase {
 
 	@Override
 	protected void end() {
-		drivetrain.stopAll();
+		drivetrain.stop();
 	}
 
 	@Override

@@ -32,12 +32,12 @@ public class TankDrive extends CommandBase {
 		 */
 		if(OI.getTriggerVal(controller.p, trigger.l) >= Constants.DEADBAND || OI.getTriggerVal(controller.p, trigger.r) >= Constants.DEADBAND) {
 			if(OI.getTriggerVal(controller.p, trigger.r) >= Constants.DEADBAND) {
-				drivetrain.tankDrive(OI.getTriggerVal(controller.p, trigger.r), OI.getTriggerVal(controller.p, trigger.r));
+				drivetrain.driveVBus(OI.getTriggerVal(controller.p, trigger.r), OI.getTriggerVal(controller.p, trigger.r));
 			} else if(OI.getTriggerVal(controller.p, trigger.l) >= Constants.DEADBAND) {
-				drivetrain.tankDrive(-OI.getTriggerVal(controller.p, trigger.l), -OI.getTriggerVal(controller.p, trigger.l));
+				drivetrain.driveVBus(-OI.getTriggerVal(controller.p, trigger.l), -OI.getTriggerVal(controller.p, trigger.l));
 			}
 		} else {
-			drivetrain.tankDrive(OI.getJoyVal(controller.p, joystick.l, axis.y), OI.getJoyVal(controller.p, joystick.r, axis.y));
+			drivetrain.driveVBus(OI.getJoyVal(controller.p, joystick.l, axis.y), OI.getJoyVal(controller.p, joystick.r, axis.y));
 		}
 	}
 
@@ -48,7 +48,7 @@ public class TankDrive extends CommandBase {
 
 	@Override
 	protected void end() {
-		drivetrain.stopAll();
+		drivetrain.stop();
 	}
 
 	@Override

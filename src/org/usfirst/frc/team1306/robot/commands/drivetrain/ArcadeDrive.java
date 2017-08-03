@@ -34,12 +34,12 @@ public class ArcadeDrive extends CommandBase {
 		
 		if (OI.getTriggerVal(controller.p, trigger.r) >= Constants.DEADBAND || OI.getTriggerVal(controller.p, trigger.l) >= Constants.DEADBAND) {
 			double triggerVal = OI.getTriggerVal(controller.p, trigger.r) - OI.getTriggerVal(controller.p, trigger.l);
-			drivetrain.tankDrive(triggerVal+OI.getJoyVal(controller.p, joystick.l, axis.x), triggerVal-OI.getJoyVal(controller.p, joystick.l, axis.x));
+			drivetrain.driveVBus(triggerVal+OI.getJoyVal(controller.p, joystick.l, axis.x), triggerVal-OI.getJoyVal(controller.p, joystick.l, axis.x));
 		} else {
 			if (OI.getJoyVal(controller.p, joystick.l, axis.x) >= Constants.DEADBAND || OI.getJoyVal(controller.p, joystick.l, axis.x) <= -Constants.DEADBAND) {
-				drivetrain.tankDrive(OI.getJoyVal(controller.p, joystick.l, axis.x), -OI.getJoyVal(controller.p, joystick.l, axis.x));
+				drivetrain.driveVBus(OI.getJoyVal(controller.p, joystick.l, axis.x), -OI.getJoyVal(controller.p, joystick.l, axis.x));
 			} else {
-				drivetrain.stopAll();
+				drivetrain.stop();
 			}
 		}
 	}
@@ -51,7 +51,7 @@ public class ArcadeDrive extends CommandBase {
 
 	@Override
 	protected void end() {
-		drivetrain.stopAll();
+		drivetrain.stop();
 	}
 
 	@Override
