@@ -50,8 +50,16 @@ public class FollowPath extends CommandBase {
 		counter = (int) (timer.get() / 0.01);
 		
 		double speed = profile.path.get(counter).velocity;
-		double leftError = profile.path.get(counter).position - (Math.abs(drivetrain.leftMotors.getEncPos()/1024)*12.5663);
-		double rightError = profile.path.get(counter).position - (Math.abs(drivetrain.rightMotors.getEncPos()/1024)*12.5663);
+		double leftError, rightError;
+		
+		if(inverse) {
+			leftError = profile.path.get(counter).position - -(Math.abs(drivetrain.leftMotors.getEncPos()/1024)*12.5663);
+			rightError = profile.path.get(counter).position - -(Math.abs(drivetrain.rightMotors.getEncPos()/1024)*12.5663);
+		} else {
+			leftError = profile.path.get(counter).position - (Math.abs(drivetrain.leftMotors.getEncPos()/1024)*12.5663);
+			rightError = profile.path.get(counter).position - (Math.abs(drivetrain.rightMotors.getEncPos()/1024)*12.5663);
+		}
+	
 		double leftAdj = leftError * 2.25;
 		double rightAdj = rightError * 2.25;
 		
