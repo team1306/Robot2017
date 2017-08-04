@@ -53,8 +53,8 @@ public class FollowPath extends CommandBase {
 		double leftError, rightError;
 		
 		if(inverse) {
-			leftError = profile.path.get(counter).position - -(Math.abs(drivetrain.leftMotors.getEncPos()/1024)*12.5663);
-			rightError = profile.path.get(counter).position - -(Math.abs(drivetrain.rightMotors.getEncPos()/1024)*12.5663);
+			leftError = profile.path.get(counter).position - (Math.abs(drivetrain.leftMotors.getEncPos()/1024)*12.5663);
+			rightError = profile.path.get(counter).position - (Math.abs(drivetrain.rightMotors.getEncPos()/1024)*12.5663);
 		} else {
 			leftError = profile.path.get(counter).position - (Math.abs(drivetrain.leftMotors.getEncPos()/1024)*12.5663);
 			rightError = profile.path.get(counter).position - (Math.abs(drivetrain.rightMotors.getEncPos()/1024)*12.5663);
@@ -82,7 +82,7 @@ public class FollowPath extends CommandBase {
 
 	@Override
 	protected boolean isFinished() {
-		return timer.hasPeriodPassed(profile.maxTime);
+		return timer.hasPeriodPassed(profile.maxTime - (profile.stepTime * 5));
 	}
 
 	@Override

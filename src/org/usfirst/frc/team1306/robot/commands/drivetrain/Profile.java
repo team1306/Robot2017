@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Profile {
 
-	public double maxTime = 15;
+	public double maxTime = 15, stepTime = 0.01;
 	public ArrayList<Point> path;
 	
 	public Profile(double d, double v, double a, double j, double t) {
@@ -12,14 +12,13 @@ public class Profile {
 		double maxVelocity = v;
 		double maxAcceleration = a;
 		double maxJerk = j;
-		double maxTime = t;
+		maxTime = t;
 
 		ArrayList<Point> mirrorPath = new ArrayList<Point>();
 		path = new ArrayList<Point>();
 		
 		ProfileStatus status = ProfileStatus.ACCELERATING;
 		ProfileSubStatus subStatus = ProfileSubStatus.ACCEL_RAMP_UP;
-		double stepTime = 0.01;
 		int maxSteps = (int) (maxTime / stepTime);
 		
 		boolean mirroring = false;

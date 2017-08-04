@@ -49,6 +49,7 @@ public class Drivetrain extends Subsystem {
 	 * @param rightVal - Speed for right motors
 	 */
 	public void driveVBus(double leftVal, double rightVal) {
+		
 		leftMotors.changeControlMode(TalonControlMode.PercentVbus);
 		rightMotors.changeControlMode(TalonControlMode.PercentVbus);
 
@@ -67,8 +68,12 @@ public class Drivetrain extends Subsystem {
 	 * @param rightVal - Speed for right motors
 	 */
 	public void driveSpeed(double leftVal, double rightVal) {
+		
 		leftMotors.changeControlMode(TalonControlMode.Speed);
 		rightMotors.changeControlMode(TalonControlMode.Speed);
+		
+		SmartDashboard.putNumber("leftSpeed",leftVal);
+		SmartDashboard.putNumber("rightSpeed",rightVal);
 		
 		if(Constants.DRIVETRAIN_ENABLED) {
 			leftMotors.set(leftVal);

@@ -36,8 +36,10 @@ public class AutonomousCommand extends CommandGroup {
 			
 		} else if(routine.equals(AutoMode.MIDDLE_GEAR)) {
 			
-			addSequential(new FollowPath(new Profile(106,18.25,45,45,15),true)); //Distance, Velocity, Accel, Jerk, Max Time
+			addSequential(new FollowPath(new Profile(76,20,50,100,4.75),true)); //Distance, Velocity, Accel, Jerk, Max Time
 			addSequential(new PlaceGear());
+			addSequential(new TimedDrive(0.3,1.5));
+			addSequential(new DeployIntake());
 			
 		} else if(routine.equals(AutoMode.RIGHT_GEAR)) {
 		 	
