@@ -47,8 +47,8 @@ public class Follow2DPath extends CommandBase {
 		
 		double leftError = profile.leftPath.path.get(counter).position - (Math.abs(drivetrain.leftMotors.getEncPos()/1024)*12.5663);
 		double rightError = profile.rightPath.path.get(counter).position - (Math.abs(drivetrain.rightMotors.getEncPos()/1024)*12.5663);
-		leftError *= 1;
-		rightError *= 1;
+		leftError *= 2;
+		rightError *= 2;
 		
 		drivetrain.driveSpeed(((leftSpeed+leftError)/12.5663)*60,((rightSpeed+rightError)/12.5663)*60);
 	}

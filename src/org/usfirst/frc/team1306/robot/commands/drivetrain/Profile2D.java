@@ -15,7 +15,7 @@ public class Profile2D {
 	
 	public Profile2D(ProfileParams p, double dX, double dY, double a, double t) {
 		
-		double baseWidth = 25.5;
+		double baseWidth = 30;
 		
 		ProfileParams params = p;
 		double leftX = dX +(baseWidth / 2);
