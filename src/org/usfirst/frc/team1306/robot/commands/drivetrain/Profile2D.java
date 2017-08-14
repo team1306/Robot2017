@@ -10,7 +10,7 @@ import org.usfirst.frc.team1306.robot.ProfileParams;
  */
 public class Profile2D {
 
-	public Profile leftPath, rightPath;
+	public Profile leftPath, rightPath, gyroAngle;
 	public double maxTime;
 	
 	public Profile2D(ProfileParams p, double dX, double dY, double a, double t) {

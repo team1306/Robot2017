@@ -32,7 +32,8 @@ public class AutonomousCommand extends CommandGroup {
 			
 			addParallel(new DeployIntake());
 			if(alliance.equals(Alliance.Red)) {
-				addSequential(new Follow2DPath(new Profile2D(params,80,95.5,90,15))); //Params, DistanceX, DistanceY, Exit Angle, Max Time
+				addSequential(new Follow2DPath(new Profile2D(params,95.5,80,90,15))); //Params, DistanceX, DistanceY, Exit Angle, Max Time
+//				addSequential(new Follow2DPath(new Profile2D(params,20,80,90,15)));
 			} else {
 				
 			}
