@@ -1,4 +1,4 @@
-package org.usfirst.frc.team1306.robot.commands.drivetrain;
+package org.usfirst.frc.team1306.lib.util;
 
 public class Point {
 

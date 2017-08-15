@@ -1,6 +1,7 @@
-package org.usfirst.frc.team1306.robot;
+package org.usfirst.frc.team1306.lib.util;
 
 import java.util.ArrayList;
+
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;

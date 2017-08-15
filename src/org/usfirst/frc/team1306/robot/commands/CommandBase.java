@@ -1,11 +1,11 @@
 package org.usfirst.frc.team1306.robot.commands;
 
+import org.usfirst.frc.team1306.lib.util.Settings;
+import org.usfirst.frc.team1306.lib.util.Settings.Device;
+import org.usfirst.frc.team1306.lib.util.Settings.DriveMode;
+import org.usfirst.frc.team1306.lib.util.Settings.TalonType;
 import org.usfirst.frc.team1306.robot.OI;
 import org.usfirst.frc.team1306.robot.RobotMap;
-import org.usfirst.frc.team1306.robot.Settings;
-import org.usfirst.frc.team1306.robot.Settings.Device;
-import org.usfirst.frc.team1306.robot.Settings.DriveMode;
-import org.usfirst.frc.team1306.robot.Settings.TalonType;
 import org.usfirst.frc.team1306.robot.subsystems.Climber;
 import org.usfirst.frc.team1306.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1306.robot.subsystems.Geartake;

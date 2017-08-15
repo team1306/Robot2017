@@ -1,10 +1,10 @@
 package org.usfirst.frc.team1306.robot.commands.autonomous;
 
-import org.usfirst.frc.team1306.robot.ProfileParams;
+import org.usfirst.frc.team1306.lib.util.Profile;
+import org.usfirst.frc.team1306.lib.util.Profile2D;
+import org.usfirst.frc.team1306.lib.util.ProfileParams;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.Follow2DPath;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.FollowPath;
-import org.usfirst.frc.team1306.robot.commands.drivetrain.Profile;
-import org.usfirst.frc.team1306.robot.commands.drivetrain.Profile2D;
 import org.usfirst.frc.team1306.robot.commands.geartake.PlaceGear;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.command.CommandGroup;

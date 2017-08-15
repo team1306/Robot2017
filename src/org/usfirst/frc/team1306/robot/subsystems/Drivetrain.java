@@ -1,9 +1,9 @@
 package org.usfirst.frc.team1306.robot.subsystems;
 
+import org.usfirst.frc.team1306.lib.util.DriveSide;
+import org.usfirst.frc.team1306.lib.util.Settings;
+import org.usfirst.frc.team1306.lib.util.Settings.DriveMode;
 import org.usfirst.frc.team1306.robot.Constants;
-import org.usfirst.frc.team1306.robot.DriveSide;
-import org.usfirst.frc.team1306.robot.Settings;
-import org.usfirst.frc.team1306.robot.Settings.DriveMode;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.ArcadeDrive;
 import com.ctre.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
