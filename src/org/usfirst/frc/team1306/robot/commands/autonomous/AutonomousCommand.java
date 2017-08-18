@@ -31,27 +31,27 @@ public class AutonomousCommand extends CommandGroup {
 
 //			addParallel(new DeployIntake());
 			if(alliance.equals(Alliance.Red)) {
-			
 				double[][] waypoints = new double[][]{
 					{0,0},
-					{0,1*12},
-					{0.127*12,2*12},
-					{0.536*12,3*12},
-					{1*12,3.646*12},
-					{1.354*12,4*12},
-					{2*12,4.464*12},
-					{3*12,4.874*12},
-					{4*12,5*12},
-					{5*12,5*12},
+					{80.125/12,0},
+					{80.125/12,-(94.5/2)},
+				};
+				
+				FalconPathPlanner path = new FalconPathPlanner(waypoints);
+				path.calculate(4,0.1,30/12);
+				
+				addSequential(new Follow2DPath(path));	
+			} else {
+				double[][] waypoints = new double[][]{
+					{0,0},
+					{80.125/12,0},
+					{80.125/12,94.5/2},
 				}; 
 				
 				FalconPathPlanner path = new FalconPathPlanner(waypoints);
-				path.calculate(4,0.01,30);
+				path.calculate(4,0.1,30/12);
 				
 				addSequential(new Follow2DPath(path));
-				
-			} else {
-				
 			}
 //			addSequential(new SetSetpoint(Setpoint.AUTO_HOPPER));
 //			addSequential(new SpinShooter(Constants.SHOOT_TIME,Constants.SHOOTER_RPM_SPEED));
@@ -59,9 +59,27 @@ public class AutonomousCommand extends CommandGroup {
 		} else if(routine.equals(AutoMode.LEFT_GEAR)) {
 			
 			if(alliance.equals(Alliance.Red)) {
+				double[][] waypoints = new double[][]{
+					{0,0},
+					{54.717/12,0},
+					{89.45/12,-(60.16/12)},
+				}; 
 				
+				FalconPathPlanner path = new FalconPathPlanner(waypoints);
+				path.calculate(4,0.1,30/12);
+				
+				addSequential(new Follow2DPath(path));
 			} else {
+				double[][] waypoints = new double[][]{
+					{0,0},
+					{70.44/12,0},
+					{89.45/12,-(32.93/12)},
+				}; 
 				
+				FalconPathPlanner path = new FalconPathPlanner(waypoints);
+				path.calculate(4,0.1,30/12);
+				
+				addSequential(new Follow2DPath(path));
 			}
 //			addSequential(new PlaceGear());
 //			addSequential(new TimedDrive(0.3,1));
@@ -79,9 +97,27 @@ public class AutonomousCommand extends CommandGroup {
 			ProfileParams params = new ProfileParams(18.25,45,45);
 			
 			if(alliance.equals(Alliance.Red)) {
-//				addSequential(new Follow2DPath(new Profile2D(params,60,60,60,15)));
-			} else {
+				double[][] waypoints = new double[][]{
+					{0,0},
+					{70.44/12,0},
+					{89.45/12,(32.93/12)},
+				}; 
 				
+				FalconPathPlanner path = new FalconPathPlanner(waypoints);
+				path.calculate(4,0.1,30/12);
+				
+				addSequential(new Follow2DPath(path));
+			} else {
+				double[][] waypoints = new double[][]{
+					{0,0},
+					{54.717/12,0},
+					{89.45/12,(60.16/12)},
+				}; 
+				
+				FalconPathPlanner path = new FalconPathPlanner(waypoints);
+				path.calculate(4,0.1,30/12);
+				
+				addSequential(new Follow2DPath(path));
 			}
 //			addSequential(new PlaceGear());
 //			addSequential(new TimedDrive(0.3,1));

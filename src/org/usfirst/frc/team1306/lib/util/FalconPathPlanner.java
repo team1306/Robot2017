@@ -683,22 +683,16 @@ public class FalconPathPlanner
 		//create waypoint path
 		double[][] waypoints = new double[][]{
 			{0,0},
-			{0,1*12},
-			{0.127*12,2*12},
-			{0.536*12,3*12},
-			{1*12,3.646*12},
-			{1.354*12,4*12},
-			{2*12,4.464*12},
-			{3*12,4.874*12},
-			{4*12,5*12},
-			{5*12,5*12},
+			{54.717/12,0},
+			{89.45/12,(60.16/12)},
 		}; 
 
-		double totalTime = 8; //seconds
+		double totalTime = 4; //seconds
 		double timeStep = 0.1; //period of control loop on Rio, seconds
-		double robotTrackWidth = 2; //distance between left and right wheels, feet
+		double robotTrackWidth = 30/12; //distance between left and right wheels, feet
 
 		final FalconPathPlanner path = new FalconPathPlanner(waypoints);
+		
 		path.calculate(totalTime, timeStep, robotTrackWidth);
 
 		System.out.println("Time in ms: " + (System.currentTimeMillis()-start));
@@ -733,11 +727,15 @@ public class FalconPathPlanner
 
 
 			//generate poof path used in 2014 Einstein
-			path.poofExample();
+//			path.poofExample();
 
 		}
 
 
+		for(int i = 0; i < path.numFinalPoints; i++) {
+			System.out.println(path.heading[i][1]);
+		}
+		
 		//example on printing useful path information
 		//System.out.println(path.numFinalPoints);
 		//System.out.println(path.pathAlpha);
@@ -798,19 +796,23 @@ public class FalconPathPlanner
 
 
 		double[][] CheesyPath = new double[][]{
-				{7,16},
-				{11,16},
-				{17,28},
-				{23,28},
+//				{7,16},
+//				{11,16},
+//				{17,28},
+//				{23,28},
+			{0,0},
+			{5,0},
+			{5,5},
 		};
 
 		long start = System.currentTimeMillis();
 
-		double totalTime = 5; //seconds
+		double totalTime = 4; //seconds
 		double timeStep = 0.1; //period of control loop on Rio, seconds
-		double robotTrackWidth = 2; //distance between left and right wheels, feet
+		double robotTrackWidth = 30/12; //distance between left and right wheels, feet
 
 		final FalconPathPlanner path = new FalconPathPlanner(CheesyPath);
+		
 		path.calculate(totalTime, timeStep, robotTrackWidth);
 		
 		System.out.println("Time in ms: " + (System.currentTimeMillis()-start));

@@ -45,7 +45,7 @@ public class Follow2DPath extends CommandBase {
 	@Override
 	protected void execute() {
 		
-		counter = (int) (timer.get() / 0.01);
+		counter = (int) (timer.get() / 0.1);
 		
 		double leftSpeed;
 		double rightSpeed;
@@ -59,10 +59,10 @@ public class Follow2DPath extends CommandBase {
 		}
 		
 		
-		SmartDashboard.putNumber("LeftSpeed",((leftSpeed)/12.5663)*60);
-		SmartDashboard.putNumber("RightSpeed",((rightSpeed)/12.5663)*60);
+		SmartDashboard.putNumber("LeftSpeed",((leftSpeed*12)/12.5663)*60);
+		SmartDashboard.putNumber("RightSpeed",((rightSpeed*12)/12.5663)*60);
 		
-		drivetrain.driveSpeed(((leftSpeed)/12.5663)*60,((rightSpeed)/12.5663)*60);
+		drivetrain.driveSpeed(((leftSpeed*12)/12.5663)*60,((rightSpeed*12)/12.5663)*60);
 	}
 
 	@Override
