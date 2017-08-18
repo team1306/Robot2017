@@ -46,6 +46,7 @@ public class AutonomousCommand extends CommandGroup {
 				}; 
 				
 				FalconPathPlanner path = new FalconPathPlanner(waypoints);
+				path.calculate(4,0.01,30);
 				
 				addSequential(new Follow2DPath(path));
 				
