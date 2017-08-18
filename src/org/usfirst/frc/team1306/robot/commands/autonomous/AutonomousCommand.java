@@ -1,11 +1,12 @@
 package org.usfirst.frc.team1306.robot.commands.autonomous;
 
+import org.usfirst.frc.team1306.lib.util.FalconPathPlanner;
 import org.usfirst.frc.team1306.lib.util.Profile;
-import org.usfirst.frc.team1306.lib.util.Profile2D;
 import org.usfirst.frc.team1306.lib.util.ProfileParams;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.Follow2DPath;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.FollowPath;
 import org.usfirst.frc.team1306.robot.commands.geartake.PlaceGear;
+
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -27,13 +28,27 @@ public class AutonomousCommand extends CommandGroup {
 	public AutonomousCommand(Alliance alliance, AutoMode routine) {
 		
 		if(routine.equals(AutoMode.HOPPER)) {
-			
-			ProfileParams params = new ProfileParams(18.25,45,45);
-			
-			addParallel(new DeployIntake());
+
+//			addParallel(new DeployIntake());
 			if(alliance.equals(Alliance.Red)) {
-				addSequential(new Follow2DPath(new Profile2D(params,95.5,80,90,15))); //Params, DistanceX, DistanceY, Exit Angle, Max Time
-//				addSequential(new Follow2DPath(new Profile2D(params,20,80,90,15)));
+			
+				double[][] waypoints = new double[][]{
+					{0,0},
+					{0,1*12},
+					{0.127*12,2*12},
+					{0.536*12,3*12},
+					{1*12,3.646*12},
+					{1.354*12,4*12},
+					{2*12,4.464*12},
+					{3*12,4.874*12},
+					{4*12,5*12},
+					{5*12,5*12},
+				}; 
+				
+				FalconPathPlanner path = new FalconPathPlanner(waypoints);
+				
+				addSequential(new Follow2DPath(path));
+				
 			} else {
 				
 			}
@@ -42,10 +57,8 @@ public class AutonomousCommand extends CommandGroup {
 			
 		} else if(routine.equals(AutoMode.LEFT_GEAR)) {
 			
-			ProfileParams params = new ProfileParams(18.25,45,45);
-			
 			if(alliance.equals(Alliance.Red)) {
-				addSequential(new Follow2DPath(new Profile2D(params,99.45,60.16,60,15)));
+				
 			} else {
 				
 			}

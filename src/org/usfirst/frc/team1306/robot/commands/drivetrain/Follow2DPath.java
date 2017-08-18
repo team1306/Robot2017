@@ -1,9 +1,13 @@
 package org.usfirst.frc.team1306.robot.commands.drivetrain;
 
+import org.usfirst.frc.team1306.lib.util.FalconPathPlanner;
 import org.usfirst.frc.team1306.lib.util.Profile2D;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
+
 import com.ctre.CANTalon.TalonControlMode;
+
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * @Follow2DPath
@@ -12,13 +16,13 @@ import edu.wpi.first.wpilibj.Timer;
  */
 public class Follow2DPath extends CommandBase {
 
-	private Profile2D profile;
+	private FalconPathPlanner path;
 	private Timer timer;
 	private int counter;
 	
-	public Follow2DPath(Profile2D p) {
+	public Follow2DPath(FalconPathPlanner p) {
 		requires(drivetrain);
-		profile = p;
+		path = p;
 		
 		timer = new Timer();
 	}
@@ -43,20 +47,27 @@ public class Follow2DPath extends CommandBase {
 		
 		counter = (int) (timer.get() / 0.01);
 		
-		double leftSpeed = profile.leftPath.path.get(counter).velocity;
-		double rightSpeed = profile.rightPath.path.get(counter).velocity;
+		double leftSpeed;
+		double rightSpeed;
 		
-		double leftError = profile.leftPath.path.get(counter).position - (Math.abs(drivetrain.leftMotors.getEncPos()/1024)*12.5663);
-		double rightError = profile.rightPath.path.get(counter).position - (Math.abs(drivetrain.rightMotors.getEncPos()/1024)*12.5663);
-		leftError *= 2;
-		rightError *= 2;
+		try {
+			leftSpeed = path.smoothLeftVelocity[counter][1];
+			rightSpeed = path.smoothRightVelocity[counter][1];
+		} catch(Exception e) {
+			leftSpeed = 0;
+			rightSpeed = 0;
+		}
 		
-		drivetrain.driveSpeed(((leftSpeed+leftError)/12.5663)*60,((rightSpeed+rightError)/12.5663)*60);
+		
+		SmartDashboard.putNumber("LeftSpeed",((leftSpeed)/12.5663)*60);
+		SmartDashboard.putNumber("RightSpeed",((rightSpeed)/12.5663)*60);
+		
+		drivetrain.driveSpeed(((leftSpeed)/12.5663)*60,((rightSpeed)/12.5663)*60);
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return timer.hasPeriodPassed(profile.maxTime);
+		return timer.hasPeriodPassed(5);
 	}
 
 	@Override
