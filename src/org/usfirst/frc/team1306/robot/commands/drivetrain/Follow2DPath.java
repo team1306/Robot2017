@@ -19,12 +19,15 @@ public class Follow2DPath extends CommandBase {
 	private FalconPathPlanner path;
 	private Timer timer;
 	private int counter;
+	private double initAngle;
 	
 	public Follow2DPath(FalconPathPlanner p) {
 		requires(drivetrain);
 		path = p;
 		
 		timer = new Timer();
+		
+		initAngle = drivetrain.gyro.getAngle();
 	}
 	
 	@Override
@@ -59,15 +62,29 @@ public class Follow2DPath extends CommandBase {
 		}
 		
 		
-		SmartDashboard.putNumber("LeftSpeed",((leftSpeed*12)/12.5663)*60);
-		SmartDashboard.putNumber("RightSpeed",((rightSpeed*12)/12.5663)*60);
+		//SmartDashboard.putNumber("LeftSpeed",((leftSpeed*12)/12.5663)*60);
+		//SmartDashboard.putNumber("RightSpeed",((rightSpeed*12)/12.5663)*60);
 		
-		drivetrain.driveSpeed(((leftSpeed*12)/12.5663)*60,((rightSpeed*12)/12.5663)*60);
+		SmartDashboard.putNumber("initAngle",initAngle);
+		SmartDashboard.putNumber("ProgressAngle",initAngle + drivetrain.gyro.getAngle());
+		
+		double gyroCorrection;
+		
+		try {
+			gyroCorrection = -path.heading[counter][1] + (initAngle - drivetrain.gyro.getAngle());
+		} catch(Exception e) {
+			gyroCorrection = 0;
+		}
+		
+		SmartDashboard.putNumber("gyroError",gyroCorrection);
+		
+		drivetrain.driveSpeed((((leftSpeed*12)/12.5663)*60)+gyroCorrection,(((rightSpeed*12)/12.5663)*60)-gyroCorrection);
+//		drivetrain.driveSpeed((((leftSpeed*12)/12.5663)*60),(((rightSpeed*12)/12.5663)*60));
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return timer.hasPeriodPassed(5);
+		return timer.hasPeriodPassed(4);
 	}
 
 	@Override

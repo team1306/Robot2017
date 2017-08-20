@@ -86,13 +86,13 @@ public class Constants {
 	public final static double SHOOTER_AUTO_CLOSE_RPM = 2849;
 	public final static double INDEXER_AUTO_CLOSE_RPM = 2640;
 	public final static double TURRET_AUTO_CLOSE_POS = 0.217;
-	public final static double SHOOTER_AUTO_HOPPER_RPM = 3255; 
+	public final static double SHOOTER_AUTO_HOPPER_RPM = 3055; 
 	public final static double INDEXER_AUTO_HOPPER_RPM = 3040;
 	public final static double TURRET_AUTO_HOPPER_POS = -0.2228;
 	
 	//Shooter Constants
 	public final static double SHOOTER_SPEED = 0.78;
-	public final static double SHOOTER_RPM_SPEED = 2600;		
+	public final static double SHOOTER_RPM_SPEED = 2590;		
 	public final static double INDEXER_RPM_SPEED = 2525;		
 	public final static double SHOOTER_SPIN_UP_TIME = 0.5;			//Time to let shooters spin up before turning on hopper and indexers
 	public final static double SHOOTER_F = 13.28;				

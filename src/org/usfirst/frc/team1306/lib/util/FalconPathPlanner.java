@@ -682,9 +682,9 @@ public class FalconPathPlanner
 
 		//create waypoint path
 		double[][] waypoints = new double[][]{
-			{0,0},
-			{54.717/12,0},
-			{89.45/12,(60.16/12)},
+			{0,0+12},
+			{80.125/12,0+12},
+			{80.125/12,-(94.5/12)+12},
 		}; 
 
 		double totalTime = 4; //seconds

@@ -101,8 +101,8 @@ public class Shooter extends Subsystem {
 				leftShooterMotor.set(rpm + 10);
 				rightShooterMotor.set(rpm);
 			} else {
-				leftShooterMotor.set(shooterRPM + 3);
-				rightShooterMotor.set(shooterRPM);
+				leftShooterMotor.set(shooterRPM + 20);
+				rightShooterMotor.set(shooterRPM + 10);
 			}
 			
 			
