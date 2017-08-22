@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1306.robot;
 
 import org.usfirst.frc.team1306.robot.commands.drivetrain.DriveMode;
+import org.usfirst.frc.team1306.robot.triggers.ControllerButton;
 
 /**
  * To store finalized variables all in one place
@@ -34,10 +35,10 @@ public class Constants {
 	public final static double JOYSTICK_MULTIPLIER = 1.0; //Joystick inputs raised to this power
 	
 	//Button Constants (Used in some commands for detecting if a button is still pressed)
-	public final static int INTAKE_BUTTON = XboxController.X;
-	public final static int SHOOTER_BUTTON = XboxController.A;
-	public final static int GEARTAKE_FORWARD_BUTTON = XboxController.RB;
-	public final static int GEARTAKE_REVERSE_BUTTON = XboxController.LB;
+	public final static ControllerButton INTAKE_BUTTON = ControllerButton.X;
+	public final static ControllerButton SHOOTER_BUTTON = ControllerButton.A;
+	public final static ControllerButton GEARTAKE_FORWARD_BUTTON = ControllerButton.RB;
+	public final static ControllerButton GEARTAKE_REVERSE_BUTTON = ControllerButton.LB;
 	
 	//Autonomous Constants //TODO Write usage
 	public final static double SHOOT_TIME = 10.0;

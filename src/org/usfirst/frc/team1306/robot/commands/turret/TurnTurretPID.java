@@ -1,12 +1,9 @@
 package org.usfirst.frc.team1306.robot.commands.turret;
 
-import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.OI;
-import org.usfirst.frc.team1306.robot.OI.controller;
-import org.usfirst.frc.team1306.robot.XboxController;
+import org.usfirst.frc.team1306.robot.OI.Controller;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
-
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team1306.robot.triggers.ControllerButton;
 
 /**
  * Command that turns turret to a given rotations
@@ -29,7 +26,7 @@ public class TurnTurretPID extends CommandBase {
     }
 
     protected boolean isFinished() {
-		if (OI.getButtonVal(controller.p,XboxController.Y)) {
+		if (OI.getButtonStatus(Controller.P,ControllerButton.Y)) {
 			return false;
 		} else {
 			return true;

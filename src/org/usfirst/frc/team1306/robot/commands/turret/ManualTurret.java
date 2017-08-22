@@ -1,9 +1,9 @@
 package org.usfirst.frc.team1306.robot.commands.turret;
 
 import org.usfirst.frc.team1306.robot.OI;
-import org.usfirst.frc.team1306.robot.OI.axis;
-import org.usfirst.frc.team1306.robot.OI.controller;
-import org.usfirst.frc.team1306.robot.OI.joystick;
+import org.usfirst.frc.team1306.robot.OI.Axis;
+import org.usfirst.frc.team1306.robot.OI.Controller;
+import org.usfirst.frc.team1306.robot.OI.Joystick;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
 public class ManualTurret extends CommandBase {
@@ -21,8 +21,8 @@ public class ManualTurret extends CommandBase {
 
 	@Override
 	protected void execute() {
-		if(OI.getJoyVal(controller.s,joystick.l,axis.x) != 0) {
-			turret.setSpeed(OI.getJoyVal(controller.s, joystick.l, axis.x) * -0.2);
+		if(OI.getJoyVal(Controller.S,Joystick.L,Axis.X) != 0) {
+			turret.setSpeed(OI.getJoyVal(Controller.S, Joystick.L, Axis.X) * -0.2);
 			test = false;
 		} else if(!test){
 			turret.stopAll();

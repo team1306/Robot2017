@@ -2,10 +2,10 @@ package org.usfirst.frc.team1306.robot.commands.drivetrain;
 
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.OI;
-import org.usfirst.frc.team1306.robot.OI.axis;
-import org.usfirst.frc.team1306.robot.OI.controller;
-import org.usfirst.frc.team1306.robot.OI.joystick;
-import org.usfirst.frc.team1306.robot.OI.trigger;
+import org.usfirst.frc.team1306.robot.OI.Axis;
+import org.usfirst.frc.team1306.robot.OI.Controller;
+import org.usfirst.frc.team1306.robot.OI.Joystick;
+import org.usfirst.frc.team1306.robot.OI.PullTrigger;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
 /**
@@ -32,12 +32,12 @@ public class ArcadeDrive extends CommandBase {
 	@Override
 	protected void execute() {
 		
-		if (OI.getTriggerVal(controller.p, trigger.r) >= Constants.DEADBAND || OI.getTriggerVal(controller.p, trigger.l) >= Constants.DEADBAND) {
-			double triggerVal = OI.getTriggerVal(controller.p, trigger.r) - OI.getTriggerVal(controller.p, trigger.l);
-			drivetrain.driveVBus(triggerVal+OI.getJoyVal(controller.p, joystick.l, axis.x), triggerVal-OI.getJoyVal(controller.p, joystick.l, axis.x));
+		if (OI.getTriggerVal(Controller.P, PullTrigger.R) >= Constants.DEADBAND || OI.getTriggerVal(Controller.P, PullTrigger.L) >= Constants.DEADBAND) {
+			double triggerVal = OI.getTriggerVal(Controller.P, PullTrigger.R) - OI.getTriggerVal(Controller.P, PullTrigger.L);
+			drivetrain.driveVBus(triggerVal+OI.getJoyVal(Controller.P, Joystick.L, Axis.X), triggerVal-OI.getJoyVal(Controller.P, Joystick.L, Axis.X));
 		} else {
-			if (OI.getJoyVal(controller.p, joystick.l, axis.x) >= Constants.DEADBAND || OI.getJoyVal(controller.p, joystick.l, axis.x) <= -Constants.DEADBAND) {
-				drivetrain.driveVBus(OI.getJoyVal(controller.p, joystick.l, axis.x), -OI.getJoyVal(controller.p, joystick.l, axis.x));
+			if (OI.getJoyVal(Controller.P, Joystick.L, Axis.X) >= Constants.DEADBAND || OI.getJoyVal(Controller.P, Joystick.L, Axis.X) <= -Constants.DEADBAND) {
+				drivetrain.driveVBus(OI.getJoyVal(Controller.P, Joystick.L, Axis.X), -OI.getJoyVal(Controller.P, Joystick.L, Axis.X));
 			} else {
 				drivetrain.stop();
 			}
