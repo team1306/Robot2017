@@ -30,17 +30,6 @@ public class Hopper extends Subsystem {
 	}
 	
 	/**
-	 * Spins hopper forward (fuel up to shooters) with steps (increasing speed)
-	 * @param step
-	 * 		Step of speed (1-5)
-	 */
-	public void spinHopper(int step) {
-		if (Constants.HOPPER_ENABLED) {
-			hopperMotor.set(0.1*step + 0.5);
-		}
-	}
-	
-	/**
 	 * Spins hopper backwards (fuel down away from shooters)
 	 */
 	public void spinHopperBack() {
@@ -52,7 +41,7 @@ public class Hopper extends Subsystem {
 	/**
 	 * Stops all hopper motors
 	 */
-	public void stopAll() {
+	public void stop() {
 		hopperMotor.set(0.0);
 	}
 	

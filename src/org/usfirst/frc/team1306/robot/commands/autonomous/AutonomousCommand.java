@@ -2,15 +2,13 @@ package org.usfirst.frc.team1306.robot.commands.autonomous;
 
 import org.usfirst.frc.team1306.lib.util.FalconPathPlanner;
 import org.usfirst.frc.team1306.lib.util.Profile;
-import org.usfirst.frc.team1306.lib.util.ProfileParams;
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.commands.SetSetpoint;
 import org.usfirst.frc.team1306.robot.commands.Setpoint;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.Follow2DPath;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.FollowPath;
 import org.usfirst.frc.team1306.robot.commands.geartake.PlaceGear;
-import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
-
+import org.usfirst.frc.team1306.robot.commands.shooter.FireFuel;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -58,7 +56,7 @@ public class AutonomousCommand extends CommandGroup {
 				addSequential(new Follow2DPath(path));
 			}
 			addSequential(new SetSetpoint(Setpoint.AUTO_HOPPER));
-			addSequential(new SpinShooter(Constants.SHOOT_TIME,Constants.SHOOTER_RPM_SPEED));
+			addSequential(new FireFuel(Constants.SHOOT_TIME));
 			
 		} else if(routine.equals(AutoMode.LEFT_GEAR)) {
 			
@@ -98,8 +96,6 @@ public class AutonomousCommand extends CommandGroup {
 			
 		} else if(routine.equals(AutoMode.RIGHT_GEAR)) {
 		 	
-			ProfileParams params = new ProfileParams(18.25,45,45);
-			
 			if(alliance.equals(Alliance.Red)) {
 				double[][] waypoints = new double[][]{
 					{0,0},

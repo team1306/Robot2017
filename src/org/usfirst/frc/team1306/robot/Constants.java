@@ -41,20 +41,6 @@ public class Constants {
 	
 	//Autonomous Constants //TODO Write usage
 	public final static double SHOOT_TIME = 10.0;
-	public final static double HOPPER_INIT_SPEED = 0.0;
-	public final static double HOPPER_END_SPEED = 0.0;
-	public final static double HOPPER_INIT_TIME = 0.0;
-	public final static double HOPPER_END_TIME = 0.0;
-	public final static double GEAR_BOILERSIDE_INIT_SPEED = 0.0;
-	public final static double GEAR_BOILERSIDE_END_SPEED = 0.0;
-	public final static double GEAR_BOILERSIDE_INIT_TIME = 0.0;
-	public final static double GEAR_BOILERSIDE_END_TIME = 0.0;
-	public final static double GEAR_LOADINGSIDE_INIT_SPEED = 0.0;
-	public final static double GEAR_LOADINGSIDE_END_SPEED = 0.0;
-	public final static double GEAR_LOADINGSIDE_INIT_TIME = 0.0;
-	public final static double GEAR_LOADINGSIDE_END_TIME = 0.0;
-	public final static double GEAR_CENTER_SPEED = -0.3;
-	public final static double GEAR_CENTER_TIME = 2.50;
 	
 	//Geartake Constants
 	public final static int GEAR_DEPLOY_TIME = 1;
@@ -75,18 +61,17 @@ public class Constants {
 	
 	//Setpoint Constants
 	public final static double SHOOTER_BOILER_RPM = 2720;
-	public final static double SHOOTER_PEG_RPM = 3210;
-	public final static double SHOOTER_HOPPER_RPM = 2850; 
+	public final static double SHOOTER_BOILER_ADJ = 0.0;
 	public final static double INDEXER_BOILER_RPM = 2650;
-	public final static double INDEXER_PEG_RPM = 3200;
-	public final static double INDEXER_HOPPER_RPM = 2640; 
 	public final static double TURRET_BOILER_POS = 0.0;
+
+	public final static double SHOOTER_PEG_RPM = 3210;
+	public final static double SHOOTER_PEG_ADJ = 10.0;
+	public final static double INDEXER_PEG_RPM = 3200;
 	public final static double TURRET_PEG_POS = 0.0;
-	public final static double TURRET_HOPPER_POS = -0.210;
-	public final static double SHOOTER_AUTO_CLOSE_RPM = 2849;
-	public final static double INDEXER_AUTO_CLOSE_RPM = 2640;
-	public final static double TURRET_AUTO_CLOSE_POS = 0.217;
-	public final static double SHOOTER_AUTO_HOPPER_RPM = 3055; 
+	
+	public final static double SHOOTER_AUTO_HOPPER_RPM = 3055;
+	public final static double SHOOTER_AUTO_HOPPER_ADJ = 78.0;
 	public final static double INDEXER_AUTO_HOPPER_RPM = 3040;
 	public final static double TURRET_AUTO_HOPPER_POS = -0.2228;
 	

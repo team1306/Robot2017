@@ -4,17 +4,18 @@ import org.usfirst.frc.team1306.robot.Constants.ControlMode;
 import org.usfirst.frc.team1306.robot.commands.SetSetpoint;
 import org.usfirst.frc.team1306.robot.commands.Setpoint;
 import org.usfirst.frc.team1306.robot.commands.climber.Climb;
-import org.usfirst.frc.team1306.robot.commands.geartake.PlaceGear;
 import org.usfirst.frc.team1306.robot.commands.geartake.DeployGeartake;
+import org.usfirst.frc.team1306.robot.commands.geartake.PlaceGear;
 import org.usfirst.frc.team1306.robot.commands.geartake.RetractGeartake;
 import org.usfirst.frc.team1306.robot.commands.geartake.SpinGeartake;
 import org.usfirst.frc.team1306.robot.commands.hood.AdjustHood;
 import org.usfirst.frc.team1306.robot.commands.hood.HoodAngle;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
-import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
+import org.usfirst.frc.team1306.robot.commands.shooter.FireFuel;
 import org.usfirst.frc.team1306.robot.commands.turret.ResetTurret;
 import org.usfirst.frc.team1306.robot.triggers.DPadDirection;
 import org.usfirst.frc.team1306.robot.triggers.DPadPress;
+
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -33,7 +34,6 @@ public class OI {
 	private static XboxController outreachController = null;
 	
 	//Declare buttons on primary controller
-	private Button pbuttonA = null;
 	private Button pbuttonX = null;
 	private Trigger primaryDPadUp = null;
 	private Trigger primaryDPadDown = null;
@@ -75,7 +75,6 @@ public class OI {
 		
 		//Map buttons to xbox controller buttons for primary controller
 		if(primaryController != null) {
-	 		pbuttonA = new JoystickButton(primaryController, XboxController.A);
 			pbuttonX = new JoystickButton(primaryController, XboxController.X);
 			primaryDPadUp = new DPadPress(primaryController, DPadDirection.UP);
 			primaryDPadDown = new DPadPress(primaryController, DPadDirection.DOWN);
@@ -110,7 +109,6 @@ public class OI {
 		
 		//Primary Controller Mapping
 		if(primaryController != null) {
-			pbuttonA.toggleWhenPressed(new SpinShooter(true,Constants.SHOOTER_RPM_SPEED));
 			pbuttonX.whenPressed(new SpinIntake(false));
 		
 			primaryDPadUp.whenActive(new AdjustHood(HoodAngle.UP));
@@ -119,7 +117,7 @@ public class OI {
 		
 		//Secondary Controller Mapping
 		if(secondaryController != null) {
-			sbuttonA.whenPressed(new SpinShooter(false,Constants.SHOOTER_RPM_SPEED));
+			sbuttonA.whileHeld(new FireFuel());
 			sbuttonB.whenPressed(new DeployGeartake());
 			sbuttonX.toggleWhenPressed(new SpinIntake(true));
 			sbuttonY.whenPressed(new RetractGeartake());
@@ -136,7 +134,7 @@ public class OI {
 		
 		//Outreach Controller Mapping
 		if(outreachController != null) {
-			obuttonA.whenPressed(new SpinShooter(true,Constants.SHOOTER_RPM_SPEED));
+			obuttonA.whileHeld(new FireFuel());
 			obuttonB.whenPressed(new ResetTurret());
 			obuttonX.toggleWhenPressed(new SpinIntake(true));
 			

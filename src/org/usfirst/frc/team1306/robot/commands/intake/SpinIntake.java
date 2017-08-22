@@ -46,7 +46,7 @@ public class SpinIntake extends CommandBase {
     }
 
     protected void end() {
-    	intake.stopAll();
+    	intake.stop();
     	OI.resetRumble(controller.p);
     	OI.resetRumble(controller.s);
     }
