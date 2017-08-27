@@ -20,10 +20,12 @@ public class Follow2DPath extends CommandBase {
 	private Timer timer;
 	private int counter;
 	private double initAngle;
+	private boolean reverse;
 	
-	public Follow2DPath(FalconPathPlanner p) {
+	public Follow2DPath(FalconPathPlanner p, boolean r) {
 		requires(drivetrain);
 		path = p;
+		reverse = r;
 		
 		timer = new Timer();
 		
@@ -71,15 +73,22 @@ public class Follow2DPath extends CommandBase {
 		double gyroCorrection;
 		
 		try {
-			gyroCorrection = -path.heading[counter][1] + (initAngle - drivetrain.gyro.getAngle());
+			if(reverse) {
+				gyroCorrection = (path.heading[counter][1] + (initAngle - drivetrain.gyro.getAngle())) * 2;
+			} else {
+				gyroCorrection = -path.heading[counter][1] + (initAngle - drivetrain.gyro.getAngle());
+			}
 		} catch(Exception e) {
 			gyroCorrection = 0;
 		}
 		
 		SmartDashboard.putNumber("gyroError",gyroCorrection);
-		
-		drivetrain.driveSpeed((((leftSpeed*12)/12.5663)*60)+gyroCorrection,(((rightSpeed*12)/12.5663)*60)-gyroCorrection);
-//		drivetrain.driveSpeed((((leftSpeed*12)/12.5663)*60),(((rightSpeed*12)/12.5663)*60));
+
+		if(reverse) {
+			drivetrain.driveSpeed(-((((leftSpeed*12)/12.5663)*60)-gyroCorrection),-((((rightSpeed*12)/12.5663)*60)+gyroCorrection));
+		} else {
+			drivetrain.driveSpeed((((leftSpeed*12)/12.5663)*60)+gyroCorrection,(((rightSpeed*12)/12.5663)*60)-gyroCorrection);
+		}
 	}
 
 	@Override

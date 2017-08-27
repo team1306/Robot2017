@@ -42,7 +42,7 @@ public class AutonomousCommand extends CommandGroup {
 				FalconPathPlanner path = new FalconPathPlanner(waypoints);
 				path.calculate(4,0.1,30/12);
 				
-				addSequential(new Follow2DPath(path));	
+				addSequential(new Follow2DPath(path,false));	
 			} else {
 				double[][] waypoints = new double[][]{
 					{0,0},
@@ -53,7 +53,7 @@ public class AutonomousCommand extends CommandGroup {
 				FalconPathPlanner path = new FalconPathPlanner(waypoints);
 				path.calculate(4,0.1,30/12);
 				
-				addSequential(new Follow2DPath(path));
+				addSequential(new Follow2DPath(path,false));
 			}
 			addSequential(new SetSetpoint(Setpoint.AUTO_HOPPER));
 			addSequential(new FireFuel(Constants.SHOOT_TIME));
@@ -64,28 +64,28 @@ public class AutonomousCommand extends CommandGroup {
 				double[][] waypoints = new double[][]{
 					{0,0},
 					{54.717/12,0},
-					{89.45/12,-(60.16/12)},
+					{96.25/12,(48/12)}, //60
 				}; 
 				
 				FalconPathPlanner path = new FalconPathPlanner(waypoints);
 				path.calculate(4,0.1,30/12);
 				
-				addSequential(new Follow2DPath(path));
+				addSequential(new Follow2DPath(path,true));
 			} else {
 				double[][] waypoints = new double[][]{
 					{0,0},
 					{70.44/12,0},
-					{89.45/12,-(32.93/12)},
+					{89.45/12,(32.93/12)},
 				}; 
 				
 				FalconPathPlanner path = new FalconPathPlanner(waypoints);
 				path.calculate(4,0.1,30/12);
 				
-				addSequential(new Follow2DPath(path));
+				addSequential(new Follow2DPath(path,true));
 			}
-//			addSequential(new PlaceGear());
-//			addSequential(new TimedDrive(0.3,1));
-//			addSequential(new DeployIntake());
+			addSequential(new PlaceGear());
+			addSequential(new TimedDrive(0.3,1));
+			addSequential(new DeployIntake());
 			
 		} else if(routine.equals(AutoMode.MIDDLE_GEAR)) {
 			
@@ -100,24 +100,24 @@ public class AutonomousCommand extends CommandGroup {
 				double[][] waypoints = new double[][]{
 					{0,0},
 					{70.44/12,0},
-					{89.45/12,(32.93/12)},
+					{89.45/12,-(32.93/12)},
 				}; 
 				
 				FalconPathPlanner path = new FalconPathPlanner(waypoints);
 				path.calculate(4,0.1,30/12);
 				
-				addSequential(new Follow2DPath(path));
+				addSequential(new Follow2DPath(path,true));
 			} else {
 				double[][] waypoints = new double[][]{
 					{0,0},
 					{54.717/12,0},
-					{89.45/12,(60.16/12)},
+					{96.25/12,-(48/12)}, 
 				}; 
 				
 				FalconPathPlanner path = new FalconPathPlanner(waypoints);
 				path.calculate(4,0.1,30/12);
 				
-				addSequential(new Follow2DPath(path));
+				addSequential(new Follow2DPath(path,true));
 			}
 //			addSequential(new PlaceGear());
 //			addSequential(new TimedDrive(0.3,1));
