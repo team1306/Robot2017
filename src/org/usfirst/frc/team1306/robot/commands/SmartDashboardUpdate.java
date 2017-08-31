@@ -1,7 +1,6 @@
 package org.usfirst.frc.team1306.robot.commands;
 
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
-import edu.wpi.first.wpilibj.hal.HAL;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -19,10 +18,6 @@ public class SmartDashboardUpdate extends CommandBase {
 	}
 	
 	@Override
-	protected void initialize() {
-	}
-
-	@Override
 	protected void execute() {
 		
 		SmartDashboard.putNumber("GyroAngle",drivetrain.gyro.getAngle());
@@ -31,15 +26,5 @@ public class SmartDashboardUpdate extends CommandBase {
 	@Override
 	protected boolean isFinished() {
 		return false;
-	}
-
-	@Override
-	protected void end() {
-		
-	}
-
-	@Override
-	protected void interrupted() {
-		
 	}
 }

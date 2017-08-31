@@ -55,7 +55,7 @@ public class FireFuel extends CommandBase {
 		
 		//This timer is to give the shooters and indexers enough time to get up to speed before shooting
     	if(hopperTimer.hasPeriodPassed(Constants.SHOOTER_SPIN_UP_TIME)) {
-			hopper.spinHopper();
+			shooter.spinHopper();
 			intake.spinIntake();
     	}
 	}
@@ -65,7 +65,6 @@ public class FireFuel extends CommandBase {
 	protected boolean isFinished() {
 		if(timed && fireTimer.hasPeriodPassed(fireTime)) {
 			shooter.stop();
-			hopper.stop();
 			intake.stop();
 			return true;
 		} else return false;
@@ -74,7 +73,6 @@ public class FireFuel extends CommandBase {
 	@Override
 	protected void end() {
 		shooter.stop();
-		hopper.stop();
 		intake.stop();
 	}
 

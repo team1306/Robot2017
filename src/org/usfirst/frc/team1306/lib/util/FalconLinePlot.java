@@ -60,7 +60,7 @@ class FalconLinePlot extends JPanel implements ClipboardOwner{
     private double xMax;
     private double xMin;
     
-    private int yticCount;
+    //private int yticCount;
     private int xticCount;
     private double xTicStepSize;
     private double yTicStepSize;
@@ -854,9 +854,9 @@ class FalconLinePlot extends JPanel implements ClipboardOwner{
 		        61, 55, 48, 60, 40, 36, 38, 27, 20, 18,5
 		    };
   	  
-  	  double[] test = {0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5, 1.7, 2.0,
-  			  2.2,2.4,2.6,2.8,3.0,3.2,3.4,3.6,3.8,4.0,4.2
-  	  };
+//  	  double[] test = {0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5, 1.7, 2.0,
+//  			  2.2,2.4,2.6,2.8,3.0,3.2,3.4,3.6,3.8,4.0,4.2
+//  	  };
   	
   	
   	
@@ -868,7 +868,7 @@ class FalconLinePlot extends JPanel implements ClipboardOwner{
   	
   	fig2.addData(data2, Color.blue);
   	
-  	FalconLinePlot fig1 =  new FalconLinePlot(test,data);
+  	//FalconLinePlot fig1 =  new FalconLinePlot(test,data);
   	
   }
     

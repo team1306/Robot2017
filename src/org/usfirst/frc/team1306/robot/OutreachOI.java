@@ -2,8 +2,6 @@ package org.usfirst.frc.team1306.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.Trigger;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -14,36 +12,36 @@ public class OutreachOI {
 	//Declare primary and secondary xbox controllers
 	private static XboxController primaryController = null;
 	private static XboxController secondaryController = null;
-	private static XboxController outreachController = null;
+//	private static XboxController outreachController = null;
 	
-	//Declare buttons on primary controller
-	private Button pbuttonX = null;
-	private Trigger primaryDPadUp = null;
-	private Trigger primaryDPadDown = null;
-	
-	//Declare buttons on secondary controller
-	private Button sbuttonA = null;
-	private Button sbuttonB = null;
-	private Button sbuttonX = null;
-	private Button sbuttonY = null;
-	private Button sbuttonRB = null;
-	private Button sbuttonLB = null;
-	private Button sbuttonStart = null;	
-	private Trigger secondaryDPadUp = null;
-	private Trigger secondaryDPadLeft = null;
-	private Trigger secondaryDPadDown = null;
-	
-	//Declare buttons on outreach controller
-	private Button obuttonA = null;
-	private Button obuttonB = null;
-	private Button obuttonX = null;
-	private Button obuttonLB = null;
-	private Button obuttonStart = null;
-	private Button obuttonBack = null;	
-	private Trigger outreachDPadUp = null;
-	private Trigger outreachDPadRight = null;
-	private Trigger outreachDPadLeft = null;
-	private Trigger outreachDPadDown = null;
+//	//Declare buttons on primary controller
+//	private Button pbuttonX = null;
+//	private Trigger primaryDPadUp = null;
+//	private Trigger primaryDPadDown = null;
+//	
+//	//Declare buttons on secondary controller
+//	private Button sbuttonA = null;
+//	private Button sbuttonB = null;
+//	private Button sbuttonX = null;
+//	private Button sbuttonY = null;
+//	private Button sbuttonRB = null;
+//	private Button sbuttonLB = null;
+//	private Button sbuttonStart = null;	
+//	private Trigger secondaryDPadUp = null;
+//	private Trigger secondaryDPadLeft = null;
+//	private Trigger secondaryDPadDown = null;
+//	
+//	//Declare buttons on outreach controller
+//	private Button obuttonA = null;
+//	private Button obuttonB = null;
+//	private Button obuttonX = null;
+//	private Button obuttonLB = null;
+//	private Button obuttonStart = null;
+//	private Button obuttonBack = null;	
+//	private Trigger outreachDPadUp = null;
+//	private Trigger outreachDPadRight = null;
+//	private Trigger outreachDPadLeft = null;
+//	private Trigger outreachDPadDown = null;
 	
 	public OutreachOI() {
 		

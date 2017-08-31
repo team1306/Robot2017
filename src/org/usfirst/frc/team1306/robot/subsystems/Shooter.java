@@ -3,12 +3,15 @@ package org.usfirst.frc.team1306.robot.subsystems;
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.RobotMap;
 import org.usfirst.frc.team1306.robot.commands.Setpoint;
+import org.usfirst.frc.team1306.robot.commands.shooter.AdjustHood.HoodAngle;
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 import com.ctre.CANTalon.VelocityMeasurementPeriod;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -22,21 +25,28 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Shooter extends Subsystem {
 
+	private final Talon hopperMotor;
 	private final CANTalon leftShooterMotor;
 	private final CANTalon rightShooterMotor;
 	private final CANTalon indexerMotor;
+	private final DoubleSolenoid hoodShifter;
+	
 	private double shooterRPM = Constants.SHOOTER_BOILER_RPM;
 	private double indexerRPM = Constants.INDEXER_BOILER_RPM;
+	private final static double hopperSpeed = Constants.HOPPER_SPEED;
 	
-	Alliance alliance;
+	private HoodAngle angle = HoodAngle.UP;
+	private Alliance alliance;
 	
 	public Shooter() {
+		
 		leftShooterMotor = new CANTalon(RobotMap.LEFT_SHOOTER_PORT);
 		leftShooterMotor.enable();
 		rightShooterMotor = new CANTalon(RobotMap.RIGHT_SHOOTER_PORT);
 		rightShooterMotor.enable();
 		indexerMotor = new CANTalon(RobotMap.INDEXER_TALON_PORT);
 		indexerMotor.enable();
+		hopperMotor = new Talon(RobotMap.HOPPER_TALON_PORT);
 		
 		leftShooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		leftShooterMotor.configEncoderCodesPerRev(12);
@@ -72,6 +82,9 @@ public class Shooter extends Subsystem {
 		indexerMotor.setP(Constants.INDEXER_P);
 		indexerMotor.setI(Constants.INDEXER_I);
 		indexerMotor.setD(Constants.INDEXER_D);
+		
+		hoodShifter = new DoubleSolenoid(3,4);
+		setHoodAngle(angle); //Initial hood angle should be up
 		
 		alliance = DriverStation.getInstance().getAlliance();
 	}
@@ -132,6 +145,36 @@ public class Shooter extends Subsystem {
 		}
 	}
 	
+	public void spinHopper() {
+		if(Constants.HOPPER_ENABLED) {
+			hopperMotor.set(-hopperSpeed);
+		}
+	}
+	
+	/**
+	 * Sets the position of the hood (Up or Down)
+	 */
+	public void setHoodAngle(HoodAngle angle) {
+		
+		if(Constants.HOOD_ENABLED) {
+			if(angle.equals(HoodAngle.UP)) {
+				hoodShifter.set(DoubleSolenoid.Value.kForward);
+				angle = HoodAngle.UP;
+			} else {
+				hoodShifter.set(DoubleSolenoid.Value.kReverse);
+				angle = HoodAngle.DOWN;
+			}
+		}
+		
+	}
+	
+	public HoodAngle getHoodAngle() {
+		return angle;
+	}
+	
+	/**
+	 * Stops all motors (shooters, indexer, hopper)
+	 */
 	public void stop() {
 		leftShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
 		rightShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
@@ -139,6 +182,7 @@ public class Shooter extends Subsystem {
 		leftShooterMotor.set(0.0);
 		rightShooterMotor.set(0.0);
 		indexerMotor.set(0.0);
+		hopperMotor.set(0.0);
 	}
 	
 	@Override

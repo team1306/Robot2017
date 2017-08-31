@@ -10,15 +10,11 @@ import org.usfirst.frc.team1306.robot.subsystems.Climber;
 import org.usfirst.frc.team1306.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1306.robot.subsystems.Geartake;
 import org.usfirst.frc.team1306.robot.subsystems.Gyro;
-import org.usfirst.frc.team1306.robot.subsystems.Hood;
-import org.usfirst.frc.team1306.robot.subsystems.Hopper;
 import org.usfirst.frc.team1306.robot.subsystems.Intake;
 import org.usfirst.frc.team1306.robot.subsystems.Shooter;
 import org.usfirst.frc.team1306.robot.subsystems.Turret;
 import org.usfirst.frc.team1306.robot.subsystems.Vision;
-
 import com.ctre.CANTalon;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -36,8 +32,6 @@ public abstract class CommandBase extends Command {
 	protected static Drivetrain drivetrain;
 	protected static Shooter shooter;
 	protected static Intake intake;
-	protected static Hopper hopper;
-	protected static Hood hood;
 	protected static Turret turret;
 	protected static Climber climber;
 	protected static Geartake gearmech;
@@ -63,8 +57,6 @@ public abstract class CommandBase extends Command {
 		shooter = new Shooter();
 		intake = new Intake();
 		turret = new Turret();
-		hood = new Hood();
-		hopper = new Hopper();
 		climber = new Climber();
 		gearmech = new Geartake();
 		gyro = new Gyro();

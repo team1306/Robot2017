@@ -1,11 +1,8 @@
 package org.usfirst.frc.team1306.robot.commands.drivetrain;
 
 import org.usfirst.frc.team1306.lib.util.FalconPathPlanner;
-import org.usfirst.frc.team1306.lib.util.Profile2D;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
-
 import com.ctre.CANTalon.TalonControlMode;
-
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 

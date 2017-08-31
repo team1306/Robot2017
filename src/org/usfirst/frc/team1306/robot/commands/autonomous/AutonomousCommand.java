@@ -63,7 +63,7 @@ public class AutonomousCommand extends CommandGroup {
 			if(alliance.equals(Alliance.Red)) {
 				double[][] waypoints = new double[][]{
 					{0,0},
-					{54.717/12,0},
+					{54.717/12,0}, //TODO Use 68.54
 					{96.25/12,(48/12)}, //60
 				}; 
 				

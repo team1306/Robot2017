@@ -17,9 +17,6 @@ public class SetSetpoint extends CommandBase {
 	private Alliance alliance;
 	
 	public SetSetpoint(Setpoint s) {
-		requires(shooter);
-		requires(turret);
-		requires(hood);
 		
 		setpoint = s;
 		alliance = DriverStation.getInstance().getAlliance(); //Finding out what alliance we are on to determine which direction turret should turn
@@ -29,7 +26,7 @@ public class SetSetpoint extends CommandBase {
 	protected void execute() {
 		
 		shooter.setRPM(setpoint.shooterSpeed, setpoint.indexerSpeed); //Changes the RPM the shooter and indexer motors will run at
-		hood.setPos(setpoint.angle); //Actuates hood up or down if the setpoint requires it
+		shooter.setHoodAngle(setpoint.angle); //Actuates hood up or down if the setpoint requires it
 		
 		if(alliance.equals(Alliance.Blue)) { //If on blue alliance, turn turret to this angle
 			turret.moveRot(-setpoint.getTurretRot());

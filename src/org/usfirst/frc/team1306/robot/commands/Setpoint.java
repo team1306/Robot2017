@@ -1,7 +1,7 @@
 package org.usfirst.frc.team1306.robot.commands;
 
 import org.usfirst.frc.team1306.robot.Constants;
-import org.usfirst.frc.team1306.robot.commands.hood.HoodAngle;
+import org.usfirst.frc.team1306.robot.commands.shooter.AdjustHood.HoodAngle;
 
 /**
  * @Setpoint
