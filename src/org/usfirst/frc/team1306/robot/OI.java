@@ -70,7 +70,8 @@ public class OI {
 		Trigger secondaryDPadLeft = new DPadPress(secondaryController, DPadDirection.LEFT);
 		Trigger secondaryDPadDown = new DPadPress(secondaryController, DPadDirection.DOWN);
 		
-		pbuttonX.whenPressed(new SpinIntake(false));
+		//pbuttonX.whenPressed(new SpinIntake(false));
+		pbuttonX.whenPressed(new RetractGeartake());
 		primaryDPadUp.whenActive(new AdjustHood(HoodAngle.UP));
 		primaryDPadDown.whenActive(new AdjustHood(HoodAngle.DOWN));
 		

@@ -63,8 +63,8 @@ public class AutonomousCommand extends CommandGroup {
 			if(alliance.equals(Alliance.Red)) {
 				double[][] waypoints = new double[][]{
 					{0,0},
-					{54.717/12,0}, //TODO Use 68.54
-					{96.25/12,(48/12)}, //60
+					{68.54/12,0},
+					{96.25/12,(48/12)},
 				}; 
 				
 				FalconPathPlanner path = new FalconPathPlanner(waypoints);
@@ -74,8 +74,8 @@ public class AutonomousCommand extends CommandGroup {
 			} else {
 				double[][] waypoints = new double[][]{
 					{0,0},
-					{70.44/12,0},
-					{89.45/12,(32.93/12)},
+					{80.041/12,0},
+					{95.25/12,(26.344/12)},
 				}; 
 				
 				FalconPathPlanner path = new FalconPathPlanner(waypoints);
@@ -99,8 +99,8 @@ public class AutonomousCommand extends CommandGroup {
 			if(alliance.equals(Alliance.Red)) {
 				double[][] waypoints = new double[][]{
 					{0,0},
-					{70.44/12,0},
-					{89.45/12,-(32.93/12)},
+					{80.041/12,0},
+					{95.25/12,-(26.344/12)},
 				}; 
 				
 				FalconPathPlanner path = new FalconPathPlanner(waypoints);
@@ -110,8 +110,8 @@ public class AutonomousCommand extends CommandGroup {
 			} else {
 				double[][] waypoints = new double[][]{
 					{0,0},
-					{54.717/12,0},
-					{96.25/12,-(48/12)}, 
+					{68.54/12,0},
+					{96.25/12,-(48/12)},
 				}; 
 				
 				FalconPathPlanner path = new FalconPathPlanner(waypoints);
