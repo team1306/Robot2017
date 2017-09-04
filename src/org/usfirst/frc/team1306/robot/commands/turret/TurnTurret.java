@@ -15,42 +15,12 @@ public class TurnTurret extends CommandBase {
 		this.rotations = rotations;
 	}
 	
-	protected void initialize() {
-    }
-    
-    /**
-     * Spins turret to correct rotations
-     */
     protected void execute() {
-//    	if (turret.getEncPos() < rotations) {
-//    		turret.setSpeed(Constants.TURRET_TURN_LEFT_SPEED); //If Turret rotations is below desired rotations the turret needs to turn left
-//    	} else if(turret.getEncPos() > rotations) {
-//    		turret.setSpeed(Constants.TURRET_TURN_RIGHT_SPEED); //If Turret rotations is above desired rotations the turret needs to turn right
-//    	}
-    	//turret.moveRot(rotations);
-    	//SmartDashboard.putNumber("rotations",rotations);
     	turret.moveRot(rotations);
     }
 
     protected boolean isFinished() {
-//    	if(Math.abs(rotations - turret.getEncPos()) < Constants.TURRET_TURN_TOLERANCE) { //Stops turning turret if in tolerance of rotations
-//    		turret.stopAll();
-//    		return true;
-//    	} else if((turret.getEncPos() > Constants.TURRET_LEFT_LIMIT && turret.getEncPos() < rotations) || (turret.getEncPos() < Constants.TURRET_RIGHT_LIMIT && turret.getEncPos() > rotations)) {
-//    		turret.stopAll(); //Stops turning if turret is outside soft limits
-//    		return true;
-//    	} else { //Continues turning turret
-//    		return false;
-//    	}
-    	
+    	new AutoTurret().start();
     	return true;
-    }
-    
-    protected void end() {
-    	turret.stopAll();
-    }
-    
-    protected void interrupted() {
-    	end();
     }
 }

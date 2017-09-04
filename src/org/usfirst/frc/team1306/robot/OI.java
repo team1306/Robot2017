@@ -85,8 +85,8 @@ public class OI {
 		
 		sbuttonStart.whenPressed(new Climb());
 		
-		secondaryDPadUp.whenActive(new SetSetpoint(Setpoint.BOILER));
-		secondaryDPadLeft.whenActive(new SetSetpoint(Setpoint.PEG));
+//		secondaryDPadUp.whenActive(new SetSetpoint(Setpoint.BOILER));
+//		secondaryDPadLeft.whenActive(new SetSetpoint(Setpoint.PEG));
 		secondaryDPadDown.whenActive(new ResetTurret());
 	}
 	

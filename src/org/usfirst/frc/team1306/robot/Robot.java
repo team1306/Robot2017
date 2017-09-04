@@ -14,9 +14,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the IterativeRobot
- * documentation.
+ * @Gemini
+ * 
+ * Robot project running on 1306's 2017 Robot Gemini, featuring autonomous path-following, vision, and a setpoint system.
  * 
  * @author Jackson Goth, Sam Roquitte
  */
