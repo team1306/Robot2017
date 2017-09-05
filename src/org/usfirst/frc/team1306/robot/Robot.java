@@ -46,6 +46,8 @@ public class Robot extends IterativeRobot {
         chooser.addObject("Right Gear - Red", new AutonomousCommand(Alliance.Red,AutoMode.RIGHT_GEAR));
         chooser.addObject("Hopper - Blue", new AutonomousCommand(Alliance.Blue,AutoMode.HOPPER));
         chooser.addObject("Hopper - Red", new AutonomousCommand(Alliance.Red,AutoMode.HOPPER));
+        chooser.addObject("Hopper Gear - Blue", new AutonomousCommand(Alliance.Blue,AutoMode.HOPPER_GEAR));
+        chooser.addObject("Hopper Gear - Red", new AutonomousCommand(Alliance.Red,AutoMode.HOPPER_GEAR));
         chooser.addObject("Do Nothing", new AutonomousCommand(Alliance.Red,AutoMode.BLANK));
         chooser.addDefault("Default - Blank", new AutonomousCommand(Alliance.Red,AutoMode.BLANK));
         

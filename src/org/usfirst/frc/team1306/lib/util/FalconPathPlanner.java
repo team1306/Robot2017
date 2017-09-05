@@ -5,6 +5,8 @@ import java.awt.GraphicsEnvironment;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.usfirst.frc.team1306.robot.commands.autonomous.PathParams;
+
 
 
 /**
@@ -611,7 +613,8 @@ public class FalconPathPlanner
 	 * @param timeStep - the frequency at which the robot controller is running on the robot. 
 	 * @param robotTrackWidth - distance between left and right side wheels of a skid steer chassis. Known as the track width.
 	 */
-	public void calculate(double totalTime, double timeStep, double robotTrackWidth)
+	//public void calculate(double totalTime, double timeStep, double robotTrackWidth)
+	public void calculate(PathParams params)
 	{
 		/**
 		 * pseudo code
@@ -622,7 +625,10 @@ public class FalconPathPlanner
 		 *    of datapoints, and which follows the waypoint path.
 		 * 4. Calculate left and right wheel paths by calculating parallel points at each datapoint 
 		 */
-
+		
+		double totalTime = params.time;
+		double timeStep = params.timeInterval;
+		double robotTrackWidth = params.robotTrackWidth;
 
 		//first find only direction changing nodes
 		nodeOnlyPath = nodeOnlyWayPoints(origPath);
@@ -693,7 +699,9 @@ public class FalconPathPlanner
 
 		final FalconPathPlanner path = new FalconPathPlanner(waypoints);
 		
-		path.calculate(totalTime, timeStep, robotTrackWidth);
+		PathParams params = new PathParams(totalTime,timeStep,robotTrackWidth);
+		
+		path.calculate(params);
 
 		System.out.println("Time in ms: " + (System.currentTimeMillis()-start));
 
@@ -813,7 +821,9 @@ public class FalconPathPlanner
 
 		final FalconPathPlanner path = new FalconPathPlanner(CheesyPath);
 		
-		path.calculate(totalTime, timeStep, robotTrackWidth);
+		PathParams params = new PathParams(totalTime,timeStep,robotTrackWidth);
+		
+		path.calculate(params);
 		
 		System.out.println("Time in ms: " + (System.currentTimeMillis()-start));
 

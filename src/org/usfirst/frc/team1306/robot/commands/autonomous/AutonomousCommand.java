@@ -9,6 +9,7 @@ import org.usfirst.frc.team1306.robot.commands.drivetrain.Follow2DPath;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.FollowPath;
 import org.usfirst.frc.team1306.robot.commands.geartake.PlaceGear;
 import org.usfirst.frc.team1306.robot.commands.shooter.FireFuel;
+
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -18,7 +19,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class AutonomousCommand extends CommandGroup {
 	
-	public enum AutoMode {HOPPER, LEFT_GEAR, MIDDLE_GEAR, RIGHT_GEAR, BASELINE, BLANK};
+	public enum AutoMode {HOPPER, HOPPER_GEAR, LEFT_GEAR, MIDDLE_GEAR, RIGHT_GEAR, BASELINE, BLANK};
 	
 	/**
 	 * This is the advanced autonomous routine that will score gears or shoot a full hopper
@@ -29,29 +30,21 @@ public class AutonomousCommand extends CommandGroup {
 	 */
 	public AutonomousCommand(Alliance alliance, AutoMode routine) {
 		
+		PathParams params = new PathParams(4,0.1,30/12); //4 seconds max, 0.1 seconds in-between points, 30 inch track-width converted to feet
+		
 		if(routine.equals(AutoMode.HOPPER)) {
 
 			addParallel(new DeployIntake());
 			if(alliance.equals(Alliance.Red)) {
-				double[][] waypoints = new double[][]{
-					{0,0},
-					{80.125/12,0},
-					{80.125/12,-(54.5/12)},
-				};
 				
-				FalconPathPlanner path = new FalconPathPlanner(waypoints);
-				path.calculate(4,0.1,30/12);
+				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.hopperPathRed);
+				path.calculate(params);
 				
 				addSequential(new Follow2DPath(path,false));	
 			} else {
-				double[][] waypoints = new double[][]{
-					{0,0},
-					{80.125/12,0},
-					{80.125/12,94.5/12},
-				}; 
 				
-				FalconPathPlanner path = new FalconPathPlanner(waypoints);
-				path.calculate(4,0.1,30/12);
+				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.hopperPathBlue);
+				path.calculate(params);
 				
 				addSequential(new Follow2DPath(path,false));
 			}
@@ -61,25 +54,15 @@ public class AutonomousCommand extends CommandGroup {
 		} else if(routine.equals(AutoMode.LEFT_GEAR)) {
 			
 			if(alliance.equals(Alliance.Red)) {
-				double[][] waypoints = new double[][]{
-					{0,0},
-					{68.54/12,0},
-					{96.25/12,(48/12)},
-				}; 
 				
-				FalconPathPlanner path = new FalconPathPlanner(waypoints);
-				path.calculate(4,0.1,30/12);
+				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.leftGearRed);
+				path.calculate(params);
 				
 				addSequential(new Follow2DPath(path,true));
 			} else {
-				double[][] waypoints = new double[][]{
-					{0,0},
-					{80.041/12,0},
-					{95.25/12,(26.344/12)},
-				}; 
 				
-				FalconPathPlanner path = new FalconPathPlanner(waypoints);
-				path.calculate(4,0.1,30/12);
+				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.leftGearBlue);
+				path.calculate(params);
 				
 				addSequential(new Follow2DPath(path,true));
 			}
@@ -97,31 +80,21 @@ public class AutonomousCommand extends CommandGroup {
 		} else if(routine.equals(AutoMode.RIGHT_GEAR)) {
 		 	
 			if(alliance.equals(Alliance.Red)) {
-				double[][] waypoints = new double[][]{
-					{0,0},
-					{80.041/12,0},
-					{95.25/12,-(26.344/12)},
-				}; 
 				
-				FalconPathPlanner path = new FalconPathPlanner(waypoints);
-				path.calculate(4,0.1,30/12);
+				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.rightGearRed);
+				path.calculate(params);
 				
 				addSequential(new Follow2DPath(path,true));
 			} else {
-				double[][] waypoints = new double[][]{
-					{0,0},
-					{68.54/12,0},
-					{96.25/12,-(48/12)},
-				}; 
 				
-				FalconPathPlanner path = new FalconPathPlanner(waypoints);
-				path.calculate(4,0.1,30/12);
+				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.rightGearBlue);
+				path.calculate(params);
 				
 				addSequential(new Follow2DPath(path,true));
 			}
-//			addSequential(new PlaceGear());
-//			addSequential(new TimedDrive(0.3,1));
-//			addSequential(new DeployIntake());
+			addSequential(new PlaceGear());
+			addSequential(new TimedDrive(0.3,1));
+			addSequential(new DeployIntake());
 			
 		} else if(routine.equals(AutoMode.BASELINE)) {
 			
