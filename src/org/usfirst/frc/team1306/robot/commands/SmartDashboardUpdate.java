@@ -20,7 +20,7 @@ public class SmartDashboardUpdate extends CommandBase {
 	@Override
 	protected void execute() {
 		
-//		SmartDashboard.putNumber("GyroAngle",drivetrain.gyro.getAngle());
+		SmartDashboard.putNumber("GyroAngle",turret.getEncPos());
 		SmartDashboard.putNumber("VisionYaw",vision.getYaw());
 	}
 

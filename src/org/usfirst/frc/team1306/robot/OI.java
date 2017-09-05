@@ -43,12 +43,12 @@ public class OI {
 		secondaryController = new XboxController(RobotMap.SECONDARY_PORT);
 		
 		//Declares and maps buttons to xbox controller buttons for primary controller
-//		Button pbuttonA = new JoystickButton(primaryController, ControllerButton.A.value);
-//		Button pbuttonB = new JoystickButton(primaryController, ControllerButton.B.value);
+		Button pbuttonA = new JoystickButton(primaryController, ControllerButton.A.value);
+		Button pbuttonB = new JoystickButton(primaryController, ControllerButton.B.value);
 		Button pbuttonX = new JoystickButton(primaryController, ControllerButton.X.value);
-//		Button pbuttonY = new JoystickButton(primaryController, ControllerButton.Y.value);
-//		Button pbuttonRB = new JoystickButton(primaryController, ControllerButton.RB.value);
-//		Button pbuttonLB = new JoystickButton(primaryController, ControllerButton.LB.value); 
+		Button pbuttonY = new JoystickButton(primaryController, ControllerButton.Y.value);
+		Button pbuttonRB = new JoystickButton(primaryController, ControllerButton.RB.value);
+		Button pbuttonLB = new JoystickButton(primaryController, ControllerButton.LB.value); 
 //		Button pbuttonStart = new JoystickButton(primaryController, ControllerButton.START.value);
 //		Button pbuttonBack = new JoystickButton(primaryController, ControllerButton.BACK.value);
 		Trigger primaryDPadUp = new DPadPress(primaryController, DPadDirection.UP);
@@ -71,23 +71,31 @@ public class OI {
 		Trigger secondaryDPadDown = new DPadPress(secondaryController, DPadDirection.DOWN);
 		
 		//pbuttonX.whenPressed(new SpinIntake(false));
-		pbuttonX.whenPressed(new RetractGeartake());
+//		pbuttonX.whenPressed(new RetractGeartake());
 		primaryDPadUp.whenActive(new AdjustHood(HoodAngle.UP));
 		primaryDPadDown.whenActive(new AdjustHood(HoodAngle.DOWN));
 		
-		sbuttonA.whileHeld(new FireFuel());
-		sbuttonB.whenPressed(new DeployGeartake());
-		sbuttonX.toggleWhenPressed(new SpinIntake(true));
-		sbuttonY.whenPressed(new RetractGeartake());
+		pbuttonA.toggleWhenPressed(new FireFuel());
+		pbuttonB.whenPressed(new DeployGeartake());
+		pbuttonX.toggleWhenPressed(new SpinIntake(true));
+		pbuttonY.whenPressed(new RetractGeartake());
 		
-		sbuttonLB.whenPressed(new SpinGeartake(Constants.GEARTAKE_SPEED));
-		sbuttonRB.whenPressed(new PlaceGear());
+		pbuttonLB.whenPressed(new SpinGeartake(Constants.GEARTAKE_SPEED));
+		pbuttonRB.whenPressed(new PlaceGear());
 		
-		sbuttonStart.whenPressed(new Climb());
+//		sbuttonA.toggleWhenPressed(new FireFuel());
+//		sbuttonB.whenPressed(new DeployGeartake());
+//		sbuttonX.toggleWhenPressed(new SpinIntake(true));
+//		sbuttonY.whenPressed(new RetractGeartake());
+//		
+//		sbuttonLB.whenPressed(new SpinGeartake(Constants.GEARTAKE_SPEED));
+//		sbuttonRB.whenPressed(new PlaceGear());
+		
+//		sbuttonStart.whenPressed(new Climb());
 		
 //		secondaryDPadUp.whenActive(new SetSetpoint(Setpoint.BOILER));
 //		secondaryDPadLeft.whenActive(new SetSetpoint(Setpoint.PEG));
-		secondaryDPadDown.whenActive(new ResetTurret());
+//		secondaryDPadDown.whenActive(new ResetTurret());
 	}
 	
 	public enum Controller {P,S}; //Controller (primary or secondary)

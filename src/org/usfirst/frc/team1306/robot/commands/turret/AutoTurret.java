@@ -8,6 +8,7 @@ import org.usfirst.frc.team1306.robot.OI.Controller;
 import org.usfirst.frc.team1306.robot.OI.Joystick;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * @AutoTurret
@@ -41,10 +42,10 @@ public class AutoTurret extends CommandBase {
 		if(vision.seeTarget()) {
 			
 			if(yawList.size() < 5) { //Fills up initial array
-				yawList.add(vision.getYaw());
+				yawList.add(vision.getYaw() - 5);
 			} else {
 				yawList.remove(0); //Removes oldest data from list
-				yawList.add(vision.getYaw()); //Adds newest data to the top of the list
+				yawList.add(vision.getYaw() - 5); //Adds newest data to the top of the list
 			}
 			
 			accumulator = 0;
@@ -56,6 +57,8 @@ public class AutoTurret extends CommandBase {
 			visionRotAdj = (averagedYaw/360) * Constants.TURRET_GEAR_CONVERSION;
 			double leftLimit = Constants.TURRET_LEFT_ROT_LIMIT, rightLimit = Constants.TURRET_RIGHT_ROT_LIMIT;
 			double currentRot = turret.getPosition();
+			
+			SmartDashboard.putNumber("visionRotAdj",visionRotAdj);
 			
 			if(visionRotAdj + currentRot < rightLimit && visionRotAdj + currentRot > leftLimit) {
 				if(recoveryTimer.hasPeriodPassed(0.5)) {

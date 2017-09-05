@@ -57,8 +57,8 @@ public class Drivetrain extends Subsystem {
 		SmartDashboard.putNumber("rightVbus",rightVal);
 		
 		if(Constants.DRIVETRAIN_ENABLED) {
-			leftMotors.set(leftVal);
-			rightMotors.set(-rightVal); 
+			leftMotors.set(leftVal*0.4);
+			rightMotors.set(-rightVal*0.4); 
 		}
 	}
 	
