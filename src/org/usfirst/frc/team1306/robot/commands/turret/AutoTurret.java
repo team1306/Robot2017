@@ -54,19 +54,31 @@ public class AutoTurret extends CommandBase {
 			}
 			averagedYaw = accumulator / yawList.size();
 			
-			visionRotAdj = (averagedYaw/360) * Constants.TURRET_GEAR_CONVERSION;
-			double leftLimit = Constants.TURRET_LEFT_ROT_LIMIT, rightLimit = Constants.TURRET_RIGHT_ROT_LIMIT;
-			double currentRot = turret.getPosition();
+			if(Math.abs(averagedYaw) > 2) {
+				double percentAdj;
+				if(averagedYaw > 0) {
+					percentAdj = 20;
+				} else {
+					percentAdj = -20;
+				}
+				visionRotAdj = ((((averagedYaw/15)*40) + percentAdj)/100)*218;
+			}
 			
 			SmartDashboard.putNumber("visionRotAdj",visionRotAdj);
 			
-			if(visionRotAdj + currentRot < rightLimit && visionRotAdj + currentRot > leftLimit) {
-				if(recoveryTimer.hasPeriodPassed(0.5)) {
-					turret.moveRot(visionRotAdj + currentRot);
-					recoveryTimer.reset();
-					recoveryTimer.start();
-				}
-			}
+//			visionRotAdj = (averagedYaw/360) * Constants.TURRET_GEAR_CONVERSION;
+//			double leftLimit = Constants.TURRET_LEFT_ROT_LIMIT, rightLimit = Constants.TURRET_RIGHT_ROT_LIMIT;
+//			double currentRot = turret.getPosition();
+//			
+//			SmartDashboard.putNumber("visionRotAdj",visionRotAdj);
+//			
+//			if(visionRotAdj + currentRot < rightLimit && visionRotAdj + currentRot > leftLimit) {
+//				if(recoveryTimer.hasPeriodPassed(0.5)) {
+//					turret.moveRot(visionRotAdj + currentRot);
+//					recoveryTimer.reset();
+//					recoveryTimer.start();
+//				}
+//			}
 			
 		} else if(manualVal > Constants.DEADBAND || manualVal < -Constants.DEADBAND) {
 			turret.setSpeed(OI.getJoyVal(Controller.S, Joystick.L, Axis.X) * -0.2);

@@ -3,11 +3,9 @@ package org.usfirst.frc.team1306.robot.subsystems;
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.RobotMap;
 import org.usfirst.frc.team1306.robot.commands.turret.AutoTurret;
-
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
-
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -70,6 +68,17 @@ public class Turret extends Subsystem {
 	}
 	
 	/**
+	 * Sets speed to a certain RPM
+	 */
+	public void setRPM(double rpm) {
+		if(Constants.TURRET_ENABLED) {
+			turretMotor.changeControlMode(TalonControlMode.Speed);
+			turretMotor.set(rpm);
+		}
+	}
+	
+	
+	/**
 	 * Turns turret to a given rotation
 	 */
 	public void moveRot(double rotation) {
@@ -96,6 +105,6 @@ public class Turret extends Subsystem {
 	
 	@Override
 	protected void initDefaultCommand() {
-//		setDefaultCommand(new AutoTurret());
+		setDefaultCommand(new AutoTurret());
 	}
 }
