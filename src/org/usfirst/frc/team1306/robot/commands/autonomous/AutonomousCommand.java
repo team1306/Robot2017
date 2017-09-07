@@ -57,6 +57,7 @@ public class AutonomousCommand extends CommandGroup {
 				path.calculate(params);
 				
 				addSequential(new Follow2DPath(path,true));
+				addSequential(new PlaceGear());
 				
 				FalconPathPlanner path2 = new FalconPathPlanner(AutoPaths.hopperGearPathRed);
 				path.calculate(params);
@@ -67,6 +68,7 @@ public class AutonomousCommand extends CommandGroup {
 				path.calculate(params);
 				
 				addSequential(new Follow2DPath(path,true));
+				addSequential(new PlaceGear());
 				
 				FalconPathPlanner path2 = new FalconPathPlanner(AutoPaths.hopperGearPathBlue);
 				path.calculate(params);
