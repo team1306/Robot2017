@@ -18,6 +18,18 @@ public class AutoPaths {
 	
 	/** Hopper Gear Autos */
 	
+	public final static double[][] hopperGearPathRed = new double[][] {
+		{0,0},
+		{6.8/12,0},
+		{100/12,50.5/12},
+	};
+	
+	public final static double[][] hopperGearPathBlue = new double[][] {
+		{0,0},
+		{6.8/12,0},
+		{100/12,-50.5/12},
+	};
+	
 	/** Gear Autos */
 	
 	public final static double[][] leftGearRed = new double[][]{

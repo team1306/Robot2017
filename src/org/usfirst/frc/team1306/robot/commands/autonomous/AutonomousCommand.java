@@ -36,17 +36,42 @@ public class AutonomousCommand extends CommandGroup {
 
 			addParallel(new DeployIntake());
 			if(alliance.equals(Alliance.Red)) {
-				
 				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.hopperPathRed);
 				path.calculate(params);
 				
 				addSequential(new Follow2DPath(path,false));	
 			} else {
-				
 				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.hopperPathBlue);
 				path.calculate(params);
 				
 				addSequential(new Follow2DPath(path,false));
+			}
+			addSequential(new SetSetpoint(Setpoint.AUTO_HOPPER));
+			addSequential(new FireFuel(Constants.SHOOT_TIME));
+			
+		} else if(routine.equals(AutoMode.HOPPER_GEAR)) {
+			
+			addParallel(new DeployIntake());
+			if(alliance.equals(Alliance.Red)) {
+				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.rightGearRed);
+				path.calculate(params);
+				
+				addSequential(new Follow2DPath(path,true));
+				
+				FalconPathPlanner path2 = new FalconPathPlanner(AutoPaths.hopperGearPathRed);
+				path.calculate(params);
+				
+				addSequential(new Follow2DPath(path2,false));
+			} else {
+				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.leftGearBlue);
+				path.calculate(params);
+				
+				addSequential(new Follow2DPath(path,true));
+				
+				FalconPathPlanner path2 = new FalconPathPlanner(AutoPaths.hopperGearPathBlue);
+				path.calculate(params);
+				
+				addSequential(new Follow2DPath(path2,false));
 			}
 			addSequential(new SetSetpoint(Setpoint.AUTO_HOPPER));
 			addSequential(new FireFuel(Constants.SHOOT_TIME));
