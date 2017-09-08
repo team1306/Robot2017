@@ -100,7 +100,7 @@ public class Constants {
 	public final static double TURRET_START_POS = 3480;
 	
 	//Drivetrain Constants
-	public final static DriveMode DRIVE_MODE = DriveMode.ARCADE; //What driving controls the robot will use (Arcade or Tank)
+	public final static DriveMode DRIVE_MODE = DriveMode.TANK; //What driving controls the robot will use (Arcade or Tank)
 	public final static double SPEED_MODIFIER = 1.0; //Speed multiplier (only really used with percentvbus driving)
 	public final static double OUTREACH_MODIFIER = 0.2;
 	public final static double F = 1.4; //TODO Re-Tune

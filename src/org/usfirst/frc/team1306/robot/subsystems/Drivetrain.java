@@ -5,7 +5,9 @@ import org.usfirst.frc.team1306.lib.util.Settings;
 import org.usfirst.frc.team1306.lib.util.Settings.DriveMode;
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.commands.drivetrain.ArcadeDrive;
+
 import com.ctre.CANTalon.TalonControlMode;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -57,8 +59,8 @@ public class Drivetrain extends Subsystem {
 		SmartDashboard.putNumber("rightVbus",rightVal);
 		
 		if(Constants.DRIVETRAIN_ENABLED) {
-			leftMotors.set(leftVal*0.4);
-			rightMotors.set(-rightVal*0.4); 
+			leftMotors.set(leftVal*0.3);
+			rightMotors.set(-rightVal*0.3); 
 		}
 	}
 	

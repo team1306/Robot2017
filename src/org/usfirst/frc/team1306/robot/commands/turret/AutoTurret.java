@@ -41,11 +41,11 @@ public class AutoTurret extends CommandBase {
 		
 		if(vision.seeTarget()) {
 			
-			if(yawList.size() < 5) { //Fills up initial array
-				yawList.add(vision.getYaw() - 5);
+			if(yawList.size() < 16) { //Fills up initial array
+				yawList.add(vision.getYaw());
 			} else {
 				yawList.remove(0); //Removes oldest data from list
-				yawList.add(vision.getYaw() - 5); //Adds newest data to the top of the list
+				yawList.add(vision.getYaw()); //Adds newest data to the top of the list
 			}
 			
 			accumulator = 0;
@@ -54,17 +54,30 @@ public class AutoTurret extends CommandBase {
 			}
 			averagedYaw = accumulator / yawList.size();
 			
-			if(Math.abs(averagedYaw) > 2) {
-				double percentAdj;
+			double percentAdj = 0;
+			
+			if(Math.abs(averagedYaw) > 4) {
 				if(averagedYaw > 0) {
 					percentAdj = 20;
 				} else {
 					percentAdj = -20;
 				}
 				visionRotAdj = ((((averagedYaw/15)*40) + percentAdj)/100)*218;
+			} else {
+				visionRotAdj = 0;
 			}
 			
-			SmartDashboard.putNumber("visionRotAdj",visionRotAdj);
+			SmartDashboard.putNumber("AveragedYaw",averagedYaw);
+			SmartDashboard.putNumber("PercentAdj",percentAdj);
+			SmartDashboard.putNumber("visionRotAdj",visionRotAdj/85);
+			
+			if(visionRotAdj > 60) {
+				visionRotAdj = 60;
+			} else if(visionRotAdj < -60) {
+				visionRotAdj = -60;
+			}
+			
+			turret.setRPM(visionRotAdj/60);
 			
 //			visionRotAdj = (averagedYaw/360) * Constants.TURRET_GEAR_CONVERSION;
 //			double leftLimit = Constants.TURRET_LEFT_ROT_LIMIT, rightLimit = Constants.TURRET_RIGHT_ROT_LIMIT;
