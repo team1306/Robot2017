@@ -41,7 +41,7 @@ public class AutoTurret extends CommandBase {
 		
 		if(vision.seeTarget()) {
 			
-			if(yawList.size() < 16) { //Fills up initial array
+			if(yawList.size() < 20) { //Fills up initial array
 				yawList.add(vision.getYaw());
 			} else {
 				yawList.remove(0); //Removes oldest data from list
@@ -54,30 +54,45 @@ public class AutoTurret extends CommandBase {
 			}
 			averagedYaw = accumulator / yawList.size();
 			
-			double percentAdj = 0;
-			
 			if(Math.abs(averagedYaw) > 4) {
 				if(averagedYaw > 0) {
-					percentAdj = 20;
+					visionRotAdj = ((averagedYaw / 15)/10) + 0.1;
 				} else {
-					percentAdj = -20;
+					visionRotAdj = ((averagedYaw / 15)/10) - 0.1;
 				}
-				visionRotAdj = ((((averagedYaw/15)*40) + percentAdj)/100)*218;
 			} else {
 				visionRotAdj = 0;
 			}
 			
 			SmartDashboard.putNumber("AveragedYaw",averagedYaw);
-			SmartDashboard.putNumber("PercentAdj",percentAdj);
-			SmartDashboard.putNumber("visionRotAdj",visionRotAdj/85);
+			SmartDashboard.putNumber("visionRotAdj",visionRotAdj);
 			
-			if(visionRotAdj > 60) {
-				visionRotAdj = 60;
-			} else if(visionRotAdj < -60) {
-				visionRotAdj = -60;
-			}
+			turret.setSpeed(visionRotAdj);
 			
-			turret.setRPM(visionRotAdj/60);
+//			double percentAdj = 0;
+//			
+//			if(Math.abs(averagedYaw) > 4) {
+//				if(averagedYaw > 0) {
+//					percentAdj = 20;
+//				} else {
+//					percentAdj = -20;
+//				}
+//				visionRotAdj = ((((averagedYaw/15)*40) + percentAdj)/100)*218;
+//			} else {
+//				visionRotAdj = 0;
+//			}
+//			
+//			SmartDashboard.putNumber("AveragedYaw",averagedYaw);
+//			SmartDashboard.putNumber("PercentAdj",percentAdj);
+//			SmartDashboard.putNumber("visionRotAdj",visionRotAdj/85);
+//			
+//			if(visionRotAdj > 60) {
+//				visionRotAdj = 60;
+//			} else if(visionRotAdj < -60) {
+//				visionRotAdj = -60;
+//			}
+//			
+//			turret.setRPM(visionRotAdj/60);
 			
 //			visionRotAdj = (averagedYaw/360) * Constants.TURRET_GEAR_CONVERSION;
 //			double leftLimit = Constants.TURRET_LEFT_ROT_LIMIT, rightLimit = Constants.TURRET_RIGHT_ROT_LIMIT;
