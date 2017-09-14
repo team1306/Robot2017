@@ -1,17 +1,11 @@
 package org.usfirst.frc.team1306.robot;
 
-import org.usfirst.frc.team1306.robot.commands.SetSetpoint;
-import org.usfirst.frc.team1306.robot.commands.Setpoint;
-import org.usfirst.frc.team1306.robot.commands.climber.Climb;
 import org.usfirst.frc.team1306.robot.commands.geartake.DeployGeartake;
 import org.usfirst.frc.team1306.robot.commands.geartake.PlaceGear;
 import org.usfirst.frc.team1306.robot.commands.geartake.RetractGeartake;
 import org.usfirst.frc.team1306.robot.commands.geartake.SpinGeartake;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
-import org.usfirst.frc.team1306.robot.commands.shooter.AdjustHood;
-import org.usfirst.frc.team1306.robot.commands.shooter.AdjustHood.HoodAngle;
-import org.usfirst.frc.team1306.robot.commands.shooter.FireFuel;
-import org.usfirst.frc.team1306.robot.commands.turret.ResetTurret;
+import org.usfirst.frc.team1306.robot.commands.shooter.RangeTesting;
 import org.usfirst.frc.team1306.robot.triggers.ControllerButton;
 import org.usfirst.frc.team1306.robot.triggers.DPadDirection;
 import org.usfirst.frc.team1306.robot.triggers.DPadPress;
@@ -72,10 +66,10 @@ public class OI {
 		
 		//pbuttonX.whenPressed(new SpinIntake(false));
 //		pbuttonX.whenPressed(new RetractGeartake());
-		primaryDPadUp.whenActive(new AdjustHood(HoodAngle.UP));
-		primaryDPadDown.whenActive(new AdjustHood(HoodAngle.DOWN));
+//		primaryDPadUp.whenActive(new AdjustHood(HoodAngle.UP));
+//		primaryDPadDown.whenActive(new AdjustHood(HoodAngle.DOWN));
 		
-		pbuttonA.toggleWhenPressed(new FireFuel());
+		pbuttonA.toggleWhenPressed(new RangeTesting());
 		pbuttonB.whenPressed(new DeployGeartake());
 		pbuttonX.toggleWhenPressed(new SpinIntake(true));
 		pbuttonY.whenPressed(new RetractGeartake());

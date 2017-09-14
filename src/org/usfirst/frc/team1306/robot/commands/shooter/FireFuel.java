@@ -20,6 +20,8 @@ public class FireFuel extends CommandBase {
 	private boolean timed; //If firing for specified time (not toggled)
 	
 	public FireFuel() {
+		requires(shooter);
+		
 		timed = false;
 		
 		fireTimer = new Timer();
@@ -27,6 +29,8 @@ public class FireFuel extends CommandBase {
 	}
 	
 	public FireFuel(double time) {
+		requires(shooter);
+		
 		fireTime = time;
 		timed = true;
 		

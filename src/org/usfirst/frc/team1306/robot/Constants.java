@@ -43,24 +43,17 @@ public class Constants {
 	//Autonomous Constants //TODO Write usage
 	public final static double SHOOT_TIME = 10.0;
 	
-	//Geartake Constants
+	//Geartake/Intake Constants
 	public final static int GEAR_DEPLOY_TIME = 1;
 	public final static double GEARTAKE_SPEED = 1.0;
+	
+	public final static double INTAKE_SPEED = 0.75;
 	
 	//Climber Constants
 	public final static double CLIMBER_SPEED = 1.0;
 	public final static double CLIMBER_BACK_SPEED = -0.2;
 	
-	//Intake Constants
-	public final static double INTAKE_SPEED = 0.75;
-	
-	//Hopper Constants
-	public final static double HOPPER_SPEED = 1.0;
-	
-	//Indexer Constants
-	public final static double INDEXER_SPEED = 1.0;
-	
-	//Setpoint Constants
+	//Setpoint/Vision Targeting Constants
 	public final static double SHOOTER_BOILER_RPM = 2720;
 	public final static double SHOOTER_BOILER_ADJ = 0.0;
 	public final static double INDEXER_BOILER_RPM = 2650;
@@ -76,7 +69,16 @@ public class Constants {
 	public final static double INDEXER_AUTO_HOPPER_RPM = 3040;
 	public final static double TURRET_AUTO_HOPPER_POS = -0.2228;
 	
-	//Shooter Constants
+	public final static double SHOOT_MAX_DIST = 12;
+	
+	public final static double HOOD_SWITCH_DIST = 7; //At _ft hood should go down
+	public final static double HOOD_RECOVERY_TIME = 0.25;
+	public final static double HOOD_MAX_UP_SPEED = 3000; //TODO Calculate
+	public final static double HOOD_MIN_UP_SPEED = 1500; // "
+	public final static double HOOD_MAX_DOWN_SPEED = 3000; // "
+	public final static double HOOD_MIN_DOWN_SPEED = 1500; // "
+	
+	//Shooter/Indexer/Hopper Constants
 	public final static double SHOOTER_SPEED = 0.78;
 	public final static double SHOOTER_RPM_SPEED = 2590;		
 	public final static double INDEXER_RPM_SPEED = 2525;		
@@ -89,6 +91,10 @@ public class Constants {
 	public final static double INDEXER_P = 0.04092; 			
 	public final static double INDEXER_I = 0.0;					
 	public final static double INDEXER_D = 0.0;					
+	
+	public final static double INDEXER_SPEED = 1.0;
+	
+	public final static double HOPPER_SPEED = 1.0;
 	
 	//Turret Constants
 	public final static double TURRET_TURN_LEFT_SPEED = 0.13;	

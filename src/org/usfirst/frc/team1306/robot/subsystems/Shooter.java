@@ -99,11 +99,23 @@ public class Shooter extends Subsystem {
 	}
 	
 	/**
+	 * Used to spin the shooter at a specific speed for vision shooting
+	 */
+	public void spinShooter(double speed) {
+		
+		if(Constants.SHOOTER_ENABLED) {
+			leftShooterMotor.set(speed);
+			rightShooterMotor.set(speed);
+		}
+	}
+	
+	/**
 	 * Spins shooter motors at given RPM with adjustments based on alliance and setpoint.
 	 * Adjustments are applied because with dual shooters they will almost always be shooting differen't
 	 * distances than each other and that adjustment is reversed when you're on the other alliance.
 	 */
 	public void spinShooter() {
+		
 		if(Constants.SHOOTER_ENABLED) {
 			leftShooterMotor.changeControlMode(TalonControlMode.Speed);
 			rightShooterMotor.changeControlMode(TalonControlMode.Speed);

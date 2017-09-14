@@ -7,31 +7,21 @@ import org.usfirst.frc.team1306.robot.OI.Axis;
 import org.usfirst.frc.team1306.robot.OI.Controller;
 import org.usfirst.frc.team1306.robot.OI.Joystick;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * @AutoTurret
  * 
- * @Jackson Goth
+ * @author Jackson Goth
  */
 public class AutoTurret extends CommandBase {
 
 	private double averagedYaw, accumulator, visionRotAdj;
 	private ArrayList<Double> yawList;
-	private Timer recoveryTimer;
 	
 	public AutoTurret() {
 		requires(turret);
 		
 		yawList = new ArrayList<Double>(); //Array used for storing and averaging yaw values from the jetson
-		recoveryTimer = new Timer();
-	}
-	
-	@Override
-	protected void initialize() {
-		recoveryTimer.reset();
-		recoveryTimer.start();
 	}
 
 	@Override
@@ -63,10 +53,7 @@ public class AutoTurret extends CommandBase {
 			} else {
 				visionRotAdj = 0;
 			}
-			
-			SmartDashboard.putNumber("AveragedYaw",averagedYaw);
-			SmartDashboard.putNumber("visionRotAdj",visionRotAdj);
-			
+
 			turret.setSpeed(visionRotAdj);
 			
 		} else if(manualVal > Constants.DEADBAND || manualVal < -Constants.DEADBAND) {
