@@ -26,7 +26,7 @@ public class RangeTesting extends CommandBase {
 	@Override
 	protected void execute() {
 		
-    	shooter.spinShooter();
+    	shooter.spinShooter(5000);
 		shooter.spinIndexer();
 		
     	if(timer.hasPeriodPassed(Constants.SHOOTER_SPIN_UP_TIME)) {

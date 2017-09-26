@@ -1,11 +1,18 @@
 package org.usfirst.frc.team1306.robot;
 
+import org.usfirst.frc.team1306.robot.commands.SetSetpoint;
+import org.usfirst.frc.team1306.robot.commands.Setpoint;
+import org.usfirst.frc.team1306.robot.commands.climber.Climb;
 import org.usfirst.frc.team1306.robot.commands.geartake.DeployGeartake;
 import org.usfirst.frc.team1306.robot.commands.geartake.PlaceGear;
 import org.usfirst.frc.team1306.robot.commands.geartake.RetractGeartake;
 import org.usfirst.frc.team1306.robot.commands.geartake.SpinGeartake;
 import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
-import org.usfirst.frc.team1306.robot.commands.shooter.RangeTesting;
+import org.usfirst.frc.team1306.robot.commands.shooter.AdjustHood;
+import org.usfirst.frc.team1306.robot.commands.shooter.AdjustHood.HoodAngle;
+import org.usfirst.frc.team1306.robot.commands.shooter.FireFuel;
+import org.usfirst.frc.team1306.robot.commands.turret.AutoTurret;
+import org.usfirst.frc.team1306.robot.commands.turret.ResetTurret;
 import org.usfirst.frc.team1306.robot.triggers.ControllerButton;
 import org.usfirst.frc.team1306.robot.triggers.DPadDirection;
 import org.usfirst.frc.team1306.robot.triggers.DPadPress;
@@ -64,32 +71,33 @@ public class OI {
 		Trigger secondaryDPadLeft = new DPadPress(secondaryController, DPadDirection.LEFT);
 		Trigger secondaryDPadDown = new DPadPress(secondaryController, DPadDirection.DOWN);
 		
-		//pbuttonX.whenPressed(new SpinIntake(false));
+		pbuttonA.toggleWhenPressed(new FireFuel());
+		pbuttonX.whenPressed(new SpinIntake(true));
 //		pbuttonX.whenPressed(new RetractGeartake());
-//		primaryDPadUp.whenActive(new AdjustHood(HoodAngle.UP));
-//		primaryDPadDown.whenActive(new AdjustHood(HoodAngle.DOWN));
+		primaryDPadUp.whenActive(new AdjustHood(HoodAngle.UP));
+		primaryDPadDown.whenActive(new AdjustHood(HoodAngle.DOWN));
 		
-		pbuttonA.toggleWhenPressed(new RangeTesting());
-		pbuttonB.whenPressed(new DeployGeartake());
-		pbuttonX.toggleWhenPressed(new SpinIntake(true));
-		pbuttonY.whenPressed(new RetractGeartake());
-		
-		pbuttonLB.whenPressed(new SpinGeartake(Constants.GEARTAKE_SPEED));
-		pbuttonRB.whenPressed(new PlaceGear());
-		
-//		sbuttonA.toggleWhenPressed(new FireFuel());
-//		sbuttonB.whenPressed(new DeployGeartake());
-//		sbuttonX.toggleWhenPressed(new SpinIntake(true));
-//		sbuttonY.whenPressed(new RetractGeartake());
+//		pbuttonA.toggleWhenPressed(new RangeTesting());
+//		pbuttonB.whenPressed(new DeployGeartake());
+//		pbuttonX.toggleWhenPressed(new SpinIntake(true));
+//		pbuttonY.whenPressed(new RetractGeartake());
 //		
-//		sbuttonLB.whenPressed(new SpinGeartake(Constants.GEARTAKE_SPEED));
-//		sbuttonRB.whenPressed(new PlaceGear());
+//		pbuttonLB.whenPressed(new SpinGeartake(Constants.GEARTAKE_SPEED));
+//		pbuttonRB.whenPressed(new PlaceGear());
 		
-//		sbuttonStart.whenPressed(new Climb());
+		sbuttonA.toggleWhenPressed(new FireFuel());
+		sbuttonB.whenPressed(new DeployGeartake());
+		sbuttonX.toggleWhenPressed(new SpinIntake(true));
+		sbuttonY.whenPressed(new RetractGeartake());
 		
-//		secondaryDPadUp.whenActive(new SetSetpoint(Setpoint.BOILER));
-//		secondaryDPadLeft.whenActive(new SetSetpoint(Setpoint.PEG));
-//		secondaryDPadDown.whenActive(new ResetTurret());
+		sbuttonLB.whenPressed(new SpinGeartake(Constants.GEARTAKE_SPEED));
+		sbuttonRB.whenPressed(new PlaceGear());
+		
+		sbuttonStart.whenPressed(new Climb());
+		
+		secondaryDPadUp.whenActive(new SetSetpoint(Setpoint.AUTO_HOPPER));
+		secondaryDPadLeft.whenActive(new AutoTurret());
+		secondaryDPadDown.whenActive(new ResetTurret());
 	}
 	
 	public enum Controller {P,S}; //Controller (primary or secondary)

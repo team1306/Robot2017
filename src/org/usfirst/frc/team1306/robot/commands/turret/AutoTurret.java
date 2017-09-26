@@ -29,13 +29,16 @@ public class AutoTurret extends CommandBase {
 		
 		double manualVal = OI.getJoyVal(Controller.S,Joystick.L,Axis.X);
 		
-		if(vision.seeTarget()) {
+		if(manualVal > Constants.DEADBAND || manualVal < -Constants.DEADBAND) {
+			turret.setSpeed(OI.getJoyVal(Controller.S, Joystick.L, Axis.X) * -0.3);
+		} else 
+			if(vision.seeTarget()) {
 			
 			if(yawList.size() < 10) { //Fills up initial array
-				yawList.add(vision.getYaw());
+				yawList.add(vision.getYaw() - 4.5);
 			} else {
 				yawList.remove(0); //Removes oldest data from list
-				yawList.add(vision.getYaw()); //Adds newest data to the top of the list
+				yawList.add(vision.getYaw() - 4.5); //Adds newest data to the top of the list
 			}
 			
 			accumulator = 0;
@@ -44,7 +47,7 @@ public class AutoTurret extends CommandBase {
 			}
 			averagedYaw = accumulator / yawList.size();
 			
-			if(Math.abs(averagedYaw) > 4.5) {
+			if(Math.abs(averagedYaw) > 4) {
 				if(averagedYaw > 0) {
 					visionRotAdj = ((averagedYaw / 15)/12) + 0.075;
 				} else {
@@ -56,8 +59,6 @@ public class AutoTurret extends CommandBase {
 
 			turret.setSpeed(visionRotAdj);
 			
-		} else if(manualVal > Constants.DEADBAND || manualVal < -Constants.DEADBAND) {
-			turret.setSpeed(OI.getJoyVal(Controller.S, Joystick.L, Axis.X) * -0.2);
 		} else {
 			turret.stop();
 		}

@@ -28,12 +28,12 @@ public class Turret extends Subsystem {
 		turretMotor.configNominalOutputVoltage(+0.0f, -0.0f);
 		turretMotor.configPeakOutputVoltage(+12.0f, -12.0f);
 
-//		turretMotor.setF(0.515); //Max Velocity = 291.2RPM 1023/1988 (1988 mag encoder native units in web interface)
-//		turretMotor.setP(5.456); //0.341 was starting P value
-//		turretMotor.setI(0.01);
-//		turretMotor.setD(0);
-//		turretMotor.setMotionMagicCruiseVelocity(218.4);	// 218 75% of max velocity, may need to be adjusted later
-//		turretMotor.setMotionMagicAcceleration(218.4);		// 218 1 sec speed up time
+		turretMotor.setF(0.515); //Max Velocity = 291.2RPM 1023/1988 (1988 mag encoder native units in web interface)
+		turretMotor.setP(5.456); //0.341 was starting P value
+		turretMotor.setI(0.01);
+		turretMotor.setD(0);
+		turretMotor.setMotionMagicCruiseVelocity(218.4);	// 218 75% of max velocity, may need to be adjusted later
+		turretMotor.setMotionMagicAcceleration(218.4);		// 218 1 sec speed up time
 	}
 	
 	/**

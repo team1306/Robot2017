@@ -1,13 +1,19 @@
 package org.usfirst.frc.team1306.robot.subsystems;
 
 import org.usfirst.frc.team1306.robot.Constants;
+import org.usfirst.frc.team1306.robot.OI;
+import org.usfirst.frc.team1306.robot.OI.Axis;
+import org.usfirst.frc.team1306.robot.OI.Controller;
+import org.usfirst.frc.team1306.robot.OI.Joystick;
 import org.usfirst.frc.team1306.robot.RobotMap;
 import org.usfirst.frc.team1306.robot.commands.Setpoint;
 import org.usfirst.frc.team1306.robot.commands.shooter.AdjustHood.HoodAngle;
+
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 import com.ctre.CANTalon.VelocityMeasurementPeriod;
+
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
@@ -35,7 +41,7 @@ public class Shooter extends Subsystem {
 	private double indexerRPM = Constants.INDEXER_BOILER_RPM;
 	private final static double hopperSpeed = Constants.HOPPER_SPEED;
 	
-	private HoodAngle angle = HoodAngle.UP;
+	private HoodAngle angle = HoodAngle.DOWN;
 	private Alliance alliance;
 	
 	public Shooter() {
@@ -119,6 +125,11 @@ public class Shooter extends Subsystem {
 		if(Constants.SHOOTER_ENABLED) {
 			leftShooterMotor.changeControlMode(TalonControlMode.Speed);
 			rightShooterMotor.changeControlMode(TalonControlMode.Speed);
+			
+			double adjustVal = OI.getJoyVal(Controller.S,Joystick.L,Axis.Y);
+			if(Math.abs(adjustVal) > Constants.DEADBAND) {
+				shooterRPM += adjustVal * 2.5;
+			}
 			
 			SmartDashboard.putNumber("shooterRPM",shooterRPM);
 			

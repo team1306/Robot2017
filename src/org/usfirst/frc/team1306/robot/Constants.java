@@ -64,10 +64,10 @@ public class Constants {
 	public final static double INDEXER_PEG_RPM = 3200;
 	public final static double TURRET_PEG_POS = 0.0;
 	
-	public final static double SHOOTER_AUTO_HOPPER_RPM = 3055;
-	public final static double SHOOTER_AUTO_HOPPER_ADJ = 78.0;
+	public final static double SHOOTER_AUTO_HOPPER_RPM = 2900;
+	public final static double SHOOTER_AUTO_HOPPER_ADJ = 75.0;
 	public final static double INDEXER_AUTO_HOPPER_RPM = 3040;
-	public final static double TURRET_AUTO_HOPPER_POS = -0.2228;
+	public final static double TURRET_AUTO_HOPPER_POS = -0.23;
 	
 	public final static double SHOOT_MAX_DIST = 12;
 	

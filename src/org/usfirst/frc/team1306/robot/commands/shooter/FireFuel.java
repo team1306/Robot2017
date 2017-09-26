@@ -2,6 +2,9 @@ package org.usfirst.frc.team1306.robot.commands.shooter;
 
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
+import org.usfirst.frc.team1306.robot.commands.Setpoint;
+import org.usfirst.frc.team1306.robot.commands.shooter.AdjustHood.HoodAngle;
+
 import edu.wpi.first.wpilibj.Timer;
 
 /**
@@ -48,6 +51,11 @@ public class FireFuel extends CommandBase {
 		}
 		hopperTimer.reset();
 		hopperTimer.start();
+		
+		Setpoint setpoint = Setpoint.AUTO_HOPPER;
+		
+		shooter.setRPM(setpoint.shooterSpeed, setpoint.indexerSpeed);
+		shooter.setHoodAngle(HoodAngle.DOWN);
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package org.usfirst.frc.team1306.robot.commands;
 
+import org.usfirst.frc.team1306.robot.commands.turret.AutoTurret;
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 
@@ -37,6 +39,7 @@ public class SetSetpoint extends CommandBase {
 
 	@Override
 	protected boolean isFinished() {
+//		new AutoTurret().start();
 		return true;
 	}
 }

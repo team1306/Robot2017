@@ -52,27 +52,29 @@ public class AutoFireFuel extends CommandBase {
 		
 		if(vision.seeTarget()) {
 			
-			HoodAngle currentAngle = shooter.getHoodAngle();
+//			HoodAngle currentAngle = shooter.getHoodAngle();
+//			
+//			if(hoodTimer.hasPeriodPassed(Constants.HOOD_RECOVERY_TIME)) {
+//				if(averagedDist > Constants.HOOD_SWITCH_DIST && currentAngle.equals(HoodAngle.UP)) {
+//					shooter.setHoodAngle(HoodAngle.DOWN);
+//					hoodTimer.reset();
+//					hoodTimer.start();
+//				} else if(currentAngle.equals(HoodAngle.DOWN)) {
+//					shooter.setHoodAngle(HoodAngle.UP);
+//					hoodTimer.reset();
+//					hoodTimer.start();
+//				}
+//			}
+//			
+//			double switchDist = Constants.HOOD_SWITCH_DIST;
+//			
+//			if(currentAngle.equals(HoodAngle.UP)) {
+//				shooter.spinShooter((averagedDist / switchDist) * shooterSpeedRangeUp);
+//			} else {
+//				shooter.spinShooter(((averagedDist - switchDist) / Constants.SHOOT_MAX_DIST - switchDist) * shooterSpeedRangeDown);
+//			}
 			
-			if(hoodTimer.hasPeriodPassed(Constants.HOOD_RECOVERY_TIME)) {
-				if(averagedDist > Constants.HOOD_SWITCH_DIST && currentAngle.equals(HoodAngle.UP)) {
-					shooter.setHoodAngle(HoodAngle.DOWN);
-					hoodTimer.reset();
-					hoodTimer.start();
-				} else if(currentAngle.equals(HoodAngle.DOWN)) {
-					shooter.setHoodAngle(HoodAngle.UP);
-					hoodTimer.reset();
-					hoodTimer.start();
-				}
-			}
-			
-			double switchDist = Constants.HOOD_SWITCH_DIST;
-			
-			if(currentAngle.equals(HoodAngle.UP)) {
-				shooter.spinShooter((averagedDist / switchDist) * shooterSpeedRangeUp);
-			} else {
-				shooter.spinShooter(((averagedDist - switchDist) / Constants.SHOOT_MAX_DIST - switchDist) * shooterSpeedRangeDown);
-			}
+//			shooter.spinShooter(((averagedDist - switchDist) / Constants.SHOOT_MAX_DIST - switchDist) * shooterSpeedRangeDown);
 			
 			shooter.spinIndexer();
 			
