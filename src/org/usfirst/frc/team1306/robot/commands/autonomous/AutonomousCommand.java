@@ -1,12 +1,15 @@
 package org.usfirst.frc.team1306.robot.commands.autonomous;
 
-import org.usfirst.frc.team1306.robot.Constants;
+import org.usfirst.frc.team1306.lib.util.FalconPathPlanner;
+import org.usfirst.frc.team1306.lib.util.Profile;
+import org.usfirst.frc.team1306.lib.util.Wait;
 import org.usfirst.frc.team1306.robot.commands.SetSetpoint;
 import org.usfirst.frc.team1306.robot.commands.Setpoint;
-import org.usfirst.frc.team1306.robot.commands.drivetrain.DriveDistance;
+import org.usfirst.frc.team1306.robot.commands.drivetrain.Follow2DPath;
+import org.usfirst.frc.team1306.robot.commands.drivetrain.FollowPath;
 import org.usfirst.frc.team1306.robot.commands.geartake.PlaceGear;
-import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
-import org.usfirst.frc.team1306.robot.commands.shooter.SpinShooter;
+import org.usfirst.frc.team1306.robot.commands.shooter.FireFuel;
+import org.usfirst.frc.team1306.robot.commands.turret.AutoTurret;
 
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -17,91 +20,116 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class AutonomousCommand extends CommandGroup {
 	
+	public enum AutoMode {HOPPER, HOPPER_GEAR, LEFT_GEAR, MIDDLE_GEAR, RIGHT_GEAR, BASELINE, BLANK};
+	
 	/**
 	 * This is the advanced autonomous routine that will score gears or shoot a full hopper
 	 * @param Alliance
 	 * 		Which side of the field is the robot on (Red or Blue?)
-	 * @param Position
-	 * 		Which field position is robot located
 	 * @param Routine
 	 * 		Which autonomous routine should the robot run?
 	 */
-	public AutonomousCommand(Alliance alliance, int position, AutoMode routine) {
-	
-		Station station = getStation(alliance,position);
+	public AutonomousCommand(Alliance alliance, AutoMode routine) {
 		
-		if(routine.equals(AutoMode.HOPPER_GEAR)) {			
-			//TODO Possible auto routine for later
-			
+		PathParams params = new PathParams(4,0.1,30/12); //4 seconds max, 0.1 seconds in-between points, 30 inch track-width converted to feet
+		
+		if(routine.equals(AutoMode.HOPPER)) {
+
 			addParallel(new DeployIntake());
-			addParallel(new SpinIntake(true));
-			addSequential(new DriveDistance(8.8,1.9));
-			addSequential(new DriveDistance(3,1));
-			addSequential(new DriveDistance(4,1.6));
+			if(alliance.equals(Alliance.Red)) {
+				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.hopperPathRed);
+				path.calculate(params);
+				
+				addSequential(new Follow2DPath(path,false));	
+			} else {
+				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.hopperPathBlue);
+				path.calculate(params);
+				
+				addSequential(new Follow2DPath(path,false));
+			}
 			addSequential(new SetSetpoint(Setpoint.AUTO_HOPPER));
-			addSequential(new DriveDistance(0.4,0.4));
-			addSequential(new SpinShooter(Constants.SHOOT_TIME,Constants.SHOOTER_RPM_SPEED));
+			addSequential(new Wait(0.5));
+			addParallel(new AutoTurret());
+			addSequential(new FireFuel());
 			
-		} else if(routine.equals(AutoMode.GEAR)) {
+		} else if(routine.equals(AutoMode.HOPPER_GEAR)) {
 			
-//			addSequential(new TimedDrive(station,routine,false));
-//			if(!station.equals(Station.RED_TWO) && !station.equals(Station.BLUE_TWO)) {
-////				addSequential(new AngledTurn(station));
-//				addSequential(new TimedDrive(station,routine,true));
-//			}
-		
-			
-			
-//			addSequential(new TimedDrive(-0.3,2.50));
-			
-			addParallel(new DeployIntake());
-			addParallel(new PlaceGear(true));
-			addSequential(new DriveDistance(-5.7,3.5)); //-8.9
-			
-			addSequential(new TimedDrive(0.3,1));
-//			addSequential(new DeployIntake());
-	
-		} else if(routine.equals(AutoMode.TEN_KPA)) {
-			
-			//Vision Works
+//			addParallel(new DeployIntake());
 //			if(alliance.equals(Alliance.Red)) {
-//				addSequential(new FindTarget(ScanDirection.RIGHT));
-//			} else if(alliance.equals(Alliance.Blue)) {
-//				addSequential(new FindTarget(ScanDirection.LEFT));
+//				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.rightGearRed);
+//				path.calculate(params);
+//				
+//				addSequential(new Follow2DPath(path,true));
+//				addSequential(new PlaceGear());
+//				
+//				FalconPathPlanner path2 = new FalconPathPlanner(AutoPaths.hopperGearPathRed);
+//				path.calculate(params);
+//				
+//				addSequential(new Follow2DPath(path2,false));
+//			} else {
+//				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.leftGearBlue);
+//				path.calculate(params);
+//				
+//				addSequential(new Follow2DPath(path,true));
+//				addSequential(new PlaceGear());
+//				
+//				FalconPathPlanner path2 = new FalconPathPlanner(AutoPaths.hopperGearPathBlue);
+//				path.calculate(params);
+//				
+//				addSequential(new Follow2DPath(path2,false));
 //			}
-			addSequential(new SetSetpoint(Setpoint.AUTO_CLOSE));
-			addSequential(new SpinShooter(Constants.SHOOT_TIME,Constants.SHOOTER_RPM_SPEED));
-			addSequential(new TimedDrive(-0.3,2.7));
+//			addSequential(new SetSetpoint(Setpoint.AUTO_HOPPER));
+//			addSequential(new FireFuel(Constants.SHOOT_TIME));
+			
+		} else if(routine.equals(AutoMode.LEFT_GEAR)) {
+			
+			if(alliance.equals(Alliance.Red)) {
+				
+				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.leftGearRed);
+				path.calculate(params);
+				
+				addSequential(new Follow2DPath(path,true));
+			} else {
+				
+				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.leftGearBlue);
+				path.calculate(params);
+				
+				addSequential(new Follow2DPath(path,true));
+			}
+			addSequential(new PlaceGear());
+			addSequential(new TimedDrive(0.3,1));
+			addSequential(new DeployIntake());
+			
+		} else if(routine.equals(AutoMode.MIDDLE_GEAR)) {
+			
+			addSequential(new FollowPath(new Profile(76,20,50,100,4.75),true)); //Distance, Velocity, Accel, Jerk, Max Time
+			addSequential(new PlaceGear());
+			addSequential(new TimedDrive(0.3,1));
+			addSequential(new DeployIntake());
+			
+		} else if(routine.equals(AutoMode.RIGHT_GEAR)) {
+		 	
+			if(alliance.equals(Alliance.Red)) {
+				
+				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.rightGearRed);
+				path.calculate(params);
+				
+				addSequential(new Follow2DPath(path,true));
+			} else {
+				
+				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.rightGearBlue);
+				path.calculate(params);
+				
+				addSequential(new Follow2DPath(path,true));
+			}
+			addSequential(new PlaceGear());
+			addSequential(new TimedDrive(0.3,1));
 			addSequential(new DeployIntake());
 			
 		} else if(routine.equals(AutoMode.BASELINE)) {
-
-			addSequential(new TimedDrive(-0.3,2.7));
-			addSequential(new DeployIntake());
-		} else if(routine.equals(AutoMode.BLANK)){
 			
+			addSequential(new FollowPath(new Profile(70,18.25,45,45,15),true));
+			addSequential(new DeployIntake());
 		}
 	}
-	
-	private Station getStation(Alliance alliance, int station) {
-		
-		if(alliance.equals(Alliance.Red)) {
-			if(station == 1) {
-				return Station.RED_ONE;
-			} else if(station == 2) {
-				return Station.RED_TWO;
-			} else {
-				return Station.RED_THREE;
-			}
-		} else {
-			if(station == 1) {
-				return Station.BLUE_ONE;
-			} else if(station == 2) {
-				return Station.BLUE_TWO;
-			} else {
-				return Station.BLUE_THREE;
-			}
-		}
-	}
-	
 }

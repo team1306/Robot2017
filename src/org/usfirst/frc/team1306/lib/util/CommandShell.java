@@ -1,19 +1,14 @@
-package org.usfirst.frc.team1306.robot.commands.hood;
+package org.usfirst.frc.team1306.lib.util;
 
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
 /**
- * Command that adjusts hood to given position
- * @author Jackson Goth
+ * @CommandShell
+ * 
+ * This is just an empty command that you can copy and paste the methods from...
  */
-public class AdjustHood extends CommandBase{
+public class CommandShell extends CommandBase {
 
-	private final HoodAngle direction;
-	
-	public AdjustHood(HoodAngle direction) {
-		this.direction = direction;
-	}
-	
 	@Override
 	protected void initialize() {
 		
@@ -21,7 +16,7 @@ public class AdjustHood extends CommandBase{
 
 	@Override
 	protected void execute() {
-		hood.setPos(direction);
+		
 	}
 
 	@Override

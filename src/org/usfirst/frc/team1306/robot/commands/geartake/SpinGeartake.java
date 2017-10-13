@@ -2,7 +2,7 @@ package org.usfirst.frc.team1306.robot.commands.geartake;
 
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.OI;
-import org.usfirst.frc.team1306.robot.OI.controller;
+import org.usfirst.frc.team1306.robot.OI.Controller;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
 import edu.wpi.first.wpilibj.Timer;
@@ -44,7 +44,7 @@ public class SpinGeartake extends CommandBase {
 
 	@Override
 	protected boolean isFinished() {
-		if(OI.getButtonVal(controller.s,Constants.GEARTAKE_FORWARD_BUTTON) || OI.getButtonVal(controller.s,Constants.GEARTAKE_REVERSE_BUTTON)) {
+		if(OI.getButtonStatus(Controller.S,Constants.GEARTAKE_FORWARD_BUTTON) || OI.getButtonStatus(Controller.S,Constants.GEARTAKE_REVERSE_BUTTON)) {
     		return false;
     	} else if(timedSpin && timer.hasPeriodPassed(time)) {
     		gearmech.stopAll();

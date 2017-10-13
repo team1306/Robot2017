@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1306.robot;
 
 import org.usfirst.frc.team1306.robot.commands.drivetrain.DriveMode;
+import org.usfirst.frc.team1306.robot.triggers.ControllerButton;
 
 /**
  * To store finalized variables all in one place
@@ -34,65 +35,52 @@ public class Constants {
 	public final static double JOYSTICK_MULTIPLIER = 1.0; //Joystick inputs raised to this power
 	
 	//Button Constants (Used in some commands for detecting if a button is still pressed)
-	public final static int INTAKE_BUTTON = XboxController.X;
-	public final static int SHOOTER_BUTTON = XboxController.A;
-	public final static int GEARTAKE_FORWARD_BUTTON = XboxController.RB;
-	public final static int GEARTAKE_REVERSE_BUTTON = XboxController.LB;
+	public final static ControllerButton INTAKE_BUTTON = ControllerButton.X;
+	public final static ControllerButton SHOOTER_BUTTON = ControllerButton.A;
+	public final static ControllerButton GEARTAKE_FORWARD_BUTTON = ControllerButton.RB;
+	public final static ControllerButton GEARTAKE_REVERSE_BUTTON = ControllerButton.LB;
 	
 	//Autonomous Constants //TODO Write usage
 	public final static double SHOOT_TIME = 10.0;
-	public final static double HOPPER_INIT_SPEED = 0.0;
-	public final static double HOPPER_END_SPEED = 0.0;
-	public final static double HOPPER_INIT_TIME = 0.0;
-	public final static double HOPPER_END_TIME = 0.0;
-	public final static double GEAR_BOILERSIDE_INIT_SPEED = 0.0;
-	public final static double GEAR_BOILERSIDE_END_SPEED = 0.0;
-	public final static double GEAR_BOILERSIDE_INIT_TIME = 0.0;
-	public final static double GEAR_BOILERSIDE_END_TIME = 0.0;
-	public final static double GEAR_LOADINGSIDE_INIT_SPEED = 0.0;
-	public final static double GEAR_LOADINGSIDE_END_SPEED = 0.0;
-	public final static double GEAR_LOADINGSIDE_INIT_TIME = 0.0;
-	public final static double GEAR_LOADINGSIDE_END_TIME = 0.0;
-	public final static double GEAR_CENTER_SPEED = -0.3;
-	public final static double GEAR_CENTER_TIME = 2.50;
 	
-	//Geartake Constants
+	//Geartake/Intake Constants
 	public final static int GEAR_DEPLOY_TIME = 1;
 	public final static double GEARTAKE_SPEED = 1.0;
+	
+	public final static double INTAKE_SPEED = 0.75;
 	
 	//Climber Constants
 	public final static double CLIMBER_SPEED = 1.0;
 	public final static double CLIMBER_BACK_SPEED = -0.2;
 	
-	//Intake Constants
-	public final static double INTAKE_SPEED = 0.75;
-	
-	//Hopper Constants
-	public final static double HOPPER_SPEED = 1.0;
-	
-	//Indexer Constants
-	public final static double INDEXER_SPEED = 1.0;
-	
-	//Setpoint Constants
+	//Setpoint/Vision Targeting Constants
 	public final static double SHOOTER_BOILER_RPM = 2720;
-	public final static double SHOOTER_PEG_RPM = 3210;
-	public final static double SHOOTER_HOPPER_RPM = 2850; 
+	public final static double SHOOTER_BOILER_ADJ = 0.0;
 	public final static double INDEXER_BOILER_RPM = 2650;
-	public final static double INDEXER_PEG_RPM = 3200;
-	public final static double INDEXER_HOPPER_RPM = 2640; 
 	public final static double TURRET_BOILER_POS = 0.0;
+
+	public final static double SHOOTER_PEG_RPM = 3210;
+	public final static double SHOOTER_PEG_ADJ = 10.0;
+	public final static double INDEXER_PEG_RPM = 3200;
 	public final static double TURRET_PEG_POS = 0.0;
-	public final static double TURRET_HOPPER_POS = -0.210;
-	public final static double SHOOTER_AUTO_CLOSE_RPM = 2849;
-	public final static double INDEXER_AUTO_CLOSE_RPM = 2640;
-	public final static double TURRET_AUTO_CLOSE_POS = 0.217;
-	public final static double SHOOTER_AUTO_HOPPER_RPM = 3255; 
-	public final static double INDEXER_AUTO_HOPPER_RPM = 3040;
-	public final static double TURRET_AUTO_HOPPER_POS = -0.2228;
 	
-	//Shooter Constants
+	public final static double SHOOTER_AUTO_HOPPER_RPM = 2900;
+	public final static double SHOOTER_AUTO_HOPPER_ADJ = 75.0;
+	public final static double INDEXER_AUTO_HOPPER_RPM = 3040;
+	public final static double TURRET_AUTO_HOPPER_POS = -0.23;
+	
+	public final static double SHOOT_MAX_DIST = 12;
+	
+	public final static double HOOD_SWITCH_DIST = 7; //At _ft hood should go down
+	public final static double HOOD_RECOVERY_TIME = 0.25;
+	public final static double HOOD_MAX_UP_SPEED = 3000; //TODO Calculate
+	public final static double HOOD_MIN_UP_SPEED = 1500; // "
+	public final static double HOOD_MAX_DOWN_SPEED = 3000; // "
+	public final static double HOOD_MIN_DOWN_SPEED = 1500; // "
+	
+	//Shooter/Indexer/Hopper Constants
 	public final static double SHOOTER_SPEED = 0.78;
-	public final static double SHOOTER_RPM_SPEED = 2600;		
+	public final static double SHOOTER_RPM_SPEED = 2590;		
 	public final static double INDEXER_RPM_SPEED = 2525;		
 	public final static double SHOOTER_SPIN_UP_TIME = 0.5;			//Time to let shooters spin up before turning on hopper and indexers
 	public final static double SHOOTER_F = 13.28;				
@@ -104,6 +92,10 @@ public class Constants {
 	public final static double INDEXER_I = 0.0;					
 	public final static double INDEXER_D = 0.0;					
 	
+	public final static double INDEXER_SPEED = 1.0;
+	
+	public final static double HOPPER_SPEED = 1.0;
+	
 	//Turret Constants
 	public final static double TURRET_TURN_LEFT_SPEED = 0.13;	
 	public final static double TURRET_TURN_RIGHT_SPEED = -0.13;		
@@ -114,7 +106,7 @@ public class Constants {
 	public final static double TURRET_START_POS = 3480;
 	
 	//Drivetrain Constants
-	public final static DriveMode DRIVE_MODE = DriveMode.ARCADE; //What driving controls the robot will use (Arcade or Tank)
+	public final static DriveMode DRIVE_MODE = DriveMode.TANK; //What driving controls the robot will use (Arcade or Tank)
 	public final static double SPEED_MODIFIER = 1.0; //Speed multiplier (only really used with percentvbus driving)
 	public final static double OUTREACH_MODIFIER = 0.2;
 	public final static double F = 1.4; //TODO Re-Tune

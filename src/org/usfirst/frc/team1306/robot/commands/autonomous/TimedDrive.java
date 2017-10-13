@@ -1,64 +1,52 @@
 package org.usfirst.frc.team1306.robot.commands.autonomous;
 
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
+
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- * Command that drives the robot for a certain amount of time, started by either inputing a throttle for a time 
- * or by giving the robot position during autonomous.
- * @author Jackson Goth
+ * A command that drives the robot straight forward for a certain amount of
+ * time.
+ * 
+ * @author Finn Voichick
  */
 public class TimedDrive extends CommandBase {
 
-	private double throttle; //Speed that the motors will run at.
-	private double time; //Time the motors will run for.
-	private Timer timer; //Timer used to track time passed.
-	
-	private Station station; //Alliance station the robot is located at.
-	private AutoMode autoMode; //Autonomous routine being run.
-	private boolean runNext; //Running second TimedDrive?
-	private boolean autonomous; //If the robot is driving automously.
-	
+	/** The power for the motors, on a scale from -1.0 to 1.0. */
+	private final double throttle;
+	/** The amount of time to drive before stopping, in seconds. */
+	private final double time;
+	/** The timer that controls how long the robot drives before stopping */
+	private final Timer timer;
+
 	/**
-	 * Runs the command with a specified throttle for a specified time
+	 * Constructs a new TimedDrive command. Initializes the timer and requires
+	 * the drivetrain.
 	 */
 	public TimedDrive(double throttle, double time) {
-		requires(drivetrain);
 		this.throttle = throttle;
 		this.time = time;
-		this.autonomous = false;
-		
 		timer = new Timer();
+		requires(drivetrain);
 	}
 
 	/**
-	 * Runs the command using a specified robot position
-	 * @param station
+	 * Called just before this Command runs the first time. Here, the timer is
+	 * started.
 	 */
-	public TimedDrive(Station station, AutoMode mode, boolean runNext ) {
-		requires(drivetrain);
-		this.station = station;
-		this.autoMode = mode;
-		this.runNext = runNext;
-		this.autonomous = true;
-		
-		timer = new Timer();
-	}
-	
 	@Override
 	protected void initialize() {
-		timer.reset(); //Resets the timer to clear old data.
-		timer.start(); //Starts the timer again to begin comparing.
-		
-		if(autonomous) {
-			throttle = station.getThrottle(runNext);
-			time = station.getTime(runNext);
-		}
+		timer.reset();
+		timer.start();
 	}
 
+	/**
+	 * Called repeatedly when this Command is scheduled to run. It runs both
+	 * motors at the designated throttle.
+	 */
 	@Override
 	protected void execute() {
-		drivetrain.tankDrive(throttle, throttle); //Drives the motors at the specified speed.
+		drivetrain.driveVBus(throttle, throttle);
 	}
 
 	/**
@@ -75,7 +63,7 @@ public class TimedDrive extends CommandBase {
 	 */
 	@Override
 	protected void end() {
-		drivetrain.stopAll();
+		drivetrain.stop();
 	}
 
 	/**

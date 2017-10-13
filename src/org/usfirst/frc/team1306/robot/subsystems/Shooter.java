@@ -1,39 +1,58 @@
 package org.usfirst.frc.team1306.robot.subsystems;
 
 import org.usfirst.frc.team1306.robot.Constants;
+import org.usfirst.frc.team1306.robot.OI;
+import org.usfirst.frc.team1306.robot.OI.Axis;
+import org.usfirst.frc.team1306.robot.OI.Controller;
+import org.usfirst.frc.team1306.robot.OI.Joystick;
 import org.usfirst.frc.team1306.robot.RobotMap;
+import org.usfirst.frc.team1306.robot.commands.Setpoint;
+import org.usfirst.frc.team1306.robot.commands.shooter.AdjustHood.HoodAngle;
+
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 import com.ctre.CANTalon.VelocityMeasurementPeriod;
+
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * This controls the shooter and rate at which balls are shot
+ * @Shooter
+ * 
+ * Shooter subsystem that runs control loops on both shooter motors and the indexer motor, to get them to maintain
+ * the rpm for the currently desired setpoint.
+ * 
  * @author Jackson Goth and Sam Roquitte
  */
 public class Shooter extends Subsystem {
 
+	private final Talon hopperMotor;
 	private final CANTalon leftShooterMotor;
 	private final CANTalon rightShooterMotor;
 	private final CANTalon indexerMotor;
+	private final DoubleSolenoid hoodShifter;
 	
-	public final static double shooterSpeed = Constants.SHOOTER_SPEED;
-	public double shooterRPM = Constants.SHOOTER_BOILER_RPM;
-	public double indexerRPM = Constants.INDEXER_BOILER_RPM;
+	private double shooterRPM = Constants.SHOOTER_BOILER_RPM;
+	private double indexerRPM = Constants.INDEXER_BOILER_RPM;
+	private final static double hopperSpeed = Constants.HOPPER_SPEED;
 	
-	Alliance alliance;
+	private HoodAngle angle = HoodAngle.DOWN;
+	private Alliance alliance;
 	
 	public Shooter() {
+		
 		leftShooterMotor = new CANTalon(RobotMap.LEFT_SHOOTER_PORT);
 		leftShooterMotor.enable();
 		rightShooterMotor = new CANTalon(RobotMap.RIGHT_SHOOTER_PORT);
 		rightShooterMotor.enable();
 		indexerMotor = new CANTalon(RobotMap.INDEXER_TALON_PORT);
 		indexerMotor.enable();
+		hopperMotor = new Talon(RobotMap.HOPPER_TALON_PORT);
 		
 		leftShooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		leftShooterMotor.configEncoderCodesPerRev(12);
@@ -70,120 +89,123 @@ public class Shooter extends Subsystem {
 		indexerMotor.setI(Constants.INDEXER_I);
 		indexerMotor.setD(Constants.INDEXER_D);
 		
+		hoodShifter = new DoubleSolenoid(3,4);
+		setHoodAngle(angle); //Initial hood angle should be up
+		
 		alliance = DriverStation.getInstance().getAlliance();
 	}
 	
 	/**
-	 * Spins shooter forward (shooting fuel out)
+	 * Changes the RPM that the shooter and indexer motors will try and maintain
+	 * Used to switch between setpoints.
 	 */
-	public void spinShooter(double rpm) {
-		SmartDashboard.putNumber("Shooter Set Speed", rpm);
-		if(Constants.SHOOTER_ENABLED) {
-//			leftShooterMotor.changeControlMode(TalonControlMode.Voltage);
-//			rightShooterMotor.changeControlMode(TalonControlMode.Voltage);
-//			leftShooterMotor.setVoltageCompensationRampRate(24);
-//			rightShooterMotor.setVoltageCompensationRampRate(24);
-//			leftShooterMotor.set(8.00); //0.78
-//			rightShooterMotor.set(8.00); //0.78
-			
-			leftShooterMotor.changeControlMode(TalonControlMode.Speed);
-			rightShooterMotor.changeControlMode(TalonControlMode.Speed);
-			
-			if(rpm == Constants.SHOOTER_AUTO_HOPPER_RPM) {
-				if(alliance.equals(Alliance.Red)) {
-					leftShooterMotor.set(shooterRPM + 78);
-					rightShooterMotor.set(shooterRPM);
-				} else {
-					leftShooterMotor.set(shooterRPM);
-					rightShooterMotor.set(shooterRPM + 78);
-				}
-			} else if(rpm == Constants.SHOOTER_PEG_RPM) {
-				leftShooterMotor.set(rpm + 10);
-				rightShooterMotor.set(rpm);
-			} else {
-				leftShooterMotor.set(shooterRPM + 3);
-				rightShooterMotor.set(shooterRPM);
-			}
-			
-			
-			SmartDashboard.putNumber("shooter rpm",shooterRPM);
-		}
-	}
-	
-	double getIndexError() {
-		return indexerMotor.getError();
-	}
-	
-	/**
-	 * Spins shooter backward (pulling fuel back in)
-	 */
-	public void spinShooterBack() {
-		if (Constants.SHOOTER_ENABLED) {
-			leftShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
-			rightShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
-			leftShooterMotor.set(-shooterSpeed);
-			rightShooterMotor.set(-shooterSpeed);
-		}
-	}
-	
-	/**
-	 * Spins the indexer forward (push fuel to shooters)
-	 */
-	public void spinIndexer() {
-		if(Constants.INDEXER_ENABLED) {
-//			indexerMotor.changeControlMode(TalonControlMode.PercentVbus);
-////			indexerMotor.set(Constants.INDEXER_SPEED);
-//			indexerMotor.set(1.0);
-			indexerMotor.changeControlMode(TalonControlMode.Speed);
-			
-			
-			
-			indexerMotor.set(indexerRPM * (24/18));
-			SmartDashboard.putNumber("indexer rpm",indexerRPM);
-		}
-	}
-	
 	public void setRPM(double shooterSpeed, double indexerSpeed) {
 		shooterRPM = shooterSpeed;
 		indexerRPM = indexerSpeed;
 	}
+	
 	/**
-	 * Spins indexer backward (pull fuel away from shooters)
+	 * Used to spin the shooter at a specific speed for vision shooting
 	 */
-	public void spinIndexerBack() {
-		if (Constants.INDEXER_ENABLED) {
-			indexerMotor.changeControlMode(TalonControlMode.PercentVbus);
-			indexerMotor.set(Constants.INDEXER_SPEED);
+	public void spinShooter(double speed) {
+		
+		if(Constants.SHOOTER_ENABLED) {
+			leftShooterMotor.set(speed);
+			rightShooterMotor.set(speed);
 		}
 	}
 	
 	/**
-	 * Returns the velocity of the shooter
-	 * @param shooter
-	 * 		Which motor to read velocity from (0=left, 1=right, 2=index)
-	 * @return
-	 * 		Returns RPM from the talon
+	 * Spins shooter motors at given RPM with adjustments based on alliance and setpoint.
+	 * Adjustments are applied because with dual shooters they will almost always be shooting differen't
+	 * distances than each other and that adjustment is reversed when you're on the other alliance.
 	 */
-	public double getVel(int shooter) {
-		if(shooter == 0) {
-			return leftShooterMotor.getSpeed();
-		} else if(shooter == 1) {
-			return rightShooterMotor.getSpeed();
-		} else {
-			return indexerMotor.getSpeed();
+	public void spinShooter() {
+		
+		if(Constants.SHOOTER_ENABLED) {
+			leftShooterMotor.changeControlMode(TalonControlMode.Speed);
+			rightShooterMotor.changeControlMode(TalonControlMode.Speed);
+			
+			double adjustVal = OI.getJoyVal(Controller.S,Joystick.L,Axis.Y);
+			if(Math.abs(adjustVal) > Constants.DEADBAND) {
+				shooterRPM += adjustVal * 2.5;
+			}
+			
+			SmartDashboard.putNumber("shooterRPM",shooterRPM);
+			
+			if(shooterRPM == Setpoint.AUTO_HOPPER.shooterSpeed) {
+				if(alliance.equals(Alliance.Red)) {
+					leftShooterMotor.set(shooterRPM + Setpoint.AUTO_HOPPER.shooterAdj);
+					rightShooterMotor.set(shooterRPM);
+				} else {
+					leftShooterMotor.set(shooterRPM);
+					rightShooterMotor.set(shooterRPM + Setpoint.AUTO_HOPPER.shooterAdj);
+				}
+				
+			} else if(shooterRPM == Setpoint.PEG.shooterSpeed) {
+				if(alliance.equals(Alliance.Red)) {
+					leftShooterMotor.set(shooterRPM + Setpoint.PEG.shooterAdj);
+					rightShooterMotor.set(shooterRPM);
+				} else {
+					leftShooterMotor.set(shooterRPM);
+					rightShooterMotor.set(shooterRPM + Setpoint.PEG.shooterAdj);
+				}
+				
+			} else { //Boiler setpoint doesn't need adjustment
+				leftShooterMotor.set(shooterRPM);
+				rightShooterMotor.set(shooterRPM);
+			}
 		}
 	}
 	
 	/**
-	 * Stops all shooter-related motors
+	 * Spins indexer motors at a given RPM based on the current setpoint.
 	 */
-	public void stopAll() {
+	public void spinIndexer() {
+		if(Constants.INDEXER_ENABLED) {
+			indexerMotor.changeControlMode(TalonControlMode.Speed);
+			indexerMotor.set(indexerRPM * (24/18));
+		}
+	}
+	
+	public void spinHopper() {
+		if(Constants.HOPPER_ENABLED) {
+			hopperMotor.set(-hopperSpeed);
+		}
+	}
+	
+	/**
+	 * Sets the position of the hood (Up or Down)
+	 */
+	public void setHoodAngle(HoodAngle angle) {
+		
+		if(Constants.HOOD_ENABLED) {
+			if(angle.equals(HoodAngle.UP)) {
+				hoodShifter.set(DoubleSolenoid.Value.kForward);
+				angle = HoodAngle.UP;
+			} else {
+				hoodShifter.set(DoubleSolenoid.Value.kReverse);
+				angle = HoodAngle.DOWN;
+			}
+		}
+		
+	}
+	
+	public HoodAngle getHoodAngle() {
+		return angle;
+	}
+	
+	/**
+	 * Stops all motors (shooters, indexer, hopper)
+	 */
+	public void stop() {
 		leftShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
 		rightShooterMotor.changeControlMode(TalonControlMode.PercentVbus);
 		indexerMotor.changeControlMode(TalonControlMode.PercentVbus);
 		leftShooterMotor.set(0.0);
 		rightShooterMotor.set(0.0);
 		indexerMotor.set(0.0);
+		hopperMotor.set(0.0);
 	}
 	
 	@Override

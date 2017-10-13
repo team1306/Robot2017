@@ -2,8 +2,6 @@ package org.usfirst.frc.team1306.robot.subsystems;
 
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.RobotMap;
-import org.usfirst.frc.team1306.robot.commands.intake.SpinIntake;
-
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -33,12 +31,12 @@ public class Intake extends Subsystem {
 	/**
 	 * Stops the intake motor
 	 */
-	public void stopAll() {
+	public void stop() {
 		intakeMotor.set(0.0);
 	}
 
 	@Override
 	protected void initDefaultCommand() {
-		//setDefaultCommand(new SpinIntake());
+		
 	}
 }

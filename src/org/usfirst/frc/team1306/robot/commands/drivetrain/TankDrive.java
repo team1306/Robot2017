@@ -2,10 +2,10 @@ package org.usfirst.frc.team1306.robot.commands.drivetrain;
 
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.OI;
-import org.usfirst.frc.team1306.robot.OI.axis;
-import org.usfirst.frc.team1306.robot.OI.controller;
-import org.usfirst.frc.team1306.robot.OI.joystick;
-import org.usfirst.frc.team1306.robot.OI.trigger;
+import org.usfirst.frc.team1306.robot.OI.Axis;
+import org.usfirst.frc.team1306.robot.OI.Controller;
+import org.usfirst.frc.team1306.robot.OI.Joystick;
+import org.usfirst.frc.team1306.robot.OI.PullTrigger;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
 /**
@@ -30,14 +30,14 @@ public class TankDrive extends CommandBase {
 		 * If trigger pressed it will figure out which one and either go forward or backward based on the values from them.
 		 * Otherwise it assumes it is being controlled by joysticks and will drive robot based on their respective inputs.
 		 */
-		if(OI.getTriggerVal(controller.p, trigger.l) >= Constants.DEADBAND || OI.getTriggerVal(controller.p, trigger.r) >= Constants.DEADBAND) {
-			if(OI.getTriggerVal(controller.p, trigger.r) >= Constants.DEADBAND) {
-				drivetrain.tankDrive(OI.getTriggerVal(controller.p, trigger.r), OI.getTriggerVal(controller.p, trigger.r));
-			} else if(OI.getTriggerVal(controller.p, trigger.l) >= Constants.DEADBAND) {
-				drivetrain.tankDrive(-OI.getTriggerVal(controller.p, trigger.l), -OI.getTriggerVal(controller.p, trigger.l));
+		if(OI.getTriggerVal(Controller.P, PullTrigger.L) >= Constants.DEADBAND || OI.getTriggerVal(Controller.P, PullTrigger.R) >= Constants.DEADBAND) {
+			if(OI.getTriggerVal(Controller.P, PullTrigger.R) >= Constants.DEADBAND) {
+				drivetrain.driveVBus(OI.getTriggerVal(Controller.P, PullTrigger.R), OI.getTriggerVal(Controller.P, PullTrigger.R));
+			} else if(OI.getTriggerVal(Controller.P, PullTrigger.L) >= Constants.DEADBAND) {
+				drivetrain.driveVBus(-OI.getTriggerVal(Controller.P, PullTrigger.L), -OI.getTriggerVal(Controller.P, PullTrigger.L));
 			}
 		} else {
-			drivetrain.tankDrive(OI.getJoyVal(controller.p, joystick.l, axis.y), OI.getJoyVal(controller.p, joystick.r, axis.y));
+			drivetrain.driveVBus(OI.getJoyVal(Controller.P, Joystick.L, Axis.Y), OI.getJoyVal(Controller.P, Joystick.R, Axis.Y));
 		}
 	}
 
@@ -48,7 +48,7 @@ public class TankDrive extends CommandBase {
 
 	@Override
 	protected void end() {
-		drivetrain.stopAll();
+		drivetrain.stop();
 	}
 
 	@Override

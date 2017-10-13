@@ -1,35 +1,55 @@
 package org.usfirst.frc.team1306.robot.subsystems;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.SPI;
 
-public class Gyro extends Subsystem {
+/**
+ * @Gyro
+ * 
+ * This class holds the gyro object and is meant make accessing data from the navx easier and more organized.
+ * @author Jackson Goth
+ */
+public class Gyro {
 
-	AnalogDevicesGyro imu;
+	private AHRS navx; //Gyro we use, navX Sensor
 	
 	public Gyro() {
-		imu = new AnalogDevicesGyro();
-//		imu.reset();
-	}
-
-	public void reset() {
-		imu.reset();
+		try {
+			navx = new AHRS(SPI.Port.kMXP);
+			
+			navx.reset(); //Resets Yaw
+			navx.resetDisplacement(); //Resets displacement
+		} catch(RuntimeException ex) {
+			
+		}
 	}
 	
+	/**
+	 * Returns total accumulated yaw value in degrees
+	 */
 	public double getAngle() {
-		return imu.getAngle();
+		return navx.getAngle();
 	}
 	
-	public double getTemp() {
-		return imu.getTemperature();
+	/**
+	 * Returns current yaw value (-180 to 180 degrees only)
+	 */
+	public double getYaw() {
+		return navx.getYaw();
 	}
 	
-	public double getLastSampleTime() {
-		return imu.getLastSampleTime();
+	/**
+	 * Returns displacement from navx along a given axis
+	 */
+	public double getDisplacement(Axis axis) {
+		if(axis.equals(Axis.X)) {
+			return navx.getDisplacementX();
+		} else if(axis.equals(Axis.Y)) {
+			return navx.getDisplacementY();
+		} else {
+			return navx.getDisplacementZ();
+		}
 	}
 	
-	@Override
-	protected void initDefaultCommand() {
-		// TODO Auto-generated method stub
-		
-	}
+	public enum Axis {X,Y,Z}; //Enum used to store possible axis for dislacement acquisition
 }

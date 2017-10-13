@@ -7,9 +7,10 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * This command is always looking for the target and will track to it if it's in sight.  It averages the yaw values from the jetson to lessen the effects
- * of incorrect data and smooth out motions.  It can also scan in either direction if given input via driver controls.  This command also controls the state of
- * the vision LEDS on the camera.
+ * @FindTarget
+ * 
+ * 
+ * 
  * @author Jackson Goth
  */
 public class FindTarget extends CommandBase {
@@ -18,17 +19,11 @@ public class FindTarget extends CommandBase {
 	private boolean scanning;
 	private ScanDirection scanDir;
 	private ArrayList<Double> yawList;
-	Timer timer;
+	private Timer timer;
 //	DigitalOutput leds;
 	
-	/**
-	 * Starts looking for the target, while scanning in a given direction
-	 * @param direction
-	 * 		Direction driver wants the turrets to scan in
-	 */
 	public FindTarget(ScanDirection direction) {
 		requires(turret);
-		requires(vision);
 		
 		yawList = new ArrayList<Double>(); //Array used for storing and averaging yaw values from the jetson
 //		leds = new DigitalOutput(0); //Vision LEDS
@@ -42,7 +37,6 @@ public class FindTarget extends CommandBase {
 	 */
 	public FindTarget() {
 		requires(turret);
-		requires(vision);
 		
 		yawList = new ArrayList<Double>(); //Array used for storing and averaging yaw values from the jetson
 //		leds = new DigitalOutput(0); //Vision LEDS
@@ -178,7 +172,7 @@ public class FindTarget extends CommandBase {
 
 	@Override
 	protected void end() {
-		turret.stopAll();
+		turret.stop();
 //		leds.set(false); 
 	}
 

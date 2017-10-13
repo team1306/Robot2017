@@ -1,56 +1,45 @@
 package org.usfirst.frc.team1306.robot.commands;
 
+import org.usfirst.frc.team1306.robot.commands.turret.AutoTurret;
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 
 /**
- * Command that does all the adjustments necessary to shoot at a given setpoints; sets shooter rpm, indexer rpm, hood angle, turret position.
+ * @SetSetpoint
+ * 
+ * Command that changes the RPM the shooter/indexer motors will run at, turns the turret to a given angle, and raise or lowers the hood
+ * to score fuel from a pre-planned spot on the field.
+ *
  * @author Jackson Goth
  */
 public class SetSetpoint extends CommandBase {
 
-	Setpoint setpoint;
-	Alliance alliance;
+	private Setpoint setpoint;
+	private Alliance alliance;
 	
-	public SetSetpoint(Setpoint setpoint) {
-		requires(shooter);
-		requires(turret);
-		requires(hood);
+	public SetSetpoint(Setpoint s) {
 		
-		this.setpoint = setpoint; //Initializing setpoint
-		this.alliance = DriverStation.getInstance().getAlliance(); //Finding out which alliance the robot is on
-	}
-	
-	@Override
-	protected void initialize() {
-		
+		setpoint = s;
+		alliance = DriverStation.getInstance().getAlliance(); //Finding out what alliance we are on to determine which direction turret should turn
 	}
 
 	@Override
 	protected void execute() {
 		
-		shooter.setRPM(setpoint.getShooterRPM(), setpoint.getIndexerRPM()); //Adjusts desired motor rpm for shooters and indexers
-		hood.setPos(setpoint.getHoodAngle()); //Adjusts the hood angle for expected distance
+		shooter.setRPM(setpoint.shooterSpeed, setpoint.indexerSpeed); //Changes the RPM the shooter and indexer motors will run at
+		shooter.setHoodAngle(setpoint.angle); //Actuates hood up or down if the setpoint requires it
 		
 		if(alliance.equals(Alliance.Blue)) { //If on blue alliance, turn turret to this angle
-			turret.moveRot(-setpoint.getTurretPos());
+			turret.moveRot(-setpoint.getTurretRot());
 		} else { //Otherwise you are on red alliance, in which case you turn turret to opposite angle
-			turret.moveRot(setpoint.getTurretPos());
+			turret.moveRot(setpoint.getTurretRot());
 		}
 	}
 
 	@Override
 	protected boolean isFinished() {
+//		new AutoTurret().start();
 		return true;
-	}
-
-	@Override
-	protected void end() {
-		
-	}
-
-	@Override
-	protected void interrupted() {
-		
 	}
 }
