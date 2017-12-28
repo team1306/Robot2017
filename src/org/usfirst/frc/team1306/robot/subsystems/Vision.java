@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
  */
 public class Vision extends Subsystem {
 
-	NetworkTable table;
+	private NetworkTable table;
 	
 	public Vision() {
 		
@@ -17,6 +17,7 @@ public class Vision extends Subsystem {
 		NetworkTable.setServerMode();
 		NetworkTable.setTeam(1306);
 		NetworkTable.initialize();
+		NetworkTable.setUpdateRate(0.01);
 		table = NetworkTable.getTable("1306");
 	}
 	
