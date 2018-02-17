@@ -57,10 +57,11 @@ public class AutoTurret extends CommandBase {
 				visionRotAdj = 0;
 			}
 
-			turret.setSpeed(visionRotAdj);
-			
+			//turret.setSpeed(visionRotAdj);
+			drivetrain.driveSpeed(-visionRotAdj,visionRotAdj);
 		} else {
 			turret.stop();
+			drivetrain.stop();
 		}
 	}
 
